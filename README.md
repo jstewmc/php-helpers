@@ -41,6 +41,7 @@ echo Bool::val('on');                         // prints (bool) true
 ```
 
 ### Arrays
+```php
 // array (aka, "arr") functions
 echo Arr::in_array_wildcard('qu*', ['foo', 'bar', 'baz', 'qux']);  // returns true
 echo Arr::is_assoc([1 => 'foo', 2 => 'bar', 'baz' => 'qux']);      // returns true
@@ -88,7 +89,6 @@ $c = Arr::usort_method($a, 'getBar', 'asc');
 
 var_dump($b);  // prints [{bar: 1}, {bar: 2}, {bar: 3}] (psuedo-code)
 var_dump($c);  // prints [{bar: 1}, {bar: 2}, {bar: 3}] (psuedo-code)
-
 ```
 
 ## Todo
