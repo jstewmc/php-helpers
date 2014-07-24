@@ -16,8 +16,8 @@ echo Str::endsWith('foobar', 'bar');         // prints (bool) true
 echo Bool::booltostr(true, 'yes/no');  // prints (string) 'yes'
 echo Bool::val('on');                  // prints (bool) true
 
-$a = Arr::usort_field('foo', [['foo' => 3], ['foo' => 1], ['foo' => 2]]));   
-$b = Arr::in_array_wildcard('qu*', ['foo', 'bar', 'baz', 'qux']));   
+$a = Arr::usort_field('foo', [['foo' => 3], ['foo' => 1], ['foo' => 2]]);   
+$b = Arr::in_array_wildcard('qu*', ['foo', 'bar', 'baz', 'qux']);   
 $c = Arr::array_filter_key(['foo' => 'bar', 'baz' => 'qux'], 'foo'); 
  
 var_dump($a);  // prints [['foo' => 3], ['foo' => 2], ['foo' => 1]]
