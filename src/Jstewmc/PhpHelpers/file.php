@@ -4,12 +4,12 @@
  *
  * @author     Jack Clayton <clayjs0@gmail.com>
  * @license    WTFPL <http://www.wtfpl.net>
- * @package    Jsc/PhpHelpers
+ * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
  * @since      July 2014
  *
  */
 
-namespace Jsc/PhpHelpers;
+namespace Jstewmc/PhpHelpers;
 
 class File
 {
