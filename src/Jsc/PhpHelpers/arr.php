@@ -4,11 +4,12 @@
  *
  * @author     Jack Clayton <clayjs0@gmail.com>
  * @license    WTFPL <http://www.wtfpl.net>
- * @package    Jsc/php-helpers
+ * @package    Jsc/PhpHelpers
  * @since      July 2014
  *
  */
-namespace Jsc;
+ 
+namespace Jsc/PhpHelpers;
 
 class Arr
 {
