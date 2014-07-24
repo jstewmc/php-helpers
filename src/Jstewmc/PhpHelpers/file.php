@@ -37,7 +37,7 @@ class File
 		$isSuccess = false; 
 
 		// if the $directory is in the container
-		if (\SC\str::startsWith($directory, $container)) {
+		if (\Jstewmc\PhpHelpers\Str::startsWith($directory, $container)) {
 			// if the $directory argument is a dir
 			if (is_dir($directory)) {
 				// if $directory is writable

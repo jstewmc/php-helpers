@@ -186,8 +186,8 @@ class Arr
 				// if $needle contains the wildcard character
 				if (strpos($needle, $wildcard) !== false) {
 					// determine if the neeedle starts or ends with the wildcard
-					$startsWith = \SC\str::startsWith($haystack, $wildcard);
-					$endsWith   = \SC\str::endsWith($haystack, $wildcard);
+					$startsWith = \Jstewmc\PhpHelpers\Str::startsWith($haystack, $wildcard);
+					$endsWith   = \Jstewmc\PhpHelpers\Str::endsWith($haystack, $wildcard);
 					// loop through the haystack
 					foreach ($haystack as $value) {
 						// if the needle starts and ends with the wildcard
@@ -200,13 +200,13 @@ class Arr
 							// true if the value ends with the non-wildcard substr
 							//
 							$needle  = substr($needle, 1);
-							$inArray = \SC\str::endsWith($value, $needle);
+							$inArray = \Jstewmc\PhpHelpers\Str::endsWith($value, $needle);
 						} else {
 							// finally, if the needle ends with the wildcard
 							// true if the value starts with the non-wildcard substr
 							//
 							$needle  = substr($needle, 0, -1);
-							$inArray = \SC\str::startsWith($value, $needle);
+							$inArray = \Jstewmc\PhpHelpers\Str::startsWith($value, $needle);
 						}
 						// if the needle is in the array, stop looking
 						if ($inArray) {
