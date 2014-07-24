@@ -23,7 +23,7 @@ echo Str::truncate('Lorem ipsum inum', 12);   // prints (string) 'Lorem ipsum...
 echo Str::endsWith('foobar', 'bar');          // prints (bool) true
 echo Str::startsWith('foobar', 'foo');        // prints (bool) true
 echo Str::isBool('yes');                      // prints (bool) true
-echo Str::strtocamelcase('hello_WORLD);       // prints (string) 'helloWorld'
+echo Str::strtocamelcase('hello_WORLD');      // prints (string) 'helloWorld'
 var_dump(Str::splitOnFirstAlpha('123 foo'));  // prints ['123', 'foo'];
 
 // boolean (aka, "bool") functions
