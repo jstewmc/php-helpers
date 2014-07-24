@@ -6,6 +6,9 @@ Static helper classes are nothing new in PHP. In fact, most of these functions h
 Feel free to ask questions and make suggestions.
 
 ## Examples
+Here are examples for most of the functions.
+
+### Numbers
 ```php
 // number (aka, "num") functions
 echo Num::val('1/2');                         // prints (float) 0.5
@@ -16,7 +19,10 @@ echo Num::isInt('1,000');                     // prints (bool) true
 echo Num::isId(1000000, 'tinyint');           // prints (bool) false
 echo Num::isZero('0');                        // prints (bool) true
 echo Num::almostEqual((float) 1, (float) 1);  // prints (bool) true
+```
 
+### Strings
+``` php
 // string (aka, "str") functions
 echo Str::rand(8, ['alpha', 'number']);       // prints string like '9Ohb5Fv3'
 echo Str::truncate('Lorem ipsum inum', 12);   // prints (string) 'Lorem ipsum...'
@@ -25,11 +31,16 @@ echo Str::startsWith('foobar', 'foo');        // prints (bool) true
 echo Str::isBool('yes');                      // prints (bool) true
 echo Str::strtocamelcase('hello_WORLD');      // prints (string) 'helloWorld'
 var_dump(Str::splitOnFirstAlpha('123 foo'));  // prints ['123', 'foo'];
+```
 
+### Booleans
+``` php
 // boolean (aka, "bool") functions
 echo Bool::booltostr(true, 'yes/no');         // prints (string) 'yes'
 echo Bool::val('on');                         // prints (bool) true
+```
 
+### Arrays
 // array (aka, "arr") functions
 echo Arr::in_array_wildcard('qu*', ['foo', 'bar', 'baz', 'qux']);  // returns true
 echo Arr::is_assoc([1 => 'foo', 2 => 'bar', 'baz' => 'qux']);      // returns true
