@@ -38,7 +38,7 @@ class Bool
 				case 'onoff':
 				case 'on/off':
 				case 'on-off':
-					$str = $bool ? 'true' : 'false';
+					$str = $bool ? 'on' : 'off';
 					break;
 
 				case 'tf':
