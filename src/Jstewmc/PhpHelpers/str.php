@@ -3,7 +3,7 @@
  * A string (aka, "str") utility class
  *
  * @author     Jack Clayton <clayjs0@gmail.com>
- * @license    WTFPL <http://www.wtfpl.net>
+ * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
  * @since      July 2014
  *
