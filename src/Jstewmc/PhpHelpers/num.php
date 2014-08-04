@@ -3,6 +3,7 @@
  * A number (aka, "num") utility class
  *
  * @author     Jack Clayton <clayjs0@gmail.com>
+ * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
  * @since      July 2014
