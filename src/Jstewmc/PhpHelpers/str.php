@@ -80,7 +80,7 @@ class Str
 	 */
 	public static function isBool($str)
 	{
-		return in_array(strtolower($str), array('true', 'false', 'yes', 'no'));
+		return in_array(strtolower($str), array('true', 'false', 'yes', 'no', 'on', 'off'));
 	}
 
 	/**
