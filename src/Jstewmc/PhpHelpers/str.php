@@ -6,7 +6,7 @@
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- * @since      July 2014
+ * @since      0.0.0
  *
  */
  
