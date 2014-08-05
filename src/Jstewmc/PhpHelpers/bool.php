@@ -1,36 +1,43 @@
 <?php
 /**
- * A boolean (aka, "bool") utility class
+ * The file for the Bool class
  *
  * @author     Jack Clayton <clayjs0@gmail.com>
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- * @since      0.0.0
- *
  */
 
 namespace Jstewmc/PhpHelpers;
 
+/**
+ * A class of boolean (aka, "bool") utility methods
+ */
 class Bool 
 {
 	/**
-	 * Returns a bool value as a string
+	 * Returns $bool value in the string $format
 	 *
-	 * @static
-	 * @access  public
-	 * @param   $bool    bool  the boolean value to convert
-	 * @param   $format  str   the string format to convert to (possible values
-	 *                         't[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', 
-	 *                         and on[/-]off')
-	 *                         (case-insensitive) (optional; if omitted, 
-	 *                         defaults to 'tf')
-	 * @return           str   the string value
+	 * I'll return a bool value as a true-false, yes-no, or on-off string.
 	 *
+	 * For example:
+	 *
+	 *     Bool::booltostr(true);             // returns (string) 'true'
+	 *     Bool::booltostr(true, 'yes-no');   // returns (string) 'true'
+	 *     Bool::booltostr(false, 'on-off');  // returns (string) 'off'
+	 *
+	 * @throws  InvalidArgumentException  if $bool is not a (bool) value
+	 * @throws  InvalidArgumentException  if $format is not a supported format
+	 * @param   bool    $bool   the boolean value to convert
+	 * @param   string  $format the string format to convert to (possible values are
+	 *     't[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', and 'on[/-]off')
+	 *     (case-insensitive) (optional; if omitted, defaults to 'true-false')
+	 * @return  string the string value
 	 */
 	public static function booltostr($bool, $format = 'true-false') {
-		// if $bool is bool
+		// if $bool is actually a bool
 		if (is_bool($bool)) {
+			// switch on the lower-case $format
 			switch (strtolower($format)) {
 				
 				case 'oo':
@@ -117,11 +124,9 @@ class Bool
 	 *     Bool::val([1, 2]);          // returns (bool) true
 	 *     Bool::val(new StdClass());  // returns (bool) true
 	 * 
-	 * @static
-	 * @see     http://www.php.net/manual/en/function.boolval.php
-	 * @access  public
-	 * @param   $var  mixed  the variable to test
-	 * @return        bool   the variable's bool value
+	 * @see     <http://www.php.net/manual/en/function.boolval.php>
+	 * @param   mixed  $var  the variable to test
+	 * @return  bool         the variable's bool value
 	 *
 	 */
 	public static function val($var)
