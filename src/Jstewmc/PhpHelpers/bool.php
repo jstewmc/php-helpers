@@ -171,6 +171,8 @@ class Bool
 					// any non-empty array is considered true
 					$val = ! empty($var);
 				}
+			} else {
+				$val = $var;
 			}
 		} else {
 			$val = false;
