@@ -1,11 +1,21 @@
 {
 	"name": "jstewmc/php-helpers",
+	"description": "Static classes to help with numbers, strings, arrays, files, and bools in PHP",
+	"license": "MIT",
+	"keywords": ["PHP", "helper", "number", "string", "array", "file", "boolean"],
+	"authors": [
+		{
+			"name": "Jack Clayton",
+			"email": "clayjs0@gmail.com"	
+		}
+	],
+	"require": {},
 	"require-dev": {
 		"phpunit/phpunit": "4.2.*"
 	},
 	"autoload": {
-		"psr-0": {
-			"Jstewmc\\PhpHelpers\\": "src/"
+		"psr-4": {
+			"Jstewmc\\PhpHelpers\\": "src"
 		}
 	}
 }
