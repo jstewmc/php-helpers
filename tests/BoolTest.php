@@ -8,12 +8,12 @@
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
  */
 
-namespace Jstewmc\PhpHelpers;
+use Jstewmc\PhpHelpers\Bool;
 
 /**
  * A class to test the Bool class
  */
-class BoolTest extends \PHPUnit_Framework_TestCase
+class BoolTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * Provides an array of non-bool datatypes
@@ -25,7 +25,7 @@ class BoolTest extends \PHPUnit_Framework_TestCase
 			array(1.0),
 			array('foo'),
 			array(array()),
-			array(new \StdClass())
+			array(new StdClass())
 		);
 	}
 	
@@ -39,7 +39,7 @@ class BoolTest extends \PHPUnit_Framework_TestCase
 			array(1.0),
 			array(true),
 			array(array()),
-			array(new \StdClass())
+			array(new StdClass())
 		);
 	}
 
