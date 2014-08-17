@@ -1,0 +1,11 @@
+{
+	"name": "jstewmc/php-helpers",
+	"require-dev": {
+		"phpunit/phpunit": "4.2.*"
+	},
+	"autoload": {
+		"psr-0": {
+			"Jstewmc\\PhpHelpers\\": "src/"
+		}
+	}
+}
