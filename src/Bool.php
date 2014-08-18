@@ -9,7 +9,7 @@
  * @since      1.0.0
  */
 
-namespace Jstewmc/PhpHelpers;
+namespace Jstewmc\PhpHelpers;
 
 /**
  * A class of boolean (aka, "bool") utility methods
@@ -27,7 +27,9 @@ class Bool
 	 *     Bool::booltostr(true, 'yes-no');   // returns (string) 'true'
 	 *     Bool::booltostr(false, 'on-off');  // returns (string) 'off'
 	 *
+	 * @throws  \BadMethodCallException    if $bool is null
 	 * @throws  \InvalidArgumentException  if $bool is not a (bool) value
+	 * @throws  \InvalidArgumentException  if $format is not a string
 	 * @throws  \InvalidArgumentException  if $format is not a valid format
 	 * @param   bool    $bool   the boolean value to convert
 	 * @param   string  $format the string format to convert to (possible values are
@@ -39,48 +41,62 @@ class Bool
 	{
 		$string = false;
 		
-		// if $bool is actually a bool
-		if (is_bool($bool)) {
-			// switch on the lower-case $format
-			switch (strtolower($format)) {
-				
-				case 'oo':
-				case 'o/o':
-				case 'o-o':
-				case 'onoff':
-				case 'on/off':
-				case 'on-off':
-					$string = $bool ? 'on' : 'off';
-					break;
-
-				case 'tf':
-				case 't/f':
-				case 't-f':
-				case 'truefalse':
-				case 'true/false':
-				case 'true-false':
-					$string = $bool ? 'true' : 'false';
-					break;
-
-				case 'yn':
-				case 'y/n':
-				case 'y-n':
-				case 'yesno':
-				case 'yes/no':
-				case 'yes-no':
-					$string = $bool ? 'yes' : 'no';
-					break;
-
-				default:
+		// if $bool and format are not null
+		if ($bool !== null && $format !== null) {
+			// if $bool is actually a bool
+			if (is_bool($bool)) {
+				// if $format is a string
+				if (is_string($format)) {
+					// switch on the lower-case $format
+					switch (strtolower($format)) {
+						
+						case 'oo':
+						case 'o/o':
+						case 'o-o':
+						case 'onoff':
+						case 'on/off':
+						case 'on-off':
+							$string = $bool ? 'on' : 'off';
+							break;
+		
+						case 'tf':
+						case 't/f':
+						case 't-f':
+						case 'truefalse':
+						case 'true/false':
+						case 'true-false':
+							$string = $bool ? 'true' : 'false';
+							break;
+		
+						case 'yn':
+						case 'y/n':
+						case 'y-n':
+						case 'yesno':
+						case 'yes/no':
+						case 'yes-no':
+							$string = $bool ? 'yes' : 'no';
+							break;
+		
+						default:
+							throw new \InvalidArgumentException(
+								__METHOD__."() expects parameter two, format, to be one of the following: ".
+									"'t[/-]f', 'true[/-]false', 'y[/-]s', 'yes[/-]no', 'o[/-]o', or ".
+									"'on[/-]off', '$format' given"
+							);
+					}
+				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, format, to be one of the following: ".
-							"'t[/-]f', 'true[/-]false', 'y[/-]s', 'yes[/-]no', 'o[/-]o', or ".
-							"'on[/-]off', '$format' given"
+						__METHOD__."() expects parameter two, format, to be a string"
 					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects parameter one, bool, to be a bool value given"
+				);
 			}
 		} else {
-			throw new \InvalidArgumentException(
-				__METHOD__." expects parameter one to be a bool value, ".gettype($bool)." given"
+			throw new \BadMethodCallException(
+				__METHOD__."() expects one or two parameters, a bool value and a string format"
 			);
 		}
 
@@ -171,7 +187,7 @@ class Bool
 					}
 				} elseif (is_numeric($var)) {
 					// any non-zero integer or float is considered true
-					$value = ($str !== 0 && $str !== 0.0);
+					$value = ($var !== 0 && $var !== 0.0);
 				} elseif (is_object($var)) {
 					// any object is considered true
 					$value = true;
