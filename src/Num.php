@@ -330,6 +330,7 @@ class Num
 	 *     'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]') 
 	 *     (case-insensitive) (optional; if omitted, defaults to 'int')
 	 * @return  bool                true if the number is a valid database id
+	 * @throws  \BadMethodCallException    if $datatype is null
 	 * @throws  \InvalidArgumentException  if $datatype is not a string
 	 * @throws  \InvalidArgumentException  if $datatype is not an allowed value
 	 */
@@ -337,54 +338,61 @@ class Num
 	{
 		$isId = false; 
 		
-		// if $datatype is a string
-		if (is_string($datatype)) {
-			// if $number is actually a number
-			if (is_numeric($number)) {
-				// if the number is a positive integer
-				if (self::isInt($number) && $number > 0) {
-					// if the number is LTE the datatype's max value
-					switch (strtolower($datatype)) {
-						case 'tiny':
-						case 'tinyint':
-							$isId = ($number <= 255);
-							break;
+		// if $datatype is not null
+		if ($datatype !== null) {
+			// if $datatype is a string
+			if (is_string($datatype)) {
+				// if $number is actually a number
+				if (is_numeric($number)) {
+					// if the number is a positive integer
+					if (self::isInt($number) && $number > 0) {
+						// if the number is LTE the datatype's max value
+						switch (strtolower($datatype)) {
+							case 'tiny':
+							case 'tinyint':
+								$isId = ($number <= 255);
+								break;
+							
+							case 'small':
+							case 'smallint':
+								$isId = ($number <= 65535);
+								break;
+							
+							case 'medium':
+							case 'mediumint':
+								$isId = ($number <= 8388607);
+								break;
+							
+							case 'int':
+							case 'integer':
+								$isId = ($number <= 4294967295);
+								break;
+							
+							case 'big':
+							case 'bigint':
+								// cast the datatype's maximum value to a float
+								// the integer's size is beyond PHP's maximum integer value
+								//
+								$isId = ($number <= (float) 18446744073709551615);
+								break;
 						
-						case 'small':
-						case 'smallint':
-							$isId = ($number <= 65535);
-							break;
-						
-						case 'medium':
-						case 'mediumint':
-							$isId = ($number <= 8388607);
-							break;
-						
-						case 'int':
-						case 'integer':
-							$isId = ($number <= 4294967295);
-							break;
-						
-						case 'big':
-						case 'bigint':
-							// cast the datatype's maximum value to a float
-							// the integer's size is beyond PHP's maximum integer value
-							//
-							$isId = ($number <= (float) 18446744073709551615);
-							break;
-					
-						default:
-							throw new \InvalidArgumentException(
-								__METHOD__." expects parameter two to be a valid datatype name such as: ".
-									"'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', or 'big[int]',".
-									"{$datatype} given"
-							);
+							default:
+								throw new \InvalidArgumentException(
+									__METHOD__." expects parameter two to be a valid datatype name such as: ".
+										"'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', or 'big[int]',".
+										"{$datatype} given"
+								);
+						}
 					}
 				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__." expects parameter two to be a string, the datatype name"
+				);
 			}
 		} else {
-			throw new \InvalidArgumentException(
-				__METHOD__." expects parameter two to be a string, the datatype name"
+			throw new \BadMethodCallException(
+				__METHOD__."() expects two parameters, a number and a datatype name"
 			);
 		}
 		
