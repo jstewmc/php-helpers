@@ -8,7 +8,7 @@
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>  
  */
 
-namespace Jstewmc/PhpHelpers;
+namespace Jstewmc\PhpHelpers;
 
 /** 
  * A class of utility methods for PHP numbers (aka, "num")
@@ -144,7 +144,7 @@ class Num
 							}
 						} else {
 							throw new \InvalidArgumentException(
-								__METHOD__." expects the third parameter, the upper bound ({$upper}), to be "
+								__METHOD__." expects the third parameter, the upper bound ({$upper}), to be ".
 									"greater than or equal to the second parameter, the lower bound ({$lower})"
 							);
 						}
