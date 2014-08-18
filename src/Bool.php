@@ -6,13 +6,14 @@
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- * @since      1.0.0
  */
 
 namespace Jstewmc\PhpHelpers;
 
 /**
  * A class of boolean (aka, "bool") utility methods
+ *
+ * @since  0.1.0
  */
 class Bool 
 {
@@ -27,15 +28,16 @@ class Bool
 	 *     Bool::booltostr(true, 'yes-no');   // returns (string) 'true'
 	 *     Bool::booltostr(false, 'on-off');  // returns (string) 'off'
 	 *
-	 * @throws  \BadMethodCallException    if $bool is null
-	 * @throws  \InvalidArgumentException  if $bool is not a (bool) value
-	 * @throws  \InvalidArgumentException  if $format is not a string
-	 * @throws  \InvalidArgumentException  if $format is not a valid format
+	 * @since   0.1.0
 	 * @param   bool    $bool   the boolean value to convert
 	 * @param   string  $format the string format to convert to (possible values are
 	 *     't[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', and 'on[/-]off')
 	 *     (case-insensitive) (optional; if omitted, defaults to 'true-false')
 	 * @return  string          the string value
+	 * @throws  \BadMethodCallException    if $bool is null
+	 * @throws  \InvalidArgumentException  if $bool is not a (bool) value
+	 * @throws  \InvalidArgumentException  if $format is not a string
+	 * @throws  \InvalidArgumentException  if $format is not a valid format
 	 */
 	public static function booltostr($bool, $format = 'true-false') 
 	{
@@ -143,10 +145,10 @@ class Bool
 	 *     Bool::val([1, 2]);          // returns (bool) true
 	 *     Bool::val(new StdClass());  // returns (bool) true
 	 * 
-	 * @see     <http://www.php.net/manual/en/function.boolval.php>
+	 * @since   0.1.0
 	 * @param   mixed  $var  the variable to test
 	 * @return  bool         the variable's bool value
-	 *
+	 * @see     <http://www.php.net/manual/en/function.boolval.php>
 	 */
 	public static function val($var)
 	{
