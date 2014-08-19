@@ -167,25 +167,25 @@ class Str
 	 * For example:
 	 *
 	 *     $rules = ['upper' => 12];
-	 *     $a = Str::password($rules);
+	 *     $a = Str::password(12, $rules);
 	 *
 	 *     $rules = ['lower' => 6, 'upper' => 6];
-	 *     $b = Str::password($rules);
+	 *     $b = Str::password(12, $rules);
 	 *
 	 *     $rules = ['lower' => 4, 'upper' => 4, 'number' => 4];
-	 *     $c = Str::password($rules);
+	 *     $c = Str::password(12, $rules);
 	 *
 	 *     echo $a;  // example 'KNVHYUIDGVDS'
 	 *     echo $b;  // example 'jNhGFkLekOfV'
 	 *     echo $c;  // example 'la9Uh7BH4Bc3'
 	 *
 	 * @since   0.1.0
+	 * @param   int    $length  the length of the password (optional; if omitted, 
+	 *     defaults to 8)
 	 * @param   int[]  $rules   an array of character counts indexed by charset name
 	 *     (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol') 
 	 *     (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1, 
 	 *     'symbol' => 1])
-	 * @param   int    $length  the length of the password (optional; if omitted, 
-	 *     defaults to 8)
 	 * @return  string          the password
 	 * @throws  \BadMethodCallException    if $rules or $length is omitted
 	 * @throws  \InvalidArgumentException  if $rules is not an array
@@ -196,7 +196,7 @@ class Str
 	 *     in the $rules array) exceeds the $length
 	 * @see     \Jstewmc\PhpHelpers\Str::rand() 
 	 */ 
-	public static function password($rules = ['lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1], $length = 8) 
+	public static function password($length = 8, $rules = ['lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1]) 
 	{
 		$password = '';
 		
@@ -343,6 +343,7 @@ class Str
 	 *     Str::splitOnFirstAlpha("123 abc");    // returns ["123", "abc"]
 	 *     Str::splitOnFirstAlpha("1 2 3 abc");  // returns ["1 2 3 4", "abc"]
 	 * 
+	 * @since   0.1.0
 	 * @param   string    $string  the string to split
 	 * @return  string[]           an array
 	 * @throws  \BadMethodCallException    if $string is null
