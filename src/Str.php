@@ -585,20 +585,12 @@ class Str
 			if (is_string($string)) {
 				// if $limit is a number
 				if (is_numeric($limit) && is_int(+$limit)) {
-					// if $break is null or a string
-					if ($break === null || is_string($break)) {
-						// if $pad is null or a string
-						if ($pad === null || is_string($pad)) { 
+					// if $break is a string
+					if (is_string($break)) {
+						// if $pad is a string
+						if (is_string($pad)) { 
 							// if $string is longer than $limit
 							if (strlen($string) > $limit) {
-								// if $break is null, set it to an empty string
-								if ($break === null) {
-									$break = '';
-								}
-								// if $pad is null, set it to an empty string
-								if ($pad === null) {
-									$pad = '';
-								}
 								// if the $break character exists between the $limit and the end of the string
 								$breakpoint = strpos($str, $break, $limit);
 								if ($breakpoint !== false) {
@@ -611,12 +603,12 @@ class Str
 							}
 						} else {
 							throw new \InvalidArgumentException(
-								__METHOD__."() expects the fourth parameter, pad, to be a string or null"
+								__METHOD__."() expects the fourth parameter, pad, to be an (empty) string"
 							);
 						}
 					} else {
 						throw new \InvalidArgumentException(
-							__METHOD__."() expects the third parameter, break, to be a string or null"
+							__METHOD__."() expects the third parameter, break, to be an (empty) string"
 						);
 					}
 				} else {
