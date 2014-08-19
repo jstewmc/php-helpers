@@ -6,13 +6,14 @@
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- * @since      1.0.0
  */
  
 namespace Jstewmc/PhpHelpers;
  
 /**
  * The string (aka, "str") utility class
+ *
+ * @since  0.1.0
  */
 class Str
 {
@@ -27,14 +28,15 @@ class Str
 	 *     Str::endsWith('foobar', '');     // returns false
 	 *     Str::endsWith('', 'foobar');     // returns false
 	 * 
-	 * @see     \Jstewmc\PhpHelpers\Str::iEndsWith() (case-insensitive version)
-	 * @see     <http://stackoverflow.com/questions/834303> (MrHus' answer)
-	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
-	 * @throws  \InvalidArgumentException  if $haystack is not a string
-	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @since   0.1.0
 	 * @param   string  $haystack  the string to search 
 	 * @param   string  $needle    the substring to search for
 	 * @return  bool               true if $haystack ends with $needle
+	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
+	 * @throws  \InvalidArgumentException  if $haystack is not a string
+	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @see     \Jstewmc\PhpHelpers\Str::iEndsWith() (case-insensitive version)
+	 * @see     <http://stackoverflow.com/questions/834303> (MrHus' answer)
 	 */
 	public static function endsWith($haystack, $needle) 
 	{
@@ -83,13 +85,14 @@ class Str
 	 *     Str::endsWith('foobar', 'baz');  // returns false
 	 *     Str::endsWith('foobar', 'BAR');  // returns true
 	 * 
-	 * @see     \Jstewmc\PhpHelpers\Str::iEndsWith() (case-sensitive version)
-	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
-	 * @throws  \InvalidArgumentException  if $haystack is not a string
-	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @since   0.1.0
 	 * @param   string  $haystack  str  the string to search 
 	 * @param   string  $needle    str  the substring to search for
 	 * @return  bool
+	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
+	 * @throws  \InvalidArgumentException  if $haystack is not a string
+	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @see     \Jstewmc\PhpHelpers\Str::iEndsWith() (case-sensitive version)
 	 */
 	public static function iEndsWith($haystack, $needle) 
 	{
@@ -140,14 +143,15 @@ class Str
 	 *     Str::iStartsWith('', 'foobar');     // returns false
 	 *     Str::iStartsWith('foobar', '');     // returns false
 	 *
-	 * @see     <http://stackoverflow.com/questions/834303> (MrHus' answer)
-	 * @see     \Jstewmc\PhpHelpers\Str::startsWith() (case-sensitive version)
-	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
-	 * @throws  \InvalidArgumentException  if $haystack is not a string
-	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @since   0.1.0
 	 * @param   $haystack  str   the case-insensitive string to search
 	 * @param   $needle    str   the case-insensitive substring to search for
 	 * @return             bool  true if $haystack ends with $needle
+	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
+	 * @throws  \InvalidArgumentException  if $haystack is not a string
+	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @see     <http://stackoverflow.com/questions/834303> (MrHus' answer)
+	 * @see     \Jstewmc\PhpHelpers\Str::startsWith() (case-sensitive version)
 	 */ 
 	public static function iStartsWith($haystack, $needle) 
 	{
@@ -175,7 +179,14 @@ class Str
 	 *     echo $b;  // example 'jNhGFkLekOfV'
 	 *     echo $c;  // example 'la9Uh7BH4Bc3'
 	 *
-	 * @see     \Jstewmc\PhpHelpers\Str::rand()  
+	 * @since   0.1.0
+	 * @param   int[]  $rules   an array of character counts indexed by charset name
+	 *     (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol') 
+	 *     (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1, 
+	 *     'symbol' => 1])
+	 * @param   int    $length  the length of the password (optional; if omitted, 
+	 *     defaults to 8)
+	 * @return  string          the password
 	 * @throws  \BadMethodCallException    if $rules or $length is omitted
 	 * @throws  \InvalidArgumentException  if $rules is not an array
 	 * @throws  \InvalidArgumentException  if $length is not an integer
@@ -183,16 +194,7 @@ class Str
 	 * @throws  \InvalidArgumentException  if a value in $rules is not an integer
 	 * @throws  \InvalidArgumentException  if the number of required characters (as defined
 	 *     in the $rules array) exceeds the $length
-	 *
-	 * @param   int[]  $rules   an array of character counts indexed by charset name
-	 *     (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol') 
-	 *     (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1, 
-	 *     'symbol' => 1])
-	 * @param   int    $length  the length of the password (optional; if omitted, 
-	 *     defaults to 8)
-	 *
-	 * @return  string          the password
-	 *
+	 * @see     \Jstewmc\PhpHelpers\Str::rand() 
 	 */ 
 	public static function password($rules = ['lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1], $length = 8) 
 	{
@@ -250,17 +252,17 @@ class Str
 	 *     echo Str::rand(8, ['lower', 'number']);  // example 'k987hb54'
 	 *     echo Str::rand(8, ['upper', 'symbol']);  // example 'HG!V*X]@'
 	 *
-	 * @throws  \BadMethodCallException    if $length or $charset is null
-	 * @throws  \InvalidArgumentException  if $length is not an integer
-	 * @throws  \InvalidArgumentException  if $charsets is not a string or array
-	 * @throws  \InvalidArgumentException  if a given $charset is not a valid charset
+	 * @since   0.1.0
 	 * @param   int    $length    the length of the string to return
 	 * @param   mixed  $charsets  a string charset name or an array of charset names
 	 *     (possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'
 	 *     and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to 
 	 *     ['alpha', 'number', 'symbol'])
 	 * @return  string            a random string
-	 *
+	 * @throws  \BadMethodCallException    if $length or $charset is null
+	 * @throws  \InvalidArgumentException  if $length is not an integer
+	 * @throws  \InvalidArgumentException  if $charsets is not a string or array
+	 * @throws  \InvalidArgumentException  if a given $charset is not a valid charset
 	 */
 	public static function rand($length, $charsets = array('alpha', 'number', 'symbol'))
 	{
@@ -382,14 +384,15 @@ class Str
 	 *     Str::startsWith('foobar', '');     // returns false
 	 *     Str::startsWith('', 'foobar');     // returns false
 	 *
-	 * @see     \Jstewmc\PhpHelpers\Str::startsWith() (case-insensitive version)
-	 * @see     <http://stackoverflow.com/questions/834303> (MrHus' answer)
-	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
-	 * @throws  \InvalidArgumentException  if $haystack is not a string
-	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @since   0.1.0
 	 * @param   string  $haystack  the string to search
 	 * @param   string  $needle    the substring to search for
 	 * @return  bool               true if $haystack starts with $needle
+	 * @throws  \BadMethodCallException    if $haystack or $needle is omitted
+	 * @throws  \InvalidArgumentException  if $haystack is not a string
+	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @see     \Jstewmc\PhpHelpers\Str::startsWith() (case-insensitive version)
+	 * @see     <http://stackoverflow.com/questions/834303> (MrHus' answer)
 	 */ 
 	public static function startsWith($haystack, $needle) 
 	{
@@ -445,12 +448,13 @@ class Str
 	 *     Str::strtobytes('1M');  // returns 1048576
 	 *     Str::strtobytes('1G');  // returns 1073741824
 	 *
-	 * @see     <http://www.php.net/manual/en/function.ini-get.php>
+	 * @since   0.1.0
+	 * @param   string     $string  the string to convert
+	 * @return  int|float           the number of bytes
 	 * @throws  \BadMethodCallException    if $string is null
 	 * @throws  \InvalidArgumentException  if $string is not a string
 	 * @throws  \InvalidArgumentException  if $string does not end in 'k', 'm', or 'g'
-	 * @param   string     $string  the string to convert
-	 * @return  int|float           the number of bytes
+	 * @see     <http://www.php.net/manual/en/function.ini-get.php>
 	 */
 	public static function strtobytes($string)
 	{
@@ -506,11 +510,11 @@ class Str
 	 *     Str::strtocamelcase('H3LLO WORLD!');  // returns "helloWorld"
 	 *     Str::strtocamelcase('hello_world');   // returns "helloWorld"
 	 * 
-	 * @throws  \BadMethodCallException    if $string is empty
-	 * @throws  \InvalidArgumentException  if $string is not a string
+	 * @since   0.1.0
 	 * @param   string  $string  the string to camel-case
 	 * @return  string           the camel-cased string
-	 *
+	 * @throws  \BadMethodCallException    if $string is empty
+	 * @throws  \InvalidArgumentException  if $string is not a string
 	 */
 	public static function strtocamelcase($string)
 	{		
@@ -559,10 +563,7 @@ class Str
 	 *     Str::truncate('Lorem ipsum inum', 8, '');           // returns 'Lorem ip...'
 	 *     Str::truncate('Lorem ipsum inum', 8, ' ', ' >>>');  // returns 'Lorem ipsum >>>'
 	 *
-	 * @see     <http://blog.justin.kelly.org.au/php-truncate/>
-	 * @throws  \BadMethodCallException    if $string or $limit is omitted
-	 * @throws  \InvalidArgumentException  if $string is not a string
-	 * @throws  \InvalidArgumentException  if $limit is not an integer (or integer string)
+	 * @since   0.1.0
 	 * @param   string  $str    the string to truncate
 	 * @param   int     $limit  the string's max length
 	 * @param   string  $break  the break character (to truncate at exact length set to 
@@ -571,6 +572,10 @@ class Str
 	 * @param   string  $pad    the padding to add to end of string (optional; if 
 	 *     omitted, defaults to '...')
 	 * @return  string          the truncated string
+	 * @throws  \BadMethodCallException    if $string or $limit is omitted
+	 * @throws  \InvalidArgumentException  if $string is not a string
+	 * @throws  \InvalidArgumentException  if $limit is not an integer (or integer string)
+	 * @see     <http://blog.justin.kelly.org.au/php-truncate/>
 	 */
 	public static function truncate($string, $limit, $break = ' ', $pad = '...')
 	{
