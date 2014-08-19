@@ -341,15 +341,34 @@ class Str
 	 *     Str::splitOnFirstAlpha("123 abc");    // returns ["123", "abc"]
 	 *     Str::splitOnFirstAlpha("1 2 3 abc");  // returns ["1 2 3 4", "abc"]
 	 * 
+	 * @param   string    $string  the string to split
+	 * @return  string[]           an array
+	 * @throws  \BadMethodCallException    if $string is null
+	 * @throws  \InvalidArgumentException  if $string is not a string
 	 * @see     <http://stackoverflow.com/questions/18990180> (FrankieTheKneeMan)
 	 *          (using Regex lookahead)
-	 * @param   string    $string  the string to split
-	 * @return  string[]           an array with two elements
-	 *
 	 */
 	public static function splitOnFirstAlpha($string)
 	{
-		return array_map('trim', preg_split('/(?=[a-zA-Z])/i', $string, 2));
+		$pieces = array();
+		
+		// if $string is not null
+		if ($string !== null) {
+			// if $string is actually a string
+			if (is_string($string)) {
+				$pieces = array_map('trim', preg_split('/(?=[a-zA-Z])/i', $string, 2));		
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects parameter one to be a string"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects one parameter, a string"
+			);
+		}
+		
+		return $pieces; 
 	}
 
 	/**
