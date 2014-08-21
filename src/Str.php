@@ -8,7 +8,7 @@
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
  */
  
-namespace Jstewmc/PhpHelpers;
+namespace Jstewmc\PhpHelpers;
  
 /**
  * The string (aka, "str") utility class
@@ -196,7 +196,7 @@ class Str
 	 *     in the $rules array) exceeds the $length
 	 * @see     \Jstewmc\PhpHelpers\Str::rand() 
 	 */ 
-	public static function password($length = 8, $rules = ['lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1]) 
+	public static function password($length = 8, $rules = array('lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1)) 
 	{
 		$password = '';
 		
@@ -568,67 +568,74 @@ class Str
 	 * @param   string  $str    the string to truncate
 	 * @param   int     $limit  the string's max length
 	 * @param   string  $break  the break character (to truncate at exact length set to 
-	 *     empty string) (if does not exist in the string, the string will not be 
-	 *     truncated) (optional; if omitted, defaults to ' ') 
+	 *     empty string or null) (if the break character does not exist in the string, 
+	 *     the string will be truncated at limit) (optional; if omitted, defaults to ' ') 
 	 * @param   string  $pad    the padding to add to end of string (optional; if 
 	 *     omitted, defaults to '...')
 	 * @return  string          the truncated string
 	 * @throws  \BadMethodCallException    if $string or $limit is omitted
 	 * @throws  \InvalidArgumentException  if $string is not a string
 	 * @throws  \InvalidArgumentException  if $limit is not an integer (or integer string)
+	 * @throws  \InvalidArgumentException  if $break is not a string or null
+	 * @throws  \InvalidArgumentException  if $pad is not a string or null
 	 * @see     <http://blog.justin.kelly.org.au/php-truncate/>
 	 */
 	public static function truncate($string, $limit, $break = ' ', $pad = '...')
 	{
+		$truncated = null;
+		
 		// if $string and $limit are given
 		if ($string !== null && $limit !== null) {
 			// if $string is actually a string
 			if (is_string($string)) {
 				// if $limit is a number
 				if (is_numeric($limit) && is_int(+$limit)) {
-					// if $break is a string
-					if (is_string($break)) {
-						// if $pad is a string
-						if (is_string($pad)) { 
+					// if $break is a string or it's null
+					if (is_string($break) || is_null($break)) {
+						// if $pad is a string or it's null
+						if (is_string($pad) || is_null($pad)) {
 							// if $string is longer than $limit
 							if (strlen($string) > $limit) {
-								// if the $break character exists between the $limit and the end of the string
-								$breakpoint = strpos($str, $break, $limit);
-								if ($breakpoint !== false) {
-									// if the breakpoint isn't at the end of the string
-									if ($breakpoint < strlen($string) - 1) {
-										// truncate the string
-										$string = substr($string, 0, $breakpoint) . $pad;
-									}
+								// truncate the string at the limit
+								$truncated = substr($string, 0, $limit);
+								// if a break character is defined and it exists in the truncated string
+								if ($break !== null && $break !== '' && strpos($truncated, $break)) {
+									$truncated = substr($truncated, 0, strrpos($truncated, $break));
 								}
+								// if a pad exists, use it
+								if ($pad !== null && $pad !== '') {
+									$truncated .= $pad;
+								}
+							} else {
+								$truncated = $string;
 							}
 						} else {
 							throw new \InvalidArgumentException(
-								__METHOD__."() expects the fourth parameter, pad, to be an (empty) string"
+								__METHOD__."() expects the fourth parameter, pad, to be a string or null"
 							);
 						}
 					} else {
 						throw new \InvalidArgumentException(
-							__METHOD__."() expects the third parameter, break, to be an (empty) string"
+							__METHOD__."() expects the third parameter, break, to be a string or null"
 						);
 					}
 				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects the second parameter, the length limit, to be an integer"
+						__METHOD__."() expects the second parameter, limit, to be an integer"
 					);
 				}
 			} else {
 				throw new \InvalidArgumentException(
-					__METHOD__." expects the first parameter, the string, to be a string"
+					__METHOD__."() expects the first parameter, the string, to be a string"
 				);
 			}
 		} else {
 			throw new \BadMethodCallException(
-				__METHOD__." expects at least two parameters, a string and an integer length limit"
+				__METHOD__."() expects at least two parameters, a string and an integer length limit"
 			);
 		}
 
-		return $string;
+		return $truncated;
 	}
 }
  
