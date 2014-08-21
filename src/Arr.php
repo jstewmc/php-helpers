@@ -16,184 +16,9 @@ namespace Jstewmc/PhpHelpers;
  * @since 0.1.0
  */
 class Arr
-{
+{	
 	/**
-	 * Filters an array by key
-	 *
-	 * I'll iterate over each key in $array passing it to the $callback 
-	 * function. If the callback function returns true, the current value from
-	 * $array is added to the result array. Array keys are preserved.
-	 *
-	 * For example:
-	 *
-	 *     $a = ['foo', 'bar', 'baz', 'qux'];
-	 *     $b = Arr::array_filter_key($a, function ($k) {
-	 *         return $k > 1;
-	 *     });
-	 *     print_r($b);  // prints ['baz', 'qux']
-	 *
-	 * @since   0.1.0
-	 * @param   array     $input     the array to filter
-	 * @param   callback  $callback  the function to call for each key in $arr
-	 * @return  array                the filtered array
-	 * @throws  \BadMethodCallException    if $array or $callback are null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $callback is not a callable function
-	 * @see     <http://php.net/manual/en/function.array-filter.php#99073>
-	 */
-	public static function array_filter_key($array, $callback)
-	{
-		$filtered = array();
-		
-		// if $array and $callback are given
-		if ($array !== null && $callback !== null) {
-			// if the input arr is actually an arr
-			if (is_array($array)) {
-				// if $callback is callable
-				if (is_callable($callback)) {
-					// if $array is not empty
-					if ( ! empty($array)) {
-						// if there are keys that pass the filter
-						$keys = array_filter(array_keys($array), $callback);
-						if ( ! empty($keys)) {
-							$filtered = array_intersect_key($array, array_flip($keys));
-						}
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two to be a callable function"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects paramater one to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects two parameters, an array and a callable function"
-			);
-		}
-
-		return $filtered;
-	}
-
-	/**
-	 * Filters an array by a key prefix
-	 *
-	 * I'll iterate over each key in $array. If the key starts with $prefix, 
-	 * I'll add it to the result array. Array keys are preserved. 
-	 *
-	 * @since   0.1.0
-	 * @param   array   $array   the array to filter
-	 * @param   string  $prefix  the key's prefix to filter
-	 * @return  array            the filtered array
-	 * @throws  \BadMethodCallException    if $array or $prefix is null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $prefix is not a string
-	 */
-	public static function array_filter_key_prefix($array, $prefix)
-	{
-		$filtered = array();
-		
-		// if $array and $prefix are given
-		if ($array !== null && $prefix !== null) {
-			// if $array is actually an array
-			if (is_array($array)) {
-				// if $prefix is a string
-				if (is_string($prefix)) {
-					// if $array is not empty
-					if ( ! empty($array)) {
-						// filter the array by the key's prefix
-						$filtered = self::array_filter_key($array, function ($k) use ($prefix) {
-							return strpos($k, $prefix) === 0;
-						});
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two to be a string prefix"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects two parameters, an array and a string prefix"
-			);
-		}
-
-		return $filtered;
-	}
-
-	/**
-	 * Replaces all occurences of $search with $replace in $array's keys
-	 *
-	 * I'll return an array with all occurences of $search in the array's keys 
-	 * replaced with the given $replace value (case-insensitive).
-	 *
-	 * @since   0.1.0
-	 * @param   mixed  $search   the value being searched for (aka the needle); an 
-	 *     array may be used to designate multiple neeeles
-	 * @param   mixed  $replace  the replacement value that replaced found $search 
-	 *     values; an array may be used to designate multiple replacements
-	 * @param   array  $array    the array to replace
-	 * @return  array            the array with replacements
-	 * @throws  \BadMethodCallException    if $search, $replace, or $array are null
-	 * @throws  \InvalidArgumentException  if $search is not a string or array
-	 * @throws  \InvalidArgumentException  if $replace is not a string or array
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @see     <http://us1.php.net/str_replace>
-	 */
-	public static function array_key_str_ireplace($search, $replace, $array) 
-	{
-		$replaced = array();
-		
-		// if $search, $replace, and $array are given
-		if ($search !== null && $replace !== null && $array !== null) {
-			// if $search is a string or an array
-			if (is_string($search) || is_array($search)) {
-				// if $replace is a string or an array
-				if (is_string($replace) || is_array($replace)) {
-					// if $array is actually an array
-					if (is_array($array)) {
-						// if $array isn't empty
-						if ( ! empty($array)) {
-							// flip the array, search/replace, and flip again
-							$replaced = array_flip($replaced);
-							$replaced = array_map(function ($v) {
-								return str_ireplace($search, $replace, $v);
-							}, $replaced);
-							$replaced = array_flip($replaced);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects the third parameter, array, to be an array"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects the second parameter, replace, to be a string or array"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects the first parameter, search, to be a string or array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects three parameters: search, replace, and array"
-			);
-		}
-
-		return $replaced;
-	}
-
-	/**
-	 * Returns true if the $key exists in $arr and its value is not empty
+	 * Returns true if the $key exists in $array[$key] is not empty
 	 *
 	 * PHP's isset() method is will return false if the key does not exist or if the 
 	 * key exists and its value is null. However, it will return true if the key
@@ -221,8 +46,9 @@ class Arr
 	 * @throws  \BadMethodCallException    if $key or $array are null
 	 * @throws  \InvalidArgumentException  if $key is not a string
 	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @throws  \InvalidArgumentException  if $zero is not a bool value
 	 */
-	public static function array_key_value_exists($key, $array, $zero = false)
+	public static function exists($key, $array, $zero = false)
 	{
 		$exists = false;
 		
@@ -232,39 +58,252 @@ class Arr
 			if (is_string($key)) {
 				// if $array is an array
 				if (is_array($array)) {
-					// if $array is not empty
-					if ( ! empty($array)) {
-						// if the key exists
-						if (array_key_exists($key, $array)) {
-							$exists = ! empty($array[$key]) 
-								|| ($zero && \Jstewmc\PhpHelpers\Num::isZero($array[$key]));
+					// if $zero is a bool value
+					if (is_bool($zero)) {
+						// if $array is not empty
+						if ( ! empty($array)) {
+							// if the key exists
+							if (array_key_exists($key, $array)) {
+								$exists = ! empty($array[$key]) 
+									|| ($zero && \Jstewmc\PhpHelpers\Num::isZero($array[$key]));
+							} else {
+								$exists = false;
+							}
 						} else {
 							$exists = false;
 						}
 					} else {
-						$exists = false;
+						throw new \InvalidArgumentException(
+							__METHOD__."() expects parameter three, allow zeros, to be a bool"
+						);
 					}
 				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, array, to be an array"
+						__METHOD__."() expects parameter two, array, to be an array"
 					);
 				}
 			} else {
 				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, key, to be a string key name"
+					__METHOD__."() expects parameter one, key, to be a string key name"
 				);
 			}
 		} else {
 			throw new \BadMethodCallException(
-				__METHOD__." expects two parameters, a string key name and an array"
+				__METHOD__."() expects two parameters, a string key name and an array"
 			);
 		}
 		
 		return $exists;
 	}
+	
+	/**
+	 * Filters an array by key
+	 *
+	 * I'll iterate over each key in $array passing it to the $callback 
+	 * function. If the callback function returns true, the current value from
+	 * $array is added to the result array. Array keys are preserved.
+	 *
+	 * For example:
+	 *
+	 *     $a = ['foo', 'bar', 'baz', 'qux'];
+	 *     $b = Arr::array_filter_key($a, function ($k) {
+	 *         return $k > 1;
+	 *     });
+	 *     print_r($b);  // prints ['baz', 'qux']
+	 *
+	 * @since   0.1.0
+	 * @param   array     $input     the array to filter
+	 * @param   callback  $callback  the function to call for each key in $arr
+	 * @return  array                the filtered array
+	 * @throws  \BadMethodCallException    if $array or $callback are null
+	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @throws  \InvalidArgumentException  if $callback is not a callable function
+	 * @see     <http://php.net/manual/en/function.array-filter.php#99073>
+	 */
+	public static function filterBykey($array, $callback)
+	{
+		$filtered = array();
+		
+		// if $array and $callback are given
+		if ($array !== null && $callback !== null) {
+			// if the input arr is actually an arr
+			if (is_array($array)) {
+				// if $callback is callable
+				if (is_callable($callback)) {
+					// if $array is not empty
+					if ( ! empty($array)) {
+						// if there are keys that pass the filter
+						$keys = array_filter(array_keys($array), $callback);
+						if ( ! empty($keys)) {
+							$filtered = array_intersect_key($array, array_flip($keys));
+						}
+					}
+				} else {
+					throw new \InvalidArgumentException(
+						__METHOD__."() expects parameter two to be a callable function"
+					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects paramater one to be an array"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects two parameters, an array and a callable function"
+			);
+		}
+
+		return $filtered;
+	}
 
 	/**
-	 * Checks if a value exists in an array
+	 * Filters an array by a key prefix
+	 *
+	 * I'll iterate over each key in $array. If the key starts with $prefix, 
+	 * I'll add it to the result array. Array keys are preserved. 
+	 *
+	 * @since   0.1.0
+	 * @param   array   $array   the array to filter
+	 * @param   string  $prefix  the key's prefix to filter
+	 * @return  array            the filtered array
+	 * @throws  \BadMethodCallException    if $array or $prefix is null
+	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @throws  \InvalidArgumentException  if $prefix is not a string
+	 */
+	public static function filterByKeyPrefix($array, $prefix)
+	{
+		$filtered = array();
+		
+		// if $array and $prefix are given
+		if ($array !== null && $prefix !== null) {
+			// if $array is actually an array
+			if (is_array($array)) {
+				// if $prefix is a string
+				if (is_string($prefix)) {
+					// if $array is not empty
+					if ( ! empty($array)) {
+						// filter the array by the key's prefix
+						$filtered = self::array_filter_key($array, function ($k) use ($prefix) {
+							return strpos($k, $prefix) === 0;
+						});
+					}
+				} else {
+					throw new \InvalidArgumentException(
+						__METHOD__."() expects parameter two to be a string prefix"
+					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects parameter one to be an array"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects two parameters, an array and a string prefix"
+			);
+		}
+
+		return $filtered;
+	}
+
+	/**
+	 * Returns true if the array has at least one string key (excluding int strings)
+	 *
+	 * PHP natively treats all arrays as associative arrays. I'll consider an
+	 * associative array as an array with a string key. Interally, PHP casts 
+	 * string keys containing valid integers to integer type (e.g., "8" will be
+	 * stored as 8).
+	 *
+	 * For example:
+	 *
+	 *    Arr::isAssoc([1, 2, 3]);                       // returns false
+	 *    Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
+	 *    Arr::isAssoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
+	 *    Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
+	 *    Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
+	 *
+	 * @since   0.1.0
+	 * @param   array  $array  the array to test
+	 * @return  bool           true if the array has a string key (excluding int strings)
+	 */
+	public static function isAssoc($array) 
+	{
+		$isAssoc = false;
+		
+		if ( ! empty($array) && is_array($array)) {
+			$isAssoc = (bool) count(array_filter(array_keys($array), 'is_string'));
+		}
+
+		return $isAssoc;
+	}
+	
+	/**
+	 * Replaces all occurences of $search with $replace in $array's keys
+	 *
+	 * I'll return an array with all occurences of $search in the array's keys 
+	 * replaced with the given $replace value (case-insensitive).
+	 *
+	 * @since   0.1.0
+	 * @param   mixed  $search   the value being searched for (aka the needle); an 
+	 *     array may be used to designate multiple neeeles
+	 * @param   mixed  $replace  the replacement value that replaced found $search 
+	 *     values; an array may be used to designate multiple replacements
+	 * @param   array  $array    the array to replace
+	 * @return  array            the array with replacements
+	 * @throws  \BadMethodCallException    if $search, $replace, or $array are null
+	 * @throws  \InvalidArgumentException  if $search is not a string or array
+	 * @throws  \InvalidArgumentException  if $replace is not a string or array
+	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @see     <http://us1.php.net/str_replace>
+	 */
+	public static function keyStringReplace($search, $replace, $array) 
+	{
+		$replaced = array();
+		
+		// if $search, $replace, and $array are given
+		if ($search !== null && $replace !== null && $array !== null) {
+			// if $search is a string or an array
+			if (is_string($search) || is_array($search)) {
+				// if $replace is a string or an array
+				if (is_string($replace) || is_array($replace)) {
+					// if $array is actually an array
+					if (is_array($array)) {
+						// if $array isn't empty
+						if ( ! empty($array)) {
+							// flip the array, search/replace, and flip again
+							$replaced = array_flip($array);
+							$replaced = array_map(function ($v) {
+								return str_ireplace($search, $replace, $v);
+							}, $replaced);
+							$replaced = array_flip($replaced);
+						}
+					} else {
+						throw new \InvalidArgumentException(
+							__METHOD__."() expects the third parameter, array, to be an array"
+						);
+					}
+				} else {
+					throw new \InvalidArgumentException(
+						__METHOD__."() expects the second parameter, replace, to be a string or array"
+					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects the first parameter, search, to be a string or array"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects three parameters: search, replace, and array"
+			);
+		}
+
+		return $replaced;
+	}
+	
+	/**
+	 * Wildcard search for a value in an array 
 	 *
 	 * I'll search $haystack for $needle. Unlike PHP's native in_array() method,
 	 * I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and 
@@ -289,7 +328,7 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $haystack is not an array
 	 * @throws  \InvalidArgumentException  if $wildcard is not a string
 	 */
-	public static function in_array_wildcard($needle, $haystack, $wildcard = '*') 
+	public static function search($needle, $haystack, $wildcard = '*') 
 	{
 		$inArray = false;
 
@@ -327,67 +366,26 @@ class Arr
 						}
 					} else {
 						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter three, the wildcard character, to be a string"
+							__METHOD__."() expects parameter three, the wildcard character, to be a string"
 						);
 					}
 				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, the haystack, to be an array"
+						__METHOD__."() expects parameter two, the haystack, to be an array"
 					);
 				}
 			} else {
 				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, the needle, to be a string"
+					__METHOD__."() expects parameter one, the needle, to be a string"
 				);
 			}
 		} else {
 			throw new \BadMethodCallException(
-				__METHOD__." expects two or three parameters: needle, haystack, and wildcard"
+				__METHOD__."() expects two or three parameters: needle, haystack, and wildcard"
 			);
 		}
 
 		return $inArray;
-	}
-	
-	/**
-	 * Alias for the isAssoc() method
-	 * 
-	 * @see  \Jstewmc\PhpHelpers\Arr::isAssoc()
-	 */
-	public static function is_assoc($array)
-	{
-		return self::isAssoc($array);
-	}
-
-	/**
-	 * Returns true if the array has at least one string key (excluding int strings)
-	 *
-	 * PHP natively treats all arrays as associative arrays. I'll consider an
-	 * associative array as an array with a string key. Interally, PHP casts 
-	 * string keys containing valid integers to integer type (e.g., "8" will be
-	 * stored as 8).
-	 *
-	 * For example:
-	 *
-	 *    Arr::isAssoc([1, 2, 3]);                       // returns false
-	 *    Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
-	 *    Arr::isAssoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
-	 *    Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
-	 *    Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
-	 *
-	 * @since   0.1.0
-	 * @param   array  $array  the array to test
-	 * @return  bool           true if the array has a string key (excluding int strings)
-	 */
-	public static function isAssoc($array) 
-	{
-		$isAssoc = false;
-		
-		if ( ! empty($array) && is_array($array)) {
-			$isAssoc = (bool) count(array_filter(array_keys($array), 'is_string'));
-		}
-
-		return $isAssoc;
 	}
 
 	/**
@@ -418,7 +416,7 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $array is not an array of arrays with
 	 *     the key $field
 	 */
-	public static function usort_field($array, $field, $sort = 'asc')
+	public static function sortByField($array, $field, $sort = 'asc')
 	{	
 		// if $array, $field, and $sort are given
 		if ($array !== null && $field !== null && $sort !== null) {
@@ -454,32 +452,32 @@ class Arr
 								}
 							} else {
 								throw new \InvalidArgumentException(
-									__METHOD__." expects parameter one to be an array of arrays with the key '$field'"
+									__METHOD__."() expects parameter one to be an array of arrays with the key '$field'"
 								);
 							}
 						} else {
 							throw new \InvalidArgumentException(
-								__METHOD__." expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
+								__METHOD__."() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
 							);
 						}
 					} else {
 						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter three, sort, to be a string sort order"
+							__METHOD__."() expects parameter three, sort, to be a string sort order"
 						);
 					}
 				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, field, to be a string field name"
+						__METHOD__."() expects parameter two, field, to be a string field name"
 					);
 				}
 			} else {
 				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, array, to be an array"
+					__METHOD__."() expects parameter one, array, to be an array"
 				);
 			}
 		} else {
 			throw new \BadMethodCallException(
-				__METHOD__." expects two or three parameters"
+				__METHOD__."() expects two or three parameters"
 			);
 		}
 		
@@ -505,7 +503,7 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *     the public property $property
 	 */
-	public static function usort_property($array, $property, $sort = 'asc') 
+	public static function sortByProperty($array, $property, $sort = 'asc') 
 	{
 		// if $array, $property, and $sort are given
 		if ($array !== null && $property !== null && $sort !== null) {
@@ -545,32 +543,32 @@ class Arr
 								}
 							} else {
 								throw new \InvalidArgumentException(
-									__METHOD__." expects parameter one to be an array of objects with public property '$property'"
+									__METHOD__."() expects parameter one to be an array of objects with public property '$property'"
 								);
 							}
 						} else {
 							throw new \InvalidArgumentException(
-								__METHOD__." expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
+								__METHOD__."() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
 							);
 						}
 					} else {
 						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter three, sort, to be a string sort order"
+							__METHOD__."() expects parameter three, sort, to be a string sort order"
 						);
 					}
 				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, property, to be a string public property name"
+						__METHOD__."() expects parameter two, property, to be a string public property name"
 					);
 				}
 			} else {
 				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, array, to be an array"
+					__METHOD__."() expects parameter one, array, to be an array"
 				);
 			}
 		} else {
 			throw new \BadMethodCallException(
-				__METHOD__." expects two or three parameters"
+				__METHOD__."() expects two or three parameters"
 			);
 		}
 
@@ -596,7 +594,7 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *     the public property $property
 	 */
-	public static function usort_method($array, $method, $sort = 'asc') 
+	public static function sortByMethod($array, $method, $sort = 'asc') 
 	{
 		// if $array, $method, and $sort are given
 		if ($array !== null && $method !== null && $sort !== null) {
