@@ -6,13 +6,14 @@
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- * @since      1.0.0
  */
  
 namespace Jstewmc/PhpHelpers;
 
 /**
  * A class of array (aka, "arr") utility functions
+ *
+ * @since 0.1.0
  */
 class Arr
 {
@@ -31,13 +32,14 @@ class Arr
 	 *     });
 	 *     print_r($b);  // prints ['baz', 'qux']
 	 *
-	 * @see     <http://php.net/manual/en/function.array-filter.php#99073>
-	 * @throws  \BadMethodCallException    if $array or $callback are null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $callback is not a callable function
+	 * @since   0.1.0
 	 * @param   array     $input     the array to filter
 	 * @param   callback  $callback  the function to call for each key in $arr
 	 * @return  array                the filtered array
+	 * @throws  \BadMethodCallException    if $array or $callback are null
+	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @throws  \InvalidArgumentException  if $callback is not a callable function
+	 * @see     <http://php.net/manual/en/function.array-filter.php#99073>
 	 */
 	public static function array_filter_key($array, $callback)
 	{
@@ -82,9 +84,13 @@ class Arr
 	 * I'll iterate over each key in $array. If the key starts with $prefix, 
 	 * I'll add it to the result array. Array keys are preserved. 
 	 *
+	 * @since   0.1.0
 	 * @param   array   $array   the array to filter
 	 * @param   string  $prefix  the key's prefix to filter
 	 * @return  array            the filtered array
+	 * @throws  \BadMethodCallException    if $array or $prefix is null
+	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @throws  \InvalidArgumentException  if $prefix is not a string
 	 */
 	public static function array_filter_key_prefix($array, $prefix)
 	{
@@ -128,17 +134,18 @@ class Arr
 	 * I'll return an array with all occurences of $search in the array's keys 
 	 * replaced with the given $replace value (case-insensitive).
 	 *
-	 * @see     <http://us1.php.net/str_replace>
-	 * @throws  \BadMethodCallException    if $search, $replace, or $array are null
-	 * @throws  \InvalidArgumentException  if $search is not a string or array
-	 * @throws  \InvalidArgumentException  if $replace is not a string or array
-	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @since   0.1.0
 	 * @param   mixed  $search   the value being searched for (aka the needle); an 
 	 *     array may be used to designate multiple neeeles
 	 * @param   mixed  $replace  the replacement value that replaced found $search 
 	 *     values; an array may be used to designate multiple replacements
 	 * @param   array  $array    the array to replace
 	 * @return  array            the array with replacements
+	 * @throws  \BadMethodCallException    if $search, $replace, or $array are null
+	 * @throws  \InvalidArgumentException  if $search is not a string or array
+	 * @throws  \InvalidArgumentException  if $replace is not a string or array
+	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @see     <http://us1.php.net/str_replace>
 	 */
 	public static function array_key_str_ireplace($search, $replace, $array) 
 	{
@@ -205,14 +212,15 @@ class Arr
 	 *    isset($a['qux']);                        // returns true
 	 *    Arr::array_key_value_exists('qux', $a);  // returns true
 	 * 
-	 * @throws  \BadMethodCallException    if $key or $array are null
-	 * @throws  \InvalidArgumentException  if $key is not a string
-	 * @throws  \InvalidArgumentException  if $array is not an array
+	 * @since   0.1.0
 	 * @param   string  $key    the key's name
 	 * @param   array   $array  the array to test
 	 * @param   bool    $zero   a flag indicating whether or not zero is an acceptable
 	 *     value (optional; if omitted, defaults to false)
 	 * @return  bool            true if the key exists and its value is not empty()
+	 * @throws  \BadMethodCallException    if $key or $array are null
+	 * @throws  \InvalidArgumentException  if $key is not a string
+	 * @throws  \InvalidArgumentException  if $array is not an array
 	 */
 	public static function array_key_value_exists($key, $array, $zero = false)
 	{
@@ -270,15 +278,16 @@ class Arr
 	 *     Arr::in_array_wildcard('*oo', ['foo', 'bar']);  // returns true
 	 *     Arr::in_array_wildcard('*o*', ['foo', 'bar']);  // returns true
 	 * 
-	 * @throws  \BadMethodCallException    if $needle, $haystack, or $wildcard is null
-	 * @throws  \InvalidArgumentException  if $needle is not a string
-	 * @throws  \InvalidArgumentException  if $haystack is not an array
-	 * @throws  \InvalidArgumentException  if $wildcard is not a string
+	 * @since   0.1.0
 	 * @param   string    $needle    the needle to find
 	 * @param   string[]  $haystack  the haystack to search
 	 * @param   string    $wildcard  the wildcard character (optional; if omitted, 
 	 *     defaults to '*')
-	 * @return  bool               true if the needle exists in haystack
+	 * @return  bool                 true if the needle exists in haystack
+	 * @throws  \BadMethodCallException    if $needle, $haystack, or $wildcard is null
+	 * @throws  \InvalidArgumentException  if $needle is not a string
+	 * @throws  \InvalidArgumentException  if $haystack is not an array
+	 * @throws  \InvalidArgumentException  if $wildcard is not a string
 	 */
 	public static function in_array_wildcard($needle, $haystack, $wildcard = '*') 
 	{
@@ -360,13 +369,13 @@ class Arr
 	 *
 	 * For example:
 	 *
-	 *    is_assoc([1, 2, 3]);                       // returns false
-	 *    is_assoc(['foo', 'bar', 'baz']);           // returns false
-	 *    is_assoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
-	 *    is_assoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doesn't matter)
-	 *    is_assoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
+	 *    Arr::isAssoc([1, 2, 3]);                       // returns false
+	 *    Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
+	 *    Arr::isAssoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
+	 *    Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
+	 *    Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
 	 *
-	 * @throws  \InvalidArgumentException  if $array is not an arr
+	 * @since   0.1.0
 	 * @param   array  $array  the array to test
 	 * @return  bool           true if the array has a string key (excluding int strings)
 	 */
@@ -374,19 +383,8 @@ class Arr
 	{
 		$isAssoc = false;
 		
-		// if $array isn't empty
-		if ( ! empty($array)) {
-			// if $array is actually an array
-			if (is_array($array)) {
-				$isAssoc = (bool) count(array_filter(array_keys($array), 'is_string'));
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one to be an array"
-				);
-			}
-		} else {
-			// it's not even an array
-			$isAssoc = false;
+		if ( ! empty($array) && is_array($array)) {
+			$isAssoc = (bool) count(array_filter(array_keys($array), 'is_string'));
 		}
 
 		return $isAssoc;
@@ -405,6 +403,12 @@ class Arr
 	 *   $b = Arr::usort_field($a, 'foo');
 	 *   print_r($b);  // prints [['foo' => 'a'], ['foo' => 'b'], ['foo' => 'c']]
 	 * 
+	 * @since   0.1.0
+	 * @param   array[]  $array  the array of associative arrays to sort
+	 * @param   string   $field  the associative array's field name (aka, key)
+	 * @param   string   $sort   the sort order (possible values 'asc[ending]' or 
+	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
+	 * @return  array[]         the sorted array
 	 * @throws  \BadMethodCallException    if $array, $field, or $sort is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $field is not a string
@@ -413,12 +417,6 @@ class Arr
 	 *     'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of arrays with
 	 *     the key $field
-	 * @param   array[]  $array  the array of associative arrays to sort
-	 * @param   string   $field  the associative array's field name (aka, key)
-	 * @param   string   $sort   the sort order (possible values 'asc[ending]' or 
-	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
-	 * @return  array[]         the sorted array
-	 *
 	 */
 	public static function usort_field($array, $field, $sort = 'asc')
 	{	
@@ -491,6 +489,13 @@ class Arr
 	/**
 	 * Sorts an array of objects using a public property's value
 	 *
+	 * @since   0.1.0
+	 * @param   object[]  $array     the array of objects to sort
+	 * @param   string    $property  the object's public property name (may be a magic
+	 *     public property via the object's __get() method)
+	 * @param   string    $sort      the sort order (possible values 'asc[ending]' or 
+	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
+	 * @return  object[]             the sorted array
 	 * @throws  \BadMethodCallException    if $array, $property, or $sort is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $property is not a string
@@ -499,13 +504,6 @@ class Arr
 	 *     'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *     the public property $property
-	 * @param   object[]  $array     the array of objects to sort
-	 * @param   string    $property  the object's public property name (may be a magic
-	 *     public property via the object's __get() method)
-	 * @param   string    $sort      the sort order (possible values 'asc[ending]' or 
-	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
-	 * @return  object[]             the sorted array
-	 *
 	 */
 	public static function usort_property($array, $property, $sort = 'asc') 
 	{
@@ -582,6 +580,13 @@ class Arr
 	/**
 	 * Sorts an array of objects using a method's return value
 	 *
+	 * @since   0.1.0
+	 * @param   object[]  the array of objects to sort
+	 * @param   string    the name of the public method to use (may be a "magic" 
+	 *     method via the object's __call() magic method)
+	 * @param   string    the sort order (possible values 'asc[ending]' or 
+	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)  
+	 * @return  object[]  the sorted array
 	 * @throws  \BadMethodCallException    if $array, $property, or $sort is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $property is not a string
@@ -590,12 +595,6 @@ class Arr
 	 *     'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *     the public property $property
-	 * @param   object[]  the array of objects to sort
-	 * @param   string    the name of the public method to use (may be a "magic" 
-	 *     method via the object's __call() magic method)
-	 * @param   string    the sort order (possible values 'asc[ending]' or 
-	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)  
-	 * @return  object[]  the sorted array
 	 */
 	public static function usort_method($array, $method, $sort = 'asc') 
 	{
