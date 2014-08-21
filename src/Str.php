@@ -96,7 +96,32 @@ class Str
 	 */
 	public static function iEndsWith($haystack, $needle) 
 	{
-		return self::endsWith(strtolower($haystack), strtolower($needle));
+		$endsWith = null;
+		
+		// if $haystack and $needle are given
+		if ($haystack !== null && $needle !== null) {
+			// if $haystack is a string
+			if (is_string($haystack)) {
+				// if $needle is a string
+				if (is_string($needle)) {
+					$endsWith = self::endsWith(strtolower($haystack), strtolower($needle));		
+				} else {
+					throw new \InvalidArgumentException(
+						__METHOD__."() expects parameter two, needle, to be a string"
+					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects parameter one, haystack, to be a string"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects two string parameters, haystack and needle"
+			);
+		}
+		
+		return $endsWith;
 	}
 	
 	/**
@@ -155,7 +180,32 @@ class Str
 	 */ 
 	public static function iStartsWith($haystack, $needle) 
 	{
-		return self::startsWith(strtolower($haystack), strtolower($needle));
+		$startsWith = null;
+		
+		// if $haystack and $needle are given
+		if ($haystack !== null && $needle !== null) {
+			// if $haystack is a string
+			if (is_string($haystack)) {
+				// if $needle is a string
+				if (is_string($needle)) {
+					$startsWith = self::startsWith(strtolower($haystack), strtolower($needle));	
+				} else {
+					throw new \InvalidArgumentException(
+						__METHOD__."() expects parameter two, needle, to be a string"
+					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects parameter one, haystack, to be a string"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects two string parameters, haystack and needle"
+			);
+		}
+		
+		return $startsWith;
 	}
 	
 	/**
