@@ -330,12 +330,12 @@ class Str
 					}
 
 					// define the possible charsets
-					$lower   = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+					$lower  = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
 						'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
-					$upper   = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+					$upper  = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 						'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
-					$number = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
-					$symbol  = array('!', '@', '#', '*', '(', ')', '-', '_', '+', '=', '[', ']');
+					$number = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+					$symbol = array('!', '@', '#', '*', '(', ')', '-', '_', '+', '=', '[', ']');
 			
 					// create an array of possible chars
 					$chars = array();
@@ -356,7 +356,7 @@ class Str
 					shuffle($chars);
 			
 					// pick $length random chars
-					for ($i=0; $i<$length; ++$i) {
+					for ($i = 0; $i < $length; ++$i) {
 						$rand .= $chars[array_rand($chars)];
 					}
 				} else {
@@ -409,7 +409,13 @@ class Str
 		if ($string !== null) {
 			// if $string is actually a string
 			if (is_string($string)) {
-				$pieces = array_map('trim', preg_split('/(?=[a-zA-Z])/i', $string, 2));		
+				// if the trimmed string isn't empty
+				$string = trim($string);
+				if ($string !== '') {
+					$pieces = array_map('trim', preg_split('/(?=[a-zA-Z])/i', $string, 2));		
+				} else {
+					$pieces = array();
+				}
 			} else {
 				throw new \InvalidArgumentException(
 					__METHOD__."() expects parameter one to be a string"
@@ -580,6 +586,9 @@ class Str
 			
 					// replace underscores ("_") and hyphens ("-") with spaces (" ")
 					$string = str_replace(array('-', '_'), ' ', $string);
+					
+					// lower-case everything
+					$string = strtolower($string);
 			
 					// capitalize each word
 					$string = ucwords($string);
