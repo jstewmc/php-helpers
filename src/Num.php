@@ -20,6 +20,21 @@ namespace Jstewmc\PhpHelpers;
  */
 class Num 
 {
+	/* !Constants */
+	
+	/**
+	 * @var  the regex for a comma-separated number (e.g., "1,000")
+	 */
+	const REGEX_NUMBER_COMMA = '#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#';
+	
+	/**
+	 * @var  the regex for a mixed number (e.g., "1 1/2")
+	 */
+	const REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#';
+	
+	
+	/* !Public methods */
+	
 	/**
 	 * Returns true if float $a is almost equal to float $b
 	 *
@@ -452,8 +467,10 @@ class Num
 	 *
 	 */
 	public static function isNumeric($number)
-	{
-		return self::val($number) !== false;
+	{	
+		return is_numeric($number)
+			|| (is_string($number) && preg_match(self::REGEX_NUMBER_MIXED, $number))
+			|| (is_string($number) && preg_match(self::REGEX_NUMBER_COMMA, $number));
 	}
 
 	/**
@@ -614,12 +631,36 @@ class Num
 	 * Returns the numeric value of $var
 	 *
 	 * PHP does not natively support fractions, mixed numbers, or comma-separated 
-	 * values, but I will. Woot! Keep in mind, unlike PHP's native intval() and
-	 * floatval() functions, I will return false on arrays, objects, and non-
-	 * numeric strings.
+	 * values, but I will. Woot! 
+	 *
+	 * I use the following rules:
+	 *
+	 *     Bools
+	 *         Bools are returns as strictly typed integers.
+	 *
+	 *     Integers
+	 *         Integers are returned as strictly typed integers.
+	 *
+	 *     Floats
+	 *         Floats are returned as strictly typed integers.
+	 *
+	 *     Strings
+	 *         Numeric strings are returned as their strictly typed equivalent (i.e.,
+	 *         an integer or float). Numeric strings with commas are returned as their 
+	 *         strictly typed equivalents. Fractions and mixed numbers are returns as
+	 *         floats. All other strings return 0.
+	 *
+	 *     Arrays
+	 *         Empty arrays return 0, and non-empty arrays return 1.
+	 *
+	 *     Objects
+	 *         This method should not be used on objects. However, unlike the native
+	 *         PHP intval() or floatval() methods, I will not raise an error. I will 
+	 *         always evaluate objects as 1.
 	 *
 	 * For example:
 	 *
+	 *     Num::bool(true);           // returns (int) 1
 	 *     Num::val(1);               // returns (int) 1
 	 *     Num::val('1');             // returns (int) 1
 	 *     Num::val(1.5);             // returns (float) 1.5
@@ -631,14 +672,15 @@ class Num
 	 *     Num::val('1,000');         // returns (int) 1000
 	 *     Num::val('1,000.5');       // returns (float) 1000.5
 	 *     Num::val('10000');         // returns (int) 10000
-	 *     Num::val('1,0,0');         // returns false
-	 *     Num::val('abc');           // returns false
-	 *     Num::val(array());         // returns false
-	 *     Num::val(new stdClass());  // returns false
+	 *     Num::val('1,0,0');         // returns 0
+	 *     Num::val('abc');           // returns 0
+	 *     Num::val(array());         // returns 0
+	 *     Num::val(array('foo'));    // returns 1
+	 *     Num::val(new stdClass());  // returns 1
 	 *
 	 * @since   0.1.0
 	 * @param   mixed      $var  the value to evaluate
-	 * @return  int|float        the value's numeric equivalent or false
+	 * @return  int|float        the value's numeric equivalent
 	 * @see     <http://stackoverflow.com/questions/5264143> (Pascal MARTIN)
 	 *          (edited to allow back- or forward-slashes in fractions)
 	 * @see     <http://stackoverflow.com/questions/5917082> (Justin Morgain)
@@ -656,16 +698,23 @@ class Num
 
 		// if the string is not already a (float), (integer), or numeric (string)
 		if ( ! is_numeric($var)) {
-			// if the number is a valid numeric string with commas
-			// else, if the number is a fraction or mixed number
-			// else, I can't evaluate it
-			//
-			if (preg_match('#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#', $var)) {
-				$value = +str_replace(',', '', $var);
-			} elseif (preg_match('#^((\d+)\s+)?(\d+)[/\\\](\d+)$#', $var, $m)) {
-				$value = $m[2] + $m[3] / $m[4];
-			} else {
-				$value = false;
+			// if the number is a string
+			if (is_string($var)) {
+				// if the number is a number with decimals
+				// else if the number is a fraction or mixed number
+				if (preg_match(self::REGEX_NUMBER_COMMA, $var)) {
+					$value = +str_replace(',', '', $var);
+				} elseif (preg_match(self::REGEX_NUMBER_MIXED, $var, $m)) {
+					$value = $m[2] + $m[3] / $m[4];
+				} else {
+					$value = 0;
+				}
+			} elseif (is_array($var)) {
+				$value = min(count($var), 1);
+			} elseif (is_object($var)) {
+				$value = 1;
+			} elseif (is_bool($var)) {
+				$value = (int) $var;
 			}
 		} else {
 			$value = +$var;
