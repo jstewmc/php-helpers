@@ -5,10 +5,10 @@
  * @author     Jack Clayton <clayjs0@gmail.com>
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
- * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
+ * @package    Jstewmc\PhpHelpers <https://github.com/jstewmc/php-helpers>
  */
  
-namespace Jstewmc/PhpHelpers;
+namespace Jstewmc\PhpHelpers;
 
 /**
  * A class of array (aka, "arr") utility functions
@@ -184,7 +184,7 @@ class Arr
 					// if $array is not empty
 					if ( ! empty($array)) {
 						// filter the array by the key's prefix
-						$filtered = self::array_filter_key($array, function ($k) use ($prefix) {
+						$filtered = self::filterByKey($array, function ($k) use ($prefix) {
 							return strpos($k, $prefix) === 0;
 						});
 					}
@@ -273,7 +273,7 @@ class Arr
 						if ( ! empty($array)) {
 							// flip the array, search/replace, and flip again
 							$replaced = array_flip($array);
-							$replaced = array_map(function ($v) {
+							$replaced = array_map(function ($v) use ($search, $replace) {
 								return str_ireplace($search, $replace, $v);
 							}, $replaced);
 							$replaced = array_flip($replaced);
