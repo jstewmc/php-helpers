@@ -651,17 +651,17 @@ class Arr
 								}
 							} else {
 								throw new \InvalidArgumentException(
-									__METHOD__." expects parameter one to be an array of objects with public method '$method'"
+									__METHOD__."() expects parameter one to be an array of objects with public method '$method'"
 								);
 							}
 						} else {
 							throw new \InvalidArgumentException(
-								__METHOD__." expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
+								__METHOD__."() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
 							);
 						}
 					} else {
 						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter three, sort, to be a string sort order"
+							__METHOD__."() expects parameter three, sort, to be a string sort order"
 						);
 					}
 				} else {
