@@ -169,8 +169,8 @@ class Arr
 						// if $needle contains the wildcard character
 						if (strpos($needle, $wildcard) !== false) {
 							// determine if the neeedle starts or ends with the wildcard
-							$startsWith = \Jstewmc\PhpHelpers\Str::startsWith($haystack, $wildcard);
-							$endsWith   = \Jstewmc\PhpHelpers\Str::endsWith($haystack, $wildcard);
+							$startsWith = \Jstewmc\PhpHelpers\Str::startsWith($needle, $wildcard);
+							$endsWith   = \Jstewmc\PhpHelpers\Str::endsWith($needle, $wildcard);
 							// set the *actual* needle
 							$needle = str_ireplace($wildcard, '', $needle);
 							// loop through the haystack
@@ -297,7 +297,7 @@ class Arr
 	 */
 	public static function isEmpty($key, $array, $isZeroEmpty = true)
 	{
-		$isEmpty = false;
+		$isEmpty = true;
 		
 		// if $key and array are given
 		if ($key !== null && $array !== null) {
