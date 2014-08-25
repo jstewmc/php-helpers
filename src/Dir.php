@@ -6,7 +6,6 @@
  * @copyright  2014 Jack Clayton
  * @license    MIT License <http://opensource.org/licenses/MIT>
  * @package    Jstewmc\PhpHelpers <https://github.com/jstewmc/php-helpers>
- *
  */
 
 namespace Jstewmc\PhpHelpers;
@@ -272,24 +271,50 @@ class Dir
 	 * @since   0.1.0
 	 * @param   string  $absolute  the abosolute path (e.g., 'C:\path\to\folder')
 	 * @param   string  $base      the relative base (e.g., 'C:\path\to')
-	 * @return  string  the relative path (e.g., 'folder')
+	 * @return  string  the relative path (e.g., 'folder') or false on failure
 	 * @throws  \BadMethodCallException    if $absolute or $base is null
 	 * @throws  \InvalidArgumentException  if $absolute is not a string
 	 * @throws  \InvalidArgumentException  if $base is not a string
 	 */
 	public static function abs2rel($absolute, $base)
 	{
-		// remove trailing slashes and explode absolute path
-		$absolute = rtrim($absolute, DIRECTORY_SEPARATOR);
-		$absolute = explode(DIRECTORY_SEPARATOR, $absolute);
+		$rel = false;
+		
+		// if $absolute and $base are given
+		if ($absolute !== null && $base !== null) {
+			// if $absolute is a string
+			if (is_string($absolute)) {
+				// if $base is a string
+				if (is_string($base)) {
+					// remove trailing slashes and explode absolute path
+					$absolute = rtrim($absolute, DIRECTORY_SEPARATOR);
+					$absolute = explode(DIRECTORY_SEPARATOR, $absolute);
+			
+					// remove trailing slashes and explode base path
+					$base = rtrim($base, DIRECTORY_SEPARATOR);
+					$base = explode(DIRECTORY_SEPARATOR, $base);
+			
+					// get the difference between the two
+					$diff = array_diff($absolute, $base);	
+					
+					// implode it yar
+					$rel = implode(DIRECTORY_SEPARATOR, $diff);		
+				} else {
+					throw new \InvalidArgumentException(
+						__METHOD__."() expects parameter two, base path, to be a string"
+					);
+				}
+			} else {
+				throw new \InvalidArgumentException(
+					__METHOD__."() expects parameter one, absolute path, to be a string"
+				);
+			}
+		} else {
+			throw new \BadMethodCallException(
+				__METHOD__."() expects two string parameters: absolute path and base path"
+			);
+		}
 
-		// remove trailing slashes and explode base path
-		$base = rtrim($base, DIRECTORY_SEPARATOR);
-		$base = explode(DIRECTORY_SEPARATOR, $base);
-
-		// get the difference between the two
-		$diff = array_diff($absolute, $base);
-
-		return implode(DIRECTORY_SEPARATOR, $diff);
+		return $rel;
 	}
 }
