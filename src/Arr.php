@@ -18,39 +18,58 @@ namespace Jstewmc\PhpHelpers;
 class Arr
 {	
 	/**
-	 * Returns true if the $key exists in $array[$key] is not empty
+	 * Returns true if $key does not exist in $array or $array[$key] is empty
 	 *
 	 * PHP's isset() method is will return false if the key does not exist or if the 
 	 * key exists and its value is null. However, it will return true if the key
-	 * exists and its value is 0 or an empty array. I, however, will not.
+	 * exists and its value is not null (including other "empty" values like '', false
+	 * and array()). 
+	 *
+	 * PHP's empty() method (or some frameworks) will throw a warning if you attempt
+	 * to test a non-existant key in an array.
+	 *
+	 * I, on the other hand, will return false if the key does not exist in the array
+	 * or if the key's value is empty.
 	 *
 	 * For example:
 	 *
 	 *    $a = ['foo' => null, 'bar' => array(), 'qux' => 'hello'];
 	 *
-	 *    isset($a['foo']);                        // returns false
-	 *    Arr::array_key_value_exists('foo', $a);  // returns false
+	 *    // when key doesn't exist (!)
+	 *    isset($a['quux']);         // returns false
+	 *    ! empty($a['quux']);       // throws key-does-not-exist warning
+	 *    ! Arr::empty('quux', $a);  // returns false
 	 *
-	 *    isset($a['bar']);                        // returns true
-	 *    Arr::array_key_value_exists('bar', $a);  // returns false
+	 *    // when key does exist, but value is null
+	 *    isset($a['foo']);         // returns false
+	 *    ! empty($a['foo']);       // returns false
+	 *    ! Arr::empty('foo', $a);  // returns false
 	 *
-	 *    isset($a['qux']);                        // returns true
-	 *    Arr::array_key_value_exists('qux', $a);  // returns true
+	 *    // when key does exist, but value is "empty" (!)
+	 *    isset($a['bar']);         // returns true
+	 *    ! empty($a['bar']);       // returns false
+	 *    ! Arr::empty('bar', $a);  // returns false
+	 *
+	 *    // when key does exist, but value is not "empty"
+	 *    isset($a['qux']);         // returns true
+	 *    ! empty($a['qux']);       // returns true
+	 *    ! Arr::empty('qux', $a);  // returns true
 	 * 
 	 * @since   0.1.0
-	 * @param   string  $key    the key's name
-	 * @param   array   $array  the array to test
-	 * @param   bool    $zero   a flag indicating whether or not zero is an acceptable
-	 *     value (optional; if omitted, defaults to false)
-	 * @return  bool            true if the key exists and its value is not empty()
+	 * @param   string  $key          the key's name
+	 * @param   array   $array        the array to test
+	 * @param   bool    $isZeroEmpty  a flag indicating whether or not zero is
+	 *     considered empty (optional; if omitted, defaults to true - i.e., the
+	 *     default behavior of PHP's empty() function )
+	 * @return  bool  true if the key exists and its value is not empty
 	 * @throws  \BadMethodCallException    if $key or $array are null
 	 * @throws  \InvalidArgumentException  if $key is not a string
 	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $zero is not a bool value
+	 * @throws  \InvalidArgumentException  if $isZeroEmpty is not a bool value
 	 */
-	public static function exists($key, $array, $zero = false)
+	public static function empty($key, $array, $isZeroEmpty = true)
 	{
-		$exists = false;
+		$empty = false;
 		
 		// if $key and array are given
 		if ($key !== null && $array !== null) {
@@ -59,18 +78,18 @@ class Arr
 				// if $array is an array
 				if (is_array($array)) {
 					// if $zero is a bool value
-					if (is_bool($zero)) {
+					if (is_bool($isZeroEmpty)) {
 						// if $array is not empty
 						if ( ! empty($array)) {
 							// if the key exists
 							if (array_key_exists($key, $array)) {
-								$exists = ! empty($array[$key]) 
-									|| ($zero && \Jstewmc\PhpHelpers\Num::isZero($array[$key]));
-							} else {
-								$exists = false;
+								$empty = empty($array[$key]);
+								// if the value is "empty" but zero is not considered empty
+								if ($empty && ! $isZeroEmpty) {
+									// if the value is zero it is not empty
+									$empty = ! \Jstewmc\PhpHelpers\Num::isZero($array[$key]);
+								}
 							}
-						} else {
-							$exists = false;
 						}
 					} else {
 						throw new \InvalidArgumentException(
@@ -93,7 +112,7 @@ class Arr
 			);
 		}
 		
-		return $exists;
+		return $empty;
 	}
 	
 	/**
@@ -207,7 +226,7 @@ class Arr
 		return $filtered;
 	}
 
-		/**
+	/**
 	 * Wildcard search for a value in an array 
 	 *
 	 * I'll search $haystack for $needle. Unlike PHP's native in_array() method,
