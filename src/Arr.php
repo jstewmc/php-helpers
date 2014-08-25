@@ -651,7 +651,7 @@ class Arr
 								}
 							} else {
 								throw new \InvalidArgumentException(
-									__METHOD__." expects parameter one to be an array of objects with public property '$property'"
+									__METHOD__." expects parameter one to be an array of objects with public method '$method'"
 								);
 							}
 						} else {
@@ -666,17 +666,17 @@ class Arr
 					}
 				} else {
 					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, property, to be a string public property name"
+						__METHOD__."() expects parameter two, method, to be the string name of a public method"
 					);
 				}
 			} else {
 				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, array, to be an array"
+					__METHOD__."() expects parameter one, array, to be an array"
 				);
 			}
 		} else {
 			throw new \BadMethodCallException(
-				__METHOD__." expects two or three parameters"
+				__METHOD__."() expects two or three parameters"
 			);
 		}
 
