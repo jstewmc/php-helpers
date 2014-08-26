@@ -1,0 +1,668 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » \Jstewmc\PhpHelpers\Str</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Jstewmc.html"><i class="icon-th"></i> Jstewmc</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method_endsWith" title="endsWith() :: Returns true if $haystack ends with $needle (case-sensitive)"><span class="description">Returns true if $haystack ends with $needle (case-sensitive)</span><pre>endsWith()</pre></a></li>
+<li class="method public "><a href="#method_iEndsWith" title="iEndsWith() :: Returns true if $haystack ends with $needle (case-insensitive)"><span class="description">Returns true if $haystack ends with $needle (case-insensitive)</span><pre>iEndsWith()</pre></a></li>
+<li class="method public "><a href="#method_iStartsWith" title="iStartsWith() :: Returns true if $haystack starts with $needle (case-insensitive)"><span class="description">Returns true if $haystack starts with $needle (case-insensitive)</span><pre>iStartsWith()</pre></a></li>
+<li class="method public "><a href="#method_isBool" title="isBool() :: Returns true if $string is a bool string"><span class="description">Returns true if $string is a bool string</span><pre>isBool()</pre></a></li>
+<li class="method public "><a href="#method_is_bool" title="is_bool() :: Alias for the isBool() method"><span class="description">Alias for the isBool() method</span><pre>is_bool()</pre></a></li>
+<li class="method public "><a href="#method_password" title="password() :: Returns a random string of $length that follows the charset $rules"><span class="description">Returns a random string of $length that follows the charset $rules</span><pre>password()</pre></a></li>
+<li class="method public "><a href="#method_rand" title="rand() :: Returns a random string"><span class="description">Returns a random string</span><pre>rand()</pre></a></li>
+<li class="method public "><a href="#method_splitOnFirstAlpha" title="splitOnFirstAlpha() :: Splits a string on the first alpha character"><span class="description">Splits a string on the first alpha character</span><pre>splitOnFirstAlpha()</pre></a></li>
+<li class="method public "><a href="#method_startsWith" title="startsWith() :: Returns true if $haystack starts with $needle (case-sensitive)"><span class="description">Returns true if $haystack starts with $needle (case-sensitive)</span><pre>startsWith()</pre></a></li>
+<li class="method public "><a href="#method_strtobytes" title="strtobytes() :: Converts a php.ini-like byte notation shorthand to a number of bytes"><span class="description">Converts a php.ini-like byte notation shorthand to a number of bytes</span><pre>strtobytes()</pre></a></li>
+<li class="method public "><a href="#method_strtocamelcase" title="strtocamelcase() :: Returns a string in camel case"><span class="description">Returns a string in camel case</span><pre>strtocamelcase()</pre></a></li>
+<li class="method public "><a href="#method_truncate" title="truncate() :: Truncates $string to a preferred length"><span class="description">Truncates $string to a preferred length</span><pre>truncate()</pre></a></li>
+</ul>
+</li></ul>
+</div>
+<div class="span8">
+<a id="\Jstewmc\PhpHelpers\Str"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Str.html">Str</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">The string (aka, "str") utility class</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Default.html">Default</a></td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_endsWith"></a><div class="element clickable method public method_endsWith" data-toggle="collapse" data-target=".method_endsWith .collapse" title="public">
+<h2>Returns true if $haystack ends with $needle (case-sensitive)</h2>
+<pre>endsWith(string $haystack, string $needle) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">For example:
+
+    Str::endsWith('foobar', 'bar');  // returns true
+    Str::endsWith('foobar', 'baz');  // returns false
+    Str::endsWith('foobar', 'BAR');  // returns false
+    Str::endsWith('foobar', '');     // returns false
+    Str::endsWith('', 'foobar');     // returns false</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5CStr::iEndsWith()">(case-insensitive version)</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5C&lt;http://stackoverflow.com/questions/834303&gt;">(MrHus' answer)</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$haystack</h4>
+<code>string</code><p>the string to search</p></div>
+<div class="subelement argument">
+<h4>$needle</h4>
+<code>string</code><p>the substring to search for</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $haystack or $needle is omitted</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $haystack is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $needle is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if $haystack ends with $needle</div>
+</div></div>
+</div>
+<a id="method_iEndsWith"></a><div class="element clickable method public method_iEndsWith" data-toggle="collapse" data-target=".method_iEndsWith .collapse" title="public">
+<h2>Returns true if $haystack ends with $needle (case-insensitive)</h2>
+<pre>iEndsWith(string $haystack, string $needle) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Str::endsWith('foobar', 'bar');  // returns true
+    Str::endsWith('foobar', 'baz');  // returns false
+    Str::endsWith('foobar', 'BAR');  // returns true</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5CStr::iEndsWith()">(case-sensitive version)</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$haystack</h4>
+<code>string</code><p>str  the string to search</p></div>
+<div class="subelement argument">
+<h4>$needle</h4>
+<code>string</code><p>str  the substring to search for</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $haystack or $needle is omitted</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $haystack is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $needle is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_iStartsWith"></a><div class="element clickable method public method_iStartsWith" data-toggle="collapse" data-target=".method_iStartsWith .collapse" title="public">
+<h2>Returns true if $haystack starts with $needle (case-insensitive)</h2>
+<pre>iStartsWith($haystack, $needle) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">For example:
+
+    Str::iStartsWith('foobar', 'bar');  // returns false
+    Str::iStartsWith('foobar', 'foo');  // returns true
+    Str::iStartsWith('foobar', 'FOO');  // returns true
+    Str::iStartsWith('', 'foobar');     // returns false
+    Str::iStartsWith('foobar', '');     // returns false</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5C&lt;http://stackoverflow.com/questions/834303&gt;">(MrHus' answer)</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5CStr::startsWith()">(case-sensitive version)</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$haystack</h4><p>str   the case-insensitive string to search</p></div>
+<div class="subelement argument">
+<h4>$needle</h4><p>str   the case-insensitive substring to search for</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $haystack or $needle is omitted</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $haystack is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $needle is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if $haystack ends with $needle</div>
+</div></div>
+</div>
+<a id="method_isBool"></a><div class="element clickable method public method_isBool" data-toggle="collapse" data-target=".method_isBool .collapse" title="public">
+<h2>Returns true if $string is a bool string</h2>
+<pre>isBool(string $string) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">I'll return true if $string is a bool string like 'true', 'false', 'yes', 'no',
+'on' or 'off'. Keep in mind, I only handle strings. I will return false if you
+test an actual bool value (because it's not a string).
+
+    is_bool(true);        // returns true
+    Str::is_bool(true);   // returns false
+
+    is_bool('true');      // returns false
+    Str::isBool('true');  // returns true
+
+    is_bool('yes');       // returns false
+    Str::isBool('yes');   // returns true</div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code><p>the string to test</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a id="method_is_bool"></a><div class="element clickable method public method_is_bool" data-toggle="collapse" data-target=".method_is_bool .collapse" title="public">
+<h2>Alias for the isBool() method</h2>
+<pre>is_bool($string) </pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$string</h4></div>
+</div></div>
+</div>
+<a id="method_password"></a><div class="element clickable method public method_password" data-toggle="collapse" data-target=".method_password .collapse" title="public">
+<h2>Returns a random string of $length that follows the charset $rules</h2>
+<pre>password(integer $length<code> = 8</code>, array&lt;mixed,integer&gt; $rules<code> = array('lower' =&gt; 1, 'upper' =&gt; 1, 'number' =&gt; 1, 'symbol' =&gt; 1)</code>) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Oftetimes, standards (like PCI) require passwords with one upper-case letter, one
+lower-case letter, one number, and one symbol. I can do that.
+
+For example:
+
+    $rules = ['upper' => 12];
+    $a = Str::password(12, $rules);
+
+    $rules = ['lower' => 6, 'upper' => 6];
+    $b = Str::password(12, $rules);
+
+    $rules = ['lower' => 4, 'upper' => 4, 'number' => 4];
+    $c = Str::password(12, $rules);
+
+    echo $a;  // example 'KNVHYUIDGVDS'
+    echo $b;  // example 'jNhGFkLekOfV'
+    echo $c;  // example 'la9Uh7BH4Bc3'</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5CStr::rand()"></a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$length</h4>
+<code>integer</code><p>the length of the password (optional; if omitted,</p>
+<pre><code>defaults to 8)</code></pre></div>
+<div class="subelement argument">
+<h4>$rules</h4>
+<code>array&lt;mixed,integer&gt;</code><p>an array of character counts indexed by charset name</p>
+<pre><code>(possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol')
+(optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1,
+'symbol' => 1])</code></pre></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $rules or $length is omitted</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $rules is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $length is not an integer</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if a key in $rules is not a valid charset name</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if a value in $rules is not an integer</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if the number of required characters (as defined
+    in the $rules array) exceeds the $length</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the password</div>
+</div></div>
+</div>
+<a id="method_rand"></a><div class="element clickable method public method_rand" data-toggle="collapse" data-target=".method_rand .collapse" title="public">
+<h2>Returns a random string</h2>
+<pre>rand(integer $length, mixed $charsets<code> = array('alpha', 'number', 'symbol')</code>) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">For example:
+
+    echo Str::rand(8, 'alpha');              // example 'hbdrckso'
+    echo Str::rand(8, ['lower', 'number']);  // example 'k987hb54'
+    echo Str::rand(8, ['upper', 'symbol']);  // example 'HG!V*X]@'</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$length</h4>
+<code>integer</code><p>the length of the string to return</p></div>
+<div class="subelement argument">
+<h4>$charsets</h4>
+<code>mixed</code><p>a string charset name or an array of charset names</p>
+<pre><code>(possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'
+and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to
+['alpha', 'number', 'symbol'])</code></pre></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $length or $charset is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $length is not an integer</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $charsets is not a string or array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if a given $charset is not a valid charset</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>a random string</div>
+</div></div>
+</div>
+<a id="method_splitOnFirstAlpha"></a><div class="element clickable method public method_splitOnFirstAlpha" data-toggle="collapse" data-target=".method_splitOnFirstAlpha .collapse" title="public">
+<h2>Splits a string on the first alpha character</h2>
+<pre>splitOnFirstAlpha(string $string) : array&lt;mixed,string&gt;</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">I'll return an array with two parts. The first element is the string part before
+the first alpha character, and the second part is everything after and including
+the first alpha character.
+
+For example:
+
+    Str::splitOnFirstAlpha("123");        // returns ["123"]
+    Str::splitOnFirstAlpha("abc");        // returns ["", "abc"]
+    Str::splitOnFirstAlpha("123 abc");    // returns ["123", "abc"]
+    Str::splitOnFirstAlpha("1 2 3 abc");  // returns ["1 2 3 4", "abc"]</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5C&lt;http://stackoverflow.com/questions/18990180&gt;">(FrankieTheKneeMan)
+         (using Regex lookahead)</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code><p>the string to split</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $string is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $string is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array&lt;mixed,string&gt;</code>an array</div>
+</div></div>
+</div>
+<a id="method_startsWith"></a><div class="element clickable method public method_startsWith" data-toggle="collapse" data-target=".method_startsWith .collapse" title="public">
+<h2>Returns true if $haystack starts with $needle (case-sensitive)</h2>
+<pre>startsWith(string $haystack, string $needle) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">For example:
+
+    Str::startsWith('foobar', 'bar');  // returns false
+    Str::startsWith('foobar', 'foo');  // returns true
+    Str::startsWith('foobar', 'FOO');  // returns false
+    Str::startsWith('foobar', '');     // returns false
+    Str::startsWith('', 'foobar');     // returns false</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5CStr::startsWith()">(case-insensitive version)</a></td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5C&lt;http://stackoverflow.com/questions/834303&gt;">(MrHus' answer)</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$haystack</h4>
+<code>string</code><p>the string to search</p></div>
+<div class="subelement argument">
+<h4>$needle</h4>
+<code>string</code><p>the substring to search for</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $haystack or $needle is omitted</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $haystack is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $needle is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if $haystack starts with $needle</div>
+</div></div>
+</div>
+<a id="method_strtobytes"></a><div class="element clickable method public method_strtobytes" data-toggle="collapse" data-target=".method_strtobytes .collapse" title="public">
+<h2>Converts a php.ini-like byte notation shorthand to a number of bytes</h2>
+<pre>strtobytes(string $string) : integer | float</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">In the php.ini configuration file, byte values are sote in shorthand
+notation (e.g., "8M"). PHP's native ini_get() function will return the
+exact string stored in php.ini and not its integer equivalent. I will
+return the integer equivalent.
+
+For example:
+
+    Str::strtobytes('1K');  // returns 1024
+    Str::strtobytes('1M');  // returns 1048576
+    Str::strtobytes('1G');  // returns 1073741824</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5C&lt;http://www.php.net/manual/en/function.ini-get.php&gt;"></a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code><p>the string to convert</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $string is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $string is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $string does not end in 'k', 'm', or 'g'</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>integer</code><code>float</code>the number of bytes</div>
+</div></div>
+</div>
+<a id="method_strtocamelcase"></a><div class="element clickable method public method_strtocamelcase" data-toggle="collapse" data-target=".method_strtocamelcase .collapse" title="public">
+<h2>Returns a string in camel case</h2>
+<pre>strtocamelcase(string $string) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">For example:
+
+    Str::strtocamelcase('Hello world');   // returns "helloWorld"
+    Str::strtocamelcase('H3LLO WORLD!');  // returns "helloWorld"
+    Str::strtocamelcase('hello_world');   // returns "helloWorld"</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$string</h4>
+<code>string</code><p>the string to camel-case</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $string is empty</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $string is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the camel-cased string</div>
+</div></div>
+</div>
+<a id="method_truncate"></a><div class="element clickable method public method_truncate" data-toggle="collapse" data-target=".method_truncate .collapse" title="public">
+<h2>Truncates $string to a preferred length</h2>
+<pre>truncate($string, integer $limit, string $break<code> = ' '</code>, string $pad<code> = '...'</code>) : string</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Str::truncate('Lorem ipsum inum', 8);               // returns 'Lorem ipsum...'
+    Str::truncate('Lorem ipsum inum', 8, '');           // returns 'Lorem ip...'
+    Str::truncate('Lorem ipsum inum', 8, ' ', ' >>>');  // returns 'Lorem ipsum >>>'</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="%5CJstewmc%5CPhpHelpers%5C&lt;http://blog.justin.kelly.org.au/php-truncate/&gt;"></a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$string</h4></div>
+<div class="subelement argument">
+<h4>$limit</h4>
+<code>integer</code><p>the string's max length</p></div>
+<div class="subelement argument">
+<h4>$break</h4>
+<code>string</code><p>the break character (to truncate at exact length set to</p>
+<pre><code>empty string or null) (if the break character does not exist in the string,
+the string will be truncated at limit) (optional; if omitted, defaults to ' ')</code></pre></div>
+<div class="subelement argument">
+<h4>$pad</h4>
+<code>string</code><p>the padding to add to end of string (optional; if</p>
+<pre><code>omitted, defaults to '...')</code></pre></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $string or $limit is omitted</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $string is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $limit is not an integer (or integer string)</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $break is not a string or null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $pad is not a string or null</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>the truncated string</div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.6.1</a> and<br>
+            generated on 2014-08-26T21:11:39Z.<br></footer></div>
+</div>
+</body>
+</html>
