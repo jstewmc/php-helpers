@@ -220,17 +220,17 @@ This is my first attempt at a full suite of unit tests.
 
 Feel free to contribute your own improvements:
 
-# Fork
-# Clone
-# PHPUnit
-# Branch
-# PHPUnit
-# Code
-# PHPUnit
-# Commit
-# Push
-# Pull request
-# Relax and eat a Paleo muffin
+1. Fork
+2. Clone
+3. PHPUnit
+4. Branch
+5. PHPUnit
+6. Code
+7. PHPUnit
+8. Commit
+9. Push
+10. Pull request
+11. Relax and eat a Paleo muffin
 
 See [contributing.md](https://github.com/jstewmc/php-helpers/blob/master/contributing.md) for details.
 
