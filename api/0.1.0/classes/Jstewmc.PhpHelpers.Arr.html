@@ -1,604 +1,834 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta charset="utf-8">
-<title>API Documentation » \Jstewmc\PhpHelpers\Arr</title>
-<meta name="author" content="Mike van Riel">
-<meta name="description" content="">
-<link href="../css/template.css" rel="stylesheet" media="all">
-<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
-<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
-</head>
-<body>
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
-<li class="dropdown">
-<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a>Namespaces</a></li>
-<li><a href="../namespaces/Jstewmc.html"><i class="icon-th"></i> Jstewmc</a></li>
-<li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
-</ul>
-</li>
-<li class="dropdown" id="charts-menu">
-<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
-</li>
-<li class="dropdown" id="reports-menu">
-<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
-<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
-</ul>
-</li>
-</ul></div>
-</div></div>
-<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
-</div>
-<div id="___" class="container">
-<noscript><div class="alert alert-warning">
-                            Javascript is disabled; several features are only available
-                            if Javascript is enabled.
-                        </div></noscript>
-<div class="row">
-<div class="span4">
-<div class="btn-toolbar">
-<div class="btn-group visibility" data-toggle="buttons-checkbox">
-<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
-</div>
-<div class="btn-group view pull-right" data-toggle="buttons-radio">
-<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-</div>
-</div>
-<ul class="side-nav nav nav-list"><li class="nav-header">
-<i title="Methods" class="icon-custom icon-method"></i> Methods
-                    <ul>
-<li class="method public "><a href="#method_filterByKeyPrefix" title="filterByKeyPrefix() :: Filters an array by a key prefix"><span class="description">Filters an array by a key prefix</span><pre>filterByKeyPrefix()</pre></a></li>
-<li class="method public "><a href="#method_filterBykey" title="filterBykey() :: Filters an array by key"><span class="description">Filters an array by key</span><pre>filterBykey()</pre></a></li>
-<li class="method public "><a href="#method_inArray" title="inArray() :: Wildcard search for a value in an array"><span class="description">Wildcard search for a value in an array</span><pre>inArray()</pre></a></li>
-<li class="method public "><a href="#method_isAssoc" title="isAssoc() :: Returns true if the array has at least one string key (excluding int strings)"><span class="description">Returns true if the array has at least one string key (excluding int strings)</span><pre>isAssoc()</pre></a></li>
-<li class="method public "><a href="#method_isEmpty" title="isEmpty() :: Returns true if $key does not exist in $array or $array[$key] is empty"><span class="description">Returns true if $key does not exist in $array or $array[$key] is empty</span><pre>isEmpty()</pre></a></li>
-<li class="method public "><a href="#method_keyStringReplace" title="keyStringReplace() :: Replaces all occurences of $search with $replace in $array's keys"><span class="description">Replaces all occurences of $search with $replace in $array's keys</span><pre>keyStringReplace()</pre></a></li>
-<li class="method public "><a href="#method_sortByField" title="sortByField() :: Sorts an array of associative arrays by a field's value"><span class="description">Sorts an array of associative arrays by a field's value</span><pre>sortByField()</pre></a></li>
-<li class="method public "><a href="#method_sortByMethod" title="sortByMethod() :: Sorts an array of objects using a method's return value"><span class="description">Sorts an array of objects using a method's return value</span><pre>sortByMethod()</pre></a></li>
-<li class="method public "><a href="#method_sortByProperty" title="sortByProperty() :: Sorts an array of objects using a public property's value"><span class="description">Sorts an array of objects using a public property's value</span><pre>sortByProperty()</pre></a></li>
-</ul>
-</li></ul>
-</div>
-<div class="span8">
-<a id="\Jstewmc\PhpHelpers\Arr"></a><ul class="breadcrumb">
-<li>
-<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
-</li>
-<li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
-<li>
-<span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a>
-</li>
-<li class="active">
-<span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Arr.html">Arr</a>
-</li>
-</ul>
-<div class="element class">
-<p class="short_description">The array (aka, "arr") class</p>
-<div class="details">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>package</th>
-<td><a href="../packages/Default.html">Default</a></td>
-</tr>
-</table>
-<h3>
-<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
-<a id="method_filterByKeyPrefix"></a><div class="element clickable method public method_filterByKeyPrefix" data-toggle="collapse" data-target=".method_filterByKeyPrefix .collapse" title="public">
-<h2>Filters an array by a key prefix</h2>
-<pre>filterByKeyPrefix(array $array, string $prefix) : array</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">I'll iterate over each key in $array. If the key starts with $prefix, I'll
-add it to the result array. Array keys are preserved.
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \Jstewmc\PhpHelpers\Arr
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
 
-For example:
-    $a = ['foo' => 'bar', 'baz' => 'qux'];
-    Arr::filterByKeyPrefix($a, 'b');  // returns ['baz']</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array</code><p>the array to filter</p></div>
-<div class="subelement argument">
-<h4>$prefix</h4>
-<code>string</code><p>the key's prefix to filter</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $array or $prefix is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $prefix is not a string</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>the filtered array</div>
-</div></div>
-</div>
-<a id="method_filterBykey"></a><div class="element clickable method public method_filterBykey" data-toggle="collapse" data-target=".method_filterBykey .collapse" title="public">
-<h2>Filters an array by key</h2>
-<pre>filterBykey(array $array, callback $callback) : array</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"><p>I'll iterate over each key in $array passing it to the $callback function.
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_filterBykey" title="filterBykey :: Filters an array by key">
+            <span class="description">Filters an array by key</span><pre>filterBykey</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_filterByKeyPrefix" title="filterByKeyPrefix :: Filters an array by a key prefix">
+            <span class="description">Filters an array by a key prefix</span><pre>filterByKeyPrefix</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_inArray" title="inArray :: Wildcard search for a value in an array">
+            <span class="description">Wildcard search for a value in an array</span><pre>inArray</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_isAssoc" title="isAssoc :: Returns true if the array has at least one string key (excluding int strings)">
+            <span class="description">Returns true if the array has at least one string key (excluding int strings)</span><pre>isAssoc</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_isEmpty" title="isEmpty :: Returns true if $key does not exist in $array or $array[$key] is empty">
+            <span class="description">Returns true if $key does not exist in $array or $array[$key] is empty</span><pre>isEmpty</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_keyStringReplace" title="keyStringReplace :: Replaces all occurences of $search with $replace in $array&#039;s keys">
+            <span class="description">Replaces all occurences of $search with $replace in $array&#039;s keys</span><pre>keyStringReplace</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_sortByField" title="sortByField :: Sorts an array of associative arrays by a field&#039;s value">
+            <span class="description">Sorts an array of associative arrays by a field&#039;s value</span><pre>sortByField</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_sortByProperty" title="sortByProperty :: Sorts an array of objects using a public property&#039;s value">
+            <span class="description">Sorts an array of objects using a public property&#039;s value</span><pre>sortByProperty</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_sortByMethod" title="sortByMethod :: Sorts an array of objects using a method&#039;s return value">
+            <span class="description">Sorts an array of objects using a method&#039;s return value</span><pre>sortByMethod</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Arr</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">The array (aka, &quot;arr&quot;) class</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        since
+                                                                            </th>
+                                    <td>
+                                                                                    0.1.0
+                                                                                
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_filterBykey"></a>
+                        <div class="element clickable method public  method_filterBykey" data-toggle="collapse" data-target=".method_filterBykey .collapse">
+                            <h2>Filters an array by key</h2>
+                            <pre>filterBykey(array $array, callback $callback) : array</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>I'll iterate over each key in $array passing it to the $callback function.
 If the callback function returns true, the current value from $array is added
 to the result array. Array keys are preserved.</p>
-
 <p>For example:</p>
+<pre><code>$a = ['foo', 'bar', 'baz'];
+Arr::filterByKey($a, function ($k) {
+    return $k &gt; 1;
+});  // returns ['baz']</code></pre></div>
 
-```
-    $a = ['foo', 'bar', 'baz'];
-    Arr::filterByKey($a, function ($k) {
-        return $k > 1;
-    });  // returns ['baz']
-```</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://php.net/manual/en/function.array-filter.php#99073">Acid24's filter
-   by key function on on array_filter() man page</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array</code><p>the array to filter</p></div>
-<div class="subelement argument">
-<h4>$callback</h4>
-<code>callback</code><p>the function to call for each key in $array</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $array or $callback is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $callback is not a callable function</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>the filtered array</div>
-</div></div>
-</div>
-<a id="method_inArray"></a><div class="element clickable method public method_inArray" data-toggle="collapse" data-target=".method_inArray .collapse" title="public">
-<h2>Wildcard search for a value in an array</h2>
-<pre>inArray(string $needle, array&lt;mixed,string&gt; $haystack, string $wildcard<code> = '*'</code>) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">I'll search $haystack for $needle. Unlike PHP's native in_array() method,
-I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and
-contains (e.g., "*foo*") wildcard notation.
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array or $callback is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $callback is not a callable function</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="http://php.net/manual/en/function.array-filter.php#99073">http://php.net/manual/en/function.array-filter.php#99073</a>
+                                                                                                                <p>Acid24's filter
+by key function on on array_filter() man page</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
 
-For example:
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array</code><p><p>the array to filter</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$callback</h4>
+                                                <code>callback</code><p><p>the function to call for each key in $array</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>the filtered array</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_filterByKeyPrefix"></a>
+                        <div class="element clickable method public  method_filterByKeyPrefix" data-toggle="collapse" data-target=".method_filterByKeyPrefix .collapse">
+                            <h2>Filters an array by a key prefix</h2>
+                            <pre>filterByKeyPrefix(array $array, string $prefix) : array</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>I'll iterate over each key in $array. If the key starts with $prefix, I'll
+add it to the result array. Array keys are preserved.</p>
+<p>For example:</p>
+<pre><code>$a = ['foo' =&gt; 'bar', 'baz' =&gt; 'qux'];
+Arr::filterByKeyPrefix($a, 'b');  // returns ['baz']</code></pre></div>
 
-    Arr::inArray('foo', ['foo', 'bar']);  // returns true
-    Arr::inArray('qux', ['foo', 'bar']);  // returns false
-    Arr::inArray('fo*', ['foo', 'bar']);  // returns true
-    Arr::inArray('*oo', ['foo', 'bar']);  // returns true
-    Arr::inArray('*o*', ['foo', 'bar']);  // returns true</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$needle</h4>
-<code>string</code><p>the needle to find</p></div>
-<div class="subelement argument">
-<h4>$haystack</h4>
-<code>array&lt;mixed,string&gt;</code><p>the haystack to search</p></div>
-<div class="subelement argument">
-<h4>$wildcard</h4>
-<code>string</code><p>the wildcard character (optional; if omitted,
-defaults to '*')</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $needle, $haystack, or $wildcard is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $needle is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $haystack is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $wildcard is not a string</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if the needle exists in haystack</div>
-</div></div>
-</div>
-<a id="method_isAssoc"></a><div class="element clickable method public method_isAssoc" data-toggle="collapse" data-target=".method_isAssoc .collapse" title="public">
-<h2>Returns true if the array has at least one string key (excluding int strings)</h2>
-<pre>isAssoc(array $array) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP natively treats all arrays as associative arrays. I'll consider an
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array or $prefix is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $prefix is not a string</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array</code><p><p>the array to filter</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$prefix</h4>
+                                                <code>string</code><p><p>the key's prefix to filter</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>the filtered array</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_inArray"></a>
+                        <div class="element clickable method public  method_inArray" data-toggle="collapse" data-target=".method_inArray .collapse">
+                            <h2>Wildcard search for a value in an array</h2>
+                            <pre>inArray(string $needle, array&lt;mixed,string&gt; $haystack, string $wildcard = &#039;*&#039;) : boolean</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>I'll search $haystack for $needle. Unlike PHP's native in_array() method,
+I'll accept begins-with (e.g., "foo<em>"), ends-with (e.g., "</em>foo"), and
+contains (e.g., "<em>foo</em>") wildcard notation.</p>
+<p>For example:</p>
+<pre><code>Arr::inArray('foo', ['foo', 'bar']);  // returns true
+Arr::inArray('qux', ['foo', 'bar']);  // returns false
+Arr::inArray('fo*', ['foo', 'bar']);  // returns true
+Arr::inArray('*oo', ['foo', 'bar']);  // returns true
+Arr::inArray('*o*', ['foo', 'bar']);  // returns true</code></pre></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $needle, $haystack, or $wildcard is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $needle is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $haystack is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $wildcard is not a string</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$needle</h4>
+                                                <code>string</code><p><p>the needle to find</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$haystack</h4>
+                                                <code>array&lt;mixed,string&gt;</code><p><p>the haystack to search</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$wildcard</h4>
+                                                <code>string</code><p><p>the wildcard character (optional; if omitted,
+defaults to '*')</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>true if the needle exists in haystack</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_isAssoc"></a>
+                        <div class="element clickable method public  method_isAssoc" data-toggle="collapse" data-target=".method_isAssoc .collapse">
+                            <h2>Returns true if the array has at least one string key (excluding int strings)</h2>
+                            <pre>isAssoc(array $array) : boolean</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>PHP natively treats all arrays as associative arrays. I'll consider an
 associative array as an array with a string key. Interally, PHP casts
 string keys containing valid integers to integer type (e.g., "8" will be
-stored as 8).
+stored as 8).</p>
+<p>For example:</p>
+<pre><code>Arr::isAssoc([1, 2, 3]);                       // returns false
+Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
+Arr::isAssoc(['1' =&gt; 'foo', 2 =&gt; 'bar']);      // returns false (PHP casts '1' to 1)
+Arr::isAssoc(['1' =&gt; 'foo', 8 =&gt; 'bar']);      // returns false (sparse doens't matter)
+Arr::isAssoc(['1' =&gt; 'foo', 'bar' =&gt; 'baz']);  // returns true</code></pre></div>
 
-For example:
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
 
-    Arr::isAssoc([1, 2, 3]);                       // returns false
-    Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
-    Arr::isAssoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
-    Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
-    Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array</code><p>the array to test</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if the array has a string key (excluding int strings)</div>
-</div></div>
-</div>
-<a id="method_isEmpty"></a><div class="element clickable method public method_isEmpty" data-toggle="collapse" data-target=".method_isEmpty .collapse" title="public">
-<h2>Returns true if $key does not exist in $array or $array[$key] is empty</h2>
-<pre>isEmpty(string $key, array $array, boolean $isZeroEmpty<code> = true</code>) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP's isset() method is will return false if the key does not exist or if the
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array</code><p><p>the array to test</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>true if the array has a string key (excluding int strings)</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_isEmpty"></a>
+                        <div class="element clickable method public  method_isEmpty" data-toggle="collapse" data-target=".method_isEmpty .collapse">
+                            <h2>Returns true if $key does not exist in $array or $array[$key] is empty</h2>
+                            <pre>isEmpty(string $key, array $array, boolean $isZeroEmpty = true) : boolean</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>PHP's isset() method is will return false if the key does not exist or if the
 key exists and its value is null. However, it will return true if the key
 exists and its value is not null (including other "empty" values like '', false
-and array()).
+and array()).</p>
+<p>PHP's empty() method (or some frameworks) will throw a warning if you attempt
+to test a non-existant key in an array.</p>
+<p>I, on the other hand, will return false if the key does not exist in the array
+or if the key's value is empty.</p>
+<p>For example:</p>
+<pre><code>$a = ['foo' =&gt; null, 'bar' =&gt; array(), 'qux' =&gt; 'hello'];
 
-PHP's empty() method (or some frameworks) will throw a warning if you attempt
-to test a non-existant key in an array.
+// when key doesn't exist (!)
+isset($a['quux']);           // returns false
+! empty($a['quux']);         // throws key-does-not-exist warning
+! Arr::isEmpty('quux', $a);  // returns false
 
-I, on the other hand, will return false if the key does not exist in the array
-or if the key's value is empty.
+// when key does exist, but value is null
+isset($a['foo']);           // returns false
+! empty($a['foo']);         // returns false
+! Arr::isEmpty('foo', $a);  // returns false
 
-For example:
+// when key does exist, but value is "empty" (!)
+isset($a['bar']);           // returns true
+! empty($a['bar']);         // returns false
+! Arr::isEmpty('bar', $a);  // returns false
 
-    $a = ['foo' => null, 'bar' => array(), 'qux' => 'hello'];
+// when key does exist, but value is not "empty"
+isset($a['qux']);           // returns true
+! empty($a['qux']);         // returns true
+! Arr::isEmpty('qux', $a);  // returns true</code></pre></div>
 
-    // when key doesn't exist (!)
-    isset($a['quux']);           // returns false
-    ! empty($a['quux']);         // throws key-does-not-exist warning
-    ! Arr::isEmpty('quux', $a);  // returns false
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $key or $array are null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $key is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $isZeroEmpty is not a bool value</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
 
-    // when key does exist, but value is null
-    isset($a['foo']);           // returns false
-    ! empty($a['foo']);         // returns false
-    ! Arr::isEmpty('foo', $a);  // returns false
-
-    // when key does exist, but value is "empty" (!)
-    isset($a['bar']);           // returns true
-    ! empty($a['bar']);         // returns false
-    ! Arr::isEmpty('bar', $a);  // returns false
-
-    // when key does exist, but value is not "empty"
-    isset($a['qux']);           // returns true
-    ! empty($a['qux']);         // returns true
-    ! Arr::isEmpty('qux', $a);  // returns true</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$key</h4>
-<code>string</code><p>the key's name</p></div>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array</code><p>the array to test</p></div>
-<div class="subelement argument">
-<h4>$isZeroEmpty</h4>
-<code>boolean</code><p>a flag indicating whether or not zero is
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$key</h4>
+                                                <code>string</code><p><p>the key's name</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array</code><p><p>the array to test</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$isZeroEmpty</h4>
+                                                <code>boolean</code><p><p>a flag indicating whether or not zero is
 considered empty (optional; if omitted, defaults to true - i.e., the
-default behavior of PHP's empty() function )</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $key or $array are null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $key is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $isZeroEmpty is not a bool value</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if the key exists and its value is not empty</div>
-</div></div>
-</div>
-<a id="method_keyStringReplace"></a><div class="element clickable method public method_keyStringReplace" data-toggle="collapse" data-target=".method_keyStringReplace .collapse" title="public">
-<h2>Replaces all occurences of $search with $replace in $array's keys</h2>
-<pre>keyStringReplace(mixed $search, mixed $replace, array $array) : array</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">I'll return an array with all occurences of $search in the array's keys
-replaced with the given $replace value (case-insensitive).</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://us1.php.net/str_replace">str_replace() man page</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$search</h4>
-<code>mixed</code><p>the value being searched for (aka the needle); an
-array may be used to designate multiple neeeles</p></div>
-<div class="subelement argument">
-<h4>$replace</h4>
-<code>mixed</code><p>the replacement value that replaced found $search
-values; an array may be used to designate multiple replacements</p></div>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array</code><p>the array to replace</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $search, $replace, or $array are null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $search is not a string or array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $replace is not a string or array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array</code>the array with replacements</div>
-</div></div>
-</div>
-<a id="method_sortByField"></a><div class="element clickable method public method_sortByField" data-toggle="collapse" data-target=".method_sortByField .collapse" title="public">
-<h2>Sorts an array of associative arrays by a field's value</h2>
-<pre>sortByField(array&lt;mixed,array&gt; $array, string $field, string $sort<code> = 'asc'</code>) : array&lt;mixed,array&gt;</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">Oftentimes, you have a 0-indexed array of associative arrays. For example,
+default behavior of PHP's empty() function )</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>true if the key exists and its value is not empty</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_keyStringReplace"></a>
+                        <div class="element clickable method public  method_keyStringReplace" data-toggle="collapse" data-target=".method_keyStringReplace .collapse">
+                            <h2>Replaces all occurences of $search with $replace in $array&#039;s keys</h2>
+                            <pre>keyStringReplace(mixed $search, mixed $replace, array $array) : array</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>I'll return an array with all occurences of $search in the array's keys
+replaced with the given $replace value (case-insensitive).</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $search, $replace, or $array are null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $search is not a string or array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $replace is not a string or array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="http://us1.php.net/str_replace">http://us1.php.net/str_replace</a>
+                                                                                                                <p>str_replace() man page</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$search</h4>
+                                                <code>mixed</code><p><p>the value being searched for (aka the needle); an
+array may be used to designate multiple neeeles</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$replace</h4>
+                                                <code>mixed</code><p><p>the replacement value that replaced found $search
+values; an array may be used to designate multiple replacements</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array</code><p><p>the array to replace</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>the array with replacements</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_sortByField"></a>
+                        <div class="element clickable method public  method_sortByField" data-toggle="collapse" data-target=".method_sortByField .collapse">
+                            <h2>Sorts an array of associative arrays by a field&#039;s value</h2>
+                            <pre>sortByField(array&lt;mixed,array&gt; $array, string $field, string $sort = &#039;asc&#039;) : array&lt;mixed,array&gt;</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>Oftentimes, you have a 0-indexed array of associative arrays. For example,
 a SELECT sql query result or a display-friendly data array. I'll sort a
-0-based array of associative arrays by a field's value.
+0-based array of associative arrays by a field's value.</p>
+<p>For example:</p>
+<pre><code>$a = [['a' =&gt; 3], ['a' =&gt; 1], ['a' =&gt; 2]];
+Arr::usort_field($a, 'a'); // returns [['a' =&gt; 1], ['a' =&gt; 2], ['a' =&gt; 3]]</code></pre></div>
 
-For example:
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array, $field, or $sort is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $field is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $sort is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $sort is not the string 'asc[ending]' or
+'desc[ending]'</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array of arrays with
+the key $field</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
 
-    $a = [['a' => 3], ['a' => 1], ['a' => 2]];
-    Arr::usort_field($a, 'a'); // returns [['a' => 1], ['a' => 2], ['a' => 3]]</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array&lt;mixed,array&gt;</code><p>the array of associative arrays to sort</p></div>
-<div class="subelement argument">
-<h4>$field</h4>
-<code>string</code><p>the associative array's field name (aka, key)</p></div>
-<div class="subelement argument">
-<h4>$sort</h4>
-<code>string</code><p>the sort order (possible values 'asc[ending]' or
-'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $array, $field, or $sort is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $field is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $sort is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $sort is not the string 'asc[ending]' or
-   'desc[ending]'</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array of arrays with
-   the key $field</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array&lt;mixed,array&gt;</code>the sorted array</div>
-</div></div>
-</div>
-<a id="method_sortByMethod"></a><div class="element clickable method public method_sortByMethod" data-toggle="collapse" data-target=".method_sortByMethod .collapse" title="public">
-<h2>Sorts an array of objects using a method's return value</h2>
-<pre>sortByMethod(array&lt;mixed,object&gt; $array, string $method, string $sort<code> = 'asc'</code>) : array&lt;mixed,object&gt;</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array&lt;mixed,object&gt;</code><p>the array of objects to sort</p></div>
-<div class="subelement argument">
-<h4>$method</h4>
-<code>string</code><p>the name of the public method to use (may be a
-"magic" method via the object's __call() magic method)</p></div>
-<div class="subelement argument">
-<h4>$sort</h4>
-<code>string</code><p>the sort order (possible values 'asc[ending]' or
-'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $array, $property, or $sort is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $property is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $sort is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $sort is not the string 'asc[ending]' or
-    'desc[ending]'</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array of objects with
-    the public property $property</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array&lt;mixed,object&gt;</code>the sorted array</div>
-</div></div>
-</div>
-<a id="method_sortByProperty"></a><div class="element clickable method public method_sortByProperty" data-toggle="collapse" data-target=".method_sortByProperty .collapse" title="public">
-<h2>Sorts an array of objects using a public property's value</h2>
-<pre>sortByProperty(array&lt;mixed,object&gt; $array, string $property, string $sort<code> = 'asc'</code>) : array&lt;mixed,object&gt;</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$array</h4>
-<code>array&lt;mixed,object&gt;</code><p>the array of objects to sort</p></div>
-<div class="subelement argument">
-<h4>$property</h4>
-<code>string</code><p>the object's public property name (may be a magic
-public property via the object's __get() method)</p></div>
-<div class="subelement argument">
-<h4>$sort</h4>
-<code>string</code><p>the sort order (possible values 'asc[ending]' or
-'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $array, $property, or $sort is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $property is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $sort is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $sort is not the string 'asc[ending]' or
-   'desc[ending]'</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $array is not an array of objects with
-   the public property $property</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>array&lt;mixed,object&gt;</code>the sorted array</div>
-</div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row"><footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.6.1</a> and<br>
-            generated on 2014-08-27T23:17:45Z.<br></footer></div>
-</div>
-</body>
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array&lt;mixed,array&gt;</code><p><p>the array of associative arrays to sort</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$field</h4>
+                                                <code>string</code><p><p>the associative array's field name (aka, key)</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sort</h4>
+                                                <code>string</code><p><p>the sort order (possible values 'asc[ending]' or
+'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array&lt;mixed,array&gt;</code><p><p>the sorted array</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_sortByProperty"></a>
+                        <div class="element clickable method public  method_sortByProperty" data-toggle="collapse" data-target=".method_sortByProperty .collapse">
+                            <h2>Sorts an array of objects using a public property&#039;s value</h2>
+                            <pre>sortByProperty(array&lt;mixed,object&gt; $array, string $property, string $sort = &#039;asc&#039;) : array&lt;mixed,object&gt;</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array, $property, or $sort is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $property is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $sort is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $sort is not the string 'asc[ending]' or
+'desc[ending]'</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array of objects with
+the public property $property</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array&lt;mixed,object&gt;</code><p><p>the array of objects to sort</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$property</h4>
+                                                <code>string</code><p><p>the object's public property name (may be a magic
+public property via the object's __get() method)</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sort</h4>
+                                                <code>string</code><p><p>the sort order (possible values 'asc[ending]' or
+'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array&lt;mixed,object&gt;</code><p><p>the sorted array</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_sortByMethod"></a>
+                        <div class="element clickable method public  method_sortByMethod" data-toggle="collapse" data-target=".method_sortByMethod .collapse">
+                            <h2>Sorts an array of objects using a method&#039;s return value</h2>
+                            <pre>sortByMethod(array&lt;mixed,object&gt; $array, string $method, string $sort = &#039;asc&#039;) : array&lt;mixed,object&gt;</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array, $property, or $sort is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $property is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $sort is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $sort is not the string 'asc[ending]' or</p>
+<pre><code>'desc[ending]'</code></pre>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $array is not an array of objects with</p>
+<pre><code>the public property $property</code></pre>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$array</h4>
+                                                <code>array&lt;mixed,object&gt;</code><p><p>the array of objects to sort</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p><p>the name of the public method to use (may be a
+"magic" method via the object's __call() magic method)</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sort</h4>
+                                                <code>string</code><p><p>the sort order (possible values 'asc[ending]' or
+'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array&lt;mixed,object&gt;</code><p><p>the sorted array</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                    
+                                                        </div>
+            </div>
+            <a id="\Jstewmc\PhpHelpers\Arr"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Arr.html">Arr</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Wed, 27 Aug 2014 23:22:39 +0000.<br/>
+    </footer>
+    </body>
 </html>

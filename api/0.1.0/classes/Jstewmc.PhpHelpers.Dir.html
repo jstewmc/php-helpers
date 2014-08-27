@@ -1,336 +1,560 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta charset="utf-8">
-<title>API Documentation » \Jstewmc\PhpHelpers\Dir</title>
-<meta name="author" content="Mike van Riel">
-<meta name="description" content="">
-<link href="../css/template.css" rel="stylesheet" media="all">
-<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
-<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \Jstewmc\PhpHelpers\Dir
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
-<div class="navbar navbar-fixed-top">
-<div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
-<li class="dropdown">
-<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a>Namespaces</a></li>
-<li><a href="../namespaces/Jstewmc.html"><i class="icon-th"></i> Jstewmc</a></li>
-<li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
-</ul>
-</li>
-<li class="dropdown" id="charts-menu">
-<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
-</li>
-<li class="dropdown" id="reports-menu">
-<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
-<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
-</ul>
-</li>
-</ul></div>
-</div></div>
-<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
-</div>
-<div id="___" class="container">
-<noscript><div class="alert alert-warning">
-                            Javascript is disabled; several features are only available
-                            if Javascript is enabled.
-                        </div></noscript>
-<div class="row">
-<div class="span4">
-<div class="btn-toolbar">
-<div class="btn-group visibility" data-toggle="buttons-checkbox">
-<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
-</div>
-<div class="btn-group view pull-right" data-toggle="buttons-radio">
-<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-</div>
-</div>
-<ul class="side-nav nav nav-list"><li class="nav-header">
-<i title="Methods" class="icon-custom icon-method"></i> Methods
-                    <ul>
-<li class="method public "><a href="#method_abs2rel" title='abs2rel() :: Returns a relative path (aka, "rel") from an absolute path (aka, "abs")'><span class="description">Returns a relative path (aka, "rel") from an absolute path (aka, "abs")</span><pre>abs2rel()</pre></a></li>
-<li class="method public "><a href="#method_copy" title="copy() :: Copies files or directory to the filesystem"><span class="description">Copies files or directory to the filesystem</span><pre>copy()</pre></a></li>
-<li class="method public "><a href="#method_cp" title="cp() :: Alias for Dir::copy() method"><span class="description">Alias for Dir::copy() method</span><pre>cp()</pre></a></li>
-<li class="method public "><a href="#method_remove" title="remove() :: Deletes a non-empty directory and its sub-directories"><span class="description">Deletes a non-empty directory and its sub-directories</span><pre>remove()</pre></a></li>
-<li class="method public "><a href="#method_rm" title="rm() :: Alias for Dir::remove() method"><span class="description">Alias for Dir::remove() method</span><pre>rm()</pre></a></li>
-</ul>
-</li></ul>
-</div>
-<div class="span8">
-<a id="\Jstewmc\PhpHelpers\Dir"></a><ul class="breadcrumb">
-<li>
-<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
-</li>
-<li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
-<li>
-<span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a>
-</li>
-<li class="active">
-<span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Dir.html">Dir</a>
-</li>
-</ul>
-<div class="element class">
-<p class="short_description">The directory (aka, "dir") class</p>
-<div class="details">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>package</th>
-<td><a href="../packages/Default.html">Default</a></td>
-</tr>
-</table>
-<h3>
-<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
-<a id="method_abs2rel"></a><div class="element clickable method public method_abs2rel" data-toggle="collapse" data-target=".method_abs2rel .collapse" title="public">
-<h2>Returns a relative path (aka, "rel") from an absolute path (aka, "abs")</h2>
-<pre>abs2rel(string $absolute, string $base) : string</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$absolute</h4>
-<code>string</code><p>the abosolute path (e.g., 'C:\path\to\folder')</p></div>
-<div class="subelement argument">
-<h4>$base</h4>
-<code>string</code><p>the relative base (e.g., 'C:\path\to')</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $absolute or $base is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $absolute is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $base is not a string</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>string</code>the relative path (e.g., 'folder') or false on failure</div>
-</div></div>
-</div>
-<a id="method_copy"></a><div class="element clickable method public method_copy" data-toggle="collapse" data-target=".method_copy .collapse" title="public">
-<h2>Copies files or directory to the filesystem</h2>
-<pre>copy(string $source, string $destination, integer $mode<code> = 511</code>) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP's native copy() function only copies files, not directories. I will
-recursively copy a directory and all of its files and sub-directories.
 
-If the $destination exists, I will overwrite any existing files with the
-corresponding file in the $source directory.
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
 
-If $destination does not exist, and $mode is set to false I will throw an
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_abs2rel" title="abs2rel :: Returns a relative path (aka, &quot;rel&quot;) from an absolute path (aka, &quot;abs&quot;)">
+            <span class="description">Returns a relative path (aka, &quot;rel&quot;) from an absolute path (aka, &quot;abs&quot;)</span><pre>abs2rel</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_copy" title="copy :: Copies files or directory to the filesystem">
+            <span class="description">Copies files or directory to the filesystem</span><pre>copy</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_cp" title="cp :: Alias for Dir::copy() method">
+            <span class="description">Alias for Dir::copy() method</span><pre>cp</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_remove" title="remove :: Deletes a non-empty directory and its sub-directories">
+            <span class="description">Deletes a non-empty directory and its sub-directories</span><pre>remove</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_rm" title="rm :: Alias for Dir::remove() method">
+            <span class="description">Alias for Dir::remove() method</span><pre>rm</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Dir</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">The directory (aka, &quot;dir&quot;) class</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        since
+                                                                            </th>
+                                    <td>
+                                                                                    0.1.0
+                                                                                
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Default</p>
+                                    </td>
+                                </tr>
+                                                                                                                                                                                </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_abs2rel"></a>
+                        <div class="element clickable method public  method_abs2rel" data-toggle="collapse" data-target=".method_abs2rel .collapse">
+                            <h2>Returns a relative path (aka, &quot;rel&quot;) from an absolute path (aka, &quot;abs&quot;)</h2>
+                            <pre>abs2rel(string $absolute, string $base) : string</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $absolute or $base is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $absolute is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $base is not a string</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$absolute</h4>
+                                                <code>string</code><p><p>the abosolute path (e.g., 'C:\path\to\folder')</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$base</h4>
+                                                <code>string</code><p><p>the relative base (e.g., 'C:\path\to')</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p><p>the relative path (e.g., 'folder') or false on failure</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_copy"></a>
+                        <div class="element clickable method public  method_copy" data-toggle="collapse" data-target=".method_copy .collapse">
+                            <h2>Copies files or directory to the filesystem</h2>
+                            <pre>copy(string $source, string $destination, integer $mode = 511) : boolean</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>PHP's native copy() function only copies files, not directories. I will
+recursively copy a directory and all of its files and sub-directories.</p>
+<p>If the $destination exists, I will overwrite any existing files with the
+corresponding file in the $source directory.</p>
+<p>If $destination does not exist, and $mode is set to false I will throw an
 InvalidArgumentException. If $mode is an integer (or omitted), I attempt
 to create the destination directory. I will recursively create destination
-directories as needed.
+directories as needed.</p>
+<p>To copy a file, use PHP's native copy() method.</p></div>
 
-To copy a file, use PHP's native copy() method.</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/2050909">Felix King's answer to "Copy entire
-   contents of a directory to another using php" on StackOverflow</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$source</h4>
-<code>string</code><p>the source directory path</p></div>
-<div class="subelement argument">
-<h4>$destination</h4>
-<code>string</code><p>the destination directory path</p></div>
-<div class="subelement argument">
-<h4>$mode</h4>
-<code>integer</code><p>the mode of the destination directory as an
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $source, $destination, or $mode is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $source is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $destination is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $mode is not an integer or false</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $source does not exist or is not a directory</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $source is not readable</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $destination does not exist or it could not
+be created successfully</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $destination is not writeable</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="http://stackoverflow.com/a/2050909">http://stackoverflow.com/a/2050909</a>
+                                                                                                                <p>Felix King's answer to "Copy entire
+contents of a directory to another using php" on StackOverflow</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$source</h4>
+                                                <code>string</code><p><p>the source directory path</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$destination</h4>
+                                                <code>string</code><p><p>the destination directory path</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$mode</h4>
+                                                <code>integer</code><p><p>the mode of the destination directory as an
 octal number with a leading zero (ignored on Windows) (optional; if
 omitted, defaults to 0777, the widest possible access) (set to false to
-throw an exception if the destination directory does not exist)</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $source, $destination, or $mode is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $source is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $destination is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $mode is not an integer or false</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $source does not exist or is not a directory</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $source is not readable</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $destination does not exist or it could not
-   be created successfully</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $destination is not writeable</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if successful</div>
-</div></div>
-</div>
-<a id="method_cp"></a><div class="element clickable method public method_cp" data-toggle="collapse" data-target=".method_cp .collapse" title="public">
-<h2>Alias for Dir::copy() method</h2>
-<pre>cp($source, $destination, $mode<code> = 511</code>) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="%5CJstewmc%5CPhpHelpers%5CDir::copy()"></a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument"><h4>$source</h4></div>
-<div class="subelement argument"><h4>$destination</h4></div>
-<div class="subelement argument"><h4>$mode</h4></div>
-</div></div>
-</div>
-<a id="method_remove"></a><div class="element clickable method public method_remove" data-toggle="collapse" data-target=".method_remove .collapse" title="public">
-<h2>Deletes a non-empty directory and its sub-directories</h2>
-<pre>remove(string $directory, string $container) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP's native rmdir() function requires the directory to be empty. I'll
+throw an exception if the destination directory does not exist)</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>true if successful</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_cp"></a>
+                        <div class="element clickable method public  method_cp" data-toggle="collapse" data-target=".method_cp .collapse">
+                            <h2>Alias for Dir::copy() method</h2>
+                            <pre>cp( $source,  $destination,  $mode = 511) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/Jstewmc.PhpHelpers.Dir.html#method_copy">\Jstewmc\PhpHelpers\Dir::copy()</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$source</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$destination</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$mode</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_remove"></a>
+                        <div class="element clickable method public  method_remove" data-toggle="collapse" data-target=".method_remove .collapse">
+                            <h2>Deletes a non-empty directory and its sub-directories</h2>
+                            <pre>remove(string $directory, string $container) : boolean</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>PHP's native rmdir() function requires the directory to be empty. I'll
 recursively delete a directory's files and sub-directories. BE CAREFUL!
-Use the $container argument to be safe.</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/11614201">donald123's answer to "Remove all
-   files, folders, and their subfolders with php" on StackOverflow</a></td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://us1.php.net/rmdir">rmdir() man page</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$directory</h4>
-<code>string</code><p>the path of the directory to remove</p></div>
-<div class="subelement argument">
-<h4>$container</h4>
-<code>string</code><p>an ancestor directory of $directory</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $directory or $container is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $directory is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $container is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $directory is not a valid directory path</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $directory is not writeable</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $directory is not contained in $container</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if success</div>
-</div></div>
-</div>
-<a id="method_rm"></a><div class="element clickable method public method_rm" data-toggle="collapse" data-target=".method_rm .collapse" title="public">
-<h2>Alias for Dir::remove() method</h2>
-<pre>rm($directory, $container) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="%5CJstewmc%5CPhpHelpers%5CDir::remove()"></a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument"><h4>$directory</h4></div>
-<div class="subelement argument"><h4>$container</h4></div>
-</div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row"><footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.6.1</a> and<br>
-            generated on 2014-08-27T23:17:45Z.<br></footer></div>
-</div>
-</body>
+Use the $container argument to be safe.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $directory or $container is null</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $directory is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $container is not a string</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $directory is not a valid directory path</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $directory is not writeable</p>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>if $directory is not contained in $container</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="http://stackoverflow.com/a/11614201">http://stackoverflow.com/a/11614201</a>
+                                                                                                                <p>donald123's answer to "Remove all
+files, folders, and their subfolders with php" on StackOverflow</p>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="http://us1.php.net/rmdir">http://us1.php.net/rmdir</a>
+                                                                                                                <p>rmdir() man page</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$directory</h4>
+                                                <code>string</code><p><p>the path of the directory to remove</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$container</h4>
+                                                <code>string</code><p><p>an ancestor directory of $directory</p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>true if success</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_rm"></a>
+                        <div class="element clickable method public  method_rm" data-toggle="collapse" data-target=".method_rm .collapse">
+                            <h2>Alias for Dir::remove() method</h2>
+                            <pre>rm( $directory,  $container) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        0.1.0
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            <a href="../classes/Jstewmc.PhpHelpers.Dir.html#method_remove">\Jstewmc\PhpHelpers\Dir::remove()</a>
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$directory</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$container</h4>
+                                                <code></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                    
+                                                        </div>
+            </div>
+            <a id="\Jstewmc\PhpHelpers\Dir"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Dir.html">Dir</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Wed, 27 Aug 2014 23:22:40 +0000.<br/>
+    </footer>
+    </body>
 </html>
