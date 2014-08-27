@@ -3,7 +3,7 @@ Static classes to help with PHP strings, arrays, numbers, files, and bools.
 
 Static helper classes are nothing new in PHP. In fact, most of these functions have probably been written dozens of times in better libraries than mine. However, I wrote (or copied these functions from the web with credit) when I worked on a project that required as few dependencies as possible. I figured they were a great candidate for my first GitHub repository.
 
-Feel free to check out the [API documentation](https://jstewmc.github.io/php-helpers), [report an issue](https://github.com/jstewmc/php-helpers/issues), [contribute](https://github.com/jstewmc/php-helpers/blob/master/contributing.md), or [ask a question](mailto:clayjs0@gmail.com). 
+Feel free to check out the [API documentation](https://jstewmc.github.io/php-helpers/api/0.1.0), [report an issue](https://github.com/jstewmc/php-helpers/issues), [contribute](https://github.com/jstewmc/php-helpers/blob/master/contributing.md), or [ask a question](mailto:clayjs0@gmail.com). 
 
 ## Examples
 Here are examples for the most commonly used functions.
