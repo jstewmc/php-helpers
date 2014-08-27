@@ -27,7 +27,7 @@ class Str
 	 *     Str::endsWith('foobar', '');     // returns false
 	 *     Str::endsWith('', 'foobar');     // returns false
 	 * 
-	 * @since   0.1.0
+	 * @since  0.1.0
 	 *
 	 * @param  string  $haystack  the string to search 
 	 * @param  string  $needle    the substring to search for
@@ -40,7 +40,7 @@ class Str
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Str::iEndsWith()  case-insensitive version
 	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith() 
-	 *     and endsWith() functions in PHP" on StackOverflow
+	 *    and endsWith() functions in PHP" on StackOverflow
 	 */
 	public static function endsWith($haystack, $needle) 
 	{
@@ -100,7 +100,7 @@ class Str
 	 * @throws  \InvalidArgumentException  if $haystack is not a string
 	 * @throws  \InvalidArgumentException  if $needle is not a string
 	 *
-	 * @see     \Jstewmc\PhpHelpers\Str::iEndsWith()  case-sensitive version
+	 * @see  \Jstewmc\PhpHelpers\Str::iEndsWith()  case-sensitive version
 	 */
 	public static function iEndsWith($haystack, $needle) 
 	{
@@ -185,8 +185,8 @@ class Str
 	 *
 	 * @since  0.1.0
 	 *
-	 * @param  $haystack  str   the case-insensitive string to search
-	 * @param  $needle    str   the case-insensitive substring to search for
+	 * @param  string  $haystack  the case-insensitive string to search
+	 * @param  string  $needle    the case-insensitive substring to search for
 	 *
 	 * @return  bool  true if $haystack ends with $needle
 	 *
@@ -250,11 +250,11 @@ class Str
 	 * @since  0.1.0
 	 *
 	 * @param  int    $length  the length of the password (optional; if omitted, 
-	 *     defaults to 8)
+	 *    defaults to 8)
 	 * @param  int[]  $rules   an array of character counts indexed by charset name
-	 *     (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol') 
-	 *     (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1, 
-	 *     'symbol' => 1])
+	 *    (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol') 
+	 *    (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1, 
+	 *    'symbol' => 1])
 	 *
 	 * @return  string  the password
 	 *
@@ -264,7 +264,7 @@ class Str
 	 * @throws  \InvalidArgumentException  if a key in $rules is not a valid charset name 
 	 * @throws  \InvalidArgumentException  if a value in $rules is not an integer
 	 * @throws  \InvalidArgumentException  if the number of required characters (as defined
-	 *     in the $rules array) exceeds the $length
+	 *    in the $rules array) exceeds the $length
 	 */ 
 	public static function password($length = 8, $rules = array('lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1)) 
 	{
@@ -326,9 +326,9 @@ class Str
 	 *
 	 * @param  int    $length    the length of the string to return
 	 * @param  mixed  $charsets  a string charset name or an array of charset names
-	 *     (possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'
-	 *     and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to 
-	 *     ['alpha', 'number', 'symbol'])
+	 *    (possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'
+	 *    and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to 
+	 *    ['alpha', 'number', 'symbol'])
 	 *
 	 * @return  string  a random string
 	 *
@@ -426,8 +426,8 @@ class Str
 	 * @throws  \InvalidArgumentException  if $string is not a string
 	 *
 	 * @see     http://stackoverflow.com/a/18990341  FrankieTheKneeMan's answer to "Split
-	 *     string on first occurrence of a letter" on StackOverflow (version using Regex 
-	 *     lookahead)
+	 *    string on first occurrence of a letter" on StackOverflow (version using Regex 
+	 *    lookahead)
 	 */
 	public static function splitOnFirstAlpha($string)
 	{
@@ -482,7 +482,7 @@ class Str
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Str::startsWith()  case-insensitive version
 	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith() and 
-	 *      endsWith() functions in PHP" on StackOverflow
+	 *    endsWith() functions in PHP" on StackOverflow
 	 */ 
 	public static function startsWith($haystack, $needle) 
 	{
@@ -668,10 +668,10 @@ class Str
 	 * @param  string  $str    the string to truncate
 	 * @param  int     $limit  the string's max length
 	 * @param  string  $break  the break character (to truncate at exact length set to 
-	 *     empty string or null) (if the break character does not exist in the string, 
-	 *     the string will be truncated at limit) (optional; if omitted, defaults to ' ') 
+	 *    empty string or null) (if the break character does not exist in the string, 
+	 *    the string will be truncated at limit) (optional; if omitted, defaults to ' ') 
 	 * @param  string  $pad    the padding to add to end of string (optional; if 
-	 *     omitted, defaults to '...')
+	 *    omitted, defaults to '...')
 	 *
 	 * @return  string  the truncated string
 	 *
@@ -682,9 +682,9 @@ class Str
 	 * @throws  \InvalidArgumentException  if $pad is not a string or null
 	 *
 	 * @see     http://blog.justin.kelly.org.au/php-truncate/  The original function
-	 *     from "Best PHP Truncate Function" posted 6/27/12 on "Justin Kelly - various 
-	 *     ramblings" (edited to find closest break *before* limit and truncate string
-	 *     exactly if break does not exist)
+	 *    from "Best PHP Truncate Function" posted 6/27/12 on "Justin Kelly - various 
+	 *    ramblings" (edited to find closest break *before* limit and truncate string
+	 *    exactly if break does not exist)
 	 */
 	public static function truncate($string, $limit, $break = ' ', $pad = '...')
 	{

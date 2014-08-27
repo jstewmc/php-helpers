@@ -51,7 +51,7 @@ class Num
 	 * @param  int|float  $a        the first value
 	 * @param  int|float  $b        the second value
 	 * @param  int|float  $epsilon  the maximum allowed difference (exclusive) (optional; 
-	 *     if omitted defaults to 0.00001)
+	 *    if omitted defaults to 0.00001)
 	 *
 	 * @return  bool  true if the values are equal
 	 *
@@ -196,7 +196,7 @@ class Num
 	/**
 	 * Returns $number ceiling-ed to the nearest $multiple
 	 *
-	 * For exampel:
+	 * For example:
 	 *
 	 *     Num::ceilTo(5, 2);    // returns 6
 	 *     Num::ceilTo(15, 10);  // returns 20
@@ -206,7 +206,7 @@ class Num
 	 *
 	 * @param  int|float  $number    the number to ceil
 	 * @param  int|float  $multiple  the multiple to ceil to (optional; if omitted,
-	 *     defaults to 1 (aka, PHP's native ceil() function))
+	 *    defaults to 1 (aka, PHP's native ceil() function))
 	 *
 	 * @return  int|float  the ceiling-ed number
 	 *
@@ -217,7 +217,7 @@ class Num
 	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
 	 *
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
-	 *     round up a number to the nearest 10?" on StackOverflow
+	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function ceilTo($number, $multiple = 1) 
 	{
@@ -272,7 +272,7 @@ class Num
 	 *
 	 * @param  int|float  $number    the number to floor
 	 * @param  int|float  $multiple  the multiple to floor to (optional; if omitted,
-	 *     defaults to 1 (aka, PHP's native floor() function))
+	 *    defaults to 1 (aka, PHP's native floor() function))
 	 *
 	 * @return  int|float
 	 *
@@ -282,7 +282,7 @@ class Num
 	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
 	 *
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
-	 *     round up a number to the nearest 10?" on StackOverflow
+	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function floorTo($number, $multiple = 1) 
 	{
@@ -359,12 +359,12 @@ class Num
 	 *     Num::isId(123);              // returns true
 	 *     Num::isId(999999, 'small');  // returns false
 	 *
-	 * @since   0.1.0
+	 * @since  0.1.0
 	 *
-	 * @param   int|float  $number    the number to test
-	 * @param   string     $datatype  the column datatype name (possible values are
-	 *     'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]') 
-	 *     (case-insensitive) (optional; if omitted, defaults to 'int')
+	 * @param  int|float  $number    the number to test
+	 * @param  string     $datatype  the column datatype name (possible values are
+	 *    'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]') 
+	 *    (case-insensitive) (optional; if omitted, defaults to 'int')
 	 *
 	 * @return  bool  true if the number is a valid database id
 	 *
@@ -618,12 +618,12 @@ class Num
 	 *
 	 * @param  int|float  $number   the number to round
 	 * @param  int|float  $multiple the multiple to round to (optional; if omitted,
-	 *     defaults to 1 (aka, PHP's native round() method))
+	 *    defaults to 1 (aka, PHP's native round() method))
 	 *
 	 * @return  int|float  the rounded number
 	 *
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
-	 *     round up a number to the nearest 10?" on StackOverflow
+	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function roundTo($number, $multiple = 1)
 	{
@@ -721,12 +721,12 @@ class Num
 	 * @return  int|float  the value's numeric equivalent
 	 *
 	 * @see  http://stackoverflow.com/a/5264255  Pascal MARTIN's answer to "Convert
-	 *     mixed fraction string to float in PHP" on StackOverflow (edited to allow 
-	 *     back- or forward-slashes in fractions)
+	 *    mixed fraction string to float in PHP" on StackOverflow (edited to allow 
+	 *    back- or forward-slashes in fractions)
 	 * @see  http://stackoverflow.com/a/5917250  Justin Morgain's answer to "Regular
-	 *     expression to match numbers with or without commas and decimals in text" on
-	 *     StackOverflow (edited to allow leading and trailing zeros in comma-separated
-	 *     numbers)
+	 *    expression to match numbers with or without commas and decimals in text" on
+	 *    StackOverflow (edited to allow leading and trailing zeros in comma-separated
+	 *    numbers)
 	 */
 	public static function val($var) 
 	{

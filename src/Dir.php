@@ -93,9 +93,9 @@ class Dir
 	 * @param  string  $source       the source directory path
 	 * @param  string  $destination  the destination directory path
 	 * @param  int     $mode         the mode of the destination directory as an
-	 *     octal number with a leading zero (ignored on Windows) (optional; if 
-	 *     omitted, defaults to 0777, the widest possible access) (set to false to
-	 *     throw an exception if the destination directory does not exist)
+	 *    octal number with a leading zero (ignored on Windows) (optional; if 
+	 *    omitted, defaults to 0777, the widest possible access) (set to false to
+	 *    throw an exception if the destination directory does not exist)
 	 *
 	 * @return  bool  true if successful
 	 *
@@ -106,11 +106,11 @@ class Dir
 	 * @throws  \InvalidArgumentException  if $source does not exist or is not a directory
 	 * @throws  \InvalidArgumentException  if $source is not readable
 	 * @throws  \InvalidArgumentException  if $destination does not exist or it could not
-	 *     be created successfully
+	 *    be created successfully
 	 * @throws  \InvalidArgumentException  if $destination is not writeable
 	 *
-	 * @see     http://stackoverflow.com/a/2050909  Felix King's answer to "Copy entire 
-	 *     contents of a directory to another using php" on StackOverflow
+	 * @see  http://stackoverflow.com/a/2050909  Felix King's answer to "Copy entire 
+	 *    contents of a directory to another using php" on StackOverflow
 	 */
 	public static function copy($source, $destination, $mode = 0777)
 	{
@@ -253,7 +253,7 @@ class Dir
 	 * @throws  \InvalidArgumentException  if $directory is not contained in $container
 	 *
 	 * @see  http://stackoverflow.com/a/11614201  donald123's answer to "Remove all
-	 *     files, folders, and their subfolders with php" on StackOverflow
+	 *    files, folders, and their subfolders with php" on StackOverflow
 	 * @see  http://us1.php.net/rmdir  rmdir() man page
 	 *
 	 */

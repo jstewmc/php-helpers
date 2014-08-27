@@ -29,10 +29,10 @@ class Bool
 	 *
 	 * @since  0.1.0
 	 *
-	 * @param  bool    $bool   the boolean value to convert
-	 * @param  string  $format the string format to convert to (possible values are
-	 *     't[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', and 'on[/-]off')
-	 *     (case-insensitive) (optional; if omitted, defaults to 'true-false')
+	 * @param  bool    $bool    the boolean value to convert
+	 * @param  string  $format  the string format to convert to (possible values are
+	 *    't[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', and 'on[/-]off')
+	 *    (case-insensitive) (optional; if omitted, defaults to 'true-false')
 	 *
 	 * @return  string  the string value
 	 *
