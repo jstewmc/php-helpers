@@ -19,18 +19,16 @@ class Arr
 	/**
 	 * Filters an array by key
 	 *
-	 * <p>I'll iterate over each key in $array passing it to the $callback function.
+	 * I'll iterate over each key in $array passing it to the $callback function.
 	 * If the callback function returns true, the current value from $array is added
-	 * to the result array. Array keys are preserved.</p>
+	 * to the result array. Array keys are preserved.
 	 *
-	 * <p>For example:</p>
+	 * For example:
 	 *
-	 *```
 	 *     $a = ['foo', 'bar', 'baz'];
 	 *     Arr::filterByKey($a, function ($k) {
 	 *         return $k > 1;
 	 *     });  // returns ['baz']
-	 *```
 	 *
 	 * @since 0.1.0
 	 *
