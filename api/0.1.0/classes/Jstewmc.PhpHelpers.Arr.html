@@ -1,1007 +1,602 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta charset="utf-8"/>
-    <title>API Documentation</title>
-    <meta name="author" content=""/>
-    <meta name="description" content=""/>
-
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
-    
-    <!--[if lt IE 9]>
-    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » \Jstewmc\PhpHelpers\Arr</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
 </head>
 <body>
-
 <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
-
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/Jstewmc.html">\Jstewmc</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Jstewmc.html"><i class="icon-th"></i> Jstewmc</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
 </div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1396122413"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1396122413" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-912066168"></a>
-                                <a href="../namespaces/Jstewmc.html" style="margin-left: 30px; padding-left: 0">Jstewmc</a>
-            </div>
-            <div id="namespace-912066168" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-707072448"></a>
-                                <a href="../namespaces/Jstewmc.PhpHelpers.html" style="margin-left: 30px; padding-left: 0">PhpHelpers</a>
-            </div>
-            <div id="namespace-707072448" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
-                                                                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Arr.html">Arr</a></li>
-                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Bool.html">Bool</a></li>
-                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Dir.html">Dir</a></li>
-                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Num.html">Num</a></li>
-                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Str.html">Str</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+<li class="method public "><a href="#method_filterByKeyPrefix" title="filterByKeyPrefix() :: Filters an array by a key prefix"><span class="description">Filters an array by a key prefix</span><pre>filterByKeyPrefix()</pre></a></li>
+<li class="method public "><a href="#method_filterBykey" title="filterBykey() :: Filters an array by key"><span class="description">Filters an array by key</span><pre>filterBykey()</pre></a></li>
+<li class="method public "><a href="#method_inArray" title="inArray() :: Wildcard search for a value in an array"><span class="description">Wildcard search for a value in an array</span><pre>inArray()</pre></a></li>
+<li class="method public "><a href="#method_isAssoc" title="isAssoc() :: Returns true if the array has at least one string key (excluding int strings)"><span class="description">Returns true if the array has at least one string key (excluding int strings)</span><pre>isAssoc()</pre></a></li>
+<li class="method public "><a href="#method_isEmpty" title="isEmpty() :: Returns true if $key does not exist in $array or $array[$key] is empty"><span class="description">Returns true if $key does not exist in $array or $array[$key] is empty</span><pre>isEmpty()</pre></a></li>
+<li class="method public "><a href="#method_keyStringReplace" title="keyStringReplace() :: Replaces all occurences of $search with $replace in $array's keys"><span class="description">Replaces all occurences of $search with $replace in $array's keys</span><pre>keyStringReplace()</pre></a></li>
+<li class="method public "><a href="#method_sortByField" title="sortByField() :: Sorts an array of associative arrays by a field's value"><span class="description">Sorts an array of associative arrays by a field's value</span><pre>sortByField()</pre></a></li>
+<li class="method public "><a href="#method_sortByMethod" title="sortByMethod() :: Sorts an array of objects using a method's return value"><span class="description">Sorts an array of objects using a method's return value</span><pre>sortByMethod()</pre></a></li>
+<li class="method public "><a href="#method_sortByProperty" title="sortByProperty() :: Sorts an array of objects using a public property's value"><span class="description">Sorts an array of objects using a public property's value</span><pre>sortByProperty()</pre></a></li>
+</ul>
+</li></ul>
+</div>
+<div class="span8">
+<a id="\Jstewmc\PhpHelpers\Arr"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Arr.html">Arr</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">The array (aka, "arr") class</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Default.html">Default</a></td>
+</tr>
+</table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_filterByKeyPrefix"></a><div class="element clickable method public method_filterByKeyPrefix" data-toggle="collapse" data-target=".method_filterByKeyPrefix .collapse" title="public">
+<h2>Filters an array by a key prefix</h2>
+<pre>filterByKeyPrefix(array $array, string $prefix) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">I'll iterate over each key in $array. If the key starts with $prefix, I'll
+add it to the result array. Array keys are preserved.
 
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                    
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/Jstewmc.PhpHelpers.html">\Jstewmc\PhpHelpers</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-
-                    <h1><small>\Jstewmc\PhpHelpers</small>Arr</h1>
-                    <p><em>The array (aka, &quot;arr&quot;) class</em></p>
-                    
-
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_filterBykey" class="">filterBykey()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_filterByKeyPrefix" class="">filterByKeyPrefix()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_inArray" class="">inArray()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_isAssoc" class="">isAssoc()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_isEmpty" class="">isEmpty()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_keyStringReplace" class="">keyStringReplace()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_sortByField" class="">sortByField()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_sortByProperty" class="">sortByProperty()</a><br />
-                                                                    <a href="../classes/Jstewmc.PhpHelpers.Arr.html#method_sortByMethod" class="">sortByMethod()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/Arr.html"><div class="path-wrapper">Arr.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\Default</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\Jstewmc\PhpHelpers\Arr</div>
-                            </dd>
-
-                        
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr>
-                            <th>
-                                since
-                            </th>
-                            <td>
-                                                                    
-                                                            </td>
-                        </tr>
-                                        </table>
-                </aside>
-            </div>
-
-                        
-                        
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_filterBykey" name="method_filterBykey" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">filterBykey()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">filterBykey( <span class="argument">$array</span>, callback <span class="argument">$callback</span>) : array</pre>
-                <p><em>Filters an array by key</em></p>
-                <p>I'll iterate over each key in $array passing it to the $callback function.
+For example:
+    $a = ['foo' => 'bar', 'baz' => 'qux'];
+    Arr::filterByKeyPrefix($a, 'b');  // returns ['baz']</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code><p>the array to filter</p></div>
+<div class="subelement argument">
+<h4>$prefix</h4>
+<code>string</code><p>the key's prefix to filter</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $array or $prefix is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $prefix is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>the filtered array</div>
+</div></div>
+</div>
+<a id="method_filterBykey"></a><div class="element clickable method public method_filterBykey" data-toggle="collapse" data-target=".method_filterBykey .collapse" title="public">
+<h2>Filters an array by key</h2>
+<pre>filterBykey(array $array, callback $callback) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">I'll iterate over each key in $array passing it to the $callback function.
 If the callback function returns true, the current value from $array is added
-to the result array. Array keys are preserved.</p>
-<p>For example:</p>
-<pre><code>$a = ['foo', 'bar', 'baz', 'qux'];
-$b = Arr::array_filter_key($a, function ($k) {
-    return $k &gt; 1;
-});
-print_r($b);  // prints ['baz', 'qux']</code></pre>
+to the result array. Array keys are preserved.
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$array </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>callback</td>
-                                <td>$callback </td>
-                                <td><p>the function to call for each key in $arr</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $array or $callback are null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $callback is not a callable function</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>the filtered array</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                                            <dt>See also</dt>
-                                                                <dd><a href="http://php.net/manual/en/function.array-filter.php#99073"><span class="namespace-wrapper">Acid24&#039;s filter
-   by key function on on array_filter() man page</span></a></dd>
-                                                                </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+For example:
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_filterByKeyPrefix" name="method_filterByKeyPrefix" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">filterByKeyPrefix()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">filterByKeyPrefix(array <span class="argument">$array</span>, string <span class="argument">$prefix</span>) : array</pre>
-                <p><em>Filters an array by a key prefix</em></p>
-                <p>I'll iterate over each key in $array. If the key starts with $prefix, I'll
-add it to the result array. Array keys are preserved.</p>
+    $a = ['foo', 'bar', 'baz'];
+    Arr::filterByKey($a, function ($k) {
+        return $k > 1;
+    });  // returns ['baz']</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="http://php.net/manual/en/function.array-filter.php#99073">Acid24's filter
+   by key function on on array_filter() man page</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code><p>the array to filter</p></div>
+<div class="subelement argument">
+<h4>$callback</h4>
+<code>callback</code><p>the function to call for each key in $array</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $array or $callback is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $callback is not a callable function</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>the filtered array</div>
+</div></div>
+</div>
+<a id="method_inArray"></a><div class="element clickable method public method_inArray" data-toggle="collapse" data-target=".method_inArray .collapse" title="public">
+<h2>Wildcard search for a value in an array</h2>
+<pre>inArray(string $needle, array&lt;mixed,string&gt; $haystack, string $wildcard<code> = '*'</code>) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">I'll search $haystack for $needle. Unlike PHP's native in_array() method,
+I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and
+contains (e.g., "*foo*") wildcard notation.
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$array </td>
-                                <td><p>the array to filter</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$prefix </td>
-                                <td><p>the key's prefix to filter</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $array or $prefix is null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $prefix is not a string</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>the filtered array</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+For example:
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_inArray" name="method_inArray" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">inArray()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">inArray(string <span class="argument">$needle</span>, array&lt;mixed,string&gt; <span class="argument">$haystack</span>, string <span class="argument">$wildcard</span>) : boolean</pre>
-                <p><em>Wildcard search for a value in an array</em></p>
-                <p>I'll search $haystack for $needle. Unlike PHP's native in_array() method,
-I'll accept begins-with (e.g., "foo<em>"), ends-with (e.g., "</em>foo"), and
-contains (e.g., "<em>foo</em>") wildcard notation.</p>
-<p>For example:</p>
-<pre><code>Arr::in_array_wildcard('foo', ['foo', 'bar']);  // returns true
-Arr::in_array_wildcard('qux', ['foo', 'bar']);  // returns false
-Arr::in_array_wildcard('fo*', ['foo', 'bar']);  // returns true
-Arr::in_array_wildcard('*oo', ['foo', 'bar']);  // returns true
-Arr::in_array_wildcard('*o*', ['foo', 'bar']);  // returns true</code></pre>
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$needle </td>
-                                <td><p>the needle to find</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array&lt;mixed,string&gt;</td>
-                                <td>$haystack </td>
-                                <td><p>the haystack to search</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$wildcard </td>
-                                <td><p>the wildcard character (optional; if omitted,</p>
-<pre><code>defaults to '*')</code></pre></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $needle, $haystack, or $wildcard is null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $needle is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $haystack is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $wildcard is not a string</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>true if the needle exists in haystack</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_isAssoc" name="method_isAssoc" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">isAssoc()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">isAssoc(array <span class="argument">$array</span>) : boolean</pre>
-                <p><em>Returns true if the array has at least one string key (excluding int strings)</em></p>
-                <p>PHP natively treats all arrays as associative arrays. I'll consider an
+    Arr::inArray('foo', ['foo', 'bar']);  // returns true
+    Arr::inArray('qux', ['foo', 'bar']);  // returns false
+    Arr::inArray('fo*', ['foo', 'bar']);  // returns true
+    Arr::inArray('*oo', ['foo', 'bar']);  // returns true
+    Arr::inArray('*o*', ['foo', 'bar']);  // returns true</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$needle</h4>
+<code>string</code><p>the needle to find</p></div>
+<div class="subelement argument">
+<h4>$haystack</h4>
+<code>array&lt;mixed,string&gt;</code><p>the haystack to search</p></div>
+<div class="subelement argument">
+<h4>$wildcard</h4>
+<code>string</code><p>the wildcard character (optional; if omitted,
+defaults to '*')</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $needle, $haystack, or $wildcard is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $needle is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $haystack is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $wildcard is not a string</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if the needle exists in haystack</div>
+</div></div>
+</div>
+<a id="method_isAssoc"></a><div class="element clickable method public method_isAssoc" data-toggle="collapse" data-target=".method_isAssoc .collapse" title="public">
+<h2>Returns true if the array has at least one string key (excluding int strings)</h2>
+<pre>isAssoc(array $array) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">PHP natively treats all arrays as associative arrays. I'll consider an
 associative array as an array with a string key. Interally, PHP casts
 string keys containing valid integers to integer type (e.g., "8" will be
-stored as 8).</p>
-<p>For example:</p>
-<p>Arr::isAssoc([1, 2, 3]);                       // returns false
-Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
-Arr::isAssoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
-Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
-Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true</p>
+stored as 8).
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$array </td>
-                                <td><p>the array to test</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>true if the array has a string key (excluding int strings)</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+For example:
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_isEmpty" name="method_isEmpty" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">isEmpty()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">isEmpty(string <span class="argument">$key</span>, array <span class="argument">$array</span>, boolean <span class="argument">$isZeroEmpty</span>) : boolean</pre>
-                <p><em>Returns true if $key does not exist in $array or $array[$key] is empty</em></p>
-                <p>PHP's isset() method is will return false if the key does not exist or if the
+    Arr::isAssoc([1, 2, 3]);                       // returns false
+    Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
+    Arr::isAssoc(['1' => 'foo', 2 => 'bar']);      // returns false (PHP casts '1' to 1)
+    Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
+    Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code><p>the array to test</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if the array has a string key (excluding int strings)</div>
+</div></div>
+</div>
+<a id="method_isEmpty"></a><div class="element clickable method public method_isEmpty" data-toggle="collapse" data-target=".method_isEmpty .collapse" title="public">
+<h2>Returns true if $key does not exist in $array or $array[$key] is empty</h2>
+<pre>isEmpty(string $key, array $array, boolean $isZeroEmpty<code> = true</code>) : boolean</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">PHP's isset() method is will return false if the key does not exist or if the
 key exists and its value is null. However, it will return true if the key
 exists and its value is not null (including other "empty" values like '', false
-and array()).</p>
-<p>PHP's empty() method (or some frameworks) will throw a warning if you attempt
-to test a non-existant key in an array.</p>
-<p>I, on the other hand, will return false if the key does not exist in the array
-or if the key's value is empty.</p>
-<p>For example:</p>
-<p>$a = ['foo' => null, 'bar' => array(), 'qux' => 'hello'];</p>
-<p>// when key doesn't exist (!)
-isset($a['quux']);           // returns false
-! empty($a['quux']);         // throws key-does-not-exist warning
-! Arr::isEmpty('quux', $a);  // returns false</p>
-<p>// when key does exist, but value is null
-isset($a['foo']);           // returns false
-! empty($a['foo']);         // returns false
-! Arr::isEmpty('foo', $a);  // returns false</p>
-<p>// when key does exist, but value is "empty" (<img alt="'bar'" src="$a['bar']" />;           // returns true
-! empty($a['bar']);         // returns false
-! Arr::isEmpty('bar', $a);  // returns false</p>
-<p>// when key does exist, but value is not "empty"
-isset($a['qux']);           // returns true
-! empty($a['qux']);         // returns true
-! Arr::isEmpty('qux', $a);  // returns true</p>
+and array()).
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$key </td>
-                                <td><p>the key's name</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$array </td>
-                                <td><p>the array to test</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>boolean</td>
-                                <td>$isZeroEmpty </td>
-                                <td><p>a flag indicating whether or not zero is</p>
-<pre><code>considered empty (optional; if omitted, defaults to true - i.e., the
-default behavior of PHP's empty() function )</code></pre></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $key or $array are null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $key is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $isZeroEmpty is not a bool value</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                            &mdash; <p>true if the key exists and its value is not empty</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+PHP's empty() method (or some frameworks) will throw a warning if you attempt
+to test a non-existant key in an array.
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_keyStringReplace" name="method_keyStringReplace" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">keyStringReplace()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">keyStringReplace(mixed <span class="argument">$search</span>, mixed <span class="argument">$replace</span>, array <span class="argument">$array</span>) : array</pre>
-                <p><em>Replaces all occurences of $search with $replace in $array&#039;s keys</em></p>
-                <p>I'll return an array with all occurences of $search in the array's keys
-replaced with the given $replace value (case-insensitive).</p>
+I, on the other hand, will return false if the key does not exist in the array
+or if the key's value is empty.
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$search </td>
-                                <td><p>the value being searched for (aka the needle); an</p>
-<pre><code>array may be used to designate multiple neeeles</code></pre></td>
-                            </tr>
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$replace </td>
-                                <td><p>the replacement value that replaced found $search</p>
-<pre><code>values; an array may be used to designate multiple replacements</code></pre></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$array </td>
-                                <td><p>the array to replace</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $search, $replace, or $array are null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $search is not a string or array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $replace is not a string or array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>the array with replacements</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                                            <dt>See also</dt>
-                                                                <dd><a href="http://us1.php.net/str_replace"><span class="namespace-wrapper">str_replace() man page</span></a></dd>
-                                                                </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+For example:
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_sortByField" name="method_sortByField" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">sortByField()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">sortByField(array&lt;mixed,array&gt; <span class="argument">$array</span>, string <span class="argument">$field</span>, string <span class="argument">$sort</span>) : array&lt;mixed,array&gt;</pre>
-                <p><em>Sorts an array of associative arrays by a field&#039;s value</em></p>
-                <p>Oftentimes, you have a 0-indexed array of associative arrays. For example,
-a SELECT sql query result or a display-friendly data array. I'll sort a
-0-based array of associative arrays by a field's value.</p>
-<p>For example:</p>
-<p>$a = [['foo' => 'c'], ['foo' => 'a'], ['foo' => 'b']];
-$b = Arr::usort_field($a, 'foo');
-print_r($b);  // prints [['foo' => 'a'], ['foo' => 'b'], ['foo' => 'c']]</p>
+    $a = ['foo' => null, 'bar' => array(), 'qux' => 'hello'];
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array&lt;mixed,array&gt;</td>
-                                <td>$array </td>
-                                <td><p>the array of associative arrays to sort</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$field </td>
-                                <td><p>the associative array's field name (aka, key)</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$sort </td>
-                                <td><p>the sort order (possible values 'asc[ending]' or</p>
-<pre><code>'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</code></pre></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $array, $field, or $sort is null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $field is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $sort is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $sort is not the string 'asc[ending]' or</p>
-<pre><code>'desc[ending]'</code></pre></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array of arrays with</p>
-<pre><code>the key $field</code></pre></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array&lt;mixed,array&gt;
-                                            &mdash; <p>the sorted array</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+    // when key doesn't exist (!)
+    isset($a['quux']);           // returns false
+    ! empty($a['quux']);         // throws key-does-not-exist warning
+    ! Arr::isEmpty('quux', $a);  // returns false
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_sortByProperty" name="method_sortByProperty" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">sortByProperty()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">sortByProperty(array&lt;mixed,object&gt; <span class="argument">$array</span>, string <span class="argument">$property</span>, string <span class="argument">$sort</span>) : array&lt;mixed,object&gt;</pre>
-                <p><em>Sorts an array of objects using a public property&#039;s value</em></p>
-                
+    // when key does exist, but value is null
+    isset($a['foo']);           // returns false
+    ! empty($a['foo']);         // returns false
+    ! Arr::isEmpty('foo', $a);  // returns false
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array&lt;mixed,object&gt;</td>
-                                <td>$array </td>
-                                <td><p>the array of objects to sort</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$property </td>
-                                <td><p>the object's public property name (may be a magic</p>
-<pre><code>public property via the object's __get() method)</code></pre></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$sort </td>
-                                <td><p>the sort order (possible values 'asc[ending]' or</p>
-<pre><code>'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</code></pre></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $array, $property, or $sort is null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $property is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $sort is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $sort is not the string 'asc[ending]' or</p>
-<pre><code>'desc[ending]'</code></pre></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array of objects with</p>
-<pre><code>the public property $property</code></pre></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array&lt;mixed,object&gt;
-                                            &mdash; <p>the sorted array</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
+    // when key does exist, but value is "empty" (!)
+    isset($a['bar']);           // returns true
+    ! empty($a['bar']);         // returns false
+    ! Arr::isEmpty('bar', $a);  // returns false
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_sortByMethod" name="method_sortByMethod" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">sortByMethod()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">sortByMethod( <span class="argument">$array</span>,  <span class="argument">$method</span>,  <span class="argument">$sort</span>) : array&lt;mixed,object&gt;</pre>
-                <p><em>Sorts an array of objects using a method&#039;s return value</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$array </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$method </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$sort </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\BadMethodCallException</dt>
-                            <dd><p>if $array, $property, or $sort is null</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $property is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $sort is not a string</p></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $sort is not the string 'asc[ending]' or</p>
-<pre><code>'desc[ending]'</code></pre></dd>
-                                                    <dt>\InvalidArgumentException</dt>
-                            <dd><p>if $array is not an array of objects with</p>
-<pre><code>the public property $property</code></pre></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array&lt;mixed,object&gt;
-                                            &mdash; <p>the sorted array</p>
-                                                </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            since
-                        </th>
-                        <td>
-                                                            0.1.0                                
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    </div>
-    </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">Arr.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/Arr.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
-
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/Jstewmc.html">\Jstewmc</a></li>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 27th, 2014 at 22:46.
-                </section>
-            </section>
-        </section>
-    </footer>
+    // when key does exist, but value is not "empty"
+    isset($a['qux']);           // returns true
+    ! empty($a['qux']);         // returns true
+    ! Arr::isEmpty('qux', $a);  // returns true</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>the key's name</p></div>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code><p>the array to test</p></div>
+<div class="subelement argument">
+<h4>$isZeroEmpty</h4>
+<code>boolean</code><p>a flag indicating whether or not zero is
+considered empty (optional; if omitted, defaults to true - i.e., the
+default behavior of PHP's empty() function )</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $key or $array are null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $key is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $isZeroEmpty is not a bool value</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>true if the key exists and its value is not empty</div>
+</div></div>
 </div>
+<a id="method_keyStringReplace"></a><div class="element clickable method public method_keyStringReplace" data-toggle="collapse" data-target=".method_keyStringReplace .collapse" title="public">
+<h2>Replaces all occurences of $search with $replace in $array's keys</h2>
+<pre>keyStringReplace(mixed $search, mixed $replace, array $array) : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">I'll return an array with all occurences of $search in the array's keys
+replaced with the given $replace value (case-insensitive).</div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr>
+<tr>
+<th>see</th>
+<td><a href="http://us1.php.net/str_replace">str_replace() man page</a></td>
+</tr>
+</table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$search</h4>
+<code>mixed</code><p>the value being searched for (aka the needle); an
+array may be used to designate multiple neeeles</p></div>
+<div class="subelement argument">
+<h4>$replace</h4>
+<code>mixed</code><p>the replacement value that replaced found $search
+values; an array may be used to designate multiple replacements</p></div>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code><p>the array to replace</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $search, $replace, or $array are null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $search is not a string or array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $replace is not a string or array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array</code>the array with replacements</div>
+</div></div>
+</div>
+<a id="method_sortByField"></a><div class="element clickable method public method_sortByField" data-toggle="collapse" data-target=".method_sortByField .collapse" title="public">
+<h2>Sorts an array of associative arrays by a field's value</h2>
+<pre>sortByField(array&lt;mixed,array&gt; $array, string $field, string $sort<code> = 'asc'</code>) : array&lt;mixed,array&gt;</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description">Oftentimes, you have a 0-indexed array of associative arrays. For example,
+a SELECT sql query result or a display-friendly data array. I'll sort a
+0-based array of associative arrays by a field's value.
 
+For example:
+
+    $a = [['a' => 3], ['a' => 1], ['a' => 2]];
+    Arr::usort_field($a, 'a'); // returns [['a' => 1], ['a' => 2], ['a' => 3]]</div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array&lt;mixed,array&gt;</code><p>the array of associative arrays to sort</p></div>
+<div class="subelement argument">
+<h4>$field</h4>
+<code>string</code><p>the associative array's field name (aka, key)</p></div>
+<div class="subelement argument">
+<h4>$sort</h4>
+<code>string</code><p>the sort order (possible values 'asc[ending]' or
+'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $array, $field, or $sort is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $field is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $sort is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $sort is not the string 'asc[ending]' or
+   'desc[ending]'</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array of arrays with
+   the key $field</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array&lt;mixed,array&gt;</code>the sorted array</div>
+</div></div>
+</div>
+<a id="method_sortByMethod"></a><div class="element clickable method public method_sortByMethod" data-toggle="collapse" data-target=".method_sortByMethod .collapse" title="public">
+<h2>Sorts an array of objects using a method's return value</h2>
+<pre>sortByMethod(array&lt;mixed,object&gt; $array, string $method, string $sort<code> = 'asc'</code>) : array&lt;mixed,object&gt;</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array&lt;mixed,object&gt;</code><p>the array of objects to sort</p></div>
+<div class="subelement argument">
+<h4>$method</h4>
+<code>string</code><p>the name of the public method to use (may be a
+"magic" method via the object's __call() magic method)</p></div>
+<div class="subelement argument">
+<h4>$sort</h4>
+<code>string</code><p>the sort order (possible values 'asc[ending]' or
+'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $array, $property, or $sort is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $property is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $sort is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $sort is not the string 'asc[ending]' or
+    'desc[ending]'</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array of objects with
+    the public property $property</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array&lt;mixed,object&gt;</code>the sorted array</div>
+</div></div>
+</div>
+<a id="method_sortByProperty"></a><div class="element clickable method public method_sortByProperty" data-toggle="collapse" data-target=".method_sortByProperty .collapse" title="public">
+<h2>Sorts an array of objects using a public property's value</h2>
+<pre>sortByProperty(array&lt;mixed,object&gt; $array, string $property, string $sort<code> = 'asc'</code>) : array&lt;mixed,object&gt;</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>0.1.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array&lt;mixed,object&gt;</code><p>the array of objects to sort</p></div>
+<div class="subelement argument">
+<h4>$property</h4>
+<code>string</code><p>the object's public property name (may be a magic
+public property via the object's __get() method)</p></div>
+<div class="subelement argument">
+<h4>$sort</h4>
+<code>string</code><p>the sort order (possible values 'asc[ending]' or
+'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered">
+<tr>
+<th><code>\BadMethodCallException</code></th>
+<td>if $array, $property, or $sort is null</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $property is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $sort is not a string</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $sort is not the string 'asc[ending]' or
+   'desc[ending]'</td>
+</tr>
+<tr>
+<th><code>\InvalidArgumentException</code></th>
+<td>if $array is not an array of objects with
+   the public property $property</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>array&lt;mixed,object&gt;</code>the sorted array</div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.6.1</a> and<br>
+            generated on 2014-08-27T23:09:39Z.<br></footer></div>
+</div>
 </body>
 </html>

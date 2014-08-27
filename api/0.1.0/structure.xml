@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project title="API Documentation" version="2.6.1">
   <partials/>
-  <file path="Num.php" generated-path="Num.html" hash="7c6987762ada8763ab79d0e9392012fc" package="Default">
+  <file path="Num.php" generated-path="Num.html" hash="797553f52f86a433ce6b80c9174b4c5b" package="Default">
     <docblock line="0">
       <description>The file for the Num class</description>
       <long-description></long-description>
@@ -15,7 +15,7 @@
       <name>Num</name>
       <full_name>\Jstewmc\PhpHelpers\Num</full_name>
       <docblock line="20">
-        <description>A class of utility methods for PHP numbers (aka, "num")</description>
+        <description>The number (aka, "num") class</description>
         <long-description>Keep in mind, a number in PHP (and hereafter in this class documentation) is
 considered to be a (float), (int), or numeric (string).</long-description>
         <tag name="since" line="20" description="0.1.0"/>
@@ -45,10 +45,10 @@ considered to be a (float), (int), or numeric (string).</long-description>
           </tag>
         </docblock>
       </constant>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="62" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="66" package="Default">
         <name>almostEqual</name>
         <full_name>\Jstewmc\PhpHelpers\Num::almostEqual()</full_name>
-        <docblock line="62">
+        <docblock line="66">
           <description>Returns true if float $a is almost equal to float $b</description>
           <long-description>Floating point numbers should never be compared for equivalence because of the
 way they are stored internally. They have limited precision, and many numbers
@@ -58,38 +58,38 @@ or 0.7) do not have an exact representation as floating point numbers in base 2.
 To test floating point values for equality, an upper bound on the relative error
 due to rounding is used. This value is known as the machine epsilon, and is the
 largest acceptable difference in calculations (exclusive).</long-description>
-          <tag name="since" line="62" description="0.1.0"/>
-          <tag name="param" line="62" description="&lt;p&gt;the first value&lt;/p&gt;" type="integer|float" variable="$a">
+          <tag name="since" line="66" description="0.1.0"/>
+          <tag name="param" line="66" description="&lt;p&gt;the first value&lt;/p&gt;" type="integer|float" variable="$a">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="62" description="&lt;p&gt;the second value&lt;/p&gt;" type="integer|float" variable="$b">
+          <tag name="param" line="66" description="&lt;p&gt;the second value&lt;/p&gt;" type="integer|float" variable="$b">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="62" description="&lt;p&gt;the maximum allowed difference (exclusive) (optional;&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;if omitted defaults to 0.00001)&lt;/code&gt;&lt;/pre&gt;" type="integer|float" variable="$epsilon">
+          <tag name="param" line="66" description="&lt;p&gt;the maximum allowed difference (exclusive) (optional;&#10;if omitted defaults to 0.00001)&lt;/p&gt;" type="integer|float" variable="$epsilon">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="62" description="" type="boolean">
+          <tag name="return" line="66" description="true if the values are equal" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="see" line="62" description="" link="\Jstewmc\PhpHelpers\&lt;http://www.php.net/manual/en/language.types.float.php&gt;"/>
-          <tag name="throws" line="62" description="if $a, $b, or $epsilon is null" type="\BadMethodCallException">
+          <tag name="throws" line="66" description="if $a, $b, or $epsilon is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="62" description="if $a is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="66" description="if $a is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="62" description="if $b is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="66" description="if $b is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="62" description="if $epsilon is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="66" description="if $epsilon is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="62" description="if $epsilon is not greater than zero" type="\InvalidArgumentException">
+          <tag name="throws" line="66" description="if $epsilon is not greater than zero" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
+          <tag name="see" line="66" description="man page on float type" link="http://www.php.net/manual/en/language.types.float.php"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$a</name>
@@ -107,10 +107,10 @@ largest acceptable difference in calculations (exclusive).</long-description>
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="132" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="139" package="Default">
         <name>bound</name>
         <full_name>\Jstewmc\PhpHelpers\Num::bound()</full_name>
-        <docblock line="132">
+        <docblock line="139">
           <description>Bounds a value between an upper and/or lower bound (inclusive)</description>
           <long-description>I'll bound $number between a lower an upper bound; greater than or equal to a lower
 bound; or, less than or equal to an upper bound.
@@ -123,33 +123,33 @@ For example:
     Num::bound(3, null, 2);   // returns 2
     Num::bound(2, 1, 3);      // returns 2
     Num::bound(4, 1, 3);      // returns 3</long-description>
-          <tag name="since" line="132" description="0.1.0"/>
-          <tag name="param" line="132" description="&lt;p&gt;the number to bound&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="139" description="0.1.0"/>
+          <tag name="param" line="139" description="&lt;p&gt;the number to bound&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="132" description="&lt;p&gt;the number's lower bound (inclusive)&lt;/p&gt;" type="integer|float" variable="$lower">
+          <tag name="param" line="139" description="&lt;p&gt;the number's lower bound (inclusive)&lt;/p&gt;" type="integer|float" variable="$lower">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="132" description="&lt;p&gt;the number's upper bound (inclusive)&lt;/p&gt;" type="integer|float" variable="$upper">
+          <tag name="param" line="139" description="&lt;p&gt;the number's upper bound (inclusive)&lt;/p&gt;" type="integer|float" variable="$upper">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="132" description="the bounded value or false" type="integer|float">
+          <tag name="return" line="139" description="the bounded value or false" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="throws" line="132" description="if $number and $lower and/or $upper are not passed" type="\BadMethodCallException">
+          <tag name="throws" line="139" description="if $number and $lower and/or $upper are not passed" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="132" description="if $lower is passed and not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="139" description="if $lower is passed and not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="132" description="if $upper is passed and not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="139" description="if $upper is passed and not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="132" description="if $upper is not greater than or equal to $lower" type="\InvalidArgumentException">
+          <tag name="throws" line="139" description="if $upper is not greater than or equal to $lower" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -169,45 +169,45 @@ For example:
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="210" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="222" package="Default">
         <name>ceilTo</name>
         <full_name>\Jstewmc\PhpHelpers\Num::ceilTo()</full_name>
-        <docblock line="210">
+        <docblock line="222">
           <description>Returns $number ceiling-ed to the nearest $multiple</description>
-          <long-description>For exampel:
+          <long-description>For example:
 
     Num::ceilTo(5, 2);    // returns 6
     Num::ceilTo(15, 10);  // returns 20
     Num::ceilTo(25, 40);  // returns 40</long-description>
-          <tag name="since" line="210" description="0.1.0"/>
-          <tag name="param" line="210" description="&lt;p&gt;the number to ceil&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="222" description="0.1.0"/>
+          <tag name="param" line="222" description="&lt;p&gt;the number to ceil&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="210" description="&lt;p&gt;the multiple to ceil to (optional; if omitted,&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;defaults to 1 (aka, PHP's native ceil() function))&lt;/code&gt;&lt;/pre&gt;" type="integer|float" variable="$multiple">
+          <tag name="param" line="222" description="&lt;p&gt;the multiple to ceil to (optional; if omitted,&#10;defaults to 1 (aka, PHP's native ceil() function))&lt;/p&gt;" type="integer|float" variable="$multiple">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="210" description="the ceiling-ed number" type="integer|float">
+          <tag name="return" line="222" description="the ceiling-ed number" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="throws" line="210" description="" type="\BadMethodCallException">
+          <tag name="throws" line="222" description="" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="210" description="if $number or $multiple is null" type="\InvalidArgumentException">
+          <tag name="throws" line="222" description="if $number or $multiple is null" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="210" description="if $number is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="222" description="if $number is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="210" description="if $multiple is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="222" description="if $multiple is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="210" description="if $multiple is not greater than zero" type="\InvalidArgumentException">
+          <tag name="throws" line="222" description="if $multiple is not greater than zero" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="210" description="(Daren Schwneke)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/1619265&gt;"/>
+          <tag name="see" line="222" description="Daren Schwneke's answer to &quot;How to&#10;   round up a number to the nearest 10?&quot; on StackOverflow" link="http://stackoverflow.com/a/1619284"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$number</name>
@@ -220,42 +220,42 @@ For example:
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="270" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="287" package="Default">
         <name>floorTo</name>
         <full_name>\Jstewmc\PhpHelpers\Num::floorTo()</full_name>
-        <docblock line="270">
+        <docblock line="287">
           <description>Returns $number floor-ed to the nearest $multiple</description>
           <long-description>For example:
 
     Num::floorTo(19, 10);     // returns 10
     Num::floorTo(0.99, 0.5);  // returns 0.5
     Num::floorTo(101, 100);   // returns 100</long-description>
-          <tag name="since" line="270" description="0.1.0"/>
-          <tag name="param" line="270" description="&lt;p&gt;the number to floor&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="287" description="0.1.0"/>
+          <tag name="param" line="287" description="&lt;p&gt;the number to floor&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="270" description="&lt;p&gt;the multiple to floor to (optional; if omitted,&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;defaults to 1 (aka, PHP's native floor() function))&lt;/code&gt;&lt;/pre&gt;" type="integer|float" variable="$multiple">
+          <tag name="param" line="287" description="&lt;p&gt;the multiple to floor to (optional; if omitted,&#10;defaults to 1 (aka, PHP's native floor() function))&lt;/p&gt;" type="integer|float" variable="$multiple">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="270" description="" type="integer|float">
+          <tag name="return" line="287" description="" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="throws" line="270" description="if $number or $multiple is null" type="\BadMethodCallException">
+          <tag name="throws" line="287" description="if $number or $multiple is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="270" description="if $number is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="287" description="if $number is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="270" description="if $multiple is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="287" description="if $multiple is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="270" description="if $multiple is not greater than zero" type="\InvalidArgumentException">
+          <tag name="throws" line="287" description="if $multiple is not greater than zero" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="270" description="(Daren Schwneke)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/1619265&gt;"/>
+          <tag name="see" line="287" description="Daren Schwneke's answer to &quot;How to&#10;   round up a number to the nearest 10?&quot; on StackOverflow" link="http://stackoverflow.com/a/1619284"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$number</name>
@@ -268,13 +268,14 @@ For example:
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="313" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="332" package="Default">
         <name>is_int</name>
         <full_name>\Jstewmc\PhpHelpers\Num::is_int()</full_name>
-        <docblock line="313">
+        <docblock line="332">
           <description>Alias for the isInt() method</description>
           <long-description></long-description>
-          <tag name="see" line="313" description="" link="\Jstewmc\PhpHelpers\Num::isInt()"/>
+          <tag name="since" line="332" description="0.1.0"/>
+          <tag name="see" line="332" description="" link="\Jstewmc\PhpHelpers\Num::isInt()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$number</name>
@@ -282,13 +283,14 @@ For example:
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="323" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="344" package="Default">
         <name>is_numeric</name>
         <full_name>\Jstewmc\PhpHelpers\Num::is_numeric()</full_name>
-        <docblock line="323">
+        <docblock line="344">
           <description>Alias for the isNumeric() method</description>
           <long-description></long-description>
-          <tag name="see" line="323" description="" link="\Jstewmc\PhpHelpers\Num::isNumeric()"/>
+          <tag name="since" line="344" description="0.1.0"/>
+          <tag name="see" line="344" description="" link="\Jstewmc\PhpHelpers\Num::isNumeric()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$number</name>
@@ -296,10 +298,10 @@ For example:
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="351" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="375" package="Default">
         <name>isId</name>
         <full_name>\Jstewmc\PhpHelpers\Num::isId()</full_name>
-        <docblock line="351">
+        <docblock line="375">
           <description>Returns true if $number is a valid database id (aka, unsigned int)</description>
           <long-description>A valid id is a positive, non-zero integer that's less than or equal to
 the maximum value for the unsigned datatype.
@@ -310,24 +312,24 @@ For example:
     Num::isId(1.5);              // returns false
     Num::isId(123);              // returns true
     Num::isId(999999, 'small');  // returns false</long-description>
-          <tag name="since" line="351" description="0.1.0"/>
-          <tag name="param" line="351" description="&lt;p&gt;the number to test&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="375" description="0.1.0"/>
+          <tag name="param" line="375" description="&lt;p&gt;the number to test&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="351" description="&lt;p&gt;the column datatype name (possible values are&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]')&#10;(case-insensitive) (optional; if omitted, defaults to 'int')&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$datatype">
+          <tag name="param" line="375" description="&lt;p&gt;the column datatype name (possible values are&#10;'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]')&#10;(case-insensitive) (optional; if omitted, defaults to 'int')&lt;/p&gt;" type="string" variable="$datatype">
             <type>string</type>
           </tag>
-          <tag name="return" line="351" description="true if the number is a valid database id" type="boolean">
+          <tag name="return" line="375" description="true if the number is a valid database id" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="351" description="if $datatype is null" type="\BadMethodCallException">
+          <tag name="throws" line="375" description="if $datatype is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="351" description="if $datatype is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="375" description="if $datatype is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="351" description="if $datatype is not an allowed value" type="\InvalidArgumentException">
+          <tag name="throws" line="375" description="if $datatype is not an allowed value" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -342,10 +344,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="434" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="460" package="Default">
         <name>isInt</name>
         <full_name>\Jstewmc\PhpHelpers\Num::isInt()</full_name>
-        <docblock line="434">
+        <docblock line="460">
           <description>Returns true if $number is an integer or integer string</description>
           <long-description>PHP's native is_int() functions returns false on strings like '23' or '1'.
 I will evaluate those integer strings to true.
@@ -357,12 +359,12 @@ For example:
 
     is_int('1');      // returns false
     Num::isInt('1');  // returns true</long-description>
-          <tag name="since" line="434" description="0.1.0"/>
-          <tag name="param" line="434" description="&lt;p&gt;the number to test&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="460" description="0.1.0"/>
+          <tag name="param" line="460" description="&lt;p&gt;the number to test&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="434" description="true if $number is an integer or integer string" type="boolean">
+          <tag name="return" line="460" description="true if $number is an integer or integer string" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -372,10 +374,10 @@ For example:
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="468" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="496" package="Default">
         <name>isNumeric</name>
         <full_name>\Jstewmc\PhpHelpers\Num::isNumeric()</full_name>
-        <docblock line="468">
+        <docblock line="496">
           <description>Returns true if $number is an integer, decimal, fraction, or mixed
 number</description>
           <long-description>PHP's native is_numeric() method will return false on fractions or
@@ -397,11 +399,11 @@ For example:
 
     is_numeric("1 1/2");       // returns false
     self::isNumeric("1 1/2");  // returns true</long-description>
-          <tag name="since" line="468" description="0.1.0"/>
-          <tag name="param" line="468" description="&lt;p&gt;the number to test&lt;/p&gt;" type="mixed" variable="$number">
+          <tag name="since" line="496" description="0.1.0"/>
+          <tag name="param" line="496" description="&lt;p&gt;the number to test&lt;/p&gt;" type="mixed" variable="$number">
             <type>mixed</type>
           </tag>
-          <tag name="return" line="468" description="true if $number is a number" type="boolean">
+          <tag name="return" line="496" description="true if $number is a number" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -411,10 +413,10 @@ For example:
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="500" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="530" package="Default">
         <name>isZero</name>
         <full_name>\Jstewmc\PhpHelpers\Num::isZero()</full_name>
-        <docblock line="500">
+        <docblock line="530">
           <description>Returns true if the value is zero</description>
           <long-description>It can be a little tricky to evaluate a variable in PHP as zero. If you use
 PHP's native empty function, it will consider 0, '0', 0.0, and '0.0' as empty.
@@ -433,11 +435,11 @@ I'm particularly useful when combined with PHP's empty() function.
 
     $a = ! empty(0);                    // evaluates to false
     $b = ! empty(0) || Num::isZero(0);  // evaluates to true</long-description>
-          <tag name="since" line="500" description="0.1.0"/>
-          <tag name="param" line="500" description="&lt;p&gt;the number to test&lt;/p&gt;" type="mixed" variable="$number">
+          <tag name="since" line="530" description="0.1.0"/>
+          <tag name="param" line="530" description="&lt;p&gt;the number to test&lt;/p&gt;" type="mixed" variable="$number">
             <type>mixed</type>
           </tag>
-          <tag name="return" line="500" description="true if $number is zero" type="boolean">
+          <tag name="return" line="530" description="true if $number is zero" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -447,10 +449,10 @@ I'm particularly useful when combined with PHP's empty() function.
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="537" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="570" package="Default">
         <name>normalize</name>
         <full_name>\Jstewmc\PhpHelpers\Num::normalize()</full_name>
-        <docblock line="537">
+        <docblock line="570">
           <description>Returns a normalized value between 0 and 1 (inclusive)</description>
           <long-description>In statistics, it's often helpful to normalize (sometimes referred to as index)
 values for comparison. For example, for a retailer to compare an item's revenue
@@ -468,29 +470,29 @@ For example:
     Num::normalize(50, 100);   // returns 0.5
     Num::normalize(0, 100);    // returns 0
     Num::normalize(150, 100);  // returns 1</long-description>
-          <tag name="since" line="537" description="0.1.0"/>
-          <tag name="param" line="537" description="&lt;p&gt;the number to normalize&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="570" description="0.1.0"/>
+          <tag name="param" line="570" description="&lt;p&gt;the number to normalize&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="537" description="&lt;p&gt;the maximum to divide into $value&lt;/p&gt;" type="integer|float" variable="$max">
+          <tag name="param" line="570" description="&lt;p&gt;the maximum to divide into $value&lt;/p&gt;" type="integer|float" variable="$max">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="537" description="a number between 1 and 0 (inclusive)" type="integer|float">
+          <tag name="return" line="570" description="a number between 1 and 0 (inclusive)" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="throws" line="537" description="if $number or $max are not passed" type="\BadMethodCallException">
+          <tag name="throws" line="570" description="if $number or $max are not passed" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="537" description="if $number is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="570" description="if $number is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="537" description="if $max is not a number" type="\InvalidArgumentException">
+          <tag name="throws" line="570" description="if $max is not a number" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="537" description="if $max is not greater than zero" type="\InvalidArgumentException">
+          <tag name="throws" line="570" description="if $max is not greater than zero" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -505,30 +507,30 @@ For example:
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="591" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="628" package="Default">
         <name>roundTo</name>
         <full_name>\Jstewmc\PhpHelpers\Num::roundTo()</full_name>
-        <docblock line="591">
+        <docblock line="628">
           <description>Rounds $number to the nearest $multiple</description>
           <long-description>For example:
 
     Num::roundTo(7, 2);  // returns 8
     Num::roundTo(7, 4);  // returns 8
     Num::roundTo(7, 8);  // returns 8</long-description>
-          <tag name="since" line="591" description="0.1.0"/>
-          <tag name="param" line="591" description="&lt;p&gt;the number to round&lt;/p&gt;" type="integer|float" variable="$number">
+          <tag name="since" line="628" description="0.1.0"/>
+          <tag name="param" line="628" description="&lt;p&gt;the number to round&lt;/p&gt;" type="integer|float" variable="$number">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="param" line="591" description="&lt;p&gt;the multiple to round to (optional; if omitted,&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;defaults to 1 (aka, PHP's native round() method))&lt;/code&gt;&lt;/pre&gt;" type="integer|float" variable="$multiple">
+          <tag name="param" line="628" description="&lt;p&gt;the multiple to round to (optional; if omitted,&#10;defaults to 1 (aka, PHP's native round() method))&lt;/p&gt;" type="integer|float" variable="$multiple">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="return" line="591" description="the rounded number" type="integer|float">
+          <tag name="return" line="628" description="the rounded number" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="see" line="591" description="(Daren Schwneke)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/1619265&gt;"/>
+          <tag name="see" line="628" description="Daren Schwneke's answer to &quot;How to&#10;   round up a number to the nearest 10?&quot; on StackOverflow" link="http://stackoverflow.com/a/1619284"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$number</name>
@@ -541,10 +543,10 @@ For example:
           <type>integer|float</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="689" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="731" package="Default">
         <name>val</name>
         <full_name>\Jstewmc\PhpHelpers\Num::val()</full_name>
-        <docblock line="689">
+        <docblock line="731">
           <description>Returns the numeric value of $var</description>
           <long-description>PHP does not natively support fractions, mixed numbers, or comma-separated
 values, but I will. Woot!
@@ -558,7 +560,7 @@ I use the following rules:
         Integers are returned as strictly typed integers.
 
     Floats
-        Floats are returned as strictly typed integers.
+        Floats are returned as strictly typed floats.
 
     Strings
         Numeric strings are returned as their strictly typed equivalent (i.e.,
@@ -593,16 +595,16 @@ For example:
     Num::val(array());         // returns 0
     Num::val(array('foo'));    // returns 1
     Num::val(new stdClass());  // returns 1</long-description>
-          <tag name="since" line="689" description="0.1.0"/>
-          <tag name="param" line="689" description="&lt;p&gt;the value to evaluate&lt;/p&gt;" type="mixed" variable="$var">
+          <tag name="since" line="731" description="0.1.0"/>
+          <tag name="param" line="731" description="&lt;p&gt;the value to evaluate&lt;/p&gt;" type="mixed" variable="$var">
             <type>mixed</type>
           </tag>
-          <tag name="return" line="689" description="the value's numeric equivalent" type="integer|float">
+          <tag name="return" line="731" description="the value's numeric equivalent" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="see" line="689" description="(Pascal MARTIN)&#10;         (edited to allow back- or forward-slashes in fractions)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/5264143&gt;"/>
-          <tag name="see" line="689" description="(Justin Morgain)&#10;         (edited to allow leading and trailing zeros in comma-separated&#10;         numbers)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/5917082&gt;"/>
+          <tag name="see" line="731" description="Pascal MARTIN's answer to &quot;Convert&#10;   mixed fraction string to float in PHP&quot; on StackOverflow (edited to allow&#10;   back- or forward-slashes in fractions)" link="http://stackoverflow.com/a/5264255"/>
+          <tag name="see" line="731" description="Justin Morgain's answer to &quot;Regular&#10;   expression to match numbers with or without commas and decimals in text&quot; on&#10;   StackOverflow (edited to allow leading and trailing zeros in comma-separated&#10;   numbers)" link="http://stackoverflow.com/a/5917250"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$var</name>
@@ -611,9 +613,9 @@ For example:
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>eJztXP9z00iy/zlU8T8MudTZBseRnQQIkGVZNvvI3oalWK7u6hEeNZbHti6y5NVIOF7gf3/d802jkWTLIXx59UhtLbY83dPT09Pz6Z4ePXo8n85v3ti7ffvmDXKbvJoyMg5C+F+ckBS+PM9mxA8p5/izaPIjzdIp/Ip/v1L/gjwN6TKNI/II2i3/w70fJzMahD0/nv0gCfx4vkyCyTQlZOD1DwpUskUY+CziDFmenb4iv6mvj6ZpOn+wtxfP4WucJT7rxclkT7Xme9BWdLF388bNGxGdMT6nPiO/8pQtZv75i+n8GQvnLOEPsQGMkZhBRtlsyBLSphe0S7bh23bHGec/GJuTICKzIBp1CdUU8OTFsxdAGI3IlCWMjlP5NJ0GXLIgo9jPZixKaRrEUYfAc8HRjyMejIBmRNKYDBkwbY/DmKadLmkHEf4DeoV+WBL4pM3TJIgmnR7JVc+DCMZHvF6/5xGihi77xIm6eeP9zRtbe7fJrafQVUqjlIsWW+Ip8NhCJu8oTB7ObcIm7FLMNAXZZjO6y9mcJjQFAbV+WG/SAwX1u57nbXcEB2SIQ0nJy5P/Ovn32+f/PPvp5OXbp7+fnT0hx6T1t/9pv+7vHr1pP35wPrr9Qfzz3usOPnbgYxc+73/s3MbP5z34/bUHTTuPP3iP868fvM7O31oPGwk+Cy4rxCX9vcFqcc9O/33ysxK3fT660znndzqPxafXe+fn52/Ex1wMpdgX2RDMj8wYrIFRhXZfsjRLIk7SJGMkGBMxv2SHohHQcBaDGOzPjIZoAeq3oaCU5L/gI5h1Mo/BINSwOOHTOAthlOwdDBIMB2YLJgrGjToAfsE7GjI0jSHzaQYrJx6joiTPBV3ilyUBCsLTGOmAOUsiGobLHi6HJZnSd4yEwSzAyZ8nzA842C7YPZj5jEZLLYpkqeVKpzAAZJswoOFo8kNwHpTLsZUHAutkSEG+vqfnCmyZSKYwFK93rwOrh0RxKiWiEWGX1E+tDnBNNehh0LPU+iomKQPVOzSgtYxxrUQaBukSR0yy+Rz1HGcw+DhSJhcCJUjEkgSaS7YjmGOYxwQbIleYY1D+CFUKHwV3fHYRxQshMjKaUX8aRMBnzoNQaziQv0muIU0mKCz1fTaXCh0F4zH4DZxhGJ9PQz8LhSI4qPHSDzMOonXkiBWXgq+wVPEjrvAZQQv4IA0QrVP9pcL9J1yppp5iaFNwButrtI5EDZgoLVwGM/BYYIHxAizOGqA1INKO5zhKGj5Uo4I/WFQxmCna6YiNaRaCk4NJ8Hrgobx+xx5qIhYjgZmMQ2KWJPavZh5NV8y8TZVOk3jBCTn/iY7OxDp/CmKeXOJsoO1JGXZg39gZCo9thgbTGGVh6PI5jaC7YPQkmYhdweIk+AgyMHi9xWxGPvw0clv062IygV0RN0XwDhH5iyWxrV3OwCjVvr5YLHoAP3oRS/fAycA87LFoL6TRJKMT1kuXc8Z7wn6wGUFHRObwCy5KaVbYxHj5ufTNHH2ET8ZZ5EtfIdzuCU5zW8+aEfnYGA5aGG6fWzsBF43htzENOcMNAH381t6ePfG4bg0bNCQcOpvN0yW2hYbQGbl1fCxMgvz97zhVha+aVj/sENG96UZsGfl8SJ4Bf6sAArDvaBJNMyzRlIiGOZGmsqavSFsiVi0tFhU8qqbfcDMNfyCexQXZJDEoJkjNI2se2nTIUZ27MMQOeWS66zzUrT8SBlNlMRSmCzvmot5426bx1tu3Zyevnv3+89u3vW3YcebMT6VLBlSXwIaI7ozBoLq535YQrjTYbcPUEk59cIXcSMYri6jn1EhmBFNyOWJtIlWtUGpPsKQa1smjxZHSFIXZQJZaUeSGZklCayRRggg5CmJYUlTvCUqGahEWMRHBVMKYAfdUjYLLrmXPH7WjUfuWXgD440eMYHKY+RNCDlyuEmQMWbpgLMqxCzinPegUN1cNZCDC0Puq5Y9PW7DoZIMdBaINM0VeBEQPiyavoRNqVBNIzqp1DAoPGecVzQt8bbj2Cza7pLN5yB5Yj/EPwpwHDwRBuw/gsfNQAxGCHkSB735le69L+pu034UO0C93yQDJrPa71QT7hfY2waCy/QAE6pJ9LdPa9ge17fevivzUlIt1oj7j0sDu6onkLNtELb7S1Cq5yLl3uNjIu9pgDaizeJk/5CWImYKjaHBiE78CwFP6EPu8XgliVSnR9Z4/h/CbjVzeqxGT5AebpSQWnVwdf0l5rp1bCcvZq1cOYR32koarVNnV4z5W60R1peGPAWB6CmsA2LqJQQwCVhMZHKYIbPTVVpTm2YcPmtzgMQeQ6QTQGlQmfypAs3EwycBY4iwli2ngT3P3T0AGlksLY59S/ptSkiPiw7zFP5XeHIkfFsCgsTEdLoGGglTKL+a/hBPJLZL3DwqxhyW4lbGj0XijTuxe5BicXgS7CnipplmpzenPrMdVv4oknOGJfwXTNuasWtiY1VWLI7/q4Ac9YQ6slc7MBJ3mJ2GZhi0GBJqpzcBeDLMgakPg7C6njl5IOeBU8KXQRS3XCo51jNaKlzNSEm3lnL44VMeHhQ3lvZTqY0cDwO1ezndru9bXVQNafFrY9d5L7X3sfAMxgDP2bywWcFT3zUQG2nq/dnhgRHLjAzs6UCuvIjrQSWi9ZfksCINosisPHgTgYoBeYOw7syxMA8DZG6Bv5PYqbh9qnGsD0bvVbfvQuO85KHrgVTceQOMDt/FBAcleAeG6GBc7q6fSalHZSv1N0eG/Vmoyz0h2zYjs1GRfHTO9ePYCIG4k88jIp90xSKmzDuOiHNY8WsCuGardDAMqPeH2aQZ/pexmDpquDkgLElwbl8ZZSsC0/kX8jiUwEws81tyje/27/aPB/QNCfoZ1FJE//OkiYhcMppdGfCEtbPsZeIU0NiYhjgnAKednic5i7HuPtzG1+Qd2+LvqcB3CVosm33jNOI+JndTEds0gtWGAAY4JbrDlReFIVJqzyHiCIS8CANHKbkWmPc6Tf0C6CovnPdakQi3k7acZnlptDMFdC6hmVOKkScrA12ZWl/EUAzYNixnPcsIznyLhG/So9/K+OmBI5ovZuK8dUJjdBzenbsEDrk97fm5A0UC4LwkjcnHiiHWtPeaLggjoW4AIwBJrIUQxxShtrgGGAF8UJ9eEIAQvhAVHGhY4+TgXGWgCr3d0hEfGhw46gCd1XXh97MNzM3Lw6JoBhejxKohCEF4HpBCMmmOKDcCDkxKrggXE5fQdF3xVXKAXwFpgIBpeARmgrhQe/L6zr9nZLR2LNfr19vb6ePzb2eKby6hm86vlC8rbfVGib223V3aotvtC4dqTMKDclH0G/DRKYSuRdW5NdkrhGc/LpZfnYjtW/NY5LVigsD2ZZa59lBKfs3CsWekmTYbyXK356xyO4dlgSK73IjXjeu60W4HKdC1T4VBC5ttHNKWiAg4+S5CQRTyYRLLqz4YETxRFMJL085gHCCS64NujXVzyok5wIp1Aiod8VQe5kpld1SWP3vQEmO5RMizY2eSoF2Z71G7Rod+yjm6LUC4/33PI+hInbkw22F9BhpqvojoSf13S4jNYxy0HoJbOIK8BcGJFY5FKVgwLwXa0slXmKA6zWWRmgGCxNGnDhPMA6wvzcjgztFYaRMvXIMeblh6U+TZjoyCbma/w72u0EvyCOKE1DCbyx05ettf2wSZ3g4izSFpZpwbvFnAu8m41rOlbuRSuAHaNsq6U+CpQC3AqZ+cTuUSmZDIvt1zpfU7t41fD7lhp1i56O80xIHFAoCtGAfeZH2swnk1sacFAMvkk51NCd+tA4lqUqBi5RqL9nfZyFrar2moEoFX0JcRXYv/bqxPxRI8KvCe4x+IZIF8EqT8Vlf5pLM5DqrQAf7h25IpsPah4iFOZPzdzaWDmo2MyODy0TvW2hgDuLvLvDk/pwtyexNMGXd09PNzfoDPpTEq9yccNuru/f//+Xe9e8w6LPM0ztIB1fR0Mjg6O7t4bHG0wPnCGpe7gmTMyMCH4Ka0wGWtHFTVWOnbPCQXKUQPghAd/iaU2ZEtE0DJDoPno/bx4FG2dd1ePW11TIf37Bwd37x0cePf273lHh4cQ7q7QhHmuPLo13M2OfBtkAk22Lff8+UbHM6y54A+K571b21fc4wCy5Ftc1+H53qzgj7KuIz8MrjoN/nwBS7V6pLPtFuxMKOlzRCyAuO1jzjxIse5TIWCgVaLU1kSeVsYvq5BxZOweq1PUR2s7lhwKuTQVieTJNF7EcpiPkRwAFQcXsKYH+y1hGf2WuodxKs9EGK41iKRB5TFnTvcC5KDIDTGxEsuqY1wLTfPmVU1LrEH+igLDGrCct6/n/enliAboroSAm0z4asRk7/mIj2z7qwrnABco5d25Yuhm5EX06wfgiLpknFAhkfA34pab5FM6+XXtNnLC3cLRnDFezZ4TnbW2b9LxnqwMtg70mluoFmDghFG1puoGwIPV5l3ZmRvsNe7MImzc2TYQbVfXEq/uzCKspKnpDS8zVvbmrMtyd4Zyg7GRQn+b9GYor+4OpBVenysorZeVa99NwTRY/mKz+vChEMpYnmGesMnbGQWcr4KK8i3ULjERyycxEzdwLWYNnJApS0RdOYcdpylA0kjChhBiczytgoFfLHEizK6GiCsJxC1FdTWaSk7gQcZkGWd4JZJUeCpROGB038WqUeGo9C1p4gHs8lp43OepvAJ8aiF7Qap22WcQNr1Dx6npwUbjnIkwWSBPErpsd4BjzgCGkQupbtRKnjTH26ggN02CiS2VHRMDxjOgXRBwN1aCtER0SYMI2CvfSgEigISM8uVm6a//ho7a4nZ4ftth3Z4vaRRmB6XVrcgSzbZn+5mmND2bqn7ln7ZmCAFhxWUhTSCIB8MYZyFZTFmE+h8GmCSEkHjqlJZoG+k5GtqhEKbcUs08N2dnxNGmKrCW48J2hgUWWM5rj01rrsDC9dZf2KOZVbrSkQnx6xLOmtvx8THxiPY5hae96uewIGuew9Jc4W/ADccJwBqITUfOnSVPrO1+3f2kSA6Ow/i4WlvxOAW6KQvnaD5pnPMmbR4D6AlmDOH6mCXqXQsU74WP2KXOR1oLWS78gIN52auxq14vABqjQahKBqWPEHAtZbMW9gEBnrYGOoEVDyF8AOHOnxmN0iBd7gbRLk9j/6JrXzueZdAMD4tynbRj+D1ZBOisClyFT8MIAxbMkMkXTYhYIuMUr4DFYzKKQ1hQXOhRd4wNRccOA8lUcRnFf7GId+x1pdzhKHgH7pOgZ106gyXDZSHZrx+DIPieAGzcRR4IH8Udfu1Tay2gLyT3jC8eqYprDN1xFiqUCc0kW9yh9LwIxUCcqbQMvjYIl4VL8evcrRGxbVWNFAtNPPfuV05z6FWWmpSLU3ISr6abermsTko32Ir+qNYhNQi5TIcrKDGdiX+2MQCpMh1oGZOdPEntuDeLkUkFOPZQdwHsCrUqIOmn3Na6lmIVkOG6GFSXqKzYD3L7scpB6KU5YN3BBo0qQJQm196vEi0/c9GHVMiaMg8YZbnCQ1KuLu6ANqUsf36X588sTgO8bORsY7qx1qiE6YVrcKLqg152ibyQavKkX6aQEzv+2gUeq+X6/1e+eYVKDjSvKrwl74XvWPjyE2s1RXXaq7h9r3wN+n5904PmTe9XNm0GrSuPyYs7WbL6LnNeiOlUZcqqvGuoyhSMTDKu0T2PRN2pK6X6/g/VH+oZrqk/NDuP7H2T4kN2GYiQ6XvV4ZqqQ63apLT7fL9P8P0+weepMBS2tirxOM1vOao3NIwxTHAONCAGZKrURHhRWFg8m8/jJM0PLrrFEwtxTuK+xtAO97tkmKXqVK5H/hXH6S1iR74iUSnKPGMsscFKqiQLGXe3xZ/iOOT5V/NIvQhPJTy4OG/yU5AcDzZH+oSHu1msU/W8yFE/tZjiix0acxUvEnR4ymfrOIp9qMTvD3lcWWSosuXmLNPlDMoMEpe/eV1hCq6xx3rdIs/i2Z3MYfZKPYksoZjsul6LXGtl4D3yizkJEy87tG3KmdIiT6Uo8gS8rsjeGOnUYvBcJT7BLLTD5USkokV+Oifsqld4RLus4ue+y/f34X9w2RYZi3cQqhNA/f7IWKSd8B2FuJ/HkqyX59CzSJxli0Uq1l2RJS5MmBzQHOAZPTvym3ohZlefemNXCQ24fIUjvjOxp39y5jtc4NDMeYISCieyv9k7geKwjenSulNAmUN3szcofb+UOm5EZp2Ub9RbqSrVJtOFNqWckeyxd9iqHd8aUjyba1WfIq4h3S8SbkR6fmXSvud5rZrTCKVdz3MTZZKy65BuRmnruEpc0aRO4vX91nXcrSOtJChVRK8hUAdgzXuQBK1xHLc6pfxklV0j1ODp6Cm+jVh2tCY/ue68xLzu1xzGaSfRIIQSNBiEqY0j9/ibhFOHg7sHg8ND8HyU+zQkZ09evjp9XoymnsYREKVGI1J8jVJ0TbZ53a88MyzHU6TNRuLlu3hcgfgj95NDaLYr/G2cLGgy2uWg4ykT77o1aKjTdEhH/XuDQ4+QXzOeAoOzOMFzi+KYXrIJntEZCQAXQiSIbwTGn8UBtNkixVYMwuG/+IYjvStHI13LIgRN2WWKozY814w+ZFS8Uxf5pLCT4IsPRGQguDk4zzBVQq29lYEGiwZmFUBLK6sJRNEWrfLlLp6Ez1Ss5ZQxI1cdlwm6Y9FY/iDfh6Ne5JGXDSsj0fnhEKKh0dJ9PThioupXhGspyK1CgYItSXUFdH0xtk1bQ6w+i/nXM23ai0ikgsisC13UVAqXm9U4FOTLJ+8OyP82YfOQ+qzd6mLlZku11kGbeaFRs8oMIMXcRVVnO7PXgzfkDv67/0bE1a8P3hS6KdN4FbGjUr30uMWRGTp8uZIPsVUqG4jMcZmFBE91PPoVFAI21bSXexb+WBdk5no3rZyX1IgGKh6E//4XMoe18w==</source>
   </file>
-  <file path="Arr.php" generated-path="Arr.html" hash="12c366576310d25f1ea059cc8672bc8c" package="Default">
+  <file path="Arr.php" generated-path="Arr.html" hash="0aa87a956c03cec638a6a9b44b4ef064" package="Default">
     <docblock line="0">
       <description>The file for the Arr class</description>
       <long-description></long-description>
@@ -627,52 +629,51 @@ For example:
       <name>Arr</name>
       <full_name>\Jstewmc\PhpHelpers\Arr</full_name>
       <docblock line="17">
-        <description>A class of array (aka, "arr") utility functions</description>
+        <description>The array (aka, "arr") class</description>
         <long-description></long-description>
         <tag name="since" line="17" description="0.1.0"/>
         <tag name="package" line="17" description="Default"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="43" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="47" package="Default">
         <name>filterBykey</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::filterBykey()</full_name>
-        <docblock line="43">
+        <docblock line="47">
           <description>Filters an array by key</description>
-          <long-description>I'll iterate over each key in $array passing it to the $callback
-function. If the callback function returns true, the current value from
-$array is added to the result array. Array keys are preserved.
+          <long-description>I'll iterate over each key in $array passing it to the $callback function.
+If the callback function returns true, the current value from $array is added
+to the result array. Array keys are preserved.
 
 For example:
 
-    $a = ['foo', 'bar', 'baz', 'qux'];
-    $b = Arr::array_filter_key($a, function ($k) {
+    $a = ['foo', 'bar', 'baz'];
+    Arr::filterByKey($a, function ($k) {
         return $k &gt; 1;
-    });
-    print_r($b);  // prints ['baz', 'qux']</long-description>
-          <tag name="since" line="43" description="0.1.0"/>
-          <tag name="param" line="43" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$input">
+    });  // returns ['baz']</long-description>
+          <tag name="since" line="47" description="0.1.0"/>
+          <tag name="param" line="47" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="param" line="43" description="&lt;p&gt;the function to call for each key in $arr&lt;/p&gt;" type="callback" variable="$callback">
+          <tag name="param" line="47" description="&lt;p&gt;the function to call for each key in $array&lt;/p&gt;" type="callback" variable="$callback">
             <type>callback</type>
           </tag>
-          <tag name="return" line="43" description="the filtered array" type="array">
+          <tag name="return" line="47" description="the filtered array" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="43" description="if $array or $callback are null" type="\BadMethodCallException">
+          <tag name="throws" line="47" description="if $array or $callback is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="43" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="47" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="43" description="if $callback is not a callable function" type="\InvalidArgumentException">
+          <tag name="throws" line="47" description="if $callback is not a callable function" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="43" description="" link="\Jstewmc\PhpHelpers\&lt;http://php.net/manual/en/function.array-filter.php#99073&gt;"/>
+          <tag name="see" line="47" description="Acid24's filter&#10;   by key function on on array_filter() man page" link="http://php.net/manual/en/function.array-filter.php#99073"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$array</name>
           <default></default>
-          <type/>
+          <type>array</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$callback</name>
@@ -680,30 +681,34 @@ For example:
           <type>callback</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="94" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="105" package="Default">
         <name>filterByKeyPrefix</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::filterByKeyPrefix()</full_name>
-        <docblock line="94">
+        <docblock line="105">
           <description>Filters an array by a key prefix</description>
-          <long-description>I'll iterate over each key in $array. If the key starts with $prefix,
-I'll add it to the result array. Array keys are preserved.</long-description>
-          <tag name="since" line="94" description="0.1.0"/>
-          <tag name="param" line="94" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
+          <long-description>I'll iterate over each key in $array. If the key starts with $prefix, I'll
+add it to the result array. Array keys are preserved.
+
+For example:
+    $a = ['foo' =&gt; 'bar', 'baz' =&gt; 'qux'];
+    Arr::filterByKeyPrefix($a, 'b');  // returns ['baz']</long-description>
+          <tag name="since" line="105" description="0.1.0"/>
+          <tag name="param" line="105" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="param" line="94" description="&lt;p&gt;the key's prefix to filter&lt;/p&gt;" type="string" variable="$prefix">
+          <tag name="param" line="105" description="&lt;p&gt;the key's prefix to filter&lt;/p&gt;" type="string" variable="$prefix">
             <type>string</type>
           </tag>
-          <tag name="return" line="94" description="the filtered array" type="array">
+          <tag name="return" line="105" description="the filtered array" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="94" description="if $array or $prefix is null" type="\BadMethodCallException">
+          <tag name="throws" line="105" description="if $array or $prefix is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="94" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="105" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="94" description="if $prefix is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="105" description="if $prefix is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -718,10 +723,10 @@ I'll add it to the result array. Array keys are preserved.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="156" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="170" package="Default">
         <name>inArray</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::inArray()</full_name>
-        <docblock line="156">
+        <docblock line="170">
           <description>Wildcard search for a value in an array</description>
           <long-description>I'll search $haystack for $needle. Unlike PHP's native in_array() method,
 I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and
@@ -729,34 +734,34 @@ contains (e.g., "*foo*") wildcard notation.
 
 For example:
 
-    Arr::in_array_wildcard('foo', ['foo', 'bar']);  // returns true
-    Arr::in_array_wildcard('qux', ['foo', 'bar']);  // returns false
-    Arr::in_array_wildcard('fo*', ['foo', 'bar']);  // returns true
-    Arr::in_array_wildcard('*oo', ['foo', 'bar']);  // returns true
-    Arr::in_array_wildcard('*o*', ['foo', 'bar']);  // returns true</long-description>
-          <tag name="since" line="156" description="0.1.0"/>
-          <tag name="param" line="156" description="&lt;p&gt;the needle to find&lt;/p&gt;" type="string" variable="$needle">
+    Arr::inArray('foo', ['foo', 'bar']);  // returns true
+    Arr::inArray('qux', ['foo', 'bar']);  // returns false
+    Arr::inArray('fo*', ['foo', 'bar']);  // returns true
+    Arr::inArray('*oo', ['foo', 'bar']);  // returns true
+    Arr::inArray('*o*', ['foo', 'bar']);  // returns true</long-description>
+          <tag name="since" line="170" description="0.1.0"/>
+          <tag name="param" line="170" description="&lt;p&gt;the needle to find&lt;/p&gt;" type="string" variable="$needle">
             <type>string</type>
           </tag>
-          <tag name="param" line="156" description="&lt;p&gt;the haystack to search&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$haystack">
+          <tag name="param" line="170" description="&lt;p&gt;the haystack to search&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$haystack">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="156" description="&lt;p&gt;the wildcard character (optional; if omitted,&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;defaults to '*')&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$wildcard">
+          <tag name="param" line="170" description="&lt;p&gt;the wildcard character (optional; if omitted,&#10;defaults to '*')&lt;/p&gt;" type="string" variable="$wildcard">
             <type>string</type>
           </tag>
-          <tag name="return" line="156" description="true if the needle exists in haystack" type="boolean">
+          <tag name="return" line="170" description="true if the needle exists in haystack" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="156" description="if $needle, $haystack, or $wildcard is null" type="\BadMethodCallException">
+          <tag name="throws" line="170" description="if $needle, $haystack, or $wildcard is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="156" description="if $needle is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="170" description="if $needle is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="156" description="if $haystack is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="170" description="if $haystack is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="156" description="if $wildcard is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="170" description="if $wildcard is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -776,10 +781,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="236" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="252" package="Default">
         <name>isAssoc</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::isAssoc()</full_name>
-        <docblock line="236">
+        <docblock line="252">
           <description>Returns true if the array has at least one string key (excluding int strings)</description>
           <long-description>PHP natively treats all arrays as associative arrays. I'll consider an
 associative array as an array with a string key. Interally, PHP casts
@@ -788,16 +793,16 @@ stored as 8).
 
 For example:
 
-   Arr::isAssoc([1, 2, 3]);                       // returns false
-   Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
-   Arr::isAssoc(['1' =&gt; 'foo', 2 =&gt; 'bar']);      // returns false (PHP casts '1' to 1)
-   Arr::isAssoc(['1' =&gt; 'foo', 8 =&gt; 'bar']);      // returns false (sparse doens't matter)
-   Arr::isAssoc(['1' =&gt; 'foo', 'bar' =&gt; 'baz']);  // returns true</long-description>
-          <tag name="since" line="236" description="0.1.0"/>
-          <tag name="param" line="236" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
+    Arr::isAssoc([1, 2, 3]);                       // returns false
+    Arr::isAssoc(['foo', 'bar', 'baz']);           // returns false
+    Arr::isAssoc(['1' =&gt; 'foo', 2 =&gt; 'bar']);      // returns false (PHP casts '1' to 1)
+    Arr::isAssoc(['1' =&gt; 'foo', 8 =&gt; 'bar']);      // returns false (sparse doens't matter)
+    Arr::isAssoc(['1' =&gt; 'foo', 'bar' =&gt; 'baz']);  // returns true</long-description>
+          <tag name="since" line="252" description="0.1.0"/>
+          <tag name="param" line="252" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="return" line="236" description="true if the array has a string key (excluding int strings)" type="boolean">
+          <tag name="return" line="252" description="true if the array has a string key (excluding int strings)" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -807,10 +812,10 @@ For example:
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="297" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="316" package="Default">
         <name>isEmpty</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::isEmpty()</full_name>
-        <docblock line="297">
+        <docblock line="316">
           <description>Returns true if $key does not exist in $array or $array[$key] is empty</description>
           <long-description>PHP's isset() method is will return false if the key does not exist or if the
 key exists and its value is null. However, it will return true if the key
@@ -825,50 +830,50 @@ or if the key's value is empty.
 
 For example:
 
-   $a = ['foo' =&gt; null, 'bar' =&gt; array(), 'qux' =&gt; 'hello'];
+    $a = ['foo' =&gt; null, 'bar' =&gt; array(), 'qux' =&gt; 'hello'];
 
-   // when key doesn't exist (!)
-   isset($a['quux']);           // returns false
-   ! empty($a['quux']);         // throws key-does-not-exist warning
-   ! Arr::isEmpty('quux', $a);  // returns false
+    // when key doesn't exist (!)
+    isset($a['quux']);           // returns false
+    ! empty($a['quux']);         // throws key-does-not-exist warning
+    ! Arr::isEmpty('quux', $a);  // returns false
 
-   // when key does exist, but value is null
-   isset($a['foo']);           // returns false
-   ! empty($a['foo']);         // returns false
-   ! Arr::isEmpty('foo', $a);  // returns false
+    // when key does exist, but value is null
+    isset($a['foo']);           // returns false
+    ! empty($a['foo']);         // returns false
+    ! Arr::isEmpty('foo', $a);  // returns false
 
-   // when key does exist, but value is "empty" (!)
-   isset($a['bar']);           // returns true
-   ! empty($a['bar']);         // returns false
-   ! Arr::isEmpty('bar', $a);  // returns false
+    // when key does exist, but value is "empty" (!)
+    isset($a['bar']);           // returns true
+    ! empty($a['bar']);         // returns false
+    ! Arr::isEmpty('bar', $a);  // returns false
 
-   // when key does exist, but value is not "empty"
-   isset($a['qux']);           // returns true
-   ! empty($a['qux']);         // returns true
-   ! Arr::isEmpty('qux', $a);  // returns true</long-description>
-          <tag name="since" line="297" description="0.1.0"/>
-          <tag name="param" line="297" description="&lt;p&gt;the key's name&lt;/p&gt;" type="string" variable="$key">
+    // when key does exist, but value is not "empty"
+    isset($a['qux']);           // returns true
+    ! empty($a['qux']);         // returns true
+    ! Arr::isEmpty('qux', $a);  // returns true</long-description>
+          <tag name="since" line="316" description="0.1.0"/>
+          <tag name="param" line="316" description="&lt;p&gt;the key's name&lt;/p&gt;" type="string" variable="$key">
             <type>string</type>
           </tag>
-          <tag name="param" line="297" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
+          <tag name="param" line="316" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="param" line="297" description="&lt;p&gt;a flag indicating whether or not zero is&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;considered empty (optional; if omitted, defaults to true - i.e., the&#10;default behavior of PHP's empty() function )&lt;/code&gt;&lt;/pre&gt;" type="boolean" variable="$isZeroEmpty">
+          <tag name="param" line="316" description="&lt;p&gt;a flag indicating whether or not zero is&#10;considered empty (optional; if omitted, defaults to true - i.e., the&#10;default behavior of PHP's empty() function )&lt;/p&gt;" type="boolean" variable="$isZeroEmpty">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="297" description="true if the key exists and its value is not empty" type="boolean">
+          <tag name="return" line="316" description="true if the key exists and its value is not empty" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="297" description="if $key or $array are null" type="\BadMethodCallException">
+          <tag name="throws" line="316" description="if $key or $array are null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="297" description="if $key is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="316" description="if $key is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="297" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="316" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="297" description="if $isZeroEmpty is not a bool value" type="\InvalidArgumentException">
+          <tag name="throws" line="316" description="if $isZeroEmpty is not a bool value" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -888,39 +893,39 @@ For example:
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="364" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="387" package="Default">
         <name>keyStringReplace</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::keyStringReplace()</full_name>
-        <docblock line="364">
+        <docblock line="387">
           <description>Replaces all occurences of $search with $replace in $array's keys</description>
           <long-description>I'll return an array with all occurences of $search in the array's keys
 replaced with the given $replace value (case-insensitive).</long-description>
-          <tag name="since" line="364" description="0.1.0"/>
-          <tag name="param" line="364" description="&lt;p&gt;the value being searched for (aka the needle); an&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;array may be used to designate multiple neeeles&lt;/code&gt;&lt;/pre&gt;" type="mixed" variable="$search">
+          <tag name="since" line="387" description="0.1.0"/>
+          <tag name="param" line="387" description="&lt;p&gt;the value being searched for (aka the needle); an&#10;array may be used to designate multiple neeeles&lt;/p&gt;" type="mixed" variable="$search">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="364" description="&lt;p&gt;the replacement value that replaced found $search&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;values; an array may be used to designate multiple replacements&lt;/code&gt;&lt;/pre&gt;" type="mixed" variable="$replace">
+          <tag name="param" line="387" description="&lt;p&gt;the replacement value that replaced found $search&#10;values; an array may be used to designate multiple replacements&lt;/p&gt;" type="mixed" variable="$replace">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="364" description="&lt;p&gt;the array to replace&lt;/p&gt;" type="array" variable="$array">
+          <tag name="param" line="387" description="&lt;p&gt;the array to replace&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="return" line="364" description="the array with replacements" type="array">
+          <tag name="return" line="387" description="the array with replacements" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="364" description="if $search, $replace, or $array are null" type="\BadMethodCallException">
+          <tag name="throws" line="387" description="if $search, $replace, or $array are null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="364" description="if $search is not a string or array" type="\InvalidArgumentException">
+          <tag name="throws" line="387" description="if $search is not a string or array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="364" description="if $replace is not a string or array" type="\InvalidArgumentException">
+          <tag name="throws" line="387" description="if $replace is not a string or array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="364" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="387" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="364" description="" link="\Jstewmc\PhpHelpers\&lt;http://us1.php.net/str_replace&gt;"/>
+          <tag name="see" line="387" description="str_replace() man page" link="http://us1.php.net/str_replace"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$search</name>
@@ -938,10 +943,10 @@ replaced with the given $replace value (case-insensitive).</long-description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="437" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="462" package="Default">
         <name>sortByField</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::sortByField()</full_name>
-        <docblock line="437">
+        <docblock line="462">
           <description>Sorts an array of associative arrays by a field's value</description>
           <long-description>Oftentimes, you have a 0-indexed array of associative arrays. For example,
 a SELECT sql query result or a display-friendly data array. I'll sort a
@@ -949,38 +954,37 @@ a SELECT sql query result or a display-friendly data array. I'll sort a
 
 For example:
 
-  $a = [['foo' =&gt; 'c'], ['foo' =&gt; 'a'], ['foo' =&gt; 'b']];
-  $b = Arr::usort_field($a, 'foo');
-  print_r($b);  // prints [['foo' =&gt; 'a'], ['foo' =&gt; 'b'], ['foo' =&gt; 'c']]</long-description>
-          <tag name="since" line="437" description="0.1.0"/>
-          <tag name="param" line="437" description="&lt;p&gt;the array of associative arrays to sort&lt;/p&gt;" type="array&lt;mixed,array&gt;" variable="$array">
+    $a = [['a' =&gt; 3], ['a' =&gt; 1], ['a' =&gt; 2]];
+    Arr::usort_field($a, 'a'); // returns [['a' =&gt; 1], ['a' =&gt; 2], ['a' =&gt; 3]]</long-description>
+          <tag name="since" line="462" description="0.1.0"/>
+          <tag name="param" line="462" description="&lt;p&gt;the array of associative arrays to sort&lt;/p&gt;" type="array&lt;mixed,array&gt;" variable="$array">
             <type>array&lt;mixed,array&gt;</type>
           </tag>
-          <tag name="param" line="437" description="&lt;p&gt;the associative array's field name (aka, key)&lt;/p&gt;" type="string" variable="$field">
+          <tag name="param" line="462" description="&lt;p&gt;the associative array's field name (aka, key)&lt;/p&gt;" type="string" variable="$field">
             <type>string</type>
           </tag>
-          <tag name="param" line="437" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$sort">
+          <tag name="param" line="462" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
             <type>string</type>
           </tag>
-          <tag name="return" line="437" description="the sorted array" type="array&lt;mixed,array&gt;">
+          <tag name="return" line="462" description="the sorted array" type="array&lt;mixed,array&gt;">
             <type>array&lt;mixed,array&gt;</type>
           </tag>
-          <tag name="throws" line="437" description="if $array, $field, or $sort is null" type="\BadMethodCallException">
+          <tag name="throws" line="462" description="if $array, $field, or $sort is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="437" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="462" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="437" description="if $field is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="462" description="if $field is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="437" description="if $sort is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="462" description="if $sort is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="437" description="if $sort is not the string 'asc[ending]' or&#10;    'desc[ending]'" type="\InvalidArgumentException">
+          <tag name="throws" line="462" description="if $sort is not the string 'asc[ending]' or&#10;   'desc[ending]'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="437" description="if $array is not an array of arrays with&#10;    the key $field" type="\InvalidArgumentException">
+          <tag name="throws" line="462" description="if $array is not an array of arrays with&#10;   the key $field" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1000,41 +1004,41 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="524" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="552" package="Default">
         <name>sortByProperty</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::sortByProperty()</full_name>
-        <docblock line="524">
+        <docblock line="552">
           <description>Sorts an array of objects using a public property's value</description>
           <long-description></long-description>
-          <tag name="since" line="524" description="0.1.0"/>
-          <tag name="param" line="524" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
+          <tag name="since" line="552" description="0.1.0"/>
+          <tag name="param" line="552" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="param" line="524" description="&lt;p&gt;the object's public property name (may be a magic&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;public property via the object's __get() method)&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$property">
+          <tag name="param" line="552" description="&lt;p&gt;the object's public property name (may be a magic&#10;public property via the object's __get() method)&lt;/p&gt;" type="string" variable="$property">
             <type>string</type>
           </tag>
-          <tag name="param" line="524" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$sort">
+          <tag name="param" line="552" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
             <type>string</type>
           </tag>
-          <tag name="return" line="524" description="the sorted array" type="array&lt;mixed,object&gt;">
+          <tag name="return" line="552" description="the sorted array" type="array&lt;mixed,object&gt;">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="throws" line="524" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
+          <tag name="throws" line="552" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="524" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="552" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="524" description="if $property is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="552" description="if $property is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="524" description="if $sort is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="552" description="if $sort is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="524" description="if $sort is not the string 'asc[ending]' or&#10;    'desc[ending]'" type="\InvalidArgumentException">
+          <tag name="throws" line="552" description="if $sort is not the string 'asc[ending]' or&#10;   'desc[ending]'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="524" description="if $array is not an array of objects with&#10;    the public property $property" type="\InvalidArgumentException">
+          <tag name="throws" line="552" description="if $array is not an array of objects with&#10;   the public property $property" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1054,64 +1058,64 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="615" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="646" package="Default">
         <name>sortByMethod</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::sortByMethod()</full_name>
-        <docblock line="615">
+        <docblock line="646">
           <description>Sorts an array of objects using a method's return value</description>
           <long-description></long-description>
-          <tag name="since" line="615" description="0.1.0"/>
-          <tag name="param" line="615" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="">
+          <tag name="since" line="646" description="0.1.0"/>
+          <tag name="param" line="646" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="param" line="615" description="&lt;p&gt;the name of the public method to use (may be a &quot;magic&quot;&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;method via the object's __call() magic method)&lt;/code&gt;&lt;/pre&gt;" type="string" variable="">
+          <tag name="param" line="646" description="&lt;p&gt;the name of the public method to use (may be a&#10;&quot;magic&quot; method via the object's __call() magic method)&lt;/p&gt;" type="string" variable="$method">
             <type>string</type>
           </tag>
-          <tag name="param" line="615" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/code&gt;&lt;/pre&gt;" type="string" variable="">
+          <tag name="param" line="646" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
             <type>string</type>
           </tag>
-          <tag name="return" line="615" description="the sorted array" type="array&lt;mixed,object&gt;">
+          <tag name="return" line="646" description="the sorted array" type="array&lt;mixed,object&gt;">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="throws" line="615" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
+          <tag name="throws" line="646" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="615" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="646" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="615" description="if $property is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="646" description="if $property is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="615" description="if $sort is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="646" description="if $sort is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="615" description="if $sort is not the string 'asc[ending]' or&#10;    'desc[ending]'" type="\InvalidArgumentException">
+          <tag name="throws" line="646" description="if $sort is not the string 'asc[ending]' or&#10;    'desc[ending]'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="615" description="if $array is not an array of objects with&#10;    the public property $property" type="\InvalidArgumentException">
+          <tag name="throws" line="646" description="if $array is not an array of objects with&#10;    the public property $property" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$array</name>
           <default></default>
-          <type/>
+          <type>array&lt;mixed,object&gt;</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$method</name>
           <default></default>
-          <type/>
+          <type>string</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$sort</name>
           <default>'asc'</default>
-          <type/>
+          <type>string</type>
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <file path="Str.php" generated-path="Str.html" hash="9cffc83b6ac2074623e98c2e83949177" package="Default">
+  <file path="Str.php" generated-path="Str.html" hash="be95e4b44c2bba9d9974f7a889226ad4" package="Default">
     <docblock line="0">
       <description>The file for the Str class</description>
       <long-description></long-description>
@@ -1125,15 +1129,15 @@ For example:
       <name>Str</name>
       <full_name>\Jstewmc\PhpHelpers\Str</full_name>
       <docblock line="17">
-        <description>The string (aka, "str") utility class</description>
+        <description>The string (aka, "str") class</description>
         <long-description></long-description>
         <tag name="since" line="17" description="0.1.0"/>
         <tag name="package" line="17" description="Default"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="40" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="45" package="Default">
         <name>endsWith</name>
         <full_name>\Jstewmc\PhpHelpers\Str::endsWith()</full_name>
-        <docblock line="40">
+        <docblock line="45">
           <description>Returns true if $haystack ends with $needle (case-sensitive)</description>
           <long-description>For example:
 
@@ -1142,27 +1146,27 @@ For example:
     Str::endsWith('foobar', 'BAR');  // returns false
     Str::endsWith('foobar', '');     // returns false
     Str::endsWith('', 'foobar');     // returns false</long-description>
-          <tag name="since" line="40" description="0.1.0"/>
-          <tag name="param" line="40" description="&lt;p&gt;the string to search&lt;/p&gt;" type="string" variable="$haystack">
+          <tag name="since" line="45" description="0.1.0"/>
+          <tag name="param" line="45" description="&lt;p&gt;the string to search&lt;/p&gt;" type="string" variable="$haystack">
             <type>string</type>
           </tag>
-          <tag name="param" line="40" description="&lt;p&gt;the substring to search for&lt;/p&gt;" type="string" variable="$needle">
+          <tag name="param" line="45" description="&lt;p&gt;the substring to search for&lt;/p&gt;" type="string" variable="$needle">
             <type>string</type>
           </tag>
-          <tag name="return" line="40" description="true if $haystack ends with $needle" type="boolean">
+          <tag name="return" line="45" description="true if $haystack ends with $needle" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="40" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
+          <tag name="throws" line="45" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="40" description="if $haystack is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="45" description="if $haystack is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="40" description="if $needle is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="45" description="if $needle is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="40" description="(case-insensitive version)" link="\Jstewmc\PhpHelpers\Str::iEndsWith()"/>
-          <tag name="see" line="40" description="(MrHus' answer)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/834303&gt;"/>
+          <tag name="see" line="45" description="case-insensitive version" link="\Jstewmc\PhpHelpers\Str::iEndsWith()"/>
+          <tag name="see" line="45" description="MrHus' answer to &quot;startsWith()&#10;   and endsWith() functions in PHP&quot; on StackOverflow" link="http://stackoverflow.com/a/834355"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$haystack</name>
@@ -1175,34 +1179,34 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="96" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="105" package="Default">
         <name>iEndsWith</name>
         <full_name>\Jstewmc\PhpHelpers\Str::iEndsWith()</full_name>
-        <docblock line="96">
+        <docblock line="105">
           <description>Returns true if $haystack ends with $needle (case-insensitive)</description>
           <long-description>Str::endsWith('foobar', 'bar');  // returns true
     Str::endsWith('foobar', 'baz');  // returns false
     Str::endsWith('foobar', 'BAR');  // returns true</long-description>
-          <tag name="since" line="96" description="0.1.0"/>
-          <tag name="param" line="96" description="&lt;p&gt;str  the string to search&lt;/p&gt;" type="string" variable="$haystack">
+          <tag name="since" line="105" description="0.1.0"/>
+          <tag name="param" line="105" description="&lt;p&gt;str  the string to search&lt;/p&gt;" type="string" variable="$haystack">
             <type>string</type>
           </tag>
-          <tag name="param" line="96" description="&lt;p&gt;str  the substring to search for&lt;/p&gt;" type="string" variable="$needle">
+          <tag name="param" line="105" description="&lt;p&gt;str  the substring to search for&lt;/p&gt;" type="string" variable="$needle">
             <type>string</type>
           </tag>
-          <tag name="return" line="96" description="" type="boolean">
+          <tag name="return" line="105" description="" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="96" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
+          <tag name="throws" line="105" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="96" description="if $haystack is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="105" description="if $haystack is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="96" description="if $needle is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="105" description="if $needle is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="96" description="(case-sensitive version)" link="\Jstewmc\PhpHelpers\Str::iEndsWith()"/>
+          <tag name="see" line="105" description="case-sensitive version" link="\Jstewmc\PhpHelpers\Str::iEndsWith()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$haystack</name>
@@ -1215,12 +1219,14 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="129" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="142" package="Default">
         <name>is_bool</name>
         <full_name>\Jstewmc\PhpHelpers\Str::is_bool()</full_name>
-        <docblock line="129">
+        <docblock line="142">
           <description>Alias for the isBool() method</description>
           <long-description></long-description>
+          <tag name="since" line="142" description="0.1.0"/>
+          <tag name="see" line="142" description="" link="\Jstewmc\PhpHelpers\Str::isBool()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$string</name>
@@ -1228,10 +1234,10 @@ For example:
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="153" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="169" package="Default">
         <name>isBool</name>
         <full_name>\Jstewmc\PhpHelpers\Str::isBool()</full_name>
-        <docblock line="153">
+        <docblock line="169">
           <description>Returns true if $string is a bool string</description>
           <long-description>I'll return true if $string is a bool string like 'true', 'false', 'yes', 'no',
 'on' or 'off'. Keep in mind, I only handle strings. I will return false if you
@@ -1245,10 +1251,11 @@ test an actual bool value (because it's not a string).
 
     is_bool('yes');       // returns false
     Str::isBool('yes');   // returns true</long-description>
-          <tag name="param" line="153" description="&lt;p&gt;the string to test&lt;/p&gt;" type="string" variable="$string">
+          <tag name="since" line="169" description="0.1.0"/>
+          <tag name="param" line="169" description="&lt;p&gt;the string to test&lt;/p&gt;" type="string" variable="$string">
             <type>string</type>
           </tag>
-          <tag name="return" line="153" description="" type="boolean">
+          <tag name="return" line="169" description="" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -1258,10 +1265,10 @@ test an actual bool value (because it's not a string).
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="180" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="199" package="Default">
         <name>iStartsWith</name>
         <full_name>\Jstewmc\PhpHelpers\Str::iStartsWith()</full_name>
-        <docblock line="180">
+        <docblock line="199">
           <description>Returns true if $haystack starts with $needle (case-insensitive)</description>
           <long-description>For example:
 
@@ -1270,39 +1277,42 @@ test an actual bool value (because it's not a string).
     Str::iStartsWith('foobar', 'FOO');  // returns true
     Str::iStartsWith('', 'foobar');     // returns false
     Str::iStartsWith('foobar', '');     // returns false</long-description>
-          <tag name="since" line="180" description="0.1.0"/>
-          <tag name="param" line="180" description="&lt;p&gt;str   the case-insensitive string to search&lt;/p&gt;" type="" variable="$haystack"/>
-          <tag name="param" line="180" description="&lt;p&gt;str   the case-insensitive substring to search for&lt;/p&gt;" type="" variable="$needle"/>
-          <tag name="return" line="180" description="true if $haystack ends with $needle" type="boolean">
+          <tag name="since" line="199" description="0.1.0"/>
+          <tag name="param" line="199" description="&lt;p&gt;the case-insensitive string to search&lt;/p&gt;" type="string" variable="$haystack">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="199" description="&lt;p&gt;the case-insensitive substring to search for&lt;/p&gt;" type="string" variable="$needle">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="199" description="true if $haystack ends with $needle" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="180" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
+          <tag name="throws" line="199" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="180" description="if $haystack is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="199" description="if $haystack is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="180" description="if $needle is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="199" description="if $needle is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="180" description="(MrHus' answer)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/834303&gt;"/>
-          <tag name="see" line="180" description="(case-sensitive version)" link="\Jstewmc\PhpHelpers\Str::startsWith()"/>
+          <tag name="see" line="199" description="case-sensitive version" link="\Jstewmc\PhpHelpers\Str::startsWith()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$haystack</name>
           <default></default>
-          <type/>
+          <type>string</type>
         </argument>
         <argument line="0" by_reference="false">
           <name>$needle</name>
           <default></default>
-          <type/>
+          <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="248" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="269" package="Default">
         <name>password</name>
         <full_name>\Jstewmc\PhpHelpers\Str::password()</full_name>
-        <docblock line="248">
+        <docblock line="269">
           <description>Returns a random string of $length that follows the charset $rules</description>
           <long-description>Oftetimes, standards (like PCI) require passwords with one upper-case letter, one
 lower-case letter, one number, and one symbol. I can do that.
@@ -1321,35 +1331,34 @@ For example:
     echo $a;  // example 'KNVHYUIDGVDS'
     echo $b;  // example 'jNhGFkLekOfV'
     echo $c;  // example 'la9Uh7BH4Bc3'</long-description>
-          <tag name="since" line="248" description="0.1.0"/>
-          <tag name="param" line="248" description="&lt;p&gt;the length of the password (optional; if omitted,&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;defaults to 8)&lt;/code&gt;&lt;/pre&gt;" type="integer" variable="$length">
+          <tag name="since" line="269" description="0.1.0"/>
+          <tag name="param" line="269" description="&lt;p&gt;the length of the password (optional; if omitted,&#10;defaults to 8)&lt;/p&gt;" type="integer" variable="$length">
             <type>integer</type>
           </tag>
-          <tag name="param" line="248" description="&lt;p&gt;an array of character counts indexed by charset name&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;(possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol')&#10;(optional; if omitted, defaults to ['lower' =&gt; 1, 'upper' =&gt; 1, 'number' =&gt; 1,&#10;'symbol' =&gt; 1])&lt;/code&gt;&lt;/pre&gt;" type="array&lt;mixed,integer&gt;" variable="$rules">
+          <tag name="param" line="269" description="&lt;p&gt;an array of character counts indexed by charset name&#10;(possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol')&#10;(optional; if omitted, defaults to ['lower' =&gt; 1, 'upper' =&gt; 1, 'number' =&gt; 1,&#10;'symbol' =&gt; 1])&lt;/p&gt;" type="array&lt;mixed,integer&gt;" variable="$rules">
             <type>array&lt;mixed,integer&gt;</type>
           </tag>
-          <tag name="return" line="248" description="the password" type="string">
+          <tag name="return" line="269" description="the password" type="string">
             <type>string</type>
           </tag>
-          <tag name="throws" line="248" description="if $rules or $length is omitted" type="\BadMethodCallException">
+          <tag name="throws" line="269" description="if $rules or $length is omitted" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="248" description="if $rules is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="269" description="if $rules is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="248" description="if $length is not an integer" type="\InvalidArgumentException">
+          <tag name="throws" line="269" description="if $length is not an integer" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="248" description="if a key in $rules is not a valid charset name" type="\InvalidArgumentException">
+          <tag name="throws" line="269" description="if a key in $rules is not a valid charset name" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="248" description="if a value in $rules is not an integer" type="\InvalidArgumentException">
+          <tag name="throws" line="269" description="if a value in $rules is not an integer" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="248" description="if the number of required characters (as defined&#10;    in the $rules array) exceeds the $length" type="\InvalidArgumentException">
+          <tag name="throws" line="269" description="if the number of required characters (as defined&#10;   in the $rules array) exceeds the $length" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="248" description="" link="\Jstewmc\PhpHelpers\Str::rand()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$length</name>
@@ -1362,36 +1371,36 @@ For example:
           <type>array&lt;mixed,integer&gt;</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="316" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="340" package="Default">
         <name>rand</name>
         <full_name>\Jstewmc\PhpHelpers\Str::rand()</full_name>
-        <docblock line="316">
+        <docblock line="340">
           <description>Returns a random string</description>
           <long-description>For example:
 
     echo Str::rand(8, 'alpha');              // example 'hbdrckso'
     echo Str::rand(8, ['lower', 'number']);  // example 'k987hb54'
     echo Str::rand(8, ['upper', 'symbol']);  // example 'HG!V*X]@'</long-description>
-          <tag name="since" line="316" description="0.1.0"/>
-          <tag name="param" line="316" description="&lt;p&gt;the length of the string to return&lt;/p&gt;" type="integer" variable="$length">
+          <tag name="since" line="340" description="0.1.0"/>
+          <tag name="param" line="340" description="&lt;p&gt;the length of the string to return&lt;/p&gt;" type="integer" variable="$length">
             <type>integer</type>
           </tag>
-          <tag name="param" line="316" description="&lt;p&gt;a string charset name or an array of charset names&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;(possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'&#10;and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to&#10;['alpha', 'number', 'symbol'])&lt;/code&gt;&lt;/pre&gt;" type="mixed" variable="$charsets">
+          <tag name="param" line="340" description="&lt;p&gt;a string charset name or an array of charset names&#10;(possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'&#10;and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to&#10;['alpha', 'number', 'symbol'])&lt;/p&gt;" type="mixed" variable="$charsets">
             <type>mixed</type>
           </tag>
-          <tag name="return" line="316" description="a random string" type="string">
+          <tag name="return" line="340" description="a random string" type="string">
             <type>string</type>
           </tag>
-          <tag name="throws" line="316" description="if $length or $charset is null" type="\BadMethodCallException">
+          <tag name="throws" line="340" description="if $length or $charset is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="316" description="if $length is not an integer" type="\InvalidArgumentException">
+          <tag name="throws" line="340" description="if $length is not an integer" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="316" description="if $charsets is not a string or array" type="\InvalidArgumentException">
+          <tag name="throws" line="340" description="if $charsets is not a string or array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="316" description="if a given $charset is not a valid charset" type="\InvalidArgumentException">
+          <tag name="throws" line="340" description="if a given $charset is not a valid charset" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1406,10 +1415,10 @@ For example:
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="403" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="432" package="Default">
         <name>splitOnFirstAlpha</name>
         <full_name>\Jstewmc\PhpHelpers\Str::splitOnFirstAlpha()</full_name>
-        <docblock line="403">
+        <docblock line="432">
           <description>Splits a string on the first alpha character</description>
           <long-description>I'll return an array with two parts. The first element is the string part before
 the first alpha character, and the second part is everything after and including
@@ -1421,20 +1430,20 @@ For example:
     Str::splitOnFirstAlpha("abc");        // returns ["", "abc"]
     Str::splitOnFirstAlpha("123 abc");    // returns ["123", "abc"]
     Str::splitOnFirstAlpha("1 2 3 abc");  // returns ["1 2 3 4", "abc"]</long-description>
-          <tag name="since" line="403" description="0.1.0"/>
-          <tag name="param" line="403" description="&lt;p&gt;the string to split&lt;/p&gt;" type="string" variable="$string">
+          <tag name="since" line="432" description="0.1.0"/>
+          <tag name="param" line="432" description="&lt;p&gt;the string to split&lt;/p&gt;" type="string" variable="$string">
             <type>string</type>
           </tag>
-          <tag name="return" line="403" description="an array" type="array&lt;mixed,string&gt;">
+          <tag name="return" line="432" description="an array" type="array&lt;mixed,string&gt;">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="throws" line="403" description="if $string is null" type="\BadMethodCallException">
+          <tag name="throws" line="432" description="if $string is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="403" description="if $string is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="432" description="if $string is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="403" description="(FrankieTheKneeMan)&#10;         (using Regex lookahead)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/18990180&gt;"/>
+          <tag name="see" line="432" description="FrankieTheKneeMan's answer to &quot;Split&#10;   string on first occurrence of a letter&quot; on StackOverflow (version using Regex&#10;   lookahead)" link="http://stackoverflow.com/a/18990341"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$string</name>
@@ -1442,10 +1451,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="453" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="487" package="Default">
         <name>startsWith</name>
         <full_name>\Jstewmc\PhpHelpers\Str::startsWith()</full_name>
-        <docblock line="453">
+        <docblock line="487">
           <description>Returns true if $haystack starts with $needle (case-sensitive)</description>
           <long-description>For example:
 
@@ -1454,27 +1463,27 @@ For example:
     Str::startsWith('foobar', 'FOO');  // returns false
     Str::startsWith('foobar', '');     // returns false
     Str::startsWith('', 'foobar');     // returns false</long-description>
-          <tag name="since" line="453" description="0.1.0"/>
-          <tag name="param" line="453" description="&lt;p&gt;the string to search&lt;/p&gt;" type="string" variable="$haystack">
+          <tag name="since" line="487" description="0.1.0"/>
+          <tag name="param" line="487" description="&lt;p&gt;the string to search&lt;/p&gt;" type="string" variable="$haystack">
             <type>string</type>
           </tag>
-          <tag name="param" line="453" description="&lt;p&gt;the substring to search for&lt;/p&gt;" type="string" variable="$needle">
+          <tag name="param" line="487" description="&lt;p&gt;the substring to search for&lt;/p&gt;" type="string" variable="$needle">
             <type>string</type>
           </tag>
-          <tag name="return" line="453" description="true if $haystack starts with $needle" type="boolean">
+          <tag name="return" line="487" description="true if $haystack starts with $needle" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="453" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
+          <tag name="throws" line="487" description="if $haystack or $needle is omitted" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="453" description="if $haystack is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="487" description="if $haystack is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="453" description="if $needle is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="487" description="if $needle is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="453" description="(case-insensitive version)" link="\Jstewmc\PhpHelpers\Str::startsWith()"/>
-          <tag name="see" line="453" description="(MrHus' answer)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/834303&gt;"/>
+          <tag name="see" line="487" description="case-insensitive version" link="\Jstewmc\PhpHelpers\Str::startsWith()"/>
+          <tag name="see" line="487" description="MrHus' answer to &quot;startsWith() and&#10;   endsWith() functions in PHP&quot; on StackOverflow" link="http://stackoverflow.com/a/834355"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$haystack</name>
@@ -1487,10 +1496,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="515" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="553" package="Default">
         <name>strtobytes</name>
         <full_name>\Jstewmc\PhpHelpers\Str::strtobytes()</full_name>
-        <docblock line="515">
+        <docblock line="553">
           <description>Converts a php.ini-like byte notation shorthand to a number of bytes</description>
           <long-description>In the php.ini configuration file, byte values are sote in shorthand
 notation (e.g., "8M"). PHP's native ini_get() function will return the
@@ -1502,24 +1511,24 @@ For example:
     Str::strtobytes('1K');  // returns 1024
     Str::strtobytes('1M');  // returns 1048576
     Str::strtobytes('1G');  // returns 1073741824</long-description>
-          <tag name="since" line="515" description="0.1.0"/>
-          <tag name="param" line="515" description="&lt;p&gt;the string to convert&lt;/p&gt;" type="string" variable="$string">
+          <tag name="since" line="553" description="0.1.0"/>
+          <tag name="param" line="553" description="&lt;p&gt;the string to convert&lt;/p&gt;" type="string" variable="$string">
             <type>string</type>
           </tag>
-          <tag name="return" line="515" description="the number of bytes" type="integer|float">
+          <tag name="return" line="553" description="the number of bytes" type="integer|float">
             <type>integer</type>
             <type>float</type>
           </tag>
-          <tag name="throws" line="515" description="if $string is null" type="\BadMethodCallException">
+          <tag name="throws" line="553" description="if $string is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="515" description="if $string is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="553" description="if $string is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="515" description="if $string does not end in 'k', 'm', or 'g'" type="\InvalidArgumentException">
+          <tag name="throws" line="553" description="if $string does not end in 'k', 'm', or 'g'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="515" description="" link="\Jstewmc\PhpHelpers\&lt;http://www.php.net/manual/en/function.ini-get.php&gt;"/>
+          <tag name="see" line="553" description="ini_get() man page" link="http://www.php.net/manual/en/function.ini-get.php"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$string</name>
@@ -1527,27 +1536,27 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="575" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="616" package="Default">
         <name>strtocamelcase</name>
         <full_name>\Jstewmc\PhpHelpers\Str::strtocamelcase()</full_name>
-        <docblock line="575">
+        <docblock line="616">
           <description>Returns a string in camel case</description>
           <long-description>For example:
 
     Str::strtocamelcase('Hello world');   // returns "helloWorld"
     Str::strtocamelcase('H3LLO WORLD!');  // returns "helloWorld"
     Str::strtocamelcase('hello_world');   // returns "helloWorld"</long-description>
-          <tag name="since" line="575" description="0.1.0"/>
-          <tag name="param" line="575" description="&lt;p&gt;the string to camel-case&lt;/p&gt;" type="string" variable="$string">
+          <tag name="since" line="616" description="0.1.0"/>
+          <tag name="param" line="616" description="&lt;p&gt;the string to camel-case&lt;/p&gt;" type="string" variable="$string">
             <type>string</type>
           </tag>
-          <tag name="return" line="575" description="the camel-cased string" type="string">
+          <tag name="return" line="616" description="the camel-cased string" type="string">
             <type>string</type>
           </tag>
-          <tag name="throws" line="575" description="if $string is empty" type="\BadMethodCallException">
+          <tag name="throws" line="616" description="if $string is empty" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="575" description="if $string is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="616" description="if $string is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1557,46 +1566,46 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="641" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="689" package="Default">
         <name>truncate</name>
         <full_name>\Jstewmc\PhpHelpers\Str::truncate()</full_name>
-        <docblock line="641">
+        <docblock line="689">
           <description>Truncates $string to a preferred length</description>
-          <long-description>Str::truncate('Lorem ipsum inum', 8);               // returns 'Lorem ipsum...'
-    Str::truncate('Lorem ipsum inum', 8, '');           // returns 'Lorem ip...'
-    Str::truncate('Lorem ipsum inum', 8, ' ', ' &gt;&gt;&gt;');  // returns 'Lorem ipsum &gt;&gt;&gt;'</long-description>
-          <tag name="since" line="641" description="0.1.0"/>
-          <tag name="param" line="641" description="&lt;p&gt;the string to truncate&lt;/p&gt;" type="string" variable="$str">
+          <long-description>Str::truncate('Lorem ipsum inum', 8);             // returns 'Lorem ipsum...'
+    Str::truncate('Lorem ipsum inum', 8, '');         // returns 'Lorem ip...'
+    Str::truncate('Lorem ipsum inum', 8, ' ', ' &gt;');  // returns 'Lorem ipsum &gt;'</long-description>
+          <tag name="since" line="689" description="0.1.0"/>
+          <tag name="param" line="689" description="&lt;p&gt;the string to truncate&lt;/p&gt;" type="string" variable="$str">
             <type>string</type>
           </tag>
-          <tag name="param" line="641" description="&lt;p&gt;the string's max length&lt;/p&gt;" type="integer" variable="$limit">
+          <tag name="param" line="689" description="&lt;p&gt;the string's max length&lt;/p&gt;" type="integer" variable="$limit">
             <type>integer</type>
           </tag>
-          <tag name="param" line="641" description="&lt;p&gt;the break character (to truncate at exact length set to&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;empty string or null) (if the break character does not exist in the string,&#10;the string will be truncated at limit) (optional; if omitted, defaults to ' ')&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$break">
+          <tag name="param" line="689" description="&lt;p&gt;the break character (to truncate at exact length set to&#10;empty string or null) (if the break character does not exist in the string,&#10;the string will be truncated at limit) (optional; if omitted, defaults to ' ')&lt;/p&gt;" type="string" variable="$break">
             <type>string</type>
           </tag>
-          <tag name="param" line="641" description="&lt;p&gt;the padding to add to end of string (optional; if&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;omitted, defaults to '...')&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$pad">
+          <tag name="param" line="689" description="&lt;p&gt;the padding to add to end of string (optional; if&#10;omitted, defaults to '...')&lt;/p&gt;" type="string" variable="$pad">
             <type>string</type>
           </tag>
-          <tag name="return" line="641" description="the truncated string" type="string">
+          <tag name="return" line="689" description="the truncated string" type="string">
             <type>string</type>
           </tag>
-          <tag name="throws" line="641" description="if $string or $limit is omitted" type="\BadMethodCallException">
+          <tag name="throws" line="689" description="if $string or $limit is omitted" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="641" description="if $string is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="689" description="if $string is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="641" description="if $limit is not an integer (or integer string)" type="\InvalidArgumentException">
+          <tag name="throws" line="689" description="if $limit is not an integer (or integer string)" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="641" description="if $break is not a string or null" type="\InvalidArgumentException">
+          <tag name="throws" line="689" description="if $break is not a string or null" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="641" description="if $pad is not a string or null" type="\InvalidArgumentException">
+          <tag name="throws" line="689" description="if $pad is not a string or null" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="641" description="" link="\Jstewmc\PhpHelpers\&lt;http://blog.justin.kelly.org.au/php-truncate/&gt;"/>
+          <tag name="see" line="689" description="The original function&#10;   from &quot;Best PHP Truncate Function&quot; posted 6/27/12 on &quot;Justin Kelly - various&#10;   ramblings&quot; (edited to find closest break *before* limit and truncate string&#10;   exactly if break does not exist)" link="http://blog.justin.kelly.org.au/php-truncate/"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$string</name>
@@ -1620,9 +1629,9 @@ For example:
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>eJztXGt3E0fS/mzO4T80is9KAlmyjQGDY5b7JUDMC4TsruP1aY1a0sSjGe3MCONs8t+3qvo+F12MgXDecJK2NNNdXd1VXfVUd7W+//t0PL18qXf16uVL7Cp7NxZsGEZQJCnL4cvbPGVBxLMMX1OVe3yWj+Et/vuBByfsYcTP8iRm30O9s1+zzXujCQ+jbpBM7soGQTI9S8PROGdse3Nrx2sla0RhIOJMIMlXz9+xl+rr9+M8n97p9ZIpfE1maSC6STrqqdpZD+pSFz0oLl+K+URkUx4I9kOWi9NJ8Mvr8fSZiKYizfaohjvKLE/DeMRa/IR3WAO+NdrFgWZhDMTYZneru6m6oRo4KZcv/ffypTUiuAZ134h8lsYZy9OZYOGQrY/5WZbjOEU8yNhpmI/ZeizEAKa2FfBMbGQwhDAPP4g2UZBknsC8io98Mo3EHecx/oM+79xBYj8DrVZzmCR9njY7rIl/2nuM9XosdbhYquVvxZZDHmXLNH1w/815m1I7tkJTbKSaz20qy4LUzBzem/KUT5iWuyMh0nP1OE9YJngajFlNKyVDplrN+qWGsHLcbiWjjPWTJGLL6IfbOB+nyWnG2C8P+OCVgGU3eMij6PHHQEzzEJYc/POIgfpoDsOMJZMwz8WgSOt5/IFH4eB+OppNRJw71DxaQCBOcsbV2FejYpko0dBiEjCLv5RX6i8k/fCxFn+bMVovYWxWDPsA9UK0HZaSshTEegLvh1Fyiiaox3u713eu37gBliV9NsuajMfZqUhRYLDqeZrrboz+8XjAhO1+OIsDHFjGwpi9fva6wWCQb7GfA9UPtQTjsDad9cE2wWB5Dn90Q0vMTG5HzxB1i5ZkbV3XYvtSqffwKf4P2u4JBvnTE8xTwaZgkkjKa1DN9sGu7O+zeBZF7G9/M/X1szajTku0QWCOsCTFMDuWTyzttm6vCVh5e82L7dWgTeuq/klhYNIm0/zMo0XE4EEkYocTdpdtWnplfurJefS0OHxqnlTkYneFuFFo3Wb7ML/q254m8gcTIM4aolbUVFV9KDapbaEaFOrTImWxOK1fpi1N+vj41eN3zw4eHR93G+B7piLIM2nbRJCAppEBFLlIO/RUjq2Dy6cvjLAbilpb8SXZ8rlagalanoZhmuVFlqw8KplSPBFLHkcOQ9XmVbFTzc1pop2CYSeTPcoOoT/8o8y/ESC+k68+ATs4ttBFD98ETLCdnttfw6PzOm3bdDXP/ZdTrnTK1S55jiu0JJb1heitlnaFI2Al/jY9oedpRDR0FhS0yRPAGcJxPu0Ocx9rcntyni7MI4CktcUzZg5tX+fLO4JKVpIYWPiSDsDhotIFWG5IOeUsFfyClFGNZ1hzXcP9KOSZicXD7AGYIuBgQqx6C7fGiC5Y0IqgWbWsbtlmx2gFW+tyvNQA55DpUUiNVfR0LRwRW+Ts1AzSeqEYybVssnzehKWrOlrUjkXhiWBNrEZxIzoq/HAmMvwTJ1BKqs0kbqJtbibDYbPLXggxRYQ/CeNBhz0HzYrOQJYxLmZJOuvC49PQ8kLEkZmzZCZp5iIjtMmDfMYjyRdoOLDc6ouAz7B63vTtb7tbcOF6snEMKuBli/x2qU2lsy73ISdK97LAwyvx2jZVPFX0gXNvBrJkH6ZNfR+e0rN50EF/8DEDCmuuv5/nx3xN145LkXDsvKrAyAKA+wnjY56m/Mwz6qpSh8lX87UX9bYjtbbdXglOynB3BUC5aDsqfGsD6PlQs1LU1a3h0xJAtabxk4ODVRsvu720qOu5rc+NdVFlS/sfReS6EPZWU/lr8+qTcDKb41m9naW5WJnNMTKOos2Fy7a3/0+A2Ru1BCDOtK8Emv/CzN8WZrZyrkLN2gNylgK9ZKJ7TEDbIhGPQGHyMc/B2EUR2gOyjmOeZiJn6+ksEpmz1g+GucjDichQd4AcT8HktQhlvn74vA22/j+zUO3CniaptocwyWw2BYOwgYufRSKn/Sp8LOmSDpZfxrNJHz/jROD37GzSTyJEngHgykFCnLuIcY6PlmOBxXHYJFaabP8u29o+2nOqcHhNFkvz39ra7qiWEsBXEyT2ieBN8H2W/E2Pev+Tqe941PGbnCH51essWKUzEYwTGL2ECmr+WPPFj++f/fOn54+evn/0tlms3C9U/vXH8dMnJy/FycHwfalyUKgc8ds/jW89eLbzILjeXAEShHFOg1N6S7qqPoM64zc9WtZKaAHyaA/tqvKfHXuuMRBDPotwESZst13q5vDIiIBRDINYFDvBpQEBDViOIJnFOZ6DDMRHMWD9M7Ns8OzVdNSaJlkW9iPhvc7I4SjRGqlagcInHk3HvCmVvyk1v+kczNQM0B2Xqzpbnups+aqz5UyM7oqeH7kA2AAgN4LQE34OrCOnF4GOkuF5gY4kZI83SFirkbAcKBqgA2Ik0pWocHYizjBsLnDEqI0nf7YiYRk3l0mfj1E6uyDxo0oroz2wug02nWeoSmGsZYEyi6mh4oAmGX1ZAB5Kug01iwuhnDFJetr32W7HWjwV9y2vu57Kth0oaKzBPkQkRRiohoEYULFRxoCyjgcAVd0aAGik46ihQW9yYMoGF5Gf1UBPqLY1jFmkYaAnrY3cwGOo2rqmnxXPEhcLGvp7+e4xVRyIjN4aKerOie/jbDbRvLPv95lhwz1tjJJkylAHZ6OxZx6aGdNYgv5BaCU4hFh6ikHd1vX6ACmuS6a9w0cjzK4GuAhoWusaJOj2GjnaA0Q1GTw+c0eO0p6EYJvjERjZwQD5negWJH0lkg2mTzY1C+WT0Trm6klUs5mNZ8Mh+IqCaS10so/kjlVdh6Y5CC2cmK4C3uvPG+crkkTOIEusDCoMdr3RNUTXGtCER7TTZJy2xvprlvELjT0KJ7iFA1zJg4H8ZtEtE4Gw5VliKxzg0lpwOKKFp/hhn+/o1g0+ilgHF6S1lNyTXE08otVxznZcIRhZDsETliRMS2tr12Akuy9sdlUN1Bz3B2lwkiVFTOrRObRATHmWo3YBsp7c3r017t/YWUDH4Djlkkp0nj298v7qP47ufQrsrQK+dvNKisGnMAkRohoTCQBBh7g+KoHJr1IAQqwViJZQibSkNXBWCghcCMDlST+MOQEAIK2qGKKEcmX7tguDffS7BOg1FA8NgnZAtRHLPFxbr53LQlstm9R6NURsgBe+Aiy1Ui9s4pG4V8bKXGIkf2RlmHt5waGB6x87Do8G/9VLr22OGNaRSiW605AO4Z2hXQZ4BTRHCM9Ur8F4tUjtPEBN0XRFVCWetdIWoG7RZr//ziy4NI9LaWVVXahDlo1wCHFL7kC+qo4cwOOKq6UiAfPMceaWAxlMSFxTCIg1KFyn5c8cDaDzEywCLAZYyKMgLEZYjLEIsfgVixMsInmqSf+aE9IgOiPCYorFf7CQCoVFThYLiw9YnGLxkQ6asMB0H80g2SyHwfuU1oPFQyweYfGYTl6weIrFMyyeY/EDFi+weNnsGP5e4YMfsTjA4jUW/4fFGyzeYvEOi5+weI/Fz1j8A4t/YvEvhz+F0Ax/m1hhC4ttLK5jsYPFDSxuYnELi10sbjuE5EKzhK5ghXtYfIfFVSxaWLSx2MDiGItrWOxjcYjFkSZp9SAA3J8Lz8v4+qBZoC+GA8OaDRzsqraxg6OiUovhWWvdvPUgu9fBMSzZkVBEwRxVBBMEuchomEAF7IOGIEtTJiWHv6RLRfIOlZUwezW28zbcC1vb9X7fRe1rjSIKYNkMZh+mvNbZuxYbMwqU0TZgf60c+fxRUBI3CnKVwkQ89LCkW9MwODHmWblwtzmmjrTWQ5DM5h6Dv9/rynvs2rX10LVv5FcglpM9HUpJSpcl+z76KkmnWueLBxVGRo7wGgsR3VdLVF0Qen2eSIfn0C8HRvAkgatBdKoDGjecQalXhDJvp1GYu846dsZKK8FGxw6CdNN3jGDokERFYnnWVRePkJCIBLKJPttB+VgNZg5toaRa27ME0L4yETXxQaRn+Rip8SGaCKwHYUg0G5gj4lqqSx65yMNfnKeD+AnSuY9kWo2t7euNylyeQ3p1tJgC7wd1FBodRq+XoAKdMUupxMcKhNg2s6R8QvRqp0BsubhvQcoOMVIfx+ARhrcZvloIY1PKVg9bnLYLcgbm3FTZ2r19e/P6zhZjT2AJnoQCVsWLWIhXPG5m7sWVt2YekKJdjlJ1kyCYpanAiU6GtIGB54vleyuspTIR2Ay3BNkbMEgfbTQZJckJHws+sPmBNYFNWT+KiVHr01AEoghunODFnz81/zJgUa9qQhMnD5CS7qKzuWkIiq9CMIJaBi8mEzFghmDczOW1EVlT97RPNb0kx7Uyp00HHxUGfzzhU8zxChGoT1MxOqb5azV7rb/vH/KN3+5v/Ouo3UOIv65jlu361N7qqf0iaQRfNncAO3Q8qt9r3cYczc0eKzuz86TJnStJLvuUHLnqxsulyFW3rciQW77jJTPkstXT61Z0D/Mvb9Y0uvC7mxWacg63880mwK2S/fbZr28imDNqeI7rm3MOb7PzpOGtdofzG87Dq7nC6XjO81/cdIksdV3TE8EVHEccTKYVYuuwAqk5+xJ1gvXi+eKNzfo2f93Z/DPd2byA5EMXVjxMYjArFCVPx9NuGIcblCvYP8sFqrQ8DcrGSYpHxgMcPneOmbGam334XIbYihQD6Q7D0SyVVPCHOjqSsnMslSU5pc2YPiQl03dLdEddiM12XzXaXbSIeB+Fk2GGLo5HInespnffBTiRtADuBLmeyixP8FwcetRc0jzC6g0pV4y2ORgenwOToDn6Fo0kZUlXVV0JZqV5QtPXam69KEKcrc3tnXkNXpUb7OzeuHVzXpun5Ta3rt/a2dpVXV1IxBtIfapCJTBfv4P/4jkr5CoUlegrx7+r0hgkQll/2p9RRxwTtbc68o+R/aD69PS0i1oYi7w34TGEgz0R97Qy02oE/cYqzFF2qAkGYSQWhrlW+qX4FsZV5/Tt1Phe/nPHtTA4R5lglUe4Feju0K0pxmti2nVqsO/lzEP1Q+054XObbWDKpBny2loGaJgOK7CxYke5CEp2BgHeMU4SO7+6T6vTeFTgPAafkAp+Umo7+YS2JwvaUiv9Tf1Rp+ym4cVkFRU8Ii7zGlVvGE6+tJv+kn7ZC+znbEvDyOYm2OglE0PIMRERBR6rehBqiQ1bTQhpooSdJmk0KF1FbIzx5c/4rrGIzPWXLw/YzwdvXj66UvQYK5ChmsfLcnMxvgd73yjMYmVKtK05qAgWV3Y/GvZfjP9ZZNHtJLtW/U9hwssjcyIiNx4qtsXGaNIdiaoXc7cxbeNUTCP8KbVZPACQHADEy1ircdyQgfb4bDqGcB6ebMAT2v+gX17DJ6zRLnWFuZuKYkudr6sTdMx8Ynans10wwJRgay7K2BOcqh6K12lL5/B8GuagQr8BITxPdxJNLZ1ZQJd45szLJMG7kzTaueOkYTVLQ6scmDXAlUxFAb1cxBRm+8ZJvEFHVyolx8lXLZGlvWfNbuO7w3/LvefNjdtH175rVDH/ZYNEvfn9tVyR3WP2reEcFyWrV3ipdynYHA7Q0SxoivxABEOReinoJb+Uq6at5ktYhhMWTrMZlCBgkM9uIRPU8Qpu9W6321yJrLPZW0f2PDRpTbC7RT/oVb+7SqKo68LMzq6ZYM2P30Yll7L1KJyEOfNB8oR/dGVR7ohwomwkP9r7US2nSzx8l3Gyys7AHAQ3WdP9RTKEe9KBtNRpVJG0DYo+hrBS1MUUvUIMUWf4FLn3hWFoQOkAOOKlkkpBVO2631Oa8oHuDD4OtDYPBhrKQhCqKvs9GT6ru0SNWnj9yo7nU5EG3cMiFTjvdvtFRL2GAz/fFWYuNZ8tLlmBsFShigTY1aN7FPg8Qnqt+tF4P0pG3V9nWR7G3RNAqGf4661dPutB/L2hxdhjlPuRpOEoBDUx2MyoyjBNJqzxAH9Z5fWz18aQsieqYgOz6VAdbva2b/W2tnF/v/ED9cpeYK8Qon7gaZjMMqt/oM8ACONR1mAtMQixOSjgMATdDaIkw87k9F2VOSdX5cqRqSWaA1fauKBxtUN3MGGyrb9mF56iG+NpTn2lbnS0KPcVVEJp7NvVIjcg7LKo/gkAJTV5+UuOpXTuUICz8vIX1f2sCNesAL0TavGtl1ssbZeXWkyPSmcRRvNdZZU/vKMSC8q8URudWYzV9KPyGYVaDfOIF6lDE582PnBPLkoTGiUxrny6WCTHaepWAH92l+n5sTRlEKCU1fEMXO4L+UR9DdK/dak1cVMroz0mMXfMSr4qNBcpZYqVWgCZ9loVFtwZmZKep4T2UbOJD6AdLPqWZVmvEW9Oa8bkNNqkY6BaWs5Y/ygPG9VADqzD5C87FQaCFbxh6AfNZi2bmIAJ1Sp7Lh1M+eNzwGeh5QVm2rq/5YC4PZmlgG0cyAzMl1I1lauYmw97Uff3CgxCtJh6B2Ik2oUcfqbreQXmysd1yuCf54Lep+f2/AkCMYcbk7xauq/HHF/mACaFs2kK54RoZsmoKA3+Y/8DhViF8w==</source>
   </file>
-  <file path="Bool.php" generated-path="Bool.html" hash="e86af869f6207a2b572b40296664c126" package="Default">
+  <file path="Bool.php" generated-path="Bool.html" hash="9d30569dd6fef2cabf8774c0d32ebd32" package="Default">
     <docblock line="0">
       <description>The file for the Bool class</description>
       <long-description></long-description>
@@ -1636,15 +1645,15 @@ For example:
       <name>Bool</name>
       <full_name>\Jstewmc\PhpHelpers\Bool</full_name>
       <docblock line="17">
-        <description>A class of boolean (aka, "bool") utility methods</description>
+        <description>The boolean (aka, "bool") class</description>
         <long-description></long-description>
         <tag name="since" line="17" description="0.1.0"/>
         <tag name="package" line="17" description="Default"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="41" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="44" package="Default">
         <name>booltostr</name>
         <full_name>\Jstewmc\PhpHelpers\Bool::booltostr()</full_name>
-        <docblock line="41">
+        <docblock line="44">
           <description>Returns $bool value in the string $format</description>
           <long-description>I'll return a bool value as a true-false, yes-no, or on-off string.
 
@@ -1653,26 +1662,26 @@ For example:
     Bool::booltostr(true);             // returns (string) 'true'
     Bool::booltostr(true, 'yes-no');   // returns (string) 'true'
     Bool::booltostr(false, 'on-off');  // returns (string) 'off'</long-description>
-          <tag name="since" line="41" description="0.1.0"/>
-          <tag name="param" line="41" description="&lt;p&gt;the boolean value to convert&lt;/p&gt;" type="boolean" variable="$bool">
+          <tag name="since" line="44" description="0.1.0"/>
+          <tag name="param" line="44" description="&lt;p&gt;the boolean value to convert&lt;/p&gt;" type="boolean" variable="$bool">
             <type>boolean</type>
           </tag>
-          <tag name="param" line="41" description="&lt;p&gt;the string format to convert to (possible values are&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;'t[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', and 'on[/-]off')&#10;(case-insensitive) (optional; if omitted, defaults to 'true-false')&lt;/code&gt;&lt;/pre&gt;" type="string" variable="$format">
+          <tag name="param" line="44" description="&lt;p&gt;the string format to convert to (possible values are&#10;'t[/-]f', true[/-]false', 'y[/-]n', 'yes[/-]no', 'o[/-o]', and 'on[/-]off')&#10;(case-insensitive) (optional; if omitted, defaults to 'true-false')&lt;/p&gt;" type="string" variable="$format">
             <type>string</type>
           </tag>
-          <tag name="return" line="41" description="the string value" type="string">
+          <tag name="return" line="44" description="the string value" type="string">
             <type>string</type>
           </tag>
-          <tag name="throws" line="41" description="if $bool is null" type="\BadMethodCallException">
+          <tag name="throws" line="44" description="if $bool is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="41" description="if $bool is not a (bool) value" type="\InvalidArgumentException">
+          <tag name="throws" line="44" description="if $bool is not a (bool) value" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="41" description="if $format is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="44" description="if $format is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="41" description="if $format is not a valid format" type="\InvalidArgumentException">
+          <tag name="throws" line="44" description="if $format is not a valid format" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1687,10 +1696,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="152" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="158" package="Default">
         <name>val</name>
         <full_name>\Jstewmc\PhpHelpers\Bool::val()</full_name>
-        <docblock line="152">
+        <docblock line="158">
           <description>Returns the boolean value of $var</description>
           <long-description>PHP's native boolval() function is not available before PHP 5.5, and it does not
 support the strings 'yes', 'no', 'on', or 'off'.
@@ -1728,14 +1737,14 @@ For example...
     Bool::val([]);              // returns (bool) false
     Bool::val([1, 2]);          // returns (bool) true
     Bool::val(new StdClass());  // returns (bool) true</long-description>
-          <tag name="since" line="152" description="0.1.0"/>
-          <tag name="param" line="152" description="&lt;p&gt;the variable to test&lt;/p&gt;" type="mixed" variable="$var">
+          <tag name="since" line="158" description="0.1.0"/>
+          <tag name="param" line="158" description="&lt;p&gt;the variable to test&lt;/p&gt;" type="mixed" variable="$var">
             <type>mixed</type>
           </tag>
-          <tag name="return" line="152" description="the variable's bool value" type="boolean">
+          <tag name="return" line="158" description="the bool value" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="see" line="152" description="" link="\Jstewmc\PhpHelpers\&lt;http://www.php.net/manual/en/function.boolval.php&gt;"/>
+          <tag name="see" line="158" description="boolval() man page" link="http://www.php.net/manual/en/function.boolval.php"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$var</name>
@@ -1744,9 +1753,9 @@ For example...
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
-  <file path="Dir.php" generated-path="Dir.html" hash="fb48dcb712ce43f0d404c05583e59827" package="Default">
+  <file path="Dir.php" generated-path="Dir.html" hash="4fae562bae94f74a09413785959662d5" package="Default">
     <docblock line="0">
       <description>The file for the directory (aka, "dir") class</description>
       <long-description></long-description>
@@ -1765,29 +1774,29 @@ For example...
         <tag name="since" line="17" description="0.1.0"/>
         <tag name="package" line="17" description="Default"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="30" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="33" package="Default">
         <name>abs2rel</name>
         <full_name>\Jstewmc\PhpHelpers\Dir::abs2rel()</full_name>
-        <docblock line="30">
+        <docblock line="33">
           <description>Returns a relative path (aka, "rel") from an absolute path (aka, "abs")</description>
           <long-description></long-description>
-          <tag name="since" line="30" description="0.1.0"/>
-          <tag name="param" line="30" description="&lt;p&gt;the abosolute path (e.g., 'C:\path\to\folder')&lt;/p&gt;" type="string" variable="$absolute">
+          <tag name="since" line="33" description="0.1.0"/>
+          <tag name="param" line="33" description="&lt;p&gt;the abosolute path (e.g., 'C:\path\to\folder')&lt;/p&gt;" type="string" variable="$absolute">
             <type>string</type>
           </tag>
-          <tag name="param" line="30" description="&lt;p&gt;the relative base (e.g., 'C:\path\to')&lt;/p&gt;" type="string" variable="$base">
+          <tag name="param" line="33" description="&lt;p&gt;the relative base (e.g., 'C:\path\to')&lt;/p&gt;" type="string" variable="$base">
             <type>string</type>
           </tag>
-          <tag name="return" line="30" description="the relative path (e.g., 'folder') or false on failure" type="string">
+          <tag name="return" line="33" description="the relative path (e.g., 'folder') or false on failure" type="string">
             <type>string</type>
           </tag>
-          <tag name="throws" line="30" description="if $absolute or $base is null" type="\BadMethodCallException">
+          <tag name="throws" line="33" description="if $absolute or $base is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="30" description="if $absolute is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="33" description="if $absolute is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="30" description="if $base is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="33" description="if $base is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1802,10 +1811,10 @@ For example...
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="108" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="115" package="Default">
         <name>copy</name>
         <full_name>\Jstewmc\PhpHelpers\Dir::copy()</full_name>
-        <docblock line="108">
+        <docblock line="115">
           <description>Copies files or directory to the filesystem</description>
           <long-description>PHP's native copy() function only copies files, not directories. I will
 recursively copy a directory and all of its files and sub-directories.
@@ -1819,44 +1828,44 @@ to create the destination directory. I will recursively create destination
 directories as needed.
 
 To copy a file, use PHP's native copy() method.</long-description>
-          <tag name="since" line="108" description="0.1.0"/>
-          <tag name="param" line="108" description="&lt;p&gt;the source directory path&lt;/p&gt;" type="string" variable="$source">
+          <tag name="since" line="115" description="0.1.0"/>
+          <tag name="param" line="115" description="&lt;p&gt;the source directory path&lt;/p&gt;" type="string" variable="$source">
             <type>string</type>
           </tag>
-          <tag name="param" line="108" description="&lt;p&gt;the destination directory path&lt;/p&gt;" type="string" variable="$destination">
+          <tag name="param" line="115" description="&lt;p&gt;the destination directory path&lt;/p&gt;" type="string" variable="$destination">
             <type>string</type>
           </tag>
-          <tag name="param" line="108" description="&lt;p&gt;the mode of the destination directory as an&lt;/p&gt;&#10;&lt;pre&gt;&lt;code&gt;octal number with a leading zero (ignored on Windows) (optional; if&#10;omitted, defaults to 0777, the widest possible access) (set to false to&#10;throw an exception if the destination directory does not exist)&lt;/code&gt;&lt;/pre&gt;" type="integer" variable="$mode">
+          <tag name="param" line="115" description="&lt;p&gt;the mode of the destination directory as an&#10;octal number with a leading zero (ignored on Windows) (optional; if&#10;omitted, defaults to 0777, the widest possible access) (set to false to&#10;throw an exception if the destination directory does not exist)&lt;/p&gt;" type="integer" variable="$mode">
             <type>integer</type>
           </tag>
-          <tag name="return" line="108" description="true if successful" type="boolean">
+          <tag name="return" line="115" description="true if successful" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="108" description="if $source, $destination, or $mode is null" type="\BadMethodCallException">
+          <tag name="throws" line="115" description="if $source, $destination, or $mode is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="108" description="if $source is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $source is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="108" description="if $destination is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $destination is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="108" description="if $mode is not an integer or false" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $mode is not an integer or false" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="108" description="if $source does not exist or is not a directory" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $source does not exist or is not a directory" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="108" description="if $source is not readable" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $source is not readable" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="108" description="if $destination does not exist or it could not&#10;    be created successfully" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $destination does not exist or it could not&#10;   be created successfully" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="108" description="if $destination is not writeable" type="\InvalidArgumentException">
+          <tag name="throws" line="115" description="if $destination is not writeable" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="108" description="(Felix Kling, 1/12/10)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/2050859&gt;"/>
+          <tag name="see" line="115" description="Felix King's answer to &quot;Copy entire&#10;   contents of a directory to another using php&quot; on StackOverflow" link="http://stackoverflow.com/a/2050909"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$source</name>
@@ -1874,14 +1883,14 @@ To copy a file, use PHP's native copy() method.</long-description>
           <type>integer</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Jstewmc\PhpHelpers" line="221" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Jstewmc\PhpHelpers" line="229" package="Default">
         <name>cp</name>
         <full_name>\Jstewmc\PhpHelpers\Dir::cp()</full_name>
-        <docblock line="221">
+        <docblock line="229">
           <description>Alias for Dir::copy() method</description>
           <long-description></long-description>
-          <tag name="since" line="221" description="0.1.0"/>
-          <tag name="see" line="221" description="" link="\Jstewmc\PhpHelpers\Dir::copy()"/>
+          <tag name="since" line="229" description="0.1.0"/>
+          <tag name="see" line="229" description="" link="\Jstewmc\PhpHelpers\Dir::copy()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$source</name>
@@ -1899,44 +1908,44 @@ To copy a file, use PHP's native copy() method.</long-description>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="247" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="260" package="Default">
         <name>remove</name>
         <full_name>\Jstewmc\PhpHelpers\Dir::remove()</full_name>
-        <docblock line="247">
+        <docblock line="260">
           <description>Deletes a non-empty directory and its sub-directories</description>
           <long-description>PHP's native rmdir() function requires the directory to be empty. I'll
 recursively delete a directory's files and sub-directories. BE CAREFUL!
 Use the $container argument to be safe.</long-description>
-          <tag name="since" line="247" description="0.1.0"/>
-          <tag name="param" line="247" description="&lt;p&gt;the path of the directory to remove&lt;/p&gt;" type="string" variable="$directory">
+          <tag name="since" line="260" description="0.1.0"/>
+          <tag name="param" line="260" description="&lt;p&gt;the path of the directory to remove&lt;/p&gt;" type="string" variable="$directory">
             <type>string</type>
           </tag>
-          <tag name="param" line="247" description="&lt;p&gt;an ancestor directory of $directory&lt;/p&gt;" type="string" variable="$container">
+          <tag name="param" line="260" description="&lt;p&gt;an ancestor directory of $directory&lt;/p&gt;" type="string" variable="$container">
             <type>string</type>
           </tag>
-          <tag name="return" line="247" description="true if success" type="boolean">
+          <tag name="return" line="260" description="true if success" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="247" description="if $directory or $container is null" type="\BadMethodCallException">
+          <tag name="throws" line="260" description="if $directory or $container is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="247" description="if $directory is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="260" description="if $directory is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="247" description="if $container is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="260" description="if $container is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="247" description="if $directory is not a valid directory path" type="\InvalidArgumentException">
+          <tag name="throws" line="260" description="if $directory is not a valid directory path" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="247" description="if $directory is not writeable" type="\InvalidArgumentException">
+          <tag name="throws" line="260" description="if $directory is not writeable" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="247" description="if $directory is not contained in $container" type="\InvalidArgumentException">
+          <tag name="throws" line="260" description="if $directory is not contained in $container" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="247" description="(donald123's answer)" link="\Jstewmc\PhpHelpers\&lt;http://stackoverflow.com/questions/11613840&gt;"/>
-          <tag name="see" line="247" description="" link="\Jstewmc\PhpHelpers\&lt;http://us1.php.net/rmdir&gt;"/>
+          <tag name="see" line="260" description="donald123's answer to &quot;Remove all&#10;   files, folders, and their subfolders with php&quot; on StackOverflow" link="http://stackoverflow.com/a/11614201"/>
+          <tag name="see" line="260" description="rmdir() man page" link="http://us1.php.net/rmdir"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$directory</name>
@@ -1949,14 +1958,14 @@ Use the $container argument to be safe.</long-description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Jstewmc\PhpHelpers" line="339" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Jstewmc\PhpHelpers" line="353" package="Default">
         <name>rm</name>
         <full_name>\Jstewmc\PhpHelpers\Dir::rm()</full_name>
-        <docblock line="339">
+        <docblock line="353">
           <description>Alias for Dir::remove() method</description>
           <long-description></long-description>
-          <tag name="since" line="339" description="0.1.0"/>
-          <tag name="see" line="339" description="" link="\Jstewmc\PhpHelpers\Dir::remove()"/>
+          <tag name="since" line="353" description="0.1.0"/>
+          <tag name="see" line="353" description="" link="\Jstewmc\PhpHelpers\Dir::remove()"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$directory</name>
@@ -1970,7 +1979,7 @@ Use the $container argument to be safe.</long-description>
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>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</source>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="global" full_name="global"/>
