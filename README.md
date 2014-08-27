@@ -214,7 +214,7 @@ Dir::remove($directory);  // returns true
 
 ## Tests
 
-This is my first attempt at a full suite of unit tests. So, let me know if I missed anything, or if I tests are a botch. I can say that I added tests for every method in the library.
+This is my first attempt at a full suite of unit tests. So, let me know if I missed anything, or if I tests are a botch. At the very least, I added tests for every method in the library.
 
 ## Contributing
 
