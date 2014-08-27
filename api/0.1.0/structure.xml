@@ -615,7 +615,7 @@ For example:
     </class>
     <source>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</source>
   </file>
-  <file path="Arr.php" generated-path="Arr.html" hash="0aa87a956c03cec638a6a9b44b4ef064" package="Default">
+  <file path="Arr.php" generated-path="Arr.html" hash="d1e25834cdb58f637307943aa9cbbeb1" package="Default">
     <docblock line="0">
       <description>The file for the Arr class</description>
       <long-description></long-description>
@@ -634,41 +634,43 @@ For example:
         <tag name="since" line="17" description="0.1.0"/>
         <tag name="package" line="17" description="Default"/>
       </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="47" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="49" package="Default">
         <name>filterBykey</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::filterBykey()</full_name>
-        <docblock line="47">
+        <docblock line="49">
           <description>Filters an array by key</description>
-          <long-description>I'll iterate over each key in $array passing it to the $callback function.
+          <long-description>&lt;p&gt;I'll iterate over each key in $array passing it to the $callback function.
 If the callback function returns true, the current value from $array is added
-to the result array. Array keys are preserved.
+to the result array. Array keys are preserved.&lt;/p&gt;
 
-For example:
+&lt;p&gt;For example:&lt;/p&gt;
 
+```
     $a = ['foo', 'bar', 'baz'];
     Arr::filterByKey($a, function ($k) {
         return $k &gt; 1;
-    });  // returns ['baz']</long-description>
-          <tag name="since" line="47" description="0.1.0"/>
-          <tag name="param" line="47" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
+    });  // returns ['baz']
+```</long-description>
+          <tag name="since" line="49" description="0.1.0"/>
+          <tag name="param" line="49" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="param" line="47" description="&lt;p&gt;the function to call for each key in $array&lt;/p&gt;" type="callback" variable="$callback">
+          <tag name="param" line="49" description="&lt;p&gt;the function to call for each key in $array&lt;/p&gt;" type="callback" variable="$callback">
             <type>callback</type>
           </tag>
-          <tag name="return" line="47" description="the filtered array" type="array">
+          <tag name="return" line="49" description="the filtered array" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="47" description="if $array or $callback is null" type="\BadMethodCallException">
+          <tag name="throws" line="49" description="if $array or $callback is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="47" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="49" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="47" description="if $callback is not a callable function" type="\InvalidArgumentException">
+          <tag name="throws" line="49" description="if $callback is not a callable function" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="47" description="Acid24's filter&#10;   by key function on on array_filter() man page" link="http://php.net/manual/en/function.array-filter.php#99073"/>
+          <tag name="see" line="49" description="Acid24's filter&#10;   by key function on on array_filter() man page" link="http://php.net/manual/en/function.array-filter.php#99073"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$array</name>
@@ -681,10 +683,10 @@ For example:
           <type>callback</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="105" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="107" package="Default">
         <name>filterByKeyPrefix</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::filterByKeyPrefix()</full_name>
-        <docblock line="105">
+        <docblock line="107">
           <description>Filters an array by a key prefix</description>
           <long-description>I'll iterate over each key in $array. If the key starts with $prefix, I'll
 add it to the result array. Array keys are preserved.
@@ -692,23 +694,23 @@ add it to the result array. Array keys are preserved.
 For example:
     $a = ['foo' =&gt; 'bar', 'baz' =&gt; 'qux'];
     Arr::filterByKeyPrefix($a, 'b');  // returns ['baz']</long-description>
-          <tag name="since" line="105" description="0.1.0"/>
-          <tag name="param" line="105" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
+          <tag name="since" line="107" description="0.1.0"/>
+          <tag name="param" line="107" description="&lt;p&gt;the array to filter&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="param" line="105" description="&lt;p&gt;the key's prefix to filter&lt;/p&gt;" type="string" variable="$prefix">
+          <tag name="param" line="107" description="&lt;p&gt;the key's prefix to filter&lt;/p&gt;" type="string" variable="$prefix">
             <type>string</type>
           </tag>
-          <tag name="return" line="105" description="the filtered array" type="array">
+          <tag name="return" line="107" description="the filtered array" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="105" description="if $array or $prefix is null" type="\BadMethodCallException">
+          <tag name="throws" line="107" description="if $array or $prefix is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="105" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="107" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="105" description="if $prefix is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="107" description="if $prefix is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -723,10 +725,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="170" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="172" package="Default">
         <name>inArray</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::inArray()</full_name>
-        <docblock line="170">
+        <docblock line="172">
           <description>Wildcard search for a value in an array</description>
           <long-description>I'll search $haystack for $needle. Unlike PHP's native in_array() method,
 I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and
@@ -739,29 +741,29 @@ For example:
     Arr::inArray('fo*', ['foo', 'bar']);  // returns true
     Arr::inArray('*oo', ['foo', 'bar']);  // returns true
     Arr::inArray('*o*', ['foo', 'bar']);  // returns true</long-description>
-          <tag name="since" line="170" description="0.1.0"/>
-          <tag name="param" line="170" description="&lt;p&gt;the needle to find&lt;/p&gt;" type="string" variable="$needle">
+          <tag name="since" line="172" description="0.1.0"/>
+          <tag name="param" line="172" description="&lt;p&gt;the needle to find&lt;/p&gt;" type="string" variable="$needle">
             <type>string</type>
           </tag>
-          <tag name="param" line="170" description="&lt;p&gt;the haystack to search&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$haystack">
+          <tag name="param" line="172" description="&lt;p&gt;the haystack to search&lt;/p&gt;" type="array&lt;mixed,string&gt;" variable="$haystack">
             <type>array&lt;mixed,string&gt;</type>
           </tag>
-          <tag name="param" line="170" description="&lt;p&gt;the wildcard character (optional; if omitted,&#10;defaults to '*')&lt;/p&gt;" type="string" variable="$wildcard">
+          <tag name="param" line="172" description="&lt;p&gt;the wildcard character (optional; if omitted,&#10;defaults to '*')&lt;/p&gt;" type="string" variable="$wildcard">
             <type>string</type>
           </tag>
-          <tag name="return" line="170" description="true if the needle exists in haystack" type="boolean">
+          <tag name="return" line="172" description="true if the needle exists in haystack" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="170" description="if $needle, $haystack, or $wildcard is null" type="\BadMethodCallException">
+          <tag name="throws" line="172" description="if $needle, $haystack, or $wildcard is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="170" description="if $needle is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="172" description="if $needle is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="170" description="if $haystack is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="172" description="if $haystack is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="170" description="if $wildcard is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="172" description="if $wildcard is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -781,10 +783,10 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="252" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="254" package="Default">
         <name>isAssoc</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::isAssoc()</full_name>
-        <docblock line="252">
+        <docblock line="254">
           <description>Returns true if the array has at least one string key (excluding int strings)</description>
           <long-description>PHP natively treats all arrays as associative arrays. I'll consider an
 associative array as an array with a string key. Interally, PHP casts
@@ -798,11 +800,11 @@ For example:
     Arr::isAssoc(['1' =&gt; 'foo', 2 =&gt; 'bar']);      // returns false (PHP casts '1' to 1)
     Arr::isAssoc(['1' =&gt; 'foo', 8 =&gt; 'bar']);      // returns false (sparse doens't matter)
     Arr::isAssoc(['1' =&gt; 'foo', 'bar' =&gt; 'baz']);  // returns true</long-description>
-          <tag name="since" line="252" description="0.1.0"/>
-          <tag name="param" line="252" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
+          <tag name="since" line="254" description="0.1.0"/>
+          <tag name="param" line="254" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="return" line="252" description="true if the array has a string key (excluding int strings)" type="boolean">
+          <tag name="return" line="254" description="true if the array has a string key (excluding int strings)" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -812,10 +814,10 @@ For example:
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="316" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="318" package="Default">
         <name>isEmpty</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::isEmpty()</full_name>
-        <docblock line="316">
+        <docblock line="318">
           <description>Returns true if $key does not exist in $array or $array[$key] is empty</description>
           <long-description>PHP's isset() method is will return false if the key does not exist or if the
 key exists and its value is null. However, it will return true if the key
@@ -851,29 +853,29 @@ For example:
     isset($a['qux']);           // returns true
     ! empty($a['qux']);         // returns true
     ! Arr::isEmpty('qux', $a);  // returns true</long-description>
-          <tag name="since" line="316" description="0.1.0"/>
-          <tag name="param" line="316" description="&lt;p&gt;the key's name&lt;/p&gt;" type="string" variable="$key">
+          <tag name="since" line="318" description="0.1.0"/>
+          <tag name="param" line="318" description="&lt;p&gt;the key's name&lt;/p&gt;" type="string" variable="$key">
             <type>string</type>
           </tag>
-          <tag name="param" line="316" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
+          <tag name="param" line="318" description="&lt;p&gt;the array to test&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="param" line="316" description="&lt;p&gt;a flag indicating whether or not zero is&#10;considered empty (optional; if omitted, defaults to true - i.e., the&#10;default behavior of PHP's empty() function )&lt;/p&gt;" type="boolean" variable="$isZeroEmpty">
+          <tag name="param" line="318" description="&lt;p&gt;a flag indicating whether or not zero is&#10;considered empty (optional; if omitted, defaults to true - i.e., the&#10;default behavior of PHP's empty() function )&lt;/p&gt;" type="boolean" variable="$isZeroEmpty">
             <type>boolean</type>
           </tag>
-          <tag name="return" line="316" description="true if the key exists and its value is not empty" type="boolean">
+          <tag name="return" line="318" description="true if the key exists and its value is not empty" type="boolean">
             <type>boolean</type>
           </tag>
-          <tag name="throws" line="316" description="if $key or $array are null" type="\BadMethodCallException">
+          <tag name="throws" line="318" description="if $key or $array are null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="316" description="if $key is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="318" description="if $key is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="316" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="318" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="316" description="if $isZeroEmpty is not a bool value" type="\InvalidArgumentException">
+          <tag name="throws" line="318" description="if $isZeroEmpty is not a bool value" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -893,39 +895,39 @@ For example:
           <type>boolean</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="387" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="389" package="Default">
         <name>keyStringReplace</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::keyStringReplace()</full_name>
-        <docblock line="387">
+        <docblock line="389">
           <description>Replaces all occurences of $search with $replace in $array's keys</description>
           <long-description>I'll return an array with all occurences of $search in the array's keys
 replaced with the given $replace value (case-insensitive).</long-description>
-          <tag name="since" line="387" description="0.1.0"/>
-          <tag name="param" line="387" description="&lt;p&gt;the value being searched for (aka the needle); an&#10;array may be used to designate multiple neeeles&lt;/p&gt;" type="mixed" variable="$search">
+          <tag name="since" line="389" description="0.1.0"/>
+          <tag name="param" line="389" description="&lt;p&gt;the value being searched for (aka the needle); an&#10;array may be used to designate multiple neeeles&lt;/p&gt;" type="mixed" variable="$search">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="387" description="&lt;p&gt;the replacement value that replaced found $search&#10;values; an array may be used to designate multiple replacements&lt;/p&gt;" type="mixed" variable="$replace">
+          <tag name="param" line="389" description="&lt;p&gt;the replacement value that replaced found $search&#10;values; an array may be used to designate multiple replacements&lt;/p&gt;" type="mixed" variable="$replace">
             <type>mixed</type>
           </tag>
-          <tag name="param" line="387" description="&lt;p&gt;the array to replace&lt;/p&gt;" type="array" variable="$array">
+          <tag name="param" line="389" description="&lt;p&gt;the array to replace&lt;/p&gt;" type="array" variable="$array">
             <type>array</type>
           </tag>
-          <tag name="return" line="387" description="the array with replacements" type="array">
+          <tag name="return" line="389" description="the array with replacements" type="array">
             <type>array</type>
           </tag>
-          <tag name="throws" line="387" description="if $search, $replace, or $array are null" type="\BadMethodCallException">
+          <tag name="throws" line="389" description="if $search, $replace, or $array are null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="387" description="if $search is not a string or array" type="\InvalidArgumentException">
+          <tag name="throws" line="389" description="if $search is not a string or array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="387" description="if $replace is not a string or array" type="\InvalidArgumentException">
+          <tag name="throws" line="389" description="if $replace is not a string or array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="387" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="389" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="see" line="387" description="str_replace() man page" link="http://us1.php.net/str_replace"/>
+          <tag name="see" line="389" description="str_replace() man page" link="http://us1.php.net/str_replace"/>
         </docblock>
         <argument line="0" by_reference="false">
           <name>$search</name>
@@ -943,10 +945,10 @@ replaced with the given $replace value (case-insensitive).</long-description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="462" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="464" package="Default">
         <name>sortByField</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::sortByField()</full_name>
-        <docblock line="462">
+        <docblock line="464">
           <description>Sorts an array of associative arrays by a field's value</description>
           <long-description>Oftentimes, you have a 0-indexed array of associative arrays. For example,
 a SELECT sql query result or a display-friendly data array. I'll sort a
@@ -956,35 +958,35 @@ For example:
 
     $a = [['a' =&gt; 3], ['a' =&gt; 1], ['a' =&gt; 2]];
     Arr::usort_field($a, 'a'); // returns [['a' =&gt; 1], ['a' =&gt; 2], ['a' =&gt; 3]]</long-description>
-          <tag name="since" line="462" description="0.1.0"/>
-          <tag name="param" line="462" description="&lt;p&gt;the array of associative arrays to sort&lt;/p&gt;" type="array&lt;mixed,array&gt;" variable="$array">
+          <tag name="since" line="464" description="0.1.0"/>
+          <tag name="param" line="464" description="&lt;p&gt;the array of associative arrays to sort&lt;/p&gt;" type="array&lt;mixed,array&gt;" variable="$array">
             <type>array&lt;mixed,array&gt;</type>
           </tag>
-          <tag name="param" line="462" description="&lt;p&gt;the associative array's field name (aka, key)&lt;/p&gt;" type="string" variable="$field">
+          <tag name="param" line="464" description="&lt;p&gt;the associative array's field name (aka, key)&lt;/p&gt;" type="string" variable="$field">
             <type>string</type>
           </tag>
-          <tag name="param" line="462" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
+          <tag name="param" line="464" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
             <type>string</type>
           </tag>
-          <tag name="return" line="462" description="the sorted array" type="array&lt;mixed,array&gt;">
+          <tag name="return" line="464" description="the sorted array" type="array&lt;mixed,array&gt;">
             <type>array&lt;mixed,array&gt;</type>
           </tag>
-          <tag name="throws" line="462" description="if $array, $field, or $sort is null" type="\BadMethodCallException">
+          <tag name="throws" line="464" description="if $array, $field, or $sort is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="462" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="464" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="462" description="if $field is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="464" description="if $field is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="462" description="if $sort is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="464" description="if $sort is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="462" description="if $sort is not the string 'asc[ending]' or&#10;   'desc[ending]'" type="\InvalidArgumentException">
+          <tag name="throws" line="464" description="if $sort is not the string 'asc[ending]' or&#10;   'desc[ending]'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="462" description="if $array is not an array of arrays with&#10;   the key $field" type="\InvalidArgumentException">
+          <tag name="throws" line="464" description="if $array is not an array of arrays with&#10;   the key $field" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1004,41 +1006,41 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="552" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="554" package="Default">
         <name>sortByProperty</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::sortByProperty()</full_name>
-        <docblock line="552">
+        <docblock line="554">
           <description>Sorts an array of objects using a public property's value</description>
           <long-description></long-description>
-          <tag name="since" line="552" description="0.1.0"/>
-          <tag name="param" line="552" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
+          <tag name="since" line="554" description="0.1.0"/>
+          <tag name="param" line="554" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="param" line="552" description="&lt;p&gt;the object's public property name (may be a magic&#10;public property via the object's __get() method)&lt;/p&gt;" type="string" variable="$property">
+          <tag name="param" line="554" description="&lt;p&gt;the object's public property name (may be a magic&#10;public property via the object's __get() method)&lt;/p&gt;" type="string" variable="$property">
             <type>string</type>
           </tag>
-          <tag name="param" line="552" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
+          <tag name="param" line="554" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
             <type>string</type>
           </tag>
-          <tag name="return" line="552" description="the sorted array" type="array&lt;mixed,object&gt;">
+          <tag name="return" line="554" description="the sorted array" type="array&lt;mixed,object&gt;">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="throws" line="552" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
+          <tag name="throws" line="554" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="552" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="554" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="552" description="if $property is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="554" description="if $property is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="552" description="if $sort is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="554" description="if $sort is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="552" description="if $sort is not the string 'asc[ending]' or&#10;   'desc[ending]'" type="\InvalidArgumentException">
+          <tag name="throws" line="554" description="if $sort is not the string 'asc[ending]' or&#10;   'desc[ending]'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="552" description="if $array is not an array of objects with&#10;   the public property $property" type="\InvalidArgumentException">
+          <tag name="throws" line="554" description="if $array is not an array of objects with&#10;   the public property $property" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1058,41 +1060,41 @@ For example:
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="646" package="Default">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Jstewmc\PhpHelpers" line="648" package="Default">
         <name>sortByMethod</name>
         <full_name>\Jstewmc\PhpHelpers\Arr::sortByMethod()</full_name>
-        <docblock line="646">
+        <docblock line="648">
           <description>Sorts an array of objects using a method's return value</description>
           <long-description></long-description>
-          <tag name="since" line="646" description="0.1.0"/>
-          <tag name="param" line="646" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
+          <tag name="since" line="648" description="0.1.0"/>
+          <tag name="param" line="648" description="&lt;p&gt;the array of objects to sort&lt;/p&gt;" type="array&lt;mixed,object&gt;" variable="$array">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="param" line="646" description="&lt;p&gt;the name of the public method to use (may be a&#10;&quot;magic&quot; method via the object's __call() magic method)&lt;/p&gt;" type="string" variable="$method">
+          <tag name="param" line="648" description="&lt;p&gt;the name of the public method to use (may be a&#10;&quot;magic&quot; method via the object's __call() magic method)&lt;/p&gt;" type="string" variable="$method">
             <type>string</type>
           </tag>
-          <tag name="param" line="646" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
+          <tag name="param" line="648" description="&lt;p&gt;the sort order (possible values 'asc[ending]' or&#10;'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)&lt;/p&gt;" type="string" variable="$sort">
             <type>string</type>
           </tag>
-          <tag name="return" line="646" description="the sorted array" type="array&lt;mixed,object&gt;">
+          <tag name="return" line="648" description="the sorted array" type="array&lt;mixed,object&gt;">
             <type>array&lt;mixed,object&gt;</type>
           </tag>
-          <tag name="throws" line="646" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
+          <tag name="throws" line="648" description="if $array, $property, or $sort is null" type="\BadMethodCallException">
             <type>\BadMethodCallException</type>
           </tag>
-          <tag name="throws" line="646" description="if $array is not an array" type="\InvalidArgumentException">
+          <tag name="throws" line="648" description="if $array is not an array" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="646" description="if $property is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="648" description="if $property is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="646" description="if $sort is not a string" type="\InvalidArgumentException">
+          <tag name="throws" line="648" description="if $sort is not a string" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="646" description="if $sort is not the string 'asc[ending]' or&#10;    'desc[ending]'" type="\InvalidArgumentException">
+          <tag name="throws" line="648" description="if $sort is not the string 'asc[ending]' or&#10;    'desc[ending]'" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
-          <tag name="throws" line="646" description="if $array is not an array of objects with&#10;    the public property $property" type="\InvalidArgumentException">
+          <tag name="throws" line="648" description="if $array is not an array of objects with&#10;    the public property $property" type="\InvalidArgumentException">
             <type>\InvalidArgumentException</type>
           </tag>
         </docblock>
@@ -1113,7 +1115,7 @@ For example:
         </argument>
       </method>
     </class>
-    <source>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</source>
+    <source>eJztHGtv20byswPkP2x8QiUZsmwnBa6NY18flyLptdegyaHAuYa7llYWa4pUScq22ua/3zz2yYdMxY4dXCMEkUjOzszOzM5rl372j/l0/vDBztbWwwdiS7yZKjGJYvgvzUQBF19mmRjFMs/xMYF8IRfFFJ7i51s5Ohdfx3JZpIl4BnDLX/PdL85mMoqHo3R2yANG6XyZRWfTQojHu3ufBqMYIo5GKskVovz+5Rvxnb58Ni2K+dOdnXQOl+kiG6lhmp3taOh8B2CJxA789/BBImcqn8uREt/mhbqcjX5+NZ2/UPFcZfn+wwfhJGWWyaXoyXM5EJtwsdkvTzOPEkC1O9wb7moaBIASefjgj42Nhw82COEGAH8TxQVQETLRiE+X4lwt6SFDPJsfvuzGsYgAThZKpBcqE0qOpggnokR0eOAcSETJGcCJIiUNdEYyjk9RZJNFMiqiNBkyypcTel55LDJVLLIkF0W2UAOGWWSZSgpxIeMF6DZLZ4ZeBEyPx2rMKDXJTOWLuOCpDHHCkqYDoJkSc3iqsgs1Hj7bmR+GU/wG7EJdydk8Vk/Dp7/88gtD4acjxYE46k7StDsQ3VOZ8dfv3eN9BwRknz6dkGC/Wv5LLXsdUJWdY69z3hd/OGj88LxF51wcij0P09v+vhA7O1YuR0wr4IuhQ6W723OZyZnQuuUZ2J+FtSaQHvMbjrIK8lRJo+xkYCA+oUVXtQmfET1FTY8XKxBUY1EBLaZZepkL8fNXcvy9giU7/hpoPL8aqTkRhU80MRMBwo45sIlkEcdlPC8TMJ9o/GV2tpiBMXmYHB4cmhZ2HayHImAAsZBU5GnsRBXoSoHD0B4CnNgwUcXOTCYLGe+oZMcuFmJkm+U0BLi/ff757t+fgH2NovHjT7t5oDP48NJ1yuF/hOWEQXt9AXRgqZ4pGgWuYWO+OAW3JPJCFvBlBxv7PSf7RRwDN88+jEMT3uhYLR4woV4fzRddzAbYrROvTMaemHA1nkUXCqWyAUCagnh0cEAKFJ984kGbu7xsDGK0oSiZL2i1kzcYFSDBeKl1SKCIO8pPmDUm0jdoDIO+8ozaGECPNjd7bv4WRzhLrX41mxdL/RxxiEd8q8KBN5dMkVTIWRVTWZA/9RaKGdAhiINQrXyBTwwJX1n7ZmzIC4L7rFSVeRIlGBzUqDjxzUCTjqO5QWIpvNU/9PdboWKIhoYErSaRqMvm9dQzmE5Ovn/+5sUP/zw5GW6C2aqrObCRC/JMCrgSxWWK7udU1a22TY3GcMb8hOyswc0qZiQykybKMKNXnOZAM0D0A/Ie9Xo3p2k3kMbZW1nkAxe/caE1CoS5eYspxcaGCTpG6/iMH63MDiQ5GYilk+jKc2ptcoShifx4FxxOBhO5jIqp6DC6AWNhhBDcvVyiZWAXHkd+SK+N4OLgMIjhdP3b4mplMH9FnFJI7552V8TnIC5fG5htWL42KOdFhmmWkZkwAoV4oO+EA8P4awjecgTWlO8r/nrkKfqyjNqGOF+rOtAxwncMc5qbVkFOw9aHOC/TDWObXLaObk40nljcWL7VMxO+zbjGMvMM+nRZsVUb1TwB5yqelPNnVkuYQy/Al1rGvTCmLR1mNk8hHp47dYoDEPOuC1Y2bt1xuNJLmLm6w1ClPsRQVSOMdcPUT1E8HslsDKYjMwg6WI1IXTJC8LEEy+FKg3emcgm+AQtR9GWJUuNYDcV/kjg6V+LVi1dgrgm4jgvEplcbJNIkh4GHTo5QHiDZsyjJtymw9dTwbAh1OoSbrU1IylQyLj3Zgkf4BIXBuEZpUkjAEIDAaAiVepqwFqUrpxuiXSmERQkFzZ6uXYMa9rgUxrD8bhqO8fGa4RMJttNMfusm5Lduxv3WOtTbRXATj4WxHFNa6yuKxsm4btDRsfCMjwbZKxjG5tlIzZoDDbRXoylAjnCl91JanTLeR1eezqKiUOOBsLIZq4mEpCpHWt2tbr8uXThN01iQTEzNpaelrqIchsLyMiy/QwLBuAZOCAPKJuxc3imf0AzWJQOtcVg13CgtCeaxRmJizLVOPg7pASlN2BxFj4L7tAD32X3qOF6DiXIVi62arWg5BumKlUtw1yJpSGOcRoIcpJSCMFQlgfFVEWQ/pfTHwFVzGF8NYRJUZsFAVit0MwfrnOvXnF9pmwTEit5iJzmRkvy8BQiNMUTOosRfbERWF0vo4yGCcNHkc+BqeIb8CQEOxM/VfvLPrwtwiA6qjr99hw7JETKxCp2BWo0MJpirgvje4oR2S3sTR0+L+QDVdBJlah7LkXKKAZ8NftuYSoA6TtO5wIW5OJsGrtQCQXSnmtTZipC56FCe4CuCzd8TJNq4mWIA6C86o25C53h0unbc6vSqRKYRcwuxl4hWSK2N2jeQFcjdT9eUc6sdgoPN/gcgIFAQaOncLT8ja81QKIFT0NZ5LbG3GzaFL8/Om5vN1arOr6ZhVUK0Tu7fIvmfZkpvaFR9xqBUF5iCYOOOy5NBsGoG9UXCXZYpA8+cGoT0PmuWVOvNK16eWm7CMGqUuqJ80XZZU7386CWeZg1xvTIF9yQLESuZF1S36ewP22c9dTWKF2PacUsK/ST3czgoXHTZEkPhDYsJ5oV7NYQ7R9cn8zwdRVzZ8N0hVzIQ5fJoDFqQvG9RhaThpq6icCQ97gANdo6xYzEgPkYSk0XG5cByE07xmuwF56LOsOUI6ta/RbGcK1sMfbaJ0o7BFgy2lFpYufisv1Y9lH+Jc+od7Q3E44F4QmVA7ee6ysYgqtsVDJC2RrTHrUjG99i2KS22MiLRczLGwSC7vX477J+1wZ7DCoDvcaqSvFuImYRCImtJgHBrIr83F1vtai3dvDTN0qBXWqi8aFfBeIur7YpalazreesemJeP8wPhh3+TXJc7Z5hiNHXyPEQ9nEwfVs0iKXrX7gB1bWbb7df7JEasfdLGKqeEGz1oALoRiMWft/ePRRv9OkK4Y4z9plfoeaMuZAQ5ZIC2eYJwtJg1Q2xukdsjKBEEMvoh40QQXYeiF47gWzd9uG4cihfppbrAEBsVASXfHMxxh2ZUwADVOj2wTm0hKW7ZiU2a5SaD5oL6RZigesubmlzcMuoH2xMsELYCK5AeTDFPZ3jSAULOZZqd531mnAOaFJcyI3cJzC/ThcClCCge2kMQsAoAKkmTbZqOBEvWezDGXfte8uUAt4hRCjyhKbA7WEsnfo7HOJ2WuNNr5UhzbemjS9s0KH7Pl2iBDni7hrzLVMVxanduHCJwNpdTlVjWk67hvPfIc2FsmB15BBhxB6il43bLuGYgDNONAiC+jcS3QW6sF6NHH5V2o88JI6ODnFU2dteaJ8kzHIjTRRGuiLoJo4zfZb7lcatGhVPjyHB7MzPLsEGjQXQrsxp2C/35lYe1nx9nALeoOVhteo71FrvCYJvnVx62YlDZMmsN810bpxRa7Mf5DTwVVxv+/TNMoikLsIM4/guMdv9VWUpzAFRiEksM9ONoBPEc+AA1kAsEn4Ty/h1gQcZWCiYlhlyTRNjUXfWbqhRltkU0VEOqZSwyDQRJ7FReREAxnZTigU0vWnZlV4ZCb+tu3Q4t4rXRnZqE6zdkKf7cpBt7CzvEvvItLyRGEtP1Sd5ze2hmIOw2sY/1gPThtoz1EH2/vF2MMrGpQU3zFZ8HPdZw77jUYNUSXtVdBZBKa9VtL6/oq5a3dvVYvT7KUvTG4/2eL6Karmrj9vJ1+8tev8mZvn2Ig21GfMIPA90FqHxd+fQ4mfX7XY5oJfagwzYywcmU/YVDwh0vTRFU+yiwo7AHVkOQiRS1Qgvn8qi2vffvxQx9ORJsnKfXajO/7rRRBp4IkOJMc9f4QXu6v96YXvIfQFOMzLh0lADXAMbLu97KL9NnnxZIx1ae7P9c7UlmWl97Utefu1XpaLTIVIKXECQ7esueT43p7QFXiHYp1c79AqfrSplSv6oRuV/SaIw6pdEEx24Dhry244RXaW8kc7UdJbkCH4A9s6AzdV1eNIuugILlRnjL/1ShsPkBwOBxBXwRwOuTQk4G07SJBs93hodvFB6YGaPhjFUenSV4Tm8GSUgE1RftM8Uqr2fETE4fxKOLmTuUT6dVrWQm6QL3FTXzlhGukPedDq7nyaNUYqzcByrlgHpgXeJUaRyRIiuU1suReK4DK6jBjTMmY4hh0oRo3yH1savkVrA152LGuhWdgDDn2xf53tCcccc9PWtM3sUax9JhMb4m9n80W4NV6Vc6cdY4G0/vVZHQ7nhTdqb1EyRoZmLtszan5UAnNSf8TBLHI/rizz+9bqG+WU7uPLU3oi/j12NKBMzd5sOB9ccTr8sky2ioNbNmDoin0INNRhLGTqBGgpFnMkrsyIpJ6OPsTGN/BdxMznveOcQLcw6xbEFBHueOJHp72jWGe+GRfuuejFdyxJxXQd9nxoYSL6ZRNnbpwDUp0h1kbMhUriDxDriy0i2lTMb93U0Ox+ets7zwWTMWsJqz95bMVTY3DT/B6qlL5fxEzhhezc7m6zQrvG1CSLGqO478SsEkUvHY9Iq9aPLDpAAhRzMFySa2u6cSB4pdSK7G6socXa/HPPT7y+bYmxSvn3/3/Os3Iv8tFr8tVLY0rxbQmdFxlMNsltuTLFLJGBzaWBbSvHXAZ0ZhTgDI2Ha3T2W+moua+em3IB+264EfdSV1uJ8c48FF/r3n/X58XHldYYFMnhBNflFB4osK/nsK9Yjc7yfHxz6Trfbl6DRjJcGqFwqebgQeQyz2bGOHWNdYyoPpvTd8TPUGvweLzY0mXKQwxkU/0ww3tnvzNM8jfENG7910ZT46Ap3DqOMuGoOVaRdyU/uo36bvh7i6/ZoyoDElRdkZDm/6QsZAy4/TUJrzfb2XwYq6Ue/P8n8rGEjGbBotFd69BaHRImDDx3rDEjLdK5bTdakvzuOr5Td6VYea5kkeaMvDxLfybooDptSW/VibV1RYicEtGvz+3lmxZrPylRWCqialRt2rT3oiVE0q6gbzcRTtpBwGc6YM8BRpnF6qTOPS6U+PNDAgRbAF4QUalPnWd/s13cxqQ7ZkOUY0vGWtE0J8UdRPB/lAQM07MzZXZcnVJKhOMRd0JKHaQzX2FmSq3m8UEh9PMFUYvnOj7zCnYe8VD4Wi0F3EWNCfEeCEKcwK3BAIqtrhDgRFu14/2LXmmE4nEK0i2PP7aNxvxlEjMwgundNmuelFc8SPjsUzgDYXIaAR8fae12f1D4I6JIfXIqnBUQu3G8C532/rm9pefAQbdMbqYI2fqZi/h48rZIID1bPtY0FZumfWQXg0VerDm2x5GR7eyFW1LvM71JXpr1XgvNMbU+VlaRx5l7XW3XTo/XViK7Myy+tx3LaLjvI2xUUl2oVBzjF8T0djfV5tIeTs8f76/trhlThzGei9bAGsqrTv+EjsyiY/8dWqMExPfyUq7Pyl0DnQPEvnKiuWNaXhdTUJY/SLElGqSwzN1cUIvj3KTPBwHoVvsIYs6npE97WlmMmzaGRTvTLwRSRDbCcnZ97JuKZqxpYzH3JF4yR/iyWNkdwHUNVYJX4sbLxVVKlsyiZv5dau0HmloXs1JhCWO7bRXyp3HPyaFY9l+S6LHt+qrnlVnwH/AqWPb1uB/dihmJib+6ZI6aPH4iMEpDztDwEfxDIwuKgo2Wak8jJOc1DZYtokf77pDbE+3LpuhNAO3MN3k0rN6rq+WGP5ELyX0IKx9soy6Vx4C0Lv79D5wYvtQ8+i7qCoqwnpbtT91HW1UtbewRMPVXe+uNYs8HxUh21QfSzz7r/MC1xQOaR1rQI/lnz/PyWfyxvKf7ClJuP/WP8F9d/tVH8cQyFCaFRNtV9j8VdX/bWv/fx6S7+Yw0essMJLJ352qx8DGgoltvqzmbDJGzRgTd2Hf6utlD30m/kx9d8HUf0J/4Wmj/Xfh17/3WEBeBsVIFuFq//0X1xqWf0Z6DVrP71O77Lycy9Drqz7tGv4i1V9oZ/tVKorXa25P9JaU7PxIL/Gu0lNpvVwbUXGr/RavszGmjXNv2q1VSM/V2vxQ+BD11rm+h1qLYvqsA2qj7XWh1lr6YXf1er7WGf9/9RZJkIza14GY/JsGRrBx1KrVakF//4Hk3zDuA==</source>
   </file>
   <file path="Str.php" generated-path="Str.html" hash="be95e4b44c2bba9d9974f7a889226ad4" package="Default">
     <docblock line="0">

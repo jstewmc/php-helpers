@@ -150,16 +150,18 @@ For example:
 <pre>filterBykey(array $array, callback $callback) : array</pre>
 <div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
-<div class="long_description">I'll iterate over each key in $array passing it to the $callback function.
+<div class="long_description"><p>I'll iterate over each key in $array passing it to the $callback function.
 If the callback function returns true, the current value from $array is added
-to the result array. Array keys are preserved.
+to the result array. Array keys are preserved.</p>
 
-For example:
+<p>For example:</p>
 
+```
     $a = ['foo', 'bar', 'baz'];
     Arr::filterByKey($a, function ($k) {
         return $k > 1;
-    });  // returns ['baz']</div>
+    });  // returns ['baz']
+```</div>
 <table class="table table-bordered">
 <tr>
 <th>since</th>
@@ -596,7 +598,7 @@ public property via the object's __get() method)</p></div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.6.1</a> and<br>
-            generated on 2014-08-27T23:09:39Z.<br></footer></div>
+            generated on 2014-08-27T23:17:45Z.<br></footer></div>
 </div>
 </body>
 </html>
