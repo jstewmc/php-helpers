@@ -31,19 +31,19 @@ class Arr
 	 *     });
 	 *     print_r($b);  // prints ['baz', 'qux']
 	 *
-	 * @since  0.1.0
+	 * @since 0.1.0
 	 *
-	 * @param  array     $input     the array to filter
-	 * @param  callback  $callback  the function to call for each key in $arr
+	 * @param array    $input    the array to filter
+	 * @param callback $callback the function to call for each key in $arr
 	 *
-	 * @return  array  the filtered array
+	 * @return array the filtered array
 	 *
-	 * @throws  \BadMethodCallException    if $array or $callback are null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $callback is not a callable function
+	 * @throws \BadMethodCallException    if $array or $callback are null
+	 * @throws \InvalidArgumentException  if $array is not an array
+	 * @throws \InvalidArgumentException  if $callback is not a callable function
 	 *
 	 * @see  http://php.net/manual/en/function.array-filter.php#99073  Acid24's filter
-	 *     by key function on on array_filter() man page
+	 *    by key function on on array_filter() man page
 	 */
 	public static function filterBykey($array, $callback)
 	{
