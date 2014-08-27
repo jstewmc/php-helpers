@@ -10,7 +10,7 @@
 namespace Jstewmc\PhpHelpers;
 
 /**
- * A class of array (aka, "arr") utility functions
+ * The array (aka, "arr") class
  *
  * @since 0.1.0
  */
@@ -19,9 +19,9 @@ class Arr
 	/**
 	 * Filters an array by key
 	 *
-	 * I'll iterate over each key in $array passing it to the $callback 
-	 * function. If the callback function returns true, the current value from
-	 * $array is added to the result array. Array keys are preserved.
+	 * I'll iterate over each key in $array passing it to the $callback function.
+	 * If the callback function returns true, the current value from $array is added
+	 * to the result array. Array keys are preserved.
 	 *
 	 * For example:
 	 *
@@ -31,14 +31,19 @@ class Arr
 	 *     });
 	 *     print_r($b);  // prints ['baz', 'qux']
 	 *
-	 * @since   0.1.0
-	 * @param   array     $input     the array to filter
-	 * @param   callback  $callback  the function to call for each key in $arr
-	 * @return  array                the filtered array
+	 * @since  0.1.0
+	 *
+	 * @param  array     $input     the array to filter
+	 * @param  callback  $callback  the function to call for each key in $arr
+	 *
+	 * @return  array  the filtered array
+	 *
 	 * @throws  \BadMethodCallException    if $array or $callback are null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $callback is not a callable function
-	 * @see     <http://php.net/manual/en/function.array-filter.php#99073>
+	 *
+	 * @see  http://php.net/manual/en/function.array-filter.php#99073  Acid24's filter
+	 *     by key function on on array_filter() man page
 	 */
 	public static function filterBykey($array, $callback)
 	{
@@ -80,13 +85,16 @@ class Arr
 	/**
 	 * Filters an array by a key prefix
 	 *
-	 * I'll iterate over each key in $array. If the key starts with $prefix, 
-	 * I'll add it to the result array. Array keys are preserved. 
+	 * I'll iterate over each key in $array. If the key starts with $prefix, I'll 
+	 * add it to the result array. Array keys are preserved. 
 	 *
-	 * @since   0.1.0
-	 * @param   array   $array   the array to filter
-	 * @param   string  $prefix  the key's prefix to filter
-	 * @return  array            the filtered array
+	 * @since  0.1.0
+	 *
+	 * @param  array   $array   the array to filter
+	 * @param  string  $prefix  the key's prefix to filter
+	 *
+	 * @return  array  the filtered array
+	 *
 	 * @throws  \BadMethodCallException    if $array or $prefix is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $prefix is not a string
@@ -143,11 +151,14 @@ class Arr
 	 *     Arr::in_array_wildcard('*o*', ['foo', 'bar']);  // returns true
 	 * 
 	 * @since   0.1.0
+	 *
 	 * @param   string    $needle    the needle to find
 	 * @param   string[]  $haystack  the haystack to search
 	 * @param   string    $wildcard  the wildcard character (optional; if omitted, 
 	 *     defaults to '*')
-	 * @return  bool                 true if the needle exists in haystack
+	 *
+	 * @return  bool  true if the needle exists in haystack
+	 *
 	 * @throws  \BadMethodCallException    if $needle, $haystack, or $wildcard is null
 	 * @throws  \InvalidArgumentException  if $needle is not a string
 	 * @throws  \InvalidArgumentException  if $haystack is not an array
@@ -229,9 +240,11 @@ class Arr
 	 *    Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
 	 *    Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
 	 *
-	 * @since   0.1.0
-	 * @param   array  $array  the array to test
-	 * @return  bool           true if the array has a string key (excluding int strings)
+	 * @since  0.1.0
+	 *
+	 * @param  array  $array  the array to test
+	 *
+	 * @return  bool  true if the array has a string key (excluding int strings)
 	 */
 	public static function isAssoc($array) 
 	{
@@ -244,7 +257,7 @@ class Arr
 		return $isAssoc;
 	}
 	
-		/**
+	/**
 	 * Returns true if $key does not exist in $array or $array[$key] is empty
 	 *
 	 * PHP's isset() method is will return false if the key does not exist or if the 
@@ -282,13 +295,16 @@ class Arr
 	 *    ! empty($a['qux']);         // returns true
 	 *    ! Arr::isEmpty('qux', $a);  // returns true
 	 * 
-	 * @since   0.1.0
-	 * @param   string  $key          the key's name
-	 * @param   array   $array        the array to test
-	 * @param   bool    $isZeroEmpty  a flag indicating whether or not zero is
+	 * @since  0.1.0
+	 *
+	 * @param  string  $key          the key's name
+	 * @param  array   $array        the array to test
+	 * @param  bool    $isZeroEmpty  a flag indicating whether or not zero is
 	 *     considered empty (optional; if omitted, defaults to true - i.e., the
 	 *     default behavior of PHP's empty() function )
+	 *
 	 * @return  bool  true if the key exists and its value is not empty
+	 *
 	 * @throws  \BadMethodCallException    if $key or $array are null
 	 * @throws  \InvalidArgumentException  if $key is not a string
 	 * @throws  \InvalidArgumentException  if $array is not an array
@@ -349,17 +365,21 @@ class Arr
 	 * replaced with the given $replace value (case-insensitive).
 	 *
 	 * @since   0.1.0
+	 *
 	 * @param   mixed  $search   the value being searched for (aka the needle); an 
 	 *     array may be used to designate multiple neeeles
 	 * @param   mixed  $replace  the replacement value that replaced found $search 
 	 *     values; an array may be used to designate multiple replacements
 	 * @param   array  $array    the array to replace
-	 * @return  array            the array with replacements
+	 *
+	 * @return  array  the array with replacements
+	 *
 	 * @throws  \BadMethodCallException    if $search, $replace, or $array are null
 	 * @throws  \InvalidArgumentException  if $search is not a string or array
 	 * @throws  \InvalidArgumentException  if $replace is not a string or array
 	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @see     <http://us1.php.net/str_replace>
+	 *
+	 * @see     http://us1.php.net/str_replace  str_replace() man page
 	 */
 	public static function keyStringReplace($search, $replace, $array) 
 	{
@@ -420,11 +440,14 @@ class Arr
 	 *   print_r($b);  // prints [['foo' => 'a'], ['foo' => 'b'], ['foo' => 'c']]
 	 * 
 	 * @since   0.1.0
+	 *
 	 * @param   array[]  $array  the array of associative arrays to sort
 	 * @param   string   $field  the associative array's field name (aka, key)
 	 * @param   string   $sort   the sort order (possible values 'asc[ending]' or 
 	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
-	 * @return  array[]         the sorted array
+	 *
+	 * @return  array[]  the sorted array
+	 *
 	 * @throws  \BadMethodCallException    if $array, $field, or $sort is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $field is not a string
@@ -506,12 +529,15 @@ class Arr
 	 * Sorts an array of objects using a public property's value
 	 *
 	 * @since   0.1.0
+	 *
 	 * @param   object[]  $array     the array of objects to sort
 	 * @param   string    $property  the object's public property name (may be a magic
 	 *     public property via the object's __get() method)
 	 * @param   string    $sort      the sort order (possible values 'asc[ending]' or 
 	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
+	 *
 	 * @return  object[]             the sorted array
+	 *
 	 * @throws  \BadMethodCallException    if $array, $property, or $sort is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $property is not a string
@@ -597,12 +623,15 @@ class Arr
 	 * Sorts an array of objects using a method's return value
 	 *
 	 * @since   0.1.0
+	 *
 	 * @param   object[]  the array of objects to sort
 	 * @param   string    the name of the public method to use (may be a "magic" 
 	 *     method via the object's __call() magic method)
 	 * @param   string    the sort order (possible values 'asc[ending]' or 
 	 *     'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)  
+	 *
 	 * @return  object[]  the sorted array
+	 *
 	 * @throws  \BadMethodCallException    if $array, $property, or $sort is null
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $property is not a string

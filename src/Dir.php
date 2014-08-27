@@ -20,9 +20,12 @@ class Dir
 	 * Returns a relative path (aka, "rel") from an absolute path (aka, "abs")
 	 *
 	 * @since   0.1.0
+	 *
 	 * @param   string  $absolute  the abosolute path (e.g., 'C:\path\to\folder')
 	 * @param   string  $base      the relative base (e.g., 'C:\path\to')
+	 *
 	 * @return  string  the relative path (e.g., 'folder') or false on failure
+	 *
 	 * @throws  \BadMethodCallException    if $absolute or $base is null
 	 * @throws  \InvalidArgumentException  if $absolute is not a string
 	 * @throws  \InvalidArgumentException  if $base is not a string
@@ -85,14 +88,17 @@ class Dir
 	 *
 	 * To copy a file, use PHP's native copy() method.
 	 *
-	 * @since   0.1.0
-	 * @param   string  $source       the source directory path
-	 * @param   string  $destination  the destination directory path
-	 * @param   int     $mode         the mode of the destination directory as an
+	 * @since  0.1.0
+	 *
+	 * @param  string  $source       the source directory path
+	 * @param  string  $destination  the destination directory path
+	 * @param  int     $mode         the mode of the destination directory as an
 	 *     octal number with a leading zero (ignored on Windows) (optional; if 
 	 *     omitted, defaults to 0777, the widest possible access) (set to false to
 	 *     throw an exception if the destination directory does not exist)
-	 * @return  bool    true if successful
+	 *
+	 * @return  bool  true if successful
+	 *
 	 * @throws  \BadMethodCallException    if $source, $destination, or $mode is null
 	 * @throws  \InvalidArgumentException  if $source is not a string
 	 * @throws  \InvalidArgumentException  if $destination is not a string
@@ -102,8 +108,9 @@ class Dir
 	 * @throws  \InvalidArgumentException  if $destination does not exist or it could not
 	 *     be created successfully
 	 * @throws  \InvalidArgumentException  if $destination is not writeable
-	 * @see     <http://stackoverflow.com/questions/2050859> (Felix Kling, 1/12/10)
 	 *
+	 * @see     http://stackoverflow.com/a/2050909  Felix King's answer to "Copy entire 
+	 *     contents of a directory to another using php" on StackOverflow
 	 */
 	public static function copy($source, $destination, $mode = 0777)
 	{
@@ -216,7 +223,8 @@ class Dir
 	 * Alias for Dir::copy() method
 	 *
 	 * @since  0.1.0
-	 * @see    \Jstewmc\PhpHelpers\Dir::copy()
+	 *
+	 * @see  \Jstewmc\PhpHelpers\Dir::copy()
 	 */
 	public function cp($source, $destination, $mode = 0777)
 	{
@@ -230,18 +238,23 @@ class Dir
 	 * recursively delete a directory's files and sub-directories. BE CAREFUL!
 	 * Use the $container argument to be safe.
 	 *
-	 * @since   0.1.0
-	 * @param   string  $directory  the path of the directory to remove
-	 * @param   string  $container  an ancestor directory of $directory
+	 * @since  0.1.0
+	 *
+	 * @param  string  $directory  the path of the directory to remove
+	 * @param  string  $container  an ancestor directory of $directory
+	 *
 	 * @return  bool  true if success
+	 *
 	 * @throws  \BadMethodCallException    if $directory or $container is null
 	 * @throws  \InvalidArgumentException  if $directory is not a string
 	 * @throws  \InvalidArgumentException  if $container is not a string
 	 * @throws  \InvalidArgumentException  if $directory is not a valid directory path
 	 * @throws  \InvalidArgumentException  if $directory is not writeable
 	 * @throws  \InvalidArgumentException  if $directory is not contained in $container
-	 * @see     <http://stackoverflow.com/questions/11613840> (donald123's answer)
-	 * @see     <http://us1.php.net/rmdir>
+	 *
+	 * @see  http://stackoverflow.com/a/11614201  donald123's answer to "Remove all
+	 *     files, folders, and their subfolders with php" on StackOverflow
+	 * @see  http://us1.php.net/rmdir  rmdir() man page
 	 *
 	 */
 	public static function remove($directory, $container)
@@ -330,11 +343,12 @@ class Dir
 		return $isSuccess;
 	}
 	
-		/** 
+	/** 
 	 * Alias for Dir::remove() method
 	 *
 	 * @since  0.1.0
-	 * @see    \Jstewmc\PhpHelpers\Dir::remove()
+	 *
+	 * @see  \Jstewmc\PhpHelpers\Dir::remove()
 	 */
 	public function rm($directory, $container)
 	{

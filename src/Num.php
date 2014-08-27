@@ -10,12 +10,12 @@
 namespace Jstewmc\PhpHelpers;
 
 /** 
- * A class of utility methods for PHP numbers (aka, "num")
+ * The number (aka, "num") class
  *
  * Keep in mind, a number in PHP (and hereafter in this class documentation) is 
  * considered to be a (float), (int), or numeric (string). 
  *
- * @since 0.1.0  
+ * @since  0.1.0  
  */
 class Num 
 {
@@ -46,18 +46,22 @@ class Num
 	 * due to rounding is used. This value is known as the machine epsilon, and is the 
 	 * largest acceptable difference in calculations (exclusive).
 	 * 
-	 * @since   0.1.0
-	 * @param   int|float  $a        the first value
-	 * @param   int|float  $b        the second value
-	 * @param   int|float  $epsilon  the maximum allowed difference (exclusive) (optional; 
+	 * @since  0.1.0
+	 *
+	 * @param  int|float  $a        the first value
+	 * @param  int|float  $b        the second value
+	 * @param  int|float  $epsilon  the maximum allowed difference (exclusive) (optional; 
 	 *     if omitted defaults to 0.00001)
-	 * @return  bool
-	 * @see     <http://www.php.net/manual/en/language.types.float.php>
+	 *
+	 * @return  bool  true if the values are equal
+	 *
 	 * @throws  \BadMethodCallException    if $a, $b, or $epsilon is null
 	 * @throws  \InvalidArgumentException  if $a is not a number
 	 * @throws  \InvalidArgumentException  if $b is not a number
 	 * @throws  \InvalidArgumentException  if $epsilon is not a number
 	 * @throws  \InvalidArgumentException  if $epsilon is not greater than zero
+	 *
+	 * @see  http://www.php.net/manual/en/language.types.float.php  man page on float type
 	 */
 	public static function almostEqual($a, $b, $epsilon = 0.00001) 
 	{
@@ -119,11 +123,14 @@ class Num
 	 *     Num::bound(2, 1, 3);      // returns 2
 	 *     Num::bound(4, 1, 3);      // returns 3
 	 * 
-	 * @since   0.1.0
-	 * @param   int|float  $number  the number to bound
-	 * @param   int|float  $lower   the number's lower bound (inclusive)
-	 * @param   int|float  $upper   the number's upper bound (inclusive)
+	 * @since  0.1.0
+	 *
+	 * @param  int|float  $number  the number to bound
+	 * @param  int|float  $lower   the number's lower bound (inclusive)
+	 * @param  int|float  $upper   the number's upper bound (inclusive)
+	 *
 	 * @return  int|float           the bounded value or false
+	 *
 	 * @throws  \BadMethodCallException    if $number and $lower and/or $upper are not passed
 	 * @throws  \InvalidArgumentException  if $lower is passed and not a number
 	 * @throws  \InvalidArgumentException  if $upper is passed and not a number
@@ -195,17 +202,22 @@ class Num
 	 *     Num::ceilTo(15, 10);  // returns 20
 	 *     Num::ceilTo(25, 40);  // returns 40
 	 *
-	 * @since   0.1.0
-	 * @param   int|float  $number    the number to ceil
-	 * @param   int|float  $multiple  the multiple to ceil to (optional; if omitted,
+	 * @since  0.1.0
+	 *
+	 * @param  int|float  $number    the number to ceil
+	 * @param  int|float  $multiple  the multiple to ceil to (optional; if omitted,
 	 *     defaults to 1 (aka, PHP's native ceil() function))
-	 * @return  int|float             the ceiling-ed number
+	 *
+	 * @return  int|float  the ceiling-ed number
+	 *
 	 * @throws  \BadMethodCallException
 	 * @throws  \InvalidArgumentException  if $number or $multiple is null
 	 * @throws  \InvalidArgumentException  if $number is not a number
 	 * @throws  \InvalidArgumentException  if $multiple is not a number
 	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
-	 * @see     <http://stackoverflow.com/questions/1619265> (Daren Schwneke)
+	 *
+	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
+	 *     round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function ceilTo($number, $multiple = 1) 
 	{
@@ -256,16 +268,21 @@ class Num
 	 *     Num::floorTo(0.99, 0.5);  // returns 0.5
 	 *     Num::floorTo(101, 100);   // returns 100
 	 *
-	 * @since   0.1.0
-	 * @param   int|float  $number    the number to floor
-	 * @param   int|float  $multiple  the multiple to floor to (optional; if omitted,
+	 * @since  0.1.0
+	 *
+	 * @param  int|float  $number    the number to floor
+	 * @param  int|float  $multiple  the multiple to floor to (optional; if omitted,
 	 *     defaults to 1 (aka, PHP's native floor() function))
+	 *
 	 * @return  int|float
+	 *
 	 * @throws  \BadMethodCallException    if $number or $multiple is null 
 	 * @throws  \InvalidArgumentException  if $number is not a number
 	 * @throws  \InvalidArgumentException  if $multiple is not a number
 	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
-	 * @see     <http://stackoverflow.com/questions/1619265> (Daren Schwneke)
+	 *
+	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
+	 *     round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function floorTo($number, $multiple = 1) 
 	{
@@ -308,6 +325,8 @@ class Num
 	/**
 	 * Alias for the isInt() method
 	 *
+	 * @since  0.1.0
+	 *
 	 * @see  \Jstewmc\PhpHelpers\Num::isInt()
 	 */
 	public static function is_int($number)
@@ -317,6 +336,8 @@ class Num
 	
 	/**
 	 * Alias for the isNumeric() method
+	 *
+	 * @since  0.1.0
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Num::isNumeric()
 	 */
@@ -339,11 +360,14 @@ class Num
 	 *     Num::isId(999999, 'small');  // returns false
 	 *
 	 * @since   0.1.0
+	 *
 	 * @param   int|float  $number    the number to test
 	 * @param   string     $datatype  the column datatype name (possible values are
 	 *     'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]') 
 	 *     (case-insensitive) (optional; if omitted, defaults to 'int')
-	 * @return  bool                true if the number is a valid database id
+	 *
+	 * @return  bool  true if the number is a valid database id
+	 *
 	 * @throws  \BadMethodCallException    if $datatype is null
 	 * @throws  \InvalidArgumentException  if $datatype is not a string
 	 * @throws  \InvalidArgumentException  if $datatype is not an allowed value
@@ -427,9 +451,11 @@ class Num
 	 *     is_int('1');      // returns false
 	 *     Num::isInt('1');  // returns true
 	 *
-	 * @since   0.1.0
-	 * @param   int|float  $number  the number to test
-	 * @return  bool                true if $number is an integer or integer string
+	 * @since  0.1.0
+	 *
+	 * @param  int|float  $number  the number to test
+	 *
+	 * @return  bool  true if $number is an integer or integer string
 	 */
 	public static function isInt($number) 
 	{	
@@ -460,9 +486,11 @@ class Num
 	 *     is_numeric("1 1/2");       // returns false
 	 *     self::isNumeric("1 1/2");  // returns true
 	 *
-	 * @since   0.1.0
-	 * @param   mixed  $number  the number to test
-	 * @return  bool            true if $number is a number
+	 * @since  0.1.0
+	 *
+	 * @param  mixed  $number  the number to test
+	 *
+	 * @return  bool  true if $number is a number
 	 *
 	 */
 	public static function isNumeric($number)
@@ -493,9 +521,11 @@ class Num
 	 *     $a = ! empty(0);                    // evaluates to false
 	 *     $b = ! empty(0) || Num::isZero(0);  // evaluates to true
 	 * 
-	 * @since   0.1.0
-	 * @param   mixed  $number  the number to test
-	 * @return  bool            true if $number is zero
+	 * @since  0.1.0
+	 *
+	 * @param  mixed  $number  the number to test
+	 *
+	 * @return  bool  true if $number is zero
 	 */
 	public static function isZero($number) 
 	{
@@ -526,9 +556,12 @@ class Num
 	 *     Num::normalize(150, 100);  // returns 1
 	 *
 	 * @since   0.1.0
+	 *
 	 * @param   int|float  $number  the number to normalize
 	 * @param   int|float  $max     the maximum to divide into $value
-	 * @return  int|float           a number between 1 and 0 (inclusive)
+	 *
+	 * @return  int|float  a number between 1 and 0 (inclusive)
+	 *
 	 * @throws  \BadMethodCallException    if $number or $max are not passed
 	 * @throws  \InvalidArgumentException  if $number is not a number
 	 * @throws  \InvalidArgumentException  if $max is not a number
@@ -581,12 +614,16 @@ class Num
 	 *     Num::roundTo(7, 4);  // returns 8
 	 *     Num::roundTo(7, 8);  // returns 8
 	 *
-	 * @since   0.1.0
-	 * @param   int|float  $number   the number to round
-	 * @param   int|float  $multiple the multiple to round to (optional; if omitted,
+	 * @since  0.1.0
+	 *
+	 * @param  int|float  $number   the number to round
+	 * @param  int|float  $multiple the multiple to round to (optional; if omitted,
 	 *     defaults to 1 (aka, PHP's native round() method))
-	 * @return  int|float            the rounded number
-	 * @see     <http://stackoverflow.com/questions/1619265> (Daren Schwneke)
+	 *
+	 * @return  int|float  the rounded number
+	 *
+	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
+	 *     round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function roundTo($number, $multiple = 1)
 	{
@@ -641,7 +678,7 @@ class Num
 	 *         Integers are returned as strictly typed integers.
 	 *
 	 *     Floats
-	 *         Floats are returned as strictly typed integers.
+	 *         Floats are returned as strictly typed floats.
 	 *
 	 *     Strings
 	 *         Numeric strings are returned as their strictly typed equivalent (i.e.,
@@ -677,14 +714,19 @@ class Num
 	 *     Num::val(array('foo'));    // returns 1
 	 *     Num::val(new stdClass());  // returns 1
 	 *
-	 * @since   0.1.0
-	 * @param   mixed      $var  the value to evaluate
-	 * @return  int|float        the value's numeric equivalent
-	 * @see     <http://stackoverflow.com/questions/5264143> (Pascal MARTIN)
-	 *          (edited to allow back- or forward-slashes in fractions)
-	 * @see     <http://stackoverflow.com/questions/5917082> (Justin Morgain)
-	 *          (edited to allow leading and trailing zeros in comma-separated
-	 *          numbers)
+	 * @since  0.1.0
+	 *
+	 * @param  mixed  $var  the value to evaluate
+	 *
+	 * @return  int|float  the value's numeric equivalent
+	 *
+	 * @see  http://stackoverflow.com/a/5264255  Pascal MARTIN's answer to "Convert
+	 *     mixed fraction string to float in PHP" on StackOverflow (edited to allow 
+	 *     back- or forward-slashes in fractions)
+	 * @see  http://stackoverflow.com/a/5917250  Justin Morgain's answer to "Regular
+	 *     expression to match numbers with or without commas and decimals in text" on
+	 *     StackOverflow (edited to allow leading and trailing zeros in comma-separated
+	 *     numbers)
 	 */
 	public static function val($var) 
 	{
