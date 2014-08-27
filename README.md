@@ -214,7 +214,7 @@ Dir::remove($directory);  // returns true
 
 ## Tests
 
-This is my first attempt at a full suite of unit tests. So, let me know if I missed anything, or if I tests are a botch. At the very least, I added tests for every method in the library.
+I've written unit tests with an average of 93% code coverage. Most of the gaps are related to alias methods or filesystem read/write permission checks that I didn't test. This is my first attempt at a full suite of unit tests. So, let me know if I missed anything, or if I tests are a botch.
 
 ## Contributing
 
