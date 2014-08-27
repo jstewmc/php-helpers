@@ -1,731 +1,1251 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-<meta charset="utf-8">
-<title>API Documentation » \Jstewmc\PhpHelpers\Num</title>
-<meta name="author" content="Mike van Riel">
-<meta name="description" content="">
-<link href="../css/template.css" rel="stylesheet" media="all">
-<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
-<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
 </head>
 <body>
+
 <div class="navbar navbar-fixed-top">
-<div class="navbar-inner"><div class="container">
-<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
-<li class="dropdown">
-<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a>Namespaces</a></li>
-<li><a href="../namespaces/Jstewmc.html"><i class="icon-th"></i> Jstewmc</a></li>
-<li><a>Packages</a></li>
-<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
-</ul>
-</li>
-<li class="dropdown" id="charts-menu">
-<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
-</li>
-<li class="dropdown" id="reports-menu">
-<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
-<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
-<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
-                <ul></ul></a></li>
-<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
-                <span class="label label-info">0</span></a></li>
-</ul>
-</li>
-</ul></div>
-</div></div>
-<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Jstewmc.html">\Jstewmc</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
 </div>
-<div id="___" class="container">
-<noscript><div class="alert alert-warning">
-                            Javascript is disabled; several features are only available
-                            if Javascript is enabled.
-                        </div></noscript>
-<div class="row">
-<div class="span4">
-<div class="btn-toolbar">
-<div class="btn-group visibility" data-toggle="buttons-checkbox">
-<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
-</div>
-<div class="btn-group view pull-right" data-toggle="buttons-radio">
-<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
-</div>
-</div>
-<ul class="side-nav nav nav-list">
-<li class="nav-header">
-<i title="Methods" class="icon-custom icon-method"></i> Methods
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1060946663"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1060946663" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-560598634"></a>
+                                <a href="../namespaces/Jstewmc.html" style="margin-left: 30px; padding-left: 0">Jstewmc</a>
+            </div>
+            <div id="namespace-560598634" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1339285537"></a>
+                                <a href="../namespaces/Jstewmc.PhpHelpers.html" style="margin-left: 30px; padding-left: 0">PhpHelpers</a>
+            </div>
+            <div id="namespace-1339285537" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
                     <ul>
-<li class="method public "><a href="#method_almostEqual" title="almostEqual() :: Returns true if float $a is almost equal to float $b"><span class="description">Returns true if float $a is almost equal to float $b</span><pre>almostEqual()</pre></a></li>
-<li class="method public "><a href="#method_bound" title="bound() :: Bounds a value between an upper and/or lower bound (inclusive)"><span class="description">Bounds a value between an upper and/or lower bound (inclusive)</span><pre>bound()</pre></a></li>
-<li class="method public "><a href="#method_ceilTo" title="ceilTo() :: Returns $number ceiling-ed to the nearest $multiple"><span class="description">Returns $number ceiling-ed to the nearest $multiple</span><pre>ceilTo()</pre></a></li>
-<li class="method public "><a href="#method_floorTo" title="floorTo() :: Returns $number floor-ed to the nearest $multiple"><span class="description">Returns $number floor-ed to the nearest $multiple</span><pre>floorTo()</pre></a></li>
-<li class="method public "><a href="#method_isId" title="isId() :: Returns true if $number is a valid database id (aka, unsigned int)"><span class="description">Returns true if $number is a valid database id (aka, unsigned int)</span><pre>isId()</pre></a></li>
-<li class="method public "><a href="#method_isInt" title="isInt() :: Returns true if $number is an integer or integer string"><span class="description">Returns true if $number is an integer or integer string</span><pre>isInt()</pre></a></li>
-<li class="method public "><a href="#method_isNumeric" title="isNumeric() :: Returns true if $number is an integer, decimal, fraction, or mixed
-number"><span class="description">Returns true if $number is an integer, decimal, fraction, or mixed
-number</span><pre>isNumeric()</pre></a></li>
-<li class="method public "><a href="#method_isZero" title="isZero() :: Returns true if the value is zero"><span class="description">Returns true if the value is zero</span><pre>isZero()</pre></a></li>
-<li class="method public "><a href="#method_is_int" title="is_int() :: Alias for the isInt() method"><span class="description">Alias for the isInt() method</span><pre>is_int()</pre></a></li>
-<li class="method public "><a href="#method_is_numeric" title="is_numeric() :: Alias for the isNumeric() method"><span class="description">Alias for the isNumeric() method</span><pre>is_numeric()</pre></a></li>
-<li class="method public "><a href="#method_normalize" title="normalize() :: Returns a normalized value between 0 and 1 (inclusive)"><span class="description">Returns a normalized value between 0 and 1 (inclusive)</span><pre>normalize()</pre></a></li>
-<li class="method public "><a href="#method_roundTo" title="roundTo() :: Rounds $number to the nearest $multiple"><span class="description">Rounds $number to the nearest $multiple</span><pre>roundTo()</pre></a></li>
-<li class="method public "><a href="#method_val" title="val() :: Returns the numeric value of $var"><span class="description">Returns the numeric value of $var</span><pre>val()</pre></a></li>
-</ul>
-</li>
-<li class="nav-header">
-<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                                                                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Arr.html">Arr</a></li>
+                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Bool.html">Bool</a></li>
+                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Dir.html">Dir</a></li>
+                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Num.html">Num</a></li>
+                                                    <li class="class"><a href="../classes/Jstewmc.PhpHelpers.Str.html">Str</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
                     <ul>
-<li class="constant  "><a href="#constant_REGEX_NUMBER_COMMA" title="REGEX_NUMBER_COMMA() :: "><span class="description">&lt;p&gt;regex for a comma-separated number (e.g., "1,000")&lt;/p&gt;</span><pre>REGEX_NUMBER_COMMA</pre></a></li>
-<li class="constant  "><a href="#constant_REGEX_NUMBER_MIXED" title="REGEX_NUMBER_MIXED() :: "><span class="description">&lt;p&gt;regex for a mixed number (e.g., "1 1/2")&lt;/p&gt;</span><pre>REGEX_NUMBER_MIXED</pre></a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="span8">
-<a id="\Jstewmc\PhpHelpers\Num"></a><ul class="breadcrumb">
-<li>
-<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
-</li>
-<li><a href="../namespaces/Jstewmc.html">Jstewmc</a></li>
-<li>
-<span class="divider">\</span><a href="../namespaces/Jstewmc.PhpHelpers.html">PhpHelpers</a>
-</li>
-<li class="active">
-<span class="divider">\</span><a href="../classes/Jstewmc.PhpHelpers.Num.html">Num</a>
-</li>
-</ul>
-<div class="element class">
-<p class="short_description">The number (aka, "num") class</p>
-<div class="details">
-<div class="long_description">Keep in mind, a number in PHP (and hereafter in this class documentation) is
-considered to be a (float), (int), or numeric (string).</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>package</th>
-<td><a href="../packages/Default.html">Default</a></td>
-</tr>
-</table>
-<h3>
-<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
-<a id="method_almostEqual"></a><div class="element clickable method public method_almostEqual" data-toggle="collapse" data-target=".method_almostEqual .collapse" title="public">
-<h2>Returns true if float $a is almost equal to float $b</h2>
-<pre>almostEqual(integer|float $a, integer|float $b, integer|float $epsilon<code> = 1.0E-5</code>) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">Floating point numbers should never be compared for equivalence because of the
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Jstewmc.PhpHelpers.html">\Jstewmc\PhpHelpers</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Jstewmc\PhpHelpers</small>Num</h1>
+                    <p><em>The number (aka, &quot;num&quot;) class</em></p>
+                    <p>Keep in mind, a number in PHP (and hereafter in this class documentation) is
+considered to be a (float), (int), or numeric (string).</p>
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_almostEqual" class="">almostEqual()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_bound" class="">bound()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_ceilTo" class="">ceilTo()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_floorTo" class="">floorTo()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_is_int" class="">is_int()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_is_numeric" class="">is_numeric()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_isId" class="">isId()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_isInt" class="">isInt()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_isNumeric" class="">isNumeric()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_isZero" class="">isZero()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_normalize" class="">normalize()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_roundTo" class="">roundTo()</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#method_val" class="">val()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#constant_REGEX_NUMBER_COMMA" class="">REGEX_NUMBER_COMMA</a><br />
+                                                                    <a href="../classes/Jstewmc.PhpHelpers.Num.html#constant_REGEX_NUMBER_MIXED" class="">REGEX_NUMBER_MIXED</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Num.html"><div class="path-wrapper">Num.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Jstewmc\PhpHelpers\Num</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                since
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGEX_NUMBER_COMMA" name="constant_REGEX_NUMBER_COMMA" class="anchor"></a>
+            <article id="constant_REGEX_NUMBER_COMMA" class="constant">
+                <h3 class="">REGEX_NUMBER_COMMA</h3>
+                <pre class="signature">REGEX_NUMBER_COMMA</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REGEX_NUMBER_MIXED" name="constant_REGEX_NUMBER_MIXED" class="anchor"></a>
+            <article id="constant_REGEX_NUMBER_MIXED" class="constant">
+                <h3 class="">REGEX_NUMBER_MIXED</h3>
+                <pre class="signature">REGEX_NUMBER_MIXED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_almostEqual" name="method_almostEqual" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">almostEqual()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">almostEqual(integer|float <span class="argument">$a</span>, integer|float <span class="argument">$b</span>, integer|float <span class="argument">$epsilon</span>) : boolean</pre>
+                <p><em>Returns true if float $a is almost equal to float $b</em></p>
+                <p>Floating point numbers should never be compared for equivalence because of the
 way they are stored internally. They have limited precision, and many numbers
 numbers that are representable as floating point numbers in base 10 (e.g., 0.1
-or 0.7) do not have an exact representation as floating point numbers in base 2.
-
-To test floating point values for equality, an upper bound on the relative error
+or 0.7) do not have an exact representation as floating point numbers in base 2.</p>
+<p>To test floating point values for equality, an upper bound on the relative error
 due to rounding is used. This value is known as the machine epsilon, and is the
-largest acceptable difference in calculations (exclusive).</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://www.php.net/manual/en/language.types.float.php">man page on float type</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$a</h4>
-<code>integer</code><code>float</code><p>the first value</p></div>
-<div class="subelement argument">
-<h4>$b</h4>
-<code>integer</code><code>float</code><p>the second value</p></div>
-<div class="subelement argument">
-<h4>$epsilon</h4>
-<code>integer</code><code>float</code><p>the maximum allowed difference (exclusive) (optional;</p>
-<pre><code>if omitted defaults to 0.00001)</code></pre></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $a, $b, or $epsilon is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $a is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $b is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $epsilon is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $epsilon is not greater than zero</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if the values are equal</div>
-</div></div>
-</div>
-<a id="method_bound"></a><div class="element clickable method public method_bound" data-toggle="collapse" data-target=".method_bound .collapse" title="public">
-<h2>Bounds a value between an upper and/or lower bound (inclusive)</h2>
-<pre>bound(integer|float $number, integer|float $lower<code> = null</code>, integer|float $upper<code> = null</code>) : integer | float</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">I'll bound $number between a lower an upper bound; greater than or equal to a lower
-bound; or, less than or equal to an upper bound.
+largest acceptable difference in calculations (exclusive).</p>
 
-For example:
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$a </td>
+                                <td><p>the first value</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$b </td>
+                                <td><p>the second value</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$epsilon </td>
+                                <td><p>the maximum allowed difference (exclusive) (optional;</p>
+<pre><code>if omitted defaults to 0.00001)</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd><p>if $a, $b, or $epsilon is null</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $a is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $b is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $epsilon is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $epsilon is not greater than zero</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the values are equal</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://www.php.net/manual/en/language.types.float.php"><span class="namespace-wrapper">man page on float type</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-    Num::bound(1, 0);         // returns 1
-    Num::bound(0, 1);         // returns 1
-    Num::bound(-1, null, 2);  // returns -1
-    Num::bound(3, null, 2);   // returns 2
-    Num::bound(2, 1, 3);      // returns 2
-    Num::bound(4, 1, 3);      // returns 3</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to bound</p></div>
-<div class="subelement argument">
-<h4>$lower</h4>
-<code>integer</code><code>float</code><p>the number's lower bound (inclusive)</p></div>
-<div class="subelement argument">
-<h4>$upper</h4>
-<code>integer</code><code>float</code><p>the number's upper bound (inclusive)</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $number and $lower and/or $upper are not passed</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $lower is passed and not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $upper is passed and not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $upper is not greater than or equal to $lower</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>integer</code><code>float</code>the bounded value or false</div>
-</div></div>
-</div>
-<a id="method_ceilTo"></a><div class="element clickable method public method_ceilTo" data-toggle="collapse" data-target=".method_ceilTo .collapse" title="public">
-<h2>Returns $number ceiling-ed to the nearest $multiple</h2>
-<pre>ceilTo(integer|float $number, integer|float $multiple<code> = 1</code>) : integer | float</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">For exampel:
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_bound" name="method_bound" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">bound()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">bound(integer|float <span class="argument">$number</span>, integer|float <span class="argument">$lower</span>, integer|float <span class="argument">$upper</span>) : integer|float</pre>
+                <p><em>Bounds a value between an upper and/or lower bound (inclusive)</em></p>
+                <p>I'll bound $number between a lower an upper bound; greater than or equal to a lower
+bound; or, less than or equal to an upper bound.</p>
+<p>For example:</p>
+<pre><code>Num::bound(1, 0);         // returns 1
+Num::bound(0, 1);         // returns 1
+Num::bound(-1, null, 2);  // returns -1
+Num::bound(3, null, 2);   // returns 2
+Num::bound(2, 1, 3);      // returns 2
+Num::bound(4, 1, 3);      // returns 3</code></pre>
 
-    Num::ceilTo(5, 2);    // returns 6
-    Num::ceilTo(15, 10);  // returns 20
-    Num::ceilTo(25, 40);  // returns 40</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/1619284">Daren Schwneke's answer to "How to
-    round up a number to the nearest 10?" on StackOverflow</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to ceil</p></div>
-<div class="subelement argument">
-<h4>$multiple</h4>
-<code>integer</code><code>float</code><p>the multiple to ceil to (optional; if omitted,</p>
-<pre><code>defaults to 1 (aka, PHP's native ceil() function))</code></pre></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td></td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $number or $multiple is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $number is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $multiple is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $multiple is not greater than zero</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>integer</code><code>float</code>the ceiling-ed number</div>
-</div></div>
-</div>
-<a id="method_floorTo"></a><div class="element clickable method public method_floorTo" data-toggle="collapse" data-target=".method_floorTo .collapse" title="public">
-<h2>Returns $number floor-ed to the nearest $multiple</h2>
-<pre>floorTo(integer|float $number, integer|float $multiple<code> = 1</code>) : integer | float</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">For example:
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to bound</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$lower </td>
+                                <td><p>the number's lower bound (inclusive)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$upper </td>
+                                <td><p>the number's upper bound (inclusive)</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd><p>if $number and $lower and/or $upper are not passed</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $lower is passed and not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $upper is passed and not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $upper is not greater than or equal to $lower</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    integer|float
+                                            &mdash; <p>the bounded value or false</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-    Num::floorTo(19, 10);     // returns 10
-    Num::floorTo(0.99, 0.5);  // returns 0.5
-    Num::floorTo(101, 100);   // returns 100</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/1619284">Daren Schwneke's answer to "How to
-    round up a number to the nearest 10?" on StackOverflow</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to floor</p></div>
-<div class="subelement argument">
-<h4>$multiple</h4>
-<code>integer</code><code>float</code><p>the multiple to floor to (optional; if omitted,</p>
-<pre><code>defaults to 1 (aka, PHP's native floor() function))</code></pre></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $number or $multiple is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $number is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $multiple is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $multiple is not greater than zero</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>integer</code><code>float</code>
-</div>
-</div></div>
-</div>
-<a id="method_isId"></a><div class="element clickable method public method_isId" data-toggle="collapse" data-target=".method_isId .collapse" title="public">
-<h2>Returns true if $number is a valid database id (aka, unsigned int)</h2>
-<pre>isId(integer|float $number, string $datatype<code> = 'int'</code>) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">A valid id is a positive, non-zero integer that's less than or equal to
-the maximum value for the unsigned datatype.
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ceilTo" name="method_ceilTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">ceilTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ceilTo(integer|float <span class="argument">$number</span>, integer|float <span class="argument">$multiple</span>) : integer|float</pre>
+                <p><em>Returns $number ceiling-ed to the nearest $multiple</em></p>
+                <p>For exampel:</p>
+<pre><code>Num::ceilTo(5, 2);    // returns 6
+Num::ceilTo(15, 10);  // returns 20
+Num::ceilTo(25, 40);  // returns 40</code></pre>
 
-For example:
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to ceil</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$multiple </td>
+                                <td><p>the multiple to ceil to (optional; if omitted,</p>
+<pre><code>defaults to 1 (aka, PHP's native ceil() function))</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $number or $multiple is null</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $number is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $multiple is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $multiple is not greater than zero</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    integer|float
+                                            &mdash; <p>the ceiling-ed number</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://stackoverflow.com/a/1619284"><span class="namespace-wrapper">Daren Schwneke&#039;s answer to &quot;How to
+    round up a number to the nearest 10?&quot; on StackOverflow</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-    Num::isId('abc');            // returns false
-    Num::isId(1.5);              // returns false
-    Num::isId(123);              // returns true
-    Num::isId(999999, 'small');  // returns false</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to test</p></div>
-<div class="subelement argument">
-<h4>$datatype</h4>
-<code>string</code><p>the column datatype name (possible values are</p>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_floorTo" name="method_floorTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">floorTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">floorTo(integer|float <span class="argument">$number</span>, integer|float <span class="argument">$multiple</span>) : integer|float</pre>
+                <p><em>Returns $number floor-ed to the nearest $multiple</em></p>
+                <p>For example:</p>
+<pre><code>Num::floorTo(19, 10);     // returns 10
+Num::floorTo(0.99, 0.5);  // returns 0.5
+Num::floorTo(101, 100);   // returns 100</code></pre>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to floor</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$multiple </td>
+                                <td><p>the multiple to floor to (optional; if omitted,</p>
+<pre><code>defaults to 1 (aka, PHP's native floor() function))</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd><p>if $number or $multiple is null</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $number is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $multiple is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $multiple is not greater than zero</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    integer|float
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://stackoverflow.com/a/1619284"><span class="namespace-wrapper">Daren Schwneke&#039;s answer to &quot;How to
+    round up a number to the nearest 10?&quot; on StackOverflow</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_is_int" name="method_is_int" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">is_int()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">is_int( <span class="argument">$number</span>)</pre>
+                <p><em>Alias for the isInt() method</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$number </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Jstewmc.PhpHelpers.Num.html#method_isInt"><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_is_numeric" name="method_is_numeric" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">is_numeric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">is_numeric( <span class="argument">$number</span>)</pre>
+                <p><em>Alias for the isNumeric() method</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$number </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Jstewmc.PhpHelpers.Num.html#method_isNumeric"><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isId" name="method_isId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isId(integer|float <span class="argument">$number</span>, string <span class="argument">$datatype</span>) : boolean</pre>
+                <p><em>Returns true if $number is a valid database id (aka, unsigned int)</em></p>
+                <p>A valid id is a positive, non-zero integer that's less than or equal to
+the maximum value for the unsigned datatype.</p>
+<p>For example:</p>
+<pre><code>Num::isId('abc');            // returns false
+Num::isId(1.5);              // returns false
+Num::isId(123);              // returns true
+Num::isId(999999, 'small');  // returns false</code></pre>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to test</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$datatype </td>
+                                <td><p>the column datatype name (possible values are</p>
 <pre><code>'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]')
-(case-insensitive) (optional; if omitted, defaults to 'int')</code></pre></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $datatype is null</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $datatype is not a string</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $datatype is not an allowed value</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if the number is a valid database id</div>
-</div></div>
-</div>
-<a id="method_isInt"></a><div class="element clickable method public method_isInt" data-toggle="collapse" data-target=".method_isInt .collapse" title="public">
-<h2>Returns true if $number is an integer or integer string</h2>
-<pre>isInt(integer|float $number) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP's native is_int() functions returns false on strings like '23' or '1'.
-I will evaluate those integer strings to true.
+(case-insensitive) (optional; if omitted, defaults to 'int')</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd><p>if $datatype is null</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $datatype is not a string</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $datatype is not an allowed value</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if the number is a valid database id</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-For example:
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isInt" name="method_isInt" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isInt()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isInt(integer|float <span class="argument">$number</span>) : boolean</pre>
+                <p><em>Returns true if $number is an integer or integer string</em></p>
+                <p>PHP's native is_int() functions returns false on strings like '23' or '1'.
+I will evaluate those integer strings to true.</p>
+<p>For example:</p>
+<pre><code>is_int(1);        // returns true
+Num::isInt(1);    // returns true
 
-    is_int(1);        // returns true
-    Num::isInt(1);    // returns true
+is_int('1');      // returns false
+Num::isInt('1');  // returns true</code></pre>
 
-    is_int('1');      // returns false
-    Num::isInt('1');  // returns true</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to test</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if $number is an integer or integer string</div>
-</div></div>
-</div>
-<a id="method_isNumeric"></a><div class="element clickable method public method_isNumeric" data-toggle="collapse" data-target=".method_isNumeric .collapse" title="public">
-<h2>Returns true if $number is an integer, decimal, fraction, or mixed
-number</h2>
-<pre>isNumeric(mixed $number) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP's native is_numeric() method will return false on fractions or
-mixed numbers. I'll return true.
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to test</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if $number is an integer or integer string</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-For example:
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isNumeric" name="method_isNumeric" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isNumeric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isNumeric(mixed <span class="argument">$number</span>) : boolean</pre>
+                <p><em>Returns true if $number is an integer, decimal, fraction, or mixed
+number</em></p>
+                <p>PHP's native is_numeric() method will return false on fractions or
+mixed numbers. I'll return true.</p>
+<p>For example:</p>
+<pre><code>is_numeric(2);             // returns true
+self::isNumeric(2);        // returns true
 
-    is_numeric(2);             // returns true
-    self::isNumeric(2);        // returns true
+is_numeric(1.5);           // returns true
+self::isNumeric(1.5);      // returns true
 
-    is_numeric(1.5);           // returns true
-    self::isNumeric(1.5);      // returns true
+is_numeric("1.5");         // returns true
+self::isNumeric("1.5");    // returns true
 
-    is_numeric("1.5");         // returns true
-    self::isNumeric("1.5");    // returns true
+is_numeric("1/2");         // returns false
+self::isNumeric("1/2");    // returns true
 
-    is_numeric("1/2");         // returns false
-    self::isNumeric("1/2");    // returns true
+is_numeric("1 1/2");       // returns false
+self::isNumeric("1 1/2");  // returns true</code></pre>
 
-    is_numeric("1 1/2");       // returns false
-    self::isNumeric("1 1/2");  // returns true</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>mixed</code><p>the number to test</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if $number is a number</div>
-</div></div>
-</div>
-<a id="method_isZero"></a><div class="element clickable method public method_isZero" data-toggle="collapse" data-target=".method_isZero .collapse" title="public">
-<h2>Returns true if the value is zero</h2>
-<pre>isZero(mixed $number) : boolean</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">It can be a little tricky to evaluate a variable in PHP as zero. If you use
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$number </td>
+                                <td><p>the number to test</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if $number is a number</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isZero" name="method_isZero" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isZero()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isZero(mixed <span class="argument">$number</span>) : boolean</pre>
+                <p><em>Returns true if the value is zero</em></p>
+                <p>It can be a little tricky to evaluate a variable in PHP as zero. If you use
 PHP's native empty function, it will consider 0, '0', 0.0, and '0.0' as empty.
 However, it will also consider false, array(), '' as empty too. If you compare
 a value to the possible values for zero in PHP over-and-over, it's a pain. I
-make it easy.
+make it easy.</p>
+<p>For example:</p>
+<pre><code>Num::isZero((int) 0);      // returns true
+Num::isZero((float) 0.0);  // returns true
+Num::isZero("0");          // returns true
+Num::isZero("0.0");        // returns true</code></pre>
+<p>I'm particularly useful when combined with PHP's empty() function.</p>
+<pre><code>$a = ! empty(0);                    // evaluates to false
+$b = ! empty(0) || Num::isZero(0);  // evaluates to true</code></pre>
 
-For example:
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$number </td>
+                                <td><p>the number to test</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>true if $number is zero</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-    Num::isZero((int) 0);      // returns true
-    Num::isZero((float) 0.0);  // returns true
-    Num::isZero("0");          // returns true
-    Num::isZero("0.0");        // returns true
-
-I'm particularly useful when combined with PHP's empty() function.
-
-    $a = ! empty(0);                    // evaluates to false
-    $b = ! empty(0) || Num::isZero(0);  // evaluates to true</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>mixed</code><p>the number to test</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>boolean</code>true if $number is zero</div>
-</div></div>
-</div>
-<a id="method_is_int"></a><div class="element clickable method public method_is_int" data-toggle="collapse" data-target=".method_is_int .collapse" title="public">
-<h2>Alias for the isInt() method</h2>
-<pre>is_int($number) </pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="%5CJstewmc%5CPhpHelpers%5CNum::isInt()"></a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument"><h4>$number</h4></div>
-</div></div>
-</div>
-<a id="method_is_numeric"></a><div class="element clickable method public method_is_numeric" data-toggle="collapse" data-target=".method_is_numeric .collapse" title="public">
-<h2>Alias for the isNumeric() method</h2>
-<pre>is_numeric($number) </pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="%5CJstewmc%5CPhpHelpers%5CNum::isNumeric()"></a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument"><h4>$number</h4></div>
-</div></div>
-</div>
-<a id="method_normalize"></a><div class="element clickable method public method_normalize" data-toggle="collapse" data-target=".method_normalize .collapse" title="public">
-<h2>Returns a normalized value between 0 and 1 (inclusive)</h2>
-<pre>normalize(integer|float $number, integer|float $max) : integer | float</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">In statistics, it's often helpful to normalize (sometimes referred to as index)
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_normalize" name="method_normalize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">normalize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">normalize(integer|float <span class="argument">$number</span>, integer|float <span class="argument">$max</span>) : integer|float</pre>
+                <p><em>Returns a normalized value between 0 and 1 (inclusive)</em></p>
+                <p>In statistics, it's often helpful to normalize (sometimes referred to as index)
 values for comparison. For example, for a retailer to compare an item's revenue
 against its quantity-in-stock, the values must be normalized (otherwise, revenue
 will likely be in the thousands of dollars and quantity in stock will likely be
-in the dozens).
-
-If you divide every item's revenue by the maximum revenue of any item, you'll have
+in the dozens).</p>
+<p>If you divide every item's revenue by the maximum revenue of any item, you'll have
 a normalized value between 1 and 0. If you do the same for quantity-in-stock, you
-can compare the two values easily.
+can compare the two values easily.</p>
+<p>For example:</p>
+<pre><code>Num::normalize(1, 100);    // returns 0.01
+Num::normalize(50, 100);   // returns 0.5
+Num::normalize(0, 100);    // returns 0
+Num::normalize(150, 100);  // returns 1</code></pre>
 
-For example:
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to normalize</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$max </td>
+                                <td><p>the maximum to divide into $value</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd><p>if $number or $max are not passed</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $number is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $max is not a number</p></dd>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if $max is not greater than zero</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    integer|float
+                                            &mdash; <p>a number between 1 and 0 (inclusive)</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-    Num::normalize(1, 100);    // returns 0.01
-    Num::normalize(50, 100);   // returns 0.5
-    Num::normalize(0, 100);    // returns 0
-    Num::normalize(150, 100);  // returns 1</div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to normalize</p></div>
-<div class="subelement argument">
-<h4>$max</h4>
-<code>integer</code><code>float</code><p>the maximum to divide into $value</p></div>
-<h3>Exceptions</h3>
-<table class="table table-bordered">
-<tr>
-<th><code>\BadMethodCallException</code></th>
-<td>if $number or $max are not passed</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $number is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $max is not a number</td>
-</tr>
-<tr>
-<th><code>\InvalidArgumentException</code></th>
-<td>if $max is not greater than zero</td>
-</tr>
-</table>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>integer</code><code>float</code>a number between 1 and 0 (inclusive)</div>
-</div></div>
-</div>
-<a id="method_roundTo"></a><div class="element clickable method public method_roundTo" data-toggle="collapse" data-target=".method_roundTo .collapse" title="public">
-<h2>Rounds $number to the nearest $multiple</h2>
-<pre>roundTo(integer|float $number, integer|float $multiple<code> = 1</code>) : integer | float</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">For example:
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_roundTo" name="method_roundTo" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">roundTo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">roundTo(integer|float <span class="argument">$number</span>, integer|float <span class="argument">$multiple</span>) : integer|float</pre>
+                <p><em>Rounds $number to the nearest $multiple</em></p>
+                <p>For example:</p>
+<pre><code>Num::roundTo(7, 2);  // returns 8
+Num::roundTo(7, 4);  // returns 8
+Num::roundTo(7, 8);  // returns 8</code></pre>
 
-    Num::roundTo(7, 2);  // returns 8
-    Num::roundTo(7, 4);  // returns 8
-    Num::roundTo(7, 8);  // returns 8</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/1619284">Daren Schwneke's answer to "How to
-    round up a number to the nearest 10?" on StackOverflow</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$number</h4>
-<code>integer</code><code>float</code><p>the number to round</p></div>
-<div class="subelement argument">
-<h4>$multiple</h4>
-<code>integer</code><code>float</code><p>the multiple to round to (optional; if omitted,</p>
-<pre><code>defaults to 1 (aka, PHP's native round() method))</code></pre></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>integer</code><code>float</code>the rounded number</div>
-</div></div>
-</div>
-<a id="method_val"></a><div class="element clickable method public method_val" data-toggle="collapse" data-target=".method_val .collapse" title="public">
-<h2>Returns the numeric value of $var</h2>
-<pre>val(mixed $var) : integer | float</pre>
-<div class="labels"><span class="label">Static</span></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description">PHP does not natively support fractions, mixed numbers, or comma-separated
-values, but I will. Woot!
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$number </td>
+                                <td><p>the number to round</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|float</td>
+                                <td>$multiple </td>
+                                <td><p>the multiple to round to (optional; if omitted,</p>
+<pre><code>defaults to 1 (aka, PHP's native round() method))</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer|float
+                                            &mdash; <p>the rounded number</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://stackoverflow.com/a/1619284"><span class="namespace-wrapper">Daren Schwneke&#039;s answer to &quot;How to
+    round up a number to the nearest 10?&quot; on StackOverflow</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
-I use the following rules:
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_val" name="method_val" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">val()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">val(mixed <span class="argument">$var</span>) : integer|float</pre>
+                <p><em>Returns the numeric value of $var</em></p>
+                <p>PHP does not natively support fractions, mixed numbers, or comma-separated
+values, but I will. Woot!</p>
+<p>I use the following rules:</p>
+<pre><code>Bools
+    Bools are returns as strictly typed integers.
 
-    Bools
-        Bools are returns as strictly typed integers.
+Integers
+    Integers are returned as strictly typed integers.
 
-    Integers
-        Integers are returned as strictly typed integers.
+Floats
+    Floats are returned as strictly typed floats.
 
-    Floats
-        Floats are returned as strictly typed floats.
+Strings
+    Numeric strings are returned as their strictly typed equivalent (i.e.,
+    an integer or float). Numeric strings with commas are returned as their
+    strictly typed equivalents. Fractions and mixed numbers are returns as
+    floats. All other strings return 0.
 
-    Strings
-        Numeric strings are returned as their strictly typed equivalent (i.e.,
-        an integer or float). Numeric strings with commas are returned as their
-        strictly typed equivalents. Fractions and mixed numbers are returns as
-        floats. All other strings return 0.
+Arrays
+    Empty arrays return 0, and non-empty arrays return 1.
 
-    Arrays
-        Empty arrays return 0, and non-empty arrays return 1.
+Objects
+    This method should not be used on objects. However, unlike the native
+    PHP intval() or floatval() methods, I will not raise an error. I will
+    always evaluate objects as 1.</code></pre>
+<p>For example:</p>
+<pre><code>Num::bool(true);           // returns (int) 1
+Num::val(1);               // returns (int) 1
+Num::val('1');             // returns (int) 1
+Num::val(1.5);             // returns (float) 1.5
+Num::val('1.5');           // returns (float) 1.5
+Num::val('1 1/2');         // returns (float) 1.5
+Num::val('3/2');           // returns (float) 1.5
+Num::val('3\2');           // returns (float) 1.5
+Num::val('1000');          // returns (int) 1000
+Num::val('1,000');         // returns (int) 1000
+Num::val('1,000.5');       // returns (float) 1000.5
+Num::val('10000');         // returns (int) 10000
+Num::val('1,0,0');         // returns 0
+Num::val('abc');           // returns 0
+Num::val(array());         // returns 0
+Num::val(array('foo'));    // returns 1
+Num::val(new stdClass());  // returns 1</code></pre>
 
-    Objects
-        This method should not be used on objects. However, unlike the native
-        PHP intval() or floatval() methods, I will not raise an error. I will
-        always evaluate objects as 1.
-
-For example:
-
-    Num::bool(true);           // returns (int) 1
-    Num::val(1);               // returns (int) 1
-    Num::val('1');             // returns (int) 1
-    Num::val(1.5);             // returns (float) 1.5
-    Num::val('1.5');           // returns (float) 1.5
-    Num::val('1 1/2');         // returns (float) 1.5
-    Num::val('3/2');           // returns (float) 1.5
-    Num::val('3\2');           // returns (float) 1.5
-    Num::val('1000');          // returns (int) 1000
-    Num::val('1,000');         // returns (int) 1000
-    Num::val('1,000.5');       // returns (float) 1000.5
-    Num::val('10000');         // returns (int) 10000
-    Num::val('1,0,0');         // returns 0
-    Num::val('abc');           // returns 0
-    Num::val(array());         // returns 0
-    Num::val(array('foo'));    // returns 1
-    Num::val(new stdClass());  // returns 1</div>
-<table class="table table-bordered">
-<tr>
-<th>since</th>
-<td>0.1.0</td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/5264255">Pascal MARTIN's answer to "Convert
-    mixed fraction string to float in PHP" on StackOverflow (edited to allow
-    back- or forward-slashes in fractions)</a></td>
-</tr>
-<tr>
-<th>see</th>
-<td><a href="http://stackoverflow.com/a/5917250">Justin Morgain's answer to "Regular
-    expression to match numbers with or without commas and decimals in text" on
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$var </td>
+                                <td><p>the value to evaluate</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer|float
+                                            &mdash; <p>the value's numeric equivalent</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="http://stackoverflow.com/a/5264255"><span class="namespace-wrapper">Pascal MARTIN&#039;s answer to &quot;Convert
+    mixed fraction string to float in PHP&quot; on StackOverflow (edited to allow
+    back- or forward-slashes in fractions)</span></a></dd>
+                                            <dd><a href="http://stackoverflow.com/a/5917250"><span class="namespace-wrapper">Justin Morgain&#039;s answer to &quot;Regular
+    expression to match numbers with or without commas and decimals in text&quot; on
     StackOverflow (edited to allow leading and trailing zeros in comma-separated
-    numbers)</a></td>
-</tr>
-</table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$var</h4>
-<code>mixed</code><p>the value to evaluate</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>integer</code><code>float</code>the value's numeric equivalent</div>
-</div></div>
+    numbers)</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            0.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Num.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Num.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Jstewmc.html">\Jstewmc</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 27th, 2014 at 22:46.
+                </section>
+            </section>
+        </section>
+    </footer>
 </div>
-<h3>
-<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
-<a id="constant_REGEX_NUMBER_COMMA"> </a><div class="element clickable constant  constant_REGEX_NUMBER_COMMA" data-toggle="collapse" data-target=".constant_REGEX_NUMBER_COMMA .collapse" title="">
-<h2>&lt;p&gt;regex for a comma-separated number (e.g., "1,000")&lt;/p&gt;</h2>
-<pre>REGEX_NUMBER_COMMA = '#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#' : \Jstewmc\PhpHelpers\the</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="constant_REGEX_NUMBER_MIXED"> </a><div class="element clickable constant  constant_REGEX_NUMBER_MIXED" data-toggle="collapse" data-target=".constant_REGEX_NUMBER_MIXED .collapse" title="">
-<h2>&lt;p&gt;regex for a mixed number (e.g., "1 1/2")&lt;/p&gt;</h2>
-<pre>REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#' : \Jstewmc\PhpHelpers\the</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row"><footer class="span12">
-            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.6.1</a> and<br>
-            generated on 2014-08-27T22:29:19Z.<br></footer></div>
-</div>
+
 </body>
 </html>
