@@ -13,7 +13,7 @@ Here are a few rules I'd like you to follow when contributing (because I try to)
 	* A method's DocBlock should include, in order, the [`@since`](http://phpdoc.org/docs/latest/references/phpdoc/tags/since.html), [`@param`](http://phpdoc.org/docs/latest/references/phpdoc/tags/param.html), [`@return`](http://phpdoc.org/docs/latest/references/phpdoc/tags/return.html), [`@throws`](http://phpdoc.org/docs/latest/references/phpdoc/tags/throws.html), and [`@see`](http://phpdoc.org/docs/latest/references/phpdoc/tags/see.html) tags (if the `@see` is necessary necessary).
 * Write unit tests using PHPUnit.
 	* Tests should test behavior, not a million return types to find bugs (like I used to do). In other words, test inputs and outputs in different scenarios to make sure the function fulfills its promise to the rest of the code.
-	* Tests should be named `test&lt;methodName&gt;_returns&lt;Value&gt;_if&lt;testCase&gt;` (e.g., `testCopy_returnsTrue_ifSourceIsEmpty`) or `test&lt;methodNamegt;_throws&lt;exceptionName&gt;_if&lt;testCase&gt;` (e.g., `testCopy_throwsInvalidArgumentException_ifSourceDoesNotExist`).
+	* Tests should be named `test<methodName>_returns<Value>_if<testCase>` (e.g., `testCopy_returnsTrue_ifSourceIsEmpty`) or `test<methodName>_throws<exceptionName>_if<testCase>` (e.g., `testCopy_throwsInvalidArgumentException_ifSourceDoesNotExist`).
 	* Tests should include only one assertion (although, of course, there are exceptions to this rule).
 
 If those rules are palatable, here are the steps to follow:
