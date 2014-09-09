@@ -32,6 +32,90 @@ class Num
 	const REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#';
 	
 	
+	/* !Public members */
+	
+	/**
+	 * @var  array  an array of cardinal numbers (e.g., "one", "two", etc)
+	 */
+	public static $cardinals = array(
+		'one'       => 1, 
+		'two'       => 2,
+		'three'     => 3,
+		'four'      => 4,
+		'five'      => 5,
+		'six'       => 6,
+		'seven'     => 7,
+		'eight'     => 8,
+		'nine'      => 9,
+		'ten'       => 10,
+		'eleven'    => 11,
+		'twelve'    => 12,
+		'thirteen'  => 13,
+		'fourteen'  => 14,
+		'fifteen'   => 15,
+		'sixteen'   => 16,
+		'seventeen' => 17,
+		'eighteen'  => 18,
+		'nineteen'  => 19,
+		'twenty'    => 20,
+		'thirty'    => 30,
+		'forty'     => 40,
+		'fifty'     => 50,
+		'sixty'     => 60,
+		'seventy'   => 70,
+		'eighty'    => 80,
+		'ninety'    => 90
+	);
+	
+	/**
+	 * @var  array  an array of ordinal numbers (e.g., "first", "second", etc)
+	 */
+	public static $ordinals = array(
+		'first'       => 1,
+		'second'      => 2,
+		'third'       => 3,
+		'fourth'      => 4,
+		'fifth'       => 5,
+		'sixth'       => 6,
+		'seventh'     => 7,
+		'eighth'      => 8,
+		'nineth'      => 9,
+		'tenth'       => 10,
+		'eleventh'    => 11,
+		'twelveth'    => 12,
+		'thirteenth'  => 13,
+		'fourteenth'  => 14,
+		'fifteenth'   => 15,
+		'sixteenth'   => 16,
+		'seventeenth' => 17,
+		'eighteenth'  => 18,
+		'nineteenth'  => 19,
+		'twentieth'   => 20,
+		'thirtieth'   => 30,
+		'fourtieth'   => 40,
+		'fiftieth'    => 50,
+		'sixtieth'    => 60,
+		'seventieth'  => 70,
+		'eightieth'   => 80,
+		'ninetieth'   => 90
+	);
+	
+	/**
+	 * @var  array  an array of powers
+	 */
+	public static $powers = array(
+		'hundred'  => 100,
+		'thousand' => 1000,
+		'million'  => 1000000,
+		'billion'  => 1000000000
+	);
+	
+	/**
+	 * @var  array  an array of number suffixes
+	 */
+	public static $suffixes = array('th', 'st', 'nd', 'rd');
+	
+	
 	/* !Public methods */
 	
 	/**
@@ -666,8 +750,8 @@ class Num
 	/**
 	 * Returns the numeric value of $var
 	 *
-	 * PHP does not natively support fractions, mixed numbers, or comma-separated 
-	 * values, but I will. Woot! 
+	 * PHP does not natively support fractions, mixed numbers, comma-separated 
+	 * values, ordinals, or cardinals values, but I will. Woot! 
 	 *
 	 * I use the following rules:
 	 *
@@ -683,8 +767,9 @@ class Num
 	 *     Strings
 	 *         Numeric strings are returned as their strictly typed equivalent (i.e.,
 	 *         an integer or float). Numeric strings with commas are returned as their 
-	 *         strictly typed equivalents. Fractions and mixed numbers are returns as
-	 *         floats. All other strings return 0.
+	 *         strictly typed equivalents. Fractions and mixed numbers are returned as
+	 *         floats. Ordinal and cardinal numbers (e.g., "one hundred", "second" or 
+	 *         "2nd") are returned as integers. All other strings return 0.
 	 *
 	 *     Arrays
 	 *         Empty arrays return 0, and non-empty arrays return 1.
@@ -708,6 +793,9 @@ class Num
 	 *     Num::val('1,000');         // returns (int) 1000
 	 *     Num::val('1,000.5');       // returns (float) 1000.5
 	 *     Num::val('10000');         // returns (int) 10000
+	 *     Num::val('1st);            // returns (int) 1
+	 *     Num::val('second');        // returns (int) 2
+	 *     Num::val('one hundred');   // returns (int) 100
 	 *     Num::val('1,0,0');         // returns 0
 	 *     Num::val('abc');           // returns 0
 	 *     Num::val(array());         // returns 0
@@ -727,6 +815,9 @@ class Num
 	 *    expression to match numbers with or without commas and decimals in text" on
 	 *    StackOverflow (edited to allow leading and trailing zeros in comma-separated
 	 *    numbers)
+	 * @see  http://stackoverflow.com/a/11219737  El Yobo's answer to "Converting
+	 *    words to numbers in PHP" on StackOverflow (edited to use static arrays of
+	 *    cardinals, ordinals, and powers and to use intval() instead of floatval())
 	 */
 	public static function val($var) 
 	{
@@ -741,14 +832,91 @@ class Num
 		if ( ! is_numeric($var)) {
 			// if the number is a string
 			if (is_string($var)) {
-				// if the number is a number with decimals
-				// else if the number is a fraction or mixed number
+				// if the number is a number with commas (e.g., "1,000")
+				// else, if the number is a fraction or mixed number (e.g., "1/2")
+				// else, if the number has a suffix (e.g., "1st")
+				// else, if the number is the name for a number  (e.g., "one hundred")
+				// otherwise, it's zero
+				//
 				if (preg_match(self::REGEX_NUMBER_COMMA, $var)) {
 					$value = +str_replace(',', '', $var);
 				} elseif (preg_match(self::REGEX_NUMBER_MIXED, $var, $m)) {
 					$value = $m[2] + $m[3] / $m[4];
+				} elseif (is_numeric(substr($var, 0, 1)) && in_array(substr($var, -2), self::$suffixes)) {
+					$value = substr($var, 0, -2);
 				} else {
-					$value = 0;
+					// if the string is composed *only* of valid number names
+					//
+					// first, lowercase $var, strip commas, and replace "-" and " and " with spaces
+					// then, explode on space, trim, and filter out empty values 
+					// finally, merge all the possible numeric string values together
+					//
+					$words = strtolower($var);
+					$words = str_ireplace(',', '', $words);
+					$words = str_ireplace(array('-', ' and '), ' ', $words);
+					$words = array_filter(array_map('trim', explode(' ', $words)));
+					$names = array_merge(
+						array_keys(self::$cardinals),
+						array_keys(self::$ordinals),
+						array_keys(self::$powers)
+					);
+					if (count(array_diff($words, $names)) === 0) {
+						// replace the words with their numeric values
+						$var = strtr(
+							strtolower($var),
+							array_merge(
+								self::$cardinals, 
+								self::$ordinals,
+								self::$powers,
+								array('and' => '')
+							)
+						);
+						// convert the numeric values to integers
+					    $parts = array_map(
+					        function ($val) {
+					            return intval($val);
+					        },
+					        preg_split('/[\s-]+/', $var)
+					    );
+					
+					    $stack = new \SplStack();  // the current work stack
+					    $sum   = 0;               // the running total
+					    $last  = null;            // the last part
+					
+						// loop through the parts
+					    foreach ($parts as $part) {
+					    	// if the stack isn't empty
+					        if ( ! $stack->isEmpty()) {
+					            // we're part way through a phrase
+					            if ($stack->top() > $part) {
+					                // decreasing step, e.g. from hundreds to ones
+					                if ($last >= 1000) {
+					                    // If we drop from more than 1000 then we've finished the phrase
+					                    $sum += $stack->pop();
+					                    // This is the first element of a new phrase
+					                    $stack->push($part);
+					                } else {
+					                    // Drop down from less than 1000, just addition
+					                    // e.g. "seventy one" -> "70 1" -> "70 + 1"
+					                    $stack->push($stack->pop() + $part);
+					                }
+					            } else {
+					                // Increasing step, e.g ones to hundreds
+					                $stack->push($stack->pop() * $part);
+					            }
+					        } else {
+					            // This is the first element of a new phrase
+					            $stack->push($part);
+					        }
+					
+					        // Store the last processed part
+					        $last = $part;
+					    }
+					
+					    $value = $sum + $stack->pop();
+					} else {
+						$value = 0;	
+					}
 				}
 			} elseif (is_array($var)) {
 				$value = min(count($var), 1);
