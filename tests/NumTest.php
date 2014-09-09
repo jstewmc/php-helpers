@@ -948,4 +948,50 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val(new StdClass()), 1);
 	 }
+	 
+	 /** 
+	  * val() should return int if var is a cardinal string (e.g., "one")
+	  */
+	 public function testVal_returnsInt_ifVarIsACardinalString()
+	 {
+		 return $this->assertEquals(Num::val('one'), 1);
+	 }
+	 
+	 /**
+	  * val() should return int if var is an ordinal string (e.g., "first")
+	  */
+	 public function testVal_returnsInt_ifVarIsAnOrdinalString()
+	 {
+		 return $this->assertEquals(Num::val('first'), 1);
+	 }
+	 
+	 /**
+	  * val() should return int if var is an short-length integer name (e.g., "one hundred")
+	  */
+	 public function testVal_returnsInt_ifVarIsShortName()
+	 {
+		 return $this->assertEquals(Num::val('two hundred and twenty-two'), 222);
+	 }
+	 
+	 /**
+	  * val() should return int if var is a medium-length integer name
+	  */
+	 public function testVal_returnsInt_ifVarIsMediumName()
+	 {
+		return $this->assertEquals(
+			Num::val('one hundred eleven thousand, one hundred and eleven'), 
+			111111
+		); 
+	 }
+	 
+	 /**
+	  * val() should return int if var is a long-length integer name
+	  */
+	 public function testVal_returnsInt_ifVarIsLongName()
+	 {
+		 return $this->assertEquals(
+		 	Num::val('one million four hundred thirty-seven thousand five hundred twenty-two'),
+		 	1437522
+		 );
+	 }
 }
