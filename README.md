@@ -3,18 +3,20 @@ Static classes to help with PHP strings, arrays, numbers, files, and bools.
 
 Static helper classes are nothing new in PHP. In fact, most of these functions have probably been written dozens of times in better libraries than mine. However, I wrote (or copied these functions from the web with credit) when I worked on a project that required as few dependencies as possible. I figured they were a great candidate for my first GitHub repository.
 
-Feel free to check out the [API documentation](https://jstewmc.github.io/php-helpers/api/0.1.0), [report an issue](https://github.com/jstewmc/php-helpers/issues), [contribute](https://github.com/jstewmc/php-helpers/blob/master/contributing.md), or [ask a question](mailto:clayjs0@gmail.com). 
+Feel free to check out the [API documentation](https://jstewmc.github.io/php-helpers/api/0.1.1), [report an issue](https://github.com/jstewmc/php-helpers/issues), [contribute](https://github.com/jstewmc/php-helpers/blob/master/contributing.md), or [ask a question](mailto:clayjs0@gmail.com). 
 
 ## Examples
 Here are examples for the most commonly used functions.
 
 ### Numbers (aka, "Num")
 ```php
-// evaluate integers, floats, fractions, mixed numbers, or comma-separated values
+// evaluate integers, floats, fractions, mixed numbers, comma-separated values,
+//     and some english-worded numbers
 // PHP doesn't like fractions (e.g., '1/2') or mixed numbers (e.g., '1 1/2')
 //
-Num::val('1/2');    // returns (float) 0.5
-Num::val('1,000');  // returns (int) 1000
+Num::val('1/2');          // returns (float) 0.5
+Num::val('1,000');        // returns (int) 1000
+Num::val('one hundred');  // returns (int) 100
 
 // round, ceil, or floor a number to the nearest multiple of another number
 // e.g., round/ceil/floor 7 to the nearest multiple of 10
