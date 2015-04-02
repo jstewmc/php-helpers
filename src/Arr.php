@@ -501,6 +501,32 @@ class Arr
 
 		return $replaced;
 	}
+	
+	/**
+	 * Returns an array of this array's permutations
+	 *
+	 * @param  string[]  $array  an array of strings
+	 * @return  string[]  an array of $array's permutations
+	 * @see  http://docstore.mik.ua/orelly/webprog/pcook/ch04_26.htm  an example from
+	 *     O'Reilly's PHPCookbook
+	 * @since  0.1.2
+	 */
+	public static function permute(Array $set) 
+	{
+		$perms = [];
+		
+		$j    = 0;
+		$size = count($set) - 1;
+		$perm = range(0, $size);
+			
+		do { 
+			foreach ($perm as $i) { 
+				$perms[$j][] = $set[$i]; 
+			}
+		} while ($perm = self::getNextPermutation($perm, $size) and ++$j);
+		
+		return $perms;
+	}
 
 	/**
 	 * Sorts an array of associative arrays by a field's value
@@ -784,5 +810,36 @@ class Arr
 		}
 
 		return $array;
+	}
+	
+	
+	/* !Protected methods */
+	
+	/**
+	 * Returns the next permutation
+	 *
+	 * @see  self:permute()
+	 */
+	protected static function getNextPermutation($p, $size) 
+	{	    
+	    // slide down the array looking for where we're smaller than the next guy
+	    for ($i = $size - 1; $i >= 0 && $p[$i] >= $p[$i+1]; --$i) { }
+	
+	    // if this doesn't occur, we've finished our permutations
+	    // the array is reversed: (1, 2, 3, 4) => (4, 3, 2, 1)
+	    if ($i == -1) { return false; }
+
+	    // slide down the array looking for a bigger number than what we found before
+	    for ($j = $size; $j >= 0 && $p[$j] <= $p[$i]; --$j) { }
+	
+	    // swap them
+	    $tmp = $p[$i]; $p[$i] = $p[$j]; $p[$j] = $tmp;
+	
+	    // now reverse the elements in between by swapping the ends
+	    for (++$i, $j = $size; $i < $j; ++$i, --$j) {
+	         $tmp = $p[$i]; $p[$i] = $p[$j]; $p[$j] = $tmp;
+	    }
+	
+	    return $p;
 	}
 }

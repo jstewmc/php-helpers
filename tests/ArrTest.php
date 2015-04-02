@@ -609,6 +609,72 @@ class ArrTest extends PHPUnit_Framework_TestCase
 		return $this->assertEquals($actual, $expected);
 	}
 	
+	
+	/* !permute() */
+	
+	/**
+	 * permute() should return an array of permutations for two elements
+	 */
+	public function testPermute_returnsArray_ifTwoElements()
+	{
+		$array = ['foo', 'bar'];
+		
+		$expected = [['foo', 'bar'], ['bar', 'foo']];
+		$actual   = Arr::permute($array);
+		
+		// reduce $expected and $actual to single-dimensional arrays so we can use
+		//     array_diff to compare (because the elements will be out of order)
+		//
+		$expected = array_map(function ($v) {
+			return implode('', $v);
+		}, $expected);
+		
+		$actual = array_map(function ($v) {
+			return implode('', $v);
+		}, $actual);
+		
+		$this->assertEquals(0, count(array_diff($expected, $actual)));
+		
+		$this->assertEquals($expected, $actual);
+		
+		return;
+	}
+	
+	/**
+	 * permute() should return an array of permutations for three elements
+	 */
+	public function testPermute_returnsArray_ifThreeElements()
+	{
+		$array = ['foo', 'bar', 'baz'];
+		
+		$expected = [
+			['foo', 'bar', 'baz'], 
+			['baz', 'foo', 'bar'], 
+			['bar', 'foo', 'baz'],
+			['foo', 'baz', 'bar'],
+			['bar', 'baz', 'foo'],
+			['baz', 'bar', 'foo']
+		];
+		
+		$actual = Arr::permute($array);
+		
+		// reduce $expected and $actual to single-dimensional arrays so we can use
+		//     array_diff to compare (because the elements will be out of order)
+		//
+		$expected = array_map(function ($v) {
+			return implode('', $v);
+		}, $expected);
+		
+		$actual = array_map(function ($v) {
+			return implode('', $v);
+		}, $actual);
+		
+		$this->assertEquals(0, count(array_diff($expected, $actual)));
+		
+		return;
+	}
+	
+	
 	/* !sortByField() */
 	
 	/**
