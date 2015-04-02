@@ -15,7 +15,80 @@ namespace Jstewmc\PhpHelpers;
  * @since 0.1.0
  */
 class Arr
-{		
+{	
+	/**
+	 * Returns the diff between $from and $to arrays
+	 *
+	 * @param  string[]  the actual array
+	 * @param  string[]  the expected array
+	 * @return  array[]  an array of arrays with keys 'value', the string value, and 
+	 *     'mask', and integer mask where -1 means deleted, 0 means unchanged, and 1
+	 *     means added
+	 * @see  http://stackoverflow.com/a/22021254/537724  Clamarius' StackOverflow 
+	 *     answer to "Highlight the difference between two strings in PHP" (edited 
+	 *     to be PSR-2-compliant and to return a single array of rows instead of an 
+	 *     array of columns).
+	 * @since  0.1.2
+	 */
+	public static function diff(Array $from, Array $to)
+	{	
+	    $diffs = [];
+	
+	    $dm = array();
+	    $n1 = count($from);
+	    $n2 = count($to);
+	
+	    for ($j = -1; $j < $n2; $j++) {
+		    $dm[-1][$j] = 0;
+		}
+		
+	    for ($i = -1; $i < $n1; $i++) {
+		    $dm[$i][-1] = 0;
+		}
+	    
+	    for ($i = 0; $i < $n1; $i++) {
+	        for ($j = 0; $j < $n2; $j++) {
+	            if ($from[$i] == $to[$j]) {
+	                $ad = $dm[$i - 1][$j - 1];
+	                $dm[$i][$j] = $ad + 1;
+	            } else {
+	                $a1 = $dm[$i - 1][$j];
+	                $a2 = $dm[$i][$j - 1];
+	                $dm[$i][$j] = max($a1, $a2);
+	            }
+	        }
+	    }
+	
+	    $i = $n1 - 1;
+	    $j = $n2 - 1;
+	    
+	    while (($i > -1) || ($j > -1)) {
+	        if ($j > -1) {
+	            if ($dm[$i][$j - 1] == $dm[$i][$j]) {
+	                $diffs[] = ['value' => $to[$j], 'mask' => 1];
+	                $j--;  
+	                continue;              
+	            }
+	        }
+	        if ($i > -1) {
+	            if ($dm[$i - 1][$j] == $dm[$i][$j]) {
+	                $diffs[] = ['value' => $from[$i], 'mask' => -1];
+	                $i--;
+	                continue;              
+	            }
+	        }
+	        {
+	            $diffs[] = ['value' => $from[$i], 'mask' => 0];
+	            $i--;
+	            $j--;
+	        }
+	    }    
+	
+	    $diffs = array_reverse($diffs);
+	
+	    return $diffs;
+	}
+	
 	/**
 	 * Filters an array by key
 	 *

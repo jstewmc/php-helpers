@@ -105,6 +105,57 @@ class ArrTest extends PHPUnit_Framework_TestCase
 		);
 	}
 	
+
+	/* !diff() */
+	
+	/**
+	 * diff() should return array if diff is insert
+	 */
+	public function testDiff_returnsArray_ifDiffIsInsert()
+	{
+		$from = ['foo'];
+		$to   = ['foo', 'bar'];
+		
+		$expected = [['value' => 'foo', 'mask' => 0], ['value' => 'bar', 'mask' => 1]];
+		$actual   = Arr::diff($from, $to);
+		
+		$this->assertEquals($expected, $actual);
+		
+		return;  
+	}
+	
+	/**
+	 * diff() should return array if diff is delete
+	 */
+	public function testDiff_returnsArray_ifDiffIsDelete()
+	{
+		$from = ['foo', 'bar'];
+		$to   = ['foo'];
+		
+		$expected = [['value' => 'foo', 'mask' => 0], ['value' => 'bar', 'mask' => -1]];
+		$actual   = Arr::diff($from, $to);
+		
+		$this->assertEquals($expected, $actual);
+		
+		return;
+	}
+	
+	/**
+	 * diff() should return array if diff is update
+	 */
+	public function testDiff_returnsArray_ifDiffIsUpdate()
+	{
+		$from = ['foo'];
+		$to   = ['bar'];
+		
+		$expected = [['value' => 'foo', 'mask' => -1], ['value' => 'bar', 'mask' => 1]];
+		$actual   = Arr::diff($from, $to);
+		
+		$this->assertEquals($expected, $actual);
+		
+		return;
+	}
+
 	
 	/* !filterBykey() */
 	
