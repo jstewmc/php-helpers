@@ -1,26 +1,18 @@
 <?php
-/**
- * The file for the Boolean class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- */
 
 use Jstewmc\PhpHelpers\Boolean;
 
 /**
- * A class to test the Boolean class
+ * @group  jack
  */
-class BoolTest extends \PHPUnit\Framework\TestCase
+class BooleanTest extends \PHPUnit\Framework\TestCase
 {
 	/* !Data providers */
 
 	/**
 	 * Provides an array of values considered false by Boolean::val()
 	 */
-	public function falseValueDataProvider()
+	public function falsyProvider()
 	{
 		return array(
 			array(null),
@@ -37,37 +29,9 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Provides an array of non-bool datatypes
-	 */
-	public function nonBoolDataProvider()
-	{
-		return array(
-			array(1),
-			array(1.0),
-			array('foo'),
-			array(array()),
-			array(new StdClass())
-		);
-	}
-
-	/**
-	 * Provides an array of non-string datatypes
-	 */
-	public function nonStringDataProvider()
-	{
-		return array(
-			array(1),
-			array(1.0),
-			array(true),
-			array(array()),
-			array(new StdClass())
-		);
-	}
-
-	/**
 	 * Provides an array of values considered true by Boolean::val()
 	 */
-	public function trueValueDataProvider()
+	public function truthyProvider()
 	{
 		return array(
 			array('on'),
@@ -85,99 +49,35 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 		);
 	}
 
-
-	/* !bootostr() */
-
-	/**
-	 * Booltostr() should throw a BadMethodCallException on a null parameter
-	 */
-	public function testBooltostr_throwsBadMethodCallException_onNullParameter()
+	public function testBooltostrThrowsInvalidArgumentExceptionWhenFormatIsInvalid(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Boolean::booltostr(null);
+		$this->expectException(InvalidArgumentException::class);
 
-		return;
-	}
-
-	/**
-	 * Tests whether or not booltostr() throws an InvalidArgumentException on a non-bool
-	 *     first parameter
-	 *
-	 * @dataProvider nonBoolDataProvider
-	 */
-	public function testBooltostr_throwsInvalidArgumentException_onNonBoolFirstParameter($param)
-	{
-		$this->expectException('InvalidArgumentException');
-		Boolean::booltostr($param);
-
-		return;
-	}
-
-	/**
-	 * Tests whether or not booltostr() throws an InvalidArgumentException on a non-string
-	 *     second parameter
-	 *
-	 * @dataProvider nonStringDataProvider
-	 *
-	 */
-	public function testBooltostr_throwsInvalidArgumentException_onNonStringSecondParameter($param)
-	{
-		$this->expectException('InvalidArgumentException');
-		Boolean::booltostr(true, $param);
-
-		return;
-	}
-
-	/**
-	 * Tests whether or not booltostr() throws an InvalidArgumentException on an invalid
-	 *     second parameter
-	 */
-	public function testBooltostr_throwsInvalidArgumentException_onInvalidSecondParameter()
-	{
-		$this->expectException('InvalidArgumentException');
 		Boolean::booltostr(true, 'foo');
-
-		return;
 	}
 
-	/**
-	 * Tests whether or not booltostr() returns (string) 'true' on (bool) true
-	 */
-	public function testBooltostr_returnsStringTrue_onBoolTrue()
+	public function testBooltostrReturnsStringTrueWhenBoolIsTrue(): void
 	{
-		return $this->assertEquals(Boolean::booltostr(true), 'true');
+		$this->assertEquals(Boolean::booltostr(true), 'true');
 	}
 
-	/**
-	 * Tests whether or not booltostr() returns (string) 'false' on (bool) false
-	 */
-	public function testBooltostr_returnsStringFalse_onBoolFalse()
+	public function testBooltostrReturnsStringFalseWhenBoolIsFalse(): void
 	{
-		return $this->assertEquals(Boolean::booltostr(false), 'false');
+		$this->assertEquals(Boolean::booltostr(false), 'false');
 	}
 
-
-	/* !val() */
-
 	/**
-	 * Tests whether or not val() returns (bool) true on any string but 'no', 'off',
-	 *     'false', '0', and '0.0' as well as positive numbers, negative numbers,
-	 *     non-empty arrays, and objects
-	 *
-	 * @dataProvider trueValueDataProvider
+	 * @dataProvider truthyProvider
 	 */
-	public function testVal_returnTrue_onTrueValue($value)
+	public function testValReturnsTrueOnTruthyValues($value): void
 	{
 		$this->assertTrue(Boolean::val($value));
 	}
 
 	/**
-	 * Tests whether or not val() returns (bool) false on empty strings; the strings
-	 *     'no', 'off', 'false', '0', '0.0'; the numbers 0 and 0.0; and an empty array
-	 *
-	 * @dataProvider falseValueDataProvider
+	 * @dataProvider falsyProvider
 	 */
-	public function testVal_returnFalse_onFalseValue($value)
+	public function testValReturnsFalseOnFalsyValues($value): void
 	{
 		$this->assertFalse(Boolean::val($value));
 	}

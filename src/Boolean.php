@@ -22,69 +22,45 @@ class Boolean
 	 *
 	 * @return  string  the string value
 	 *
-	 * @throws  \BadMethodCallException    if $bool is null
-	 * @throws  \InvalidArgumentException  if $bool is not a (bool) value
-	 * @throws  \InvalidArgumentException  if $format is not a string
 	 * @throws  \InvalidArgumentException  if $format is not a valid format
 	 */
-	public static function booltostr($bool, $format = 'true-false')
+	public static function booltostr(bool $bool, string $format = 'true-false'): string
 	{
-		$string = false;
+		// switch on the lower-case $format
+		switch (strtolower($format)) {
+			case 'oo':
+			case 'o/o':
+			case 'o-o':
+			case 'onoff':
+			case 'on/off':
+			case 'on-off':
+				$string = $bool ? 'on' : 'off';
+				break;
 
-		if ($bool !== null && $format !== null) {
-			if (is_bool($bool)) {
-				if (is_string($format)) {
-					// switch on the lower-case $format
-					switch (strtolower($format)) {
+			case 'tf':
+			case 't/f':
+			case 't-f':
+			case 'truefalse':
+			case 'true/false':
+			case 'true-false':
+				$string = $bool ? 'true' : 'false';
+				break;
 
-						case 'oo':
-						case 'o/o':
-						case 'o-o':
-						case 'onoff':
-						case 'on/off':
-						case 'on-off':
-							$string = $bool ? 'on' : 'off';
-							break;
+			case 'yn':
+			case 'y/n':
+			case 'y-n':
+			case 'yesno':
+			case 'yes/no':
+			case 'yes-no':
+				$string = $bool ? 'yes' : 'no';
+				break;
 
-						case 'tf':
-						case 't/f':
-						case 't-f':
-						case 'truefalse':
-						case 'true/false':
-						case 'true-false':
-							$string = $bool ? 'true' : 'false';
-							break;
-
-						case 'yn':
-						case 'y/n':
-						case 'y-n':
-						case 'yesno':
-						case 'yes/no':
-						case 'yes-no':
-							$string = $bool ? 'yes' : 'no';
-							break;
-
-						default:
-							throw new \InvalidArgumentException(
-								__METHOD__."() expects parameter two, format, to be one of the following: ".
-									"'t[/-]f', 'true[/-]false', 'y[/-]s', 'yes[/-]no', 'o[/-]o', or ".
-									"'on[/-]off', '$format' given"
-							);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, format, to be a string"
-					);
-				}
-			} else {
+			default:
 				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, bool, to be a bool value given"
+					" format should be one of the following: ".
+						"'t[/-]f', 'true[/-]false', 'y[/-]s', 'yes[/-]no', 'o[/-]o', or ".
+						"'on[/-]off', '$format' given"
 				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects one or two parameters, a bool value and a string format"
-			);
 		}
 
 		return $string;
@@ -93,8 +69,8 @@ class Boolean
 	/**
 	 * Returns the boolean value of $var
 	 *
-	 * PHP's native boolval() function is not available before PHP 5.5, and it does not
-	 * support the strings 'yes', 'no', 'on', or 'off'.
+	 * PHP's native boolval() function does not support the strings 'yes', 'no',
+	 * 'on', or 'off'.
 	 *
 	 * I follow the following rules:
 	 *
@@ -136,58 +112,54 @@ class Boolean
 	 *
 	 * @see  http://www.php.net/manual/en/function.boolval.php  boolval() man page
 	 */
-	public static function val($var)
+	public static function val($var): bool
 	{
-		$value = null;
+		// if $var is already a bool, short-circuit
+		if (is_bool($var)) {
+			return $var;
+		}
 
-		// if $var is not empty
-		// any value considered empty by empty() is considered false
-		// for example, "0", array(), "", etc
-		//
-		if ( ! empty($var)) {
-			// if $var is not already a bool type
-			if ( ! is_bool($var)) {
-				// if $var is a string
-				if (is_string($var)) {
-					// switch on the string
-					// the strings '1', 'on', 'yes', and 'true' are considered true
-					// the strings '0', 'no', 'off', and 'false' are considered false
-					// any other non-empty string is true
-					//
-					switch (strtolower($var)) {
+		// if $var is empty, any value considered empty by empty() is considered
+		// false (e.g., "0", [], "", etc
+		if (empty($var)) {
+			return false;
+		}
 
-						case '1':
-						case 'on':
-						case 'yes':
-						case 'true':
-							$value = true;
-							break;
+		// if $var is a string
+		if (is_string($var)) {
+			// switch on the string
+			// the strings '1', 'on', 'yes', and 'true' are considered true
+			// the strings '0', 'no', 'off', and 'false' are considered false
+			// any other non-empty string is true
+			//
+			switch (strtolower($var)) {
 
-						case '0':
-						case 'no':
-						case 'off':
-						case 'false':
-							$value = false;
-							break;
-
-						default:
-							$value = ! empty($var);
-					}
-				} elseif (is_numeric($var)) {
-					// any non-zero integer or float is considered true
-					$value = ($var !== 0 && $var !== 0.0);
-				} elseif (is_object($var)) {
-					// any object is considered true
+				case '1':
+				case 'on':
+				case 'yes':
+				case 'true':
 					$value = true;
-				} elseif (is_array($var)) {
-					// any non-empty array is considered true
+					break;
+
+				case '0':
+				case 'no':
+				case 'off':
+				case 'false':
+					$value = false;
+					break;
+
+				default:
 					$value = ! empty($var);
-				}
-			} else {
-				$value = $var;
 			}
-		} else {
-			$value = false;
+		} elseif (is_numeric($var)) {
+			// any non-zero integer or float is considered true
+			$value = ($var !== 0 && $var !== 0.0);
+		} elseif (is_object($var)) {
+			// any object is considered true
+			$value = true;
+		} elseif (is_array($var)) {
+			// any non-empty array is considered true
+			$value = ! empty($var);
 		}
 
 		return $value;
