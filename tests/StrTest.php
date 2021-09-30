@@ -13,7 +13,7 @@ use Jstewmc\PhpHelpers\Str;
 /**
  * A class to test the Str class
  */
-class StrTest extends PHPUnit_Framework_TestCase
+class StrTest extends \PHPUnit\Framework\TestCase
 {
 	/* !Providers */
 
@@ -77,7 +77,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * endsWith() should throw a BadMethodCallException if needle and haystack are null
-	 */	
+	 */
 	public function testEndsWith_throwsBadMethodCallException_ifNeedleAndHaystackAreNull()
 	{
 		$this->setExpectedException('BadMethodCallException');
@@ -118,7 +118,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	public function testEndsWith_returnsFalse_ifHaystackIsEmpty()
 	{
 		return $this->assertFalse(Str::endsWith('', 'foo'));
-	} 
+	}
 
 	/**
 	 * endsWith() should return false if needle is empty
@@ -137,7 +137,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * endsWith() should return false if the haystack ends with needle and case 
+	 * endsWith() should return false if the haystack ends with needle and case
 	 *     does not match
 	 */
 	public function testEndsWith_returnsFalse_ifHaystackEndsWithNeedleCaseMismatch()
@@ -158,7 +158,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * iEndsWith() should throw a BadMethodCallException if needle and haystack are null
-	 */	
+	 */
 	public function testIEndsWith_throwsBadMethodCallException_ifNeedleAndHaystackAreNull()
 	{
 		$this->setExpectedException('BadMethodCallException');
@@ -199,7 +199,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	public function testIEndsWith_returnsFalse_ifHaystackIsEmpty()
 	{
 		return $this->assertFalse(Str::iEndsWith('', 'foo'));
-	} 
+	}
 
 	/**
 	 * iEndsWith() should return false if needle is empty
@@ -218,7 +218,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * iEndsWith() should return true if the haystack ends with needle and case 
+	 * iEndsWith() should return true if the haystack ends with needle and case
 	 *     does not match
 	 */
 	public function testIEndsWith_returnsTrue_ifHaystackEndsWithNeedleCaseMismatch()
@@ -313,7 +313,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * iStartsWith() should return true if the haystack starts with needle and the 
+	 * iStartsWith() should return true if the haystack starts with needle and the
 	 *     case matches
 	 */
 	public function testIStartsWith_returnsTrue_ifHaystackStartsWithNeedleAndCaseMatches()
@@ -322,7 +322,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * iStartsWith() should return true if the haystack starts with needle and the 
+	 * iStartsWith() should return true if the haystack starts with needle and the
 	 *     case does not match
 	 */
 	public function testIStartsWith_returnsTrue_ifHaystackStartsWithNeedleAndCaseMisMatch()
@@ -343,7 +343,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 
 		return;
 	}
-	
+
 	/**
 	 * password() should throw an InvalidArgumentException if length is not an integer
 	 *
@@ -467,7 +467,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	public function testRand_returnsStringOfCharsets_ifCharsetsAreValid()
 	{
 		return $this->assertRegExp(
-			'/^[0-9A-Z]{8}$/', 
+			'/^[0-9A-Z]{8}$/',
 			Str::rand(8, array('upper', 'number'))
 		);
 	}
@@ -482,7 +482,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Str::splitOnFirstAlpha(null);
-		
+
 		return;
 	}
 
@@ -513,7 +513,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * splitOnFirstAlpha() should return an array with one element if the string 
+	 * splitOnFirstAlpha() should return an array with one element if the string
 	 *     starts with letter
 	 */
 	public function testSplitOnFirstAlpha_returnArrayWithOneElement_ifStringStartsWithAlpha()
@@ -608,7 +608,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * startsWith() should return true if the haystack starts with needle and the 
+	 * startsWith() should return true if the haystack starts with needle and the
 	 *     case matches
 	 */
 	public function testStartsWith_returnsTrue_ifHaystackStartsWithNeedleAndCaseMatches()
@@ -617,7 +617,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * startsWith() should return false if the haystack starts with needle and the 
+	 * startsWith() should return false if the haystack starts with needle and the
 	 *     case does not match
 	 */
 	public function testStartsWith_returnsFalse_ifHaystackStartsWithNeedleAndCaseMisMatch()
@@ -640,7 +640,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * strtobytes() should throw an InvalidArgumentException if string is not actually 
+	 * strtobytes() should throw an InvalidArgumentException if string is not actually
 	 *     a string
 	 *
 	 * @dataProvider provideNonStringValues
@@ -676,7 +676,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 
 	/* !strtocamelcase() */
 
-	/** 
+	/**
 	 * strtocamelcase() should throw a BadMethodCallException if string is null
 	 */
 	public function testStrtocamelcase_throwsBadMethodCallException_ifStringIsNull()
@@ -714,23 +714,23 @@ class StrTest extends PHPUnit_Framework_TestCase
 	public function testStrtocamelcase_returnCamelCaseString_ifStringIsMixedCase()
 	{
 		return $this->assertEquals(
-			Str::strtocamelcase('hello WORLD'), 
+			Str::strtocamelcase('hello WORLD'),
 			'helloWorld'
 		);
 	}
 
-	/** 
+	/**
 	 * strtocamelcase() returns camel-cased string if string contains symbols
 	 */
 	public function testStrtocamelcase_returnCamelCaseString_ifStringContainsSymbols()
 	{
 		return $this->assertEquals(
-			Str::strtocamelcase(';hello *()_world!'), 
+			Str::strtocamelcase(';hello *()_world!'),
 			'helloWorld'
 		);
 	}
 
-	/** 
+	/**
 	 * strtocamelcase() returns camel-cased string if string contains numbers
 	 */
 	public function testStrtocamelcase_returnCamelCaseString_ifStringContainsNumbers()
@@ -819,7 +819,7 @@ class StrTest extends PHPUnit_Framework_TestCase
 	public function testTruncate_returnStringTruncatedAtBreak_ifStringIsLongerThanLimit()
 	{
 		return $this->assertEquals(
-			Str::truncate('foo bar', 5, ' ', '...'), 
+			Str::truncate('foo bar', 5, ' ', '...'),
 			'foo...'
 		);
 	}

@@ -10,10 +10,10 @@
 
 use Jstewmc\PhpHelpers\Num;
 
-class NumTest extends PHPUnit_Framework_TestCase
+class NumTest extends \PHPUnit\Framework\TestCase
 {
 	/* !Data providers */
-	
+
 	/**
 	 * Provides float (or float equivalents)
 	 */
@@ -28,7 +28,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 			array('1.0')
 		);
 	}
-	
+
 	/**
 	 * Provides integer (or integer equivalents)
 	 */
@@ -43,7 +43,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 			array('1')
 		);
 	}
-	
+
 	/**
 	 * Provides a list of non-numeric values in PHP
 	 */
@@ -56,7 +56,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 			array(new StdClass())
 		);
 	}
-	
+
 	/**
 	 * Provides a list of non-string values in PHP
 	 */
@@ -69,10 +69,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 			array(new StdClass())
 		);
 	}
-	
-	
+
+
 	/* !almostEqual() */
-	
+
 	/**
 	 * almostEqual() should throw a BadMethodCallException on null arguments
 	 */
@@ -80,12 +80,12 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::almostEqual(null, null);
-		
+
 		return;
 	}
-	
+
 	/**
-	 * almostEqual() should throw an InvalidArgumentException on non-numeric first 
+	 * almostEqual() should throw an InvalidArgumentException on non-numeric first
 	 *     argument
 	 *
 	 * @dataProvider provideNonNumericValues
@@ -94,12 +94,12 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::almostEqual($value, 1.0);
-		
-		return;	
+
+		return;
 	}
-	
+
 	/**
-	 * almostEqual() should throw an InvalidArgumentException on a non-numeric second 
+	 * almostEqual() should throw an InvalidArgumentException on a non-numeric second
 	 *     argument
 	 *
 	 * @dataProvider provideNonNumericValues
@@ -108,36 +108,36 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::almostEqual(1.0, $value);
-		
+
 		return;
 	}
-	
+
 	/**
-	 * almostEqual() should throw an InvalidArgumentException on a non-numeric third 
+	 * almostEqual() should throw an InvalidArgumentException on a non-numeric third
 	 *     argument
-	 * 
+	 *
 	 * @dataProvider provideNonNumericValues
 	 */
 	public function testAlmostEqual_throwsInvalidArgumentException_ifEpsilonIsNaN($value)
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::almostEqual(1.0, 1.0, $value);
-		
+
 		return;
 	}
-	
+
 	/**
-	 * almostEqual() should throw an InvalidArgumentException if third argument, epsilon, 
+	 * almostEqual() should throw an InvalidArgumentException if third argument, epsilon,
 	 *     is zero
 	 */
 	public function testAlmostEqual_throwsInvalidArgumentException_ifEpsilonIsZero()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::almostEqual(1.0, 1.0, 0);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * almostEqual() should return true on equal floats
 	 */
@@ -145,7 +145,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::almostEqual(1/10, 0.1));
 	}
-	
+
 	/**
 	 * almostEqual() should return false on unequal floats
 	 */
@@ -153,7 +153,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::almostEqual(0.2, 0.7));
 	}
-	
+
 	/**
 	 * almostEqual() should return true on equal integers
 	 */
@@ -161,7 +161,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::almostEqual(1, 1));
 	}
-	
+
 	/**
 	 * almostEqual() should return false on unequal integers
 	 */
@@ -169,10 +169,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::almostEqual(1, 2));
 	}
-	
-	
+
+
 	/* !bound() */
-	
+
 	/**
 	 * bound() should throw a BadMethodCallException if number is null
 	 */
@@ -180,10 +180,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::bound(null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * bound() should throw an InvalidArgumentException if number is not a number
 	 *
@@ -193,10 +193,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::bound($value, 1);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * bound() should throw an InvalidArgumentException if lower bound is not a number
 	 *
@@ -206,23 +206,23 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::bound(1, $value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * bound() should throw an InvalidArgumentException if upper bound is not a number
-	 * 
+	 *
 	 * @dataProvider provideNonNumericValues
 	 */
 	public function testBound_throwsInvalidArgumentException_ifUpperIsNaN($value)
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::bound(1, 0, $value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * bound() should throw an InvalidArgumentException if the lower bound is greater than
 	 *     the upper bound
@@ -231,10 +231,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::bound(1, 2, 0);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * bound() should return the upper bound if the number is greater
 	 */
@@ -242,7 +242,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::bound(2, null, 1), 1);
 	}
-	
+
 	/**
 	 * bound() should return the lower bound if the value is lesser
 	 */
@@ -250,7 +250,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::bound(1, 2), 2);
 	}
-	
+
 	/**
 	 * bound() should return the number if it's between the upper and lower bound
 	 */
@@ -258,10 +258,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::bound(1, 0, 2), 1);
 	}
-	
-	
+
+
 	/* !ceilTo() */
-	
+
 	/**
 	 * ceilTo() should throw a BadMethodCallException if the number is null
 	 */
@@ -269,10 +269,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::ceilTo(null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * ceilTo() should throw an InvalidArgumentException if the number is not a number
 	 *
@@ -282,10 +282,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::ceilTo($value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * ceilTo() should throw an InvalidArgumentException if the multiple is not a number
 	 *
@@ -295,10 +295,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::ceilTo(1, $value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * ceilTo() should throw an InvalidArgumentException if the multiple is zero
 	 */
@@ -306,10 +306,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::ceilTo(1, 0);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * ceilTo() should return the same value as PHP's ceil() method if the multiple is
 	 *     omitted
@@ -318,7 +318,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::ceilTo(2.5), ceil(2.5));
 	}
-	
+
 	/**
 	 * ceilTo() should return the integer ceiling-ed to the nearest multiple
 	 */
@@ -326,7 +326,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::ceilTo(7, 10), 10);
 	}
-	
+
 	/**
 	 * ceilTo() should return the float ceiling-ed to the nearest multiple
 	 */
@@ -334,7 +334,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::ceilTo(3.5, 1.5), 4.5);
 	}
-	
+
 	/**
 	 * ceilTo() should return the integer ceiling-ed to the nearest multiple
 	 */
@@ -342,7 +342,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::ceilTo(2, 1.5), 3);
 	}
-	
+
 	/**
 	 * ceilTo() should return the integer ceiling-ed to the nearest multiple
 	 */
@@ -350,10 +350,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::ceilTo(2.5, 2), 4);
 	}
-	
-	
+
+
 	/* !floorTo() */
-	
+
 	/**
 	 * floorTo() should throw a BadMethodCallException if the number is null
 	 */
@@ -361,10 +361,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::floorTo(null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * floorTo() should throw an InvalidArgumentException if the number is not a number
 	 *
@@ -374,10 +374,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::floorTo($value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * floorTo() should throw an InvalidArgumentException if the multiple is not a number
 	 *
@@ -387,10 +387,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::floorTo(1, $value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * floorTo() should throw an InvalidArgumentException if the multiple is zero
 	 */
@@ -398,10 +398,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::floorTo(1, 0);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * floorTo() should return the same value as PHP's floor() method if the multiple is
 	 *     omitted
@@ -410,7 +410,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::floorTo(2.5), floor(2.5));
 	}
-	
+
 	/**
 	 * floorTo() should return the integer floored to the nearest multiple
 	 */
@@ -418,7 +418,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::floorTo(5, 2), 4);
 	}
-	
+
 	/**
 	 * floorTo() should return the float floored to the nearest multiple
 	 */
@@ -426,7 +426,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::floorTo(3.5, 1.5), 3);
 	}
-	
+
 	/**
 	 * floorTo() should return the integer ceiling-ed to the nearest multiple
 	 */
@@ -434,7 +434,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::floorTo(2, 1.5), 1.5);
 	}
-	
+
 	/**
 	 * floorTo() should return the integer ceiling-ed to the nearest multiple
 	 */
@@ -442,10 +442,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::floorTo(2.5, 2), 2);
 	}
-	
-	
+
+
 	/* !isId() */
-	
+
 	/**
 	 * isId() should throw a BadMethodCallException if datatype is null
 	 */
@@ -453,10 +453,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::isId(1, null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * isId() should throw an InvalidArgumentException if datatype is not a string
 	 *
@@ -466,10 +466,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::isId(1, $value);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * isId() should throw an InvalidArgumentException if datatype is not a valid value
 	 */
@@ -477,10 +477,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::isId(1, 'foo');
-		
+
 		return;
 	}
-	
+
 	/**
 	 * isId() should return false if number is null
 	 */
@@ -488,7 +488,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isId(null));
 	}
-	
+
 	/**
 	 * isId() should return false if number is non-numeric
 	 *
@@ -498,7 +498,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isId($value));
 	}
-	
+
 	/**
 	 * isId() should return false if number is zero
 	 */
@@ -506,7 +506,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isId(0));
 	}
-	
+
 	/**
 	 * isId() should return false if number is a float
 	 */
@@ -514,7 +514,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isId(1.2));
 	}
-	
+
 	/**
 	 * isId() should return false if number is greater than datatype's max unsigned value
 	 */
@@ -522,8 +522,8 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isId(999, 'tiny'));
 	}
-	
-	/** 
+
+	/**
 	 * isId() should return true if number is a positive, integer that's below the
 	 *     datatype's max unsigned value
 	 */
@@ -531,10 +531,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isId(1, 'tiny'));
 	}
-	
-	
+
+
 	/* !isInt() */
-	
+
 	/**
 	 * isInt() should return false on null
 	 */
@@ -542,7 +542,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isInt(null));
 	}
-	
+
 	/**
 	 * isInt() should return false if number is not a number
 	 *
@@ -552,7 +552,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isInt($number));
 	}
-	
+
 	/**
 	 * isInt() should return true if number is an integer
 	 *
@@ -562,7 +562,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isInt($number));
 	}
-	
+
 	/**
 	 * isInt() should return false if number is a float
 	 *
@@ -572,10 +572,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isInt($number));
 	}
-	
-	
+
+
 	/* !isNumeric() */
-	
+
 	/**
 	 * isNumeric() should return false if number is null
 	 */
@@ -583,7 +583,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isNumeric(null));
 	}
-	
+
 	/**
 	 * isNumeric() should return false if number is not a number
 	 *
@@ -593,7 +593,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isNumeric($number));
 	}
-	
+
 	/**
 	 * isNumeric() should return true if number is a float
 	 *
@@ -603,7 +603,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isNumeric($number));
 	}
-	
+
 	/**
 	 * isNumeric() should return true if number is an integer
 	 *
@@ -613,7 +613,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isNumeric($number));
 	}
-	
+
 	/**
 	 * isNumeric() should return true if number is a fraction
 	 */
@@ -621,7 +621,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isNumeric('1/2'));
 	}
-	
+
 	/**
 	 * isNumeric() should return true if number is a mixed number
 	 */
@@ -629,7 +629,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isNumeric('1 1/2'));
 	}
-	 
+
 	/**
 	 * isNumeric() should return true if number if a comma-separated number
 	 */
@@ -637,10 +637,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isNumeric('1,000'));
 	}
-	
-	
+
+
 	/* !isZero() */
-	
+
 	/**
 	 * isZero() should return false if number is null
 	 */
@@ -648,7 +648,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isZero(null));
 	}
-	
+
 	/**
 	 * isZero() should return false if number is not a number
 	 *
@@ -658,7 +658,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isZero($number));
 	}
-	
+
 	/**
 	 * isZero() should return false if number is not zero
 	 */
@@ -666,7 +666,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertFalse(Num::isZero(1));
 	}
-	
+
 	/**
 	 * isZero() should return true if number is zero
 	 */
@@ -674,10 +674,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertTrue(Num::isZero(0));
 	}
-	
-	
+
+
 	/* !normalize() */
-	
+
 	/**
 	 * normalize() should throw a BadMethodCallException if number and max are null
 	 */
@@ -685,10 +685,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::normalize(null, null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * normalize() should throw an InvalidArgumentException if number is not a number
 	 *
@@ -698,10 +698,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::normalize($number, 1);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * normalize() should throw an InvalidArgumentException if max is not a number
 	 *
@@ -711,10 +711,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::normalize(1, $number);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * normalize() should throw an InvalidArgumentException if max is zero
 	 */
@@ -722,10 +722,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::normalize(1, 0);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * normalize() should return zero if the quotient is less than zero
 	 */
@@ -733,7 +733,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::normalize(-1, 1), 0);
 	}
-	
+
 	/**
 	 * normalize() should return one if the quotient is greater than one
 	 */
@@ -741,7 +741,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::normalize(2, 1), 1);
 	}
-	
+
 	/**
 	 * normalize() should return the quotient if it's greater than or equal to zero
 	 *     and less than or equal to one
@@ -750,10 +750,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::normalize(0.5, 1), 0.5);
 	}
-	
-	
+
+
 	/* !roundTo() */
-	
+
 	/**
 	 * roundTo() should throw a BadMethodCallException if number and multiple are null
 	 */
@@ -761,10 +761,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Num::roundTo(null, null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * roundTo() should throw an InvalidArgumentException if number is not a number
 	 *
@@ -774,10 +774,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::roundTo($number, 1);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * roundTo() should throw an InvalidArgumentException if multiple is not a number
 	 *
@@ -787,10 +787,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::roundTo(1, $multiple);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * roundTo() should throw an exception if multiple is zero
 	 */
@@ -798,10 +798,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Num::roundTo(1, 0);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * roundTo() should return PHP's native round if multiple is omitted
 	 */
@@ -809,7 +809,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::roundTo(1.5), round(1.5));
 	}
-	
+
 	/**
 	 * roundTo() should return the rounded number if both number and multiple are integers
 	 */
@@ -817,7 +817,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::roundTo(1, 2), 2);
 	}
-	
+
 	/**
 	 * roundTo() should return the rounded number if both number and multiple are floats
 	 */
@@ -825,7 +825,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::roundTo(1.7, 1.5), 1.5);
 	}
-	
+
 	/**
 	 * roundTo() should return the rounded number if number is integer and multiple is float
 	 */
@@ -833,7 +833,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::roundTo(2, 1.5), 1.5);
 	}
-	
+
 	/**
 	 * roundTo() should return the rounded number if number is a float and multiple is an integer
 	 */
@@ -841,10 +841,10 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals(Num::roundTo(1.1, 2), 2);
 	}
-	
-	
+
+
 	/* !val() */
-	
+
 	/**
 	 * val() should return integer if var is a bool
 	 */
@@ -852,7 +852,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Num::val(true), 1);
 	}
-	
+
 	/**
 	 * val() should return float if var is a float
 	 */
@@ -860,7 +860,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val(1.2), 1.2);
 	 }
-	 
+
 	 /**
 	  * val() should return integer if var is an integer
 	  */
@@ -868,7 +868,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val(1), 1);
 	 }
-	 
+
 	 /**
 	  * val() should return float if var is a string float
 	  */
@@ -876,7 +876,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('1.0'), 1.0);
 	 }
-	 
+
 	 /**
 	  * val() should return integer if var is a string integer
 	  */
@@ -884,7 +884,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('1'), 1);
 	 }
-	 
+
 	 /**
 	  * val() should return a float if var is a fraction
 	  */
@@ -892,7 +892,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('1/2'), 0.5);
 	 }
-	 
+
 	 /**
 	  * val() should return a flaot if var is a mixed number
 	  */
@@ -900,7 +900,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('1 1/2'), 1.5);
 	 }
-	 
+
 	 /**
 	  * val() should return an integer if var is a comma-separated integer
 	  */
@@ -908,7 +908,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('1,000'), 1000);
 	 }
-	 
+
 	 /**
 	  * val() should return an integer if var is a comma-separated float
 	  */
@@ -916,7 +916,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('1,000.5'), 1000.5);
 	 }
-	 
+
 	 /**
 	  * val() should return a zero if var is a non-numeric string
 	  */
@@ -924,7 +924,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('foo'), 0);
 	 }
-	 
+
 	 /**
 	  * val() should return a zero if var is an empty array
 	  */
@@ -932,7 +932,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val(array()), 0);
 	 }
-	 
+
 	 /**
 	  * val() should return one if var is a non-empty array
 	  */
@@ -940,7 +940,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val(array(1)), 1);
 	 }
-	 
+
 	 /**
 	  * val() should return one if var is an object
 	  */
@@ -948,15 +948,15 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val(new StdClass()), 1);
 	 }
-	 
-	 /** 
+
+	 /**
 	  * val() should return int if var is a cardinal string (e.g., "one")
 	  */
 	 public function testVal_returnsInt_ifVarIsACardinalString()
 	 {
 		 return $this->assertEquals(Num::val('one'), 1);
 	 }
-	 
+
 	 /**
 	  * val() should return int if var is an ordinal string (e.g., "first")
 	  */
@@ -964,7 +964,7 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('first'), 1);
 	 }
-	 
+
 	 /**
 	  * val() should return int if var is an short-length integer name (e.g., "one hundred")
 	  */
@@ -972,18 +972,18 @@ class NumTest extends PHPUnit_Framework_TestCase
 	 {
 		 return $this->assertEquals(Num::val('two hundred and twenty-two'), 222);
 	 }
-	 
+
 	 /**
 	  * val() should return int if var is a medium-length integer name
 	  */
 	 public function testVal_returnsInt_ifVarIsMediumName()
 	 {
 		return $this->assertEquals(
-			Num::val('one hundred eleven thousand, one hundred and eleven'), 
+			Num::val('one hundred eleven thousand, one hundred and eleven'),
 			111111
-		); 
+		);
 	 }
-	 
+
 	 /**
 	  * val() should return int if var is a long-length integer name
 	  */

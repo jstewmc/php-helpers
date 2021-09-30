@@ -13,10 +13,10 @@ use Jstewmc\PhpHelpers\Bool;
 /**
  * A class to test the Bool class
  */
-class BoolTest extends PHPUnit_Framework_TestCase
+class BoolTest extends \PHPUnit\Framework\TestCase
 {
 	/* !Data providers */
-	
+
 	/**
 	 * Provides an array of values considered false by Bool::val()
 	 */
@@ -33,23 +33,23 @@ class BoolTest extends PHPUnit_Framework_TestCase
 			array(0),
 			array(0.0),
 			array(array())
-		);	
+		);
 	}
-	
+
 	/**
 	 * Provides an array of non-bool datatypes
 	 */
 	public function nonBoolDataProvider()
 	{
 		return array(
-			array(1), 
+			array(1),
 			array(1.0),
 			array('foo'),
 			array(array()),
 			array(new StdClass())
 		);
 	}
-	
+
 	/**
 	 * Provides an array of non-string datatypes
 	 */
@@ -63,7 +63,7 @@ class BoolTest extends PHPUnit_Framework_TestCase
 			array(new StdClass())
 		);
 	}
-	
+
 	/**
 	 * Provides an array of values considered true by Bool::val()
 	 */
@@ -87,7 +87,7 @@ class BoolTest extends PHPUnit_Framework_TestCase
 
 
 	/* !bootostr() */
-	
+
 	/**
 	 * Booltostr() should throw a BadMethodCallException on a null parameter
 	 */
@@ -95,12 +95,12 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Bool::booltostr(null);
-		
-		return;	
+
+		return;
 	}
-	
+
 	/**
-	 * Tests whether or not booltostr() throws an InvalidArgumentException on a non-bool 
+	 * Tests whether or not booltostr() throws an InvalidArgumentException on a non-bool
 	 *     first parameter
 	 *
 	 * @dataProvider nonBoolDataProvider
@@ -109,10 +109,10 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Bool::booltostr($param);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * Tests whether or not booltostr() throws an InvalidArgumentException on a non-string
 	 *     second parameter
@@ -124,7 +124,7 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Bool::booltostr(true, $param);
-		
+
 		return;
 	}
 
@@ -132,14 +132,14 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	 * Tests whether or not booltostr() throws an InvalidArgumentException on an invalid
 	 *     second parameter
 	 */
-	public function testBooltostr_throwsInvalidArgumentException_onInvalidSecondParameter() 
+	public function testBooltostr_throwsInvalidArgumentException_onInvalidSecondParameter()
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Bool::booltostr(true, 'foo');
-		
+
 		return;
 	}
-	
+
 	/**
 	 * Tests whether or not booltostr() returns (string) 'true' on (bool) true
 	 */
@@ -147,7 +147,7 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Bool::booltostr(true), 'true');
 	}
-	
+
 	/**
 	 * Tests whether or not booltostr() returns (string) 'false' on (bool) false
 	 */
@@ -155,13 +155,13 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	{
 		return $this->assertEquals(Bool::booltostr(false), 'false');
 	}
-	
-	
+
+
 	/* !val() */
-	
+
 	/**
 	 * Tests whether or not val() returns (bool) true on any string but 'no', 'off',
-	 *     'false', '0', and '0.0' as well as positive numbers, negative numbers, 
+	 *     'false', '0', and '0.0' as well as positive numbers, negative numbers,
 	 *     non-empty arrays, and objects
 	 *
 	 * @dataProvider trueValueDataProvider
@@ -170,9 +170,9 @@ class BoolTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertTrue(Bool::val($value));
 	}
-	
+
 	/**
-	 * Tests whether or not val() returns (bool) false on empty strings; the strings 
+	 * Tests whether or not val() returns (bool) false on empty strings; the strings
 	 *     'no', 'off', 'false', '0', '0.0'; the numbers 0 and 0.0; and an empty array
 	 *
 	 * @dataProvider falseValueDataProvider

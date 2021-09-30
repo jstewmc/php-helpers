@@ -13,19 +13,19 @@ use Jstewmc\PhpHelpers\Dir;
 /**
  * The Dir test class
  */
-class DirTest extends PHPUnit_Framework_TestCase
-{	
+class DirTest extends \PHPUnit\Framework\TestCase
+{
 	/* !Protected members */
-	
+
 	/**
 	 * @var  the path of the current working directory (aka, "cwd"); this directory
 	 *     will be the parent directory of any directories created by tests
 	 */
 	protected $cwd;
-	
-	
+
+
 	/* !Magic methods */
-	
+
 	/**
 	 * Called before each test
 	 *
@@ -34,13 +34,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->cwd = dirname(__FILE__);
-		
+
 		return;
 	}
-	
-	
+
+
 	/* !Providers */
-	
+
 	/**
 	 * Provides non-string values
 	 */
@@ -54,7 +54,7 @@ class DirTest extends PHPUnit_Framework_TestCase
 			array(new StdClass())
 		);
 	}
-	
+
 	/**
 	 * Provides non-integer and not-false values
 	 */
@@ -68,10 +68,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 			array(new StdClass())
 		);
 	}
-	
-	
+
+
 	/* !abs2rel() */
-	
+
 	/**
 	 * abs2rel() should throw a BadMethodCalLException if $absolute and $base are null
 	 */
@@ -79,10 +79,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Dir::abs2rel(null, null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * abs2rel() should throw an InvalidArgumentException if $absolute is not a string
 	 *
@@ -92,10 +92,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::abs2rel($absolute, 'foo');
-		
+
 		return;
 	}
-	
+
 	/**
 	 * abs2rel() should throw an InvalidArgumentException if $base is not a string
 	 *
@@ -105,30 +105,30 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::abs2rel('foo', $base);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * abs2rel() should return $absolute if $base is empty
 	 */
 	public function testAbs2Rel_returnsAbsolute_ifBaseIsEmpty()
 	{
 		$input = 'path/to/foo';
-		
+
 		return $this->assertEquals(Dir::abs2rel($input, ''), $input);
 	}
-	
+
 	/**
 	 * abs2rel() should return $absolute if $base does not match
 	 */
 	public function testAbs2Rel_returnsAbsolute_ifBaseDoesNotMatch()
 	{
 		$input = 'path/to/foo';
-		
+
 		return $this->assertEquals(Dir::abs2rel($input, 'bar'), $input);
 	}
-	
+
 	/**
 	 * abs2rel() should return relative path
 	 */
@@ -137,13 +137,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 		$input    = 'path/to/foo';
 		$actual   = Dir::abs2rel($input, 'path/to');
 		$expected = 'foo';
-		
+
 		return $this->assertEquals($actual, $expected);
 	}
-	
-	
+
+
 	/* !copy() */
-	
+
 	/**
 	 * copy() should throw a BadMethodCallException if $source and $destination is null
 	 */
@@ -151,10 +151,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$this->setExpectedException('BadMethodCallException');
 		Dir::copy(null, null);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $source is not a string
 	 *
@@ -163,28 +163,28 @@ class DirTest extends PHPUnit_Framework_TestCase
 	public function testCopy_throwsInvalidArgumentException_ifSourceIsNotAString($source)
 	{
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'foo';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::copy($source, $destination);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $destination is not a string
-	 * 
+	 *
 	 * @dataProvider  provideNonStringValues
 	 */
 	public function testCopy_throwsInvalidArgumentException_ifDestinationIsNotAString($destination)
 	{
 		$source = $this->cwd.DIRECTORY_SEPARATOR.'foo';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::copy($source, $destination);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $mode is not an integer or
 	 *     not false
@@ -195,13 +195,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::copy($source, $destination, $mode);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $source does not exist
 	 */
@@ -209,13 +209,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::copy($source, $destination);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $source is not a directory
 	 */
@@ -223,11 +223,11 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo.txt';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar.txt';
-		
+
 		// create the file
 		file_put_contents($source, 'hello world');
 		$this->assertTrue(file_exists($source));
-		
+
 		// try to copy the file
 		// the method should throw an InvalidArgumentException
 		// catch it, clean up, and re-throw it
@@ -239,10 +239,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 			unlink($source);
 			throw $e;
 		}
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $destination does not exist
 	 *     and $mode is false
@@ -251,11 +251,11 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar';
-		
+
 		// create the source directory
 		mkdir($source);
 		$this->assertTrue(is_dir($source));
-		
+
 		// try to copy the directory with mode set to false
 		// the method will throw an InvalidArgumentException
 		// catch it, remove the source directory, and re-throw it
@@ -267,10 +267,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 			rmdir($source);
 			throw $e;
 		}
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should throw an InvalidArgumentException if $destination exists, and is
 	 *    not a directory
@@ -279,15 +279,15 @@ class DirTest extends PHPUnit_Framework_TestCase
 	{
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar.txt';
-		
+
 		// create the source directory
 		mkdir($source);
 		$this->assertTrue(is_dir($source));
-		
+
 		// create the destination as a file
 		file_put_contents($destination, 'hello world');
 		$this->assertTrue(file_exists($destination));
-		
+
 		// try to copy
 		// the method should throw an InvalidArgumentException
 		// catch the exception, clean up, and re-throw it
@@ -301,7 +301,7 @@ class DirTest extends PHPUnit_Framework_TestCase
 			throw $e;
 		}
 	}
-	
+
 	/**
 	 * copy() should copy empty directory
 	 */
@@ -311,22 +311,22 @@ class DirTest extends PHPUnit_Framework_TestCase
 		$source = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		mkdir($source);
 		$this->assertTrue(is_dir($source));
-		
+
 		// create the destination directory
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar';
 		mkdir($destination);
 		$this->assertTrue(is_dir($destination));
-		
+
 		// copy source to destination
 		$this->assertTrue(Dir::copy($source, $destination));
-		
+
 		// remove the source and destination directories
 		rmdir($source);
 		rmdir($destination);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * copy() should copy a non-empty directory
 	 */
@@ -348,51 +348,51 @@ class DirTest extends PHPUnit_Framework_TestCase
 		$qux1 = $baz1.DIRECTORY_SEPARATOR.'qux.txt';
 		file_put_contents($qux1, 'hello world');
 		$this->assertTrue(is_file($qux1));
-		
+
 		// create the destination "<cwd>/qux" directory
 		$quux = $this->cwd.DIRECTORY_SEPARATOR.'quux';
 		mkdir($quux);
 		$this->assertTrue(is_dir($quux));
-		
+
 		// copy "<cwd>/foo" to "<cwd>/quux"
 		$this->assertTrue(Dir::copy($foo, $quux));
-		
+
 		// set the paths of quux's sub-directories
 		$bar2 = $quux.DIRECTORY_SEPARATOR.'bar';
 		$baz2 = $bar2.DIRECTORY_SEPARATOR.'baz';
 		$qux2 = $baz2.DIRECTORY_SEPARATOR.'qux.txt';
-		
+
 		// test to be sure the old files still exist
 		$this->assertTrue(is_dir($foo));
 		$this->assertTrue(is_dir($bar1));
 		$this->assertTrue(is_dir($baz1));
 		$this->assertTrue(is_file($qux1));
-		
+
 		// test to be sure the new files exist
 		$this->assertTrue(is_dir($quux));
 		$this->assertTrue(is_dir($bar2));
 		$this->assertTrue(is_dir($baz2));
 		$this->assertTrue(is_file($qux2));
-		
+
 		// delete old files
 		unlink($qux1);
 		rmdir($baz1);
 		rmdir($bar1);
 		rmdir($foo);
-		
+
 		// delete new files
 		unlink($qux2);
 		rmdir($baz2);
 		rmdir($bar2);
 		rmdir($quux);
-		
+
 		return;
 	}
-	
-	
+
+
 	/* !remove() */
-	
-	/** 
+
+	/**
 	 * remove() should throw a BadMethodCallException if $directory or $container is null
 	 */
 	public function testRemove_throwsBadMethodCallException_ifArgumentsAreNull()
@@ -400,7 +400,7 @@ class DirTest extends PHPUnit_Framework_TestCase
 		$this->setExpectedException('BadMethodCallException');
 		Dir::remove(null, null);
 	}
-	
+
 	/**
 	 * remove() should throw an InvalidArgumentException if $directory is not a string
 	 *
@@ -409,13 +409,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 	public function testRemove_throwsInvalidArgumentException_ifDirectoryIsNotAString($directory)
 	{
 		$container = $this->cwd.DIRECTORY_SEPARATOR.'foo';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::remove($directory, $container);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * remove() should throw an InvalidArgumentException if $container is not a string
 	 *
@@ -424,13 +424,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 	public function testRemove_throwsInvalidArgumentException_ifContainerIsNotAString($container)
 	{
 		$directory = $this->cwd.DIRECTORY_SEPARATOR.'foo';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::remove($directory, $container);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * remove() should throw an InvalidArgumentException if $directory is not an existing
 	 *     directory
@@ -438,13 +438,13 @@ class DirTest extends PHPUnit_Framework_TestCase
 	public function testRemove_throwsInvalidArgumentException_ifDirectoryDoesNotExist()
 	{
 		$directory = $this->cwd.DIRECTORY_SEPARATOR.'foo';
-		
+
 		$this->setExpectedException('InvalidArgumentException');
 		Dir::remove($directory, $this->cwd);
-		
+
 		return;
 	}
-	
+
 	/**
 	 * remove() should throw an InvalidArgumentException if $directory is not in $container
 	 */
@@ -454,10 +454,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 		$directory = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		mkdir($directory);
 		$this->assertTrue(is_dir($directory));
-		
+
 		// set the directory's container
 		$container = $this->cwd.DIRECTORY_SEPARATOR.'bar';
-		
+
 		// try to remove the directory
 		// the method should throw an InvalidArgumentException
 		// catch it, clean up, and re-throw it
@@ -469,10 +469,10 @@ class DirTest extends PHPUnit_Framework_TestCase
 			rmdir($directory);
 			throw $e;
 		}
-		
+
 		return;
 	}
-	
+
 	/**
 	 * remove() should return true if the directory is empty
 	 */
@@ -482,72 +482,72 @@ class DirTest extends PHPUnit_Framework_TestCase
 		$directory = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		mkdir($directory);
 		$this->assertTrue(is_dir($directory));
-		
+
 		// remove the directory
 		$this->assertTrue(Dir::remove($directory, dirname(__FILE__)));
-		
+
 		// test if the directory is gone
 		$this->assertFalse(is_dir($directory));
-		
+
 		// if something goes wrong, be sure to clean up
 		if (is_dir($directory)) {
 			rmdir($directory);
 		}
-		
+
 		return;
 	}
-	
+
 	/**
 	 * remove() should return true if the directory is not empty
 	 */
 	public function testRemove_returnTrue_ifDirectoryIsNotEmpty()
-	{	
+	{
 		// create a "<cwd>/foo" directory
 		$foo = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		mkdir($foo);
 		$this->assertTrue(is_dir($foo));
-		
+
 		// create a "<cwd>/foo/bar" directory
 		$bar = $foo.DIRECTORY_SEPARATOR.'bar';
 		mkdir($bar);
 		$this->assertTrue(is_dir($bar));
-		
+
 		// create a "<cwd>/foo/bar/baz" directory
 		$baz = $bar.DIRECTORY_SEPARATOR.'baz';
 		mkdir($baz);
 		$this->assertTrue(is_dir($baz));
-		
+
 		// create a "<cwd>/foo/bar/baz/qux.txt" file
 		$qux = $baz.DIRECTORY_SEPARATOR.'qux.txt';
 		file_put_contents($qux, 'hello world');
 		$this->assertTrue(file_exists($qux));
-		
+
 		// remove the "foo" directory
 		$this->assertTrue(Dir::remove($foo, $this->cwd));
-		
+
 		// check to be sure the directories and files are gone
 		$this->assertFalse(file_exists($qux));
 		$this->assertFalse(is_dir($baz));
 		$this->assertFalse(is_dir($bar));
 		$this->assertFalse(is_dir($foo));
-		
+
 		// if the old files still exist, remove them
 		if (file_exists($qux)) {
 			unlink($qux);
 		}
-		
+
 		if (is_dir($baz)) {
 			rmdir($baz);
 		}
-		
+
 		if (is_dir($bar)) {
 			rmdir($bar);
 		}
-		
+
 		if (is_dir($foo)) {
 			rmdir($foo);
 		}
-		
+
 		return;
 	}
 }
