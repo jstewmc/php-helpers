@@ -1,5 +1,3 @@
-# ignore composer's vendor directory
 /vendor
-
-# ignore composer's lock file
 composer.lock
+composer.phar
