@@ -1,25 +1,14 @@
 <?php
-/**
- * The file for the directory (aka, "dir") class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- */
 
 namespace Jstewmc\PhpHelpers;
 
 /**
  * The directory (aka, "dir") class
- *
- * @since  0.1.0
  */
 class Dir
 {
 	/**
 	 * Returns a relative path (aka, "rel") from an absolute path (aka, "abs")
-	 *
-	 * @since   0.1.0
 	 *
 	 * @param   string  $absolute  the abosolute path (e.g., 'C:\path\to\folder')
 	 * @param   string  $base      the relative base (e.g., 'C:\path\to')
@@ -33,26 +22,23 @@ class Dir
 	public static function abs2rel($absolute, $base)
 	{
 		$rel = false;
-		
-		// if $absolute and $base are given
+
 		if ($absolute !== null && $base !== null) {
-			// if $absolute is a string
 			if (is_string($absolute)) {
-				// if $base is a string
 				if (is_string($base)) {
 					// remove trailing slashes and explode absolute path
 					$absolute = rtrim($absolute, DIRECTORY_SEPARATOR);
 					$absolute = explode(DIRECTORY_SEPARATOR, $absolute);
-			
+
 					// remove trailing slashes and explode base path
 					$base = rtrim($base, DIRECTORY_SEPARATOR);
 					$base = explode(DIRECTORY_SEPARATOR, $base);
-			
+
 					// get the difference between the two
-					$diff = array_diff($absolute, $base);	
-					
+					$diff = array_diff($absolute, $base);
+
 					// implode it yar
-					$rel = implode(DIRECTORY_SEPARATOR, $diff);		
+					$rel = implode(DIRECTORY_SEPARATOR, $diff);
 				} else {
 					throw new \InvalidArgumentException(
 						__METHOD__."() expects parameter two, base path, to be a string"
@@ -78,22 +64,20 @@ class Dir
 	 * PHP's native copy() function only copies files, not directories. I will
 	 * recursively copy a directory and all of its files and sub-directories.
 	 *
-	 * If the $destination exists, I will overwrite any existing files with the 
+	 * If the $destination exists, I will overwrite any existing files with the
 	 * corresponding file in the $source directory.
 	 *
-	 * If $destination does not exist, and $mode is set to false I will throw an 
+	 * If $destination does not exist, and $mode is set to false I will throw an
 	 * InvalidArgumentException. If $mode is an integer (or omitted), I attempt
 	 * to create the destination directory. I will recursively create destination
 	 * directories as needed.
 	 *
 	 * To copy a file, use PHP's native copy() method.
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  string  $source       the source directory path
 	 * @param  string  $destination  the destination directory path
 	 * @param  int     $mode         the mode of the destination directory as an
-	 *    octal number with a leading zero (ignored on Windows) (optional; if 
+	 *    octal number with a leading zero (ignored on Windows) (optional; if
 	 *    omitted, defaults to 0777, the widest possible access) (set to false to
 	 *    throw an exception if the destination directory does not exist)
 	 *
@@ -109,18 +93,15 @@ class Dir
 	 *    be created successfully
 	 * @throws  \InvalidArgumentException  if $destination is not writeable
 	 *
-	 * @see  http://stackoverflow.com/a/2050909  Felix King's answer to "Copy entire 
+	 * @see  http://stackoverflow.com/a/2050909  Felix King's answer to "Copy entire
 	 *    contents of a directory to another using php" on StackOverflow
 	 */
 	public static function copy($source, $destination, $mode = 0777)
 	{
 		$isSuccess = false;
 
-		// if $source and $destination are given
 		if ($source !== null && $destination !== null && $mode !== null) {
-			// if $source is a string
 			if (is_string($source)) {
-				// if $destination is a string
 				if (is_string($destination)) {
 					// if $mode is an integer or false
 					if (is_integer($mode) || $mode === false) {
@@ -199,7 +180,7 @@ class Dir
 						throw new \InvalidArgumentException(
 							__METHOD__."() expects parameter three, mode, to be an integer or false"
 						);
-					} 
+					}
 				} else {
 					throw new \InvalidArgumentException(
 						__METHOD__."() expects parameter two, destination, to be a string"
@@ -218,11 +199,9 @@ class Dir
 
 		return $isSuccess;
 	}
-	
-	/** 
+
+	/**
 	 * Alias for Dir::copy() method
-	 *
-	 * @since  0.1.0
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Dir::copy()
 	 */
@@ -230,15 +209,13 @@ class Dir
 	{
 		return self::cp($source, $destination, $mode);
 	}
-	
+
 	/**
 	 * Deletes a non-empty directory and its sub-directories
 	 *
-	 * PHP's native rmdir() function requires the directory to be empty. I'll 
+	 * PHP's native rmdir() function requires the directory to be empty. I'll
 	 * recursively delete a directory's files and sub-directories. BE CAREFUL!
 	 * Use the $container argument to be safe.
-	 *
-	 * @since  0.1.0
 	 *
 	 * @param  string  $directory  the path of the directory to remove
 	 * @param  string  $container  an ancestor directory of $directory
@@ -259,14 +236,11 @@ class Dir
 	 */
 	public static function remove($directory, $container)
 	{
-		$isSuccess = false; 
+		$isSuccess = false;
 
-		// if $directory and $container are given
 		if ($directory !== null && $container !== null) {
-			// if $directory is a string
 			if (is_string($directory)) {
-				// if $container is a string
-				if (is_string($container)) {					
+				if (is_string($container)) {
 					// if the $directory argument is a dir
 					if (is_dir($directory)) {
 						// if $directory is writable
@@ -285,7 +259,7 @@ class Dir
 										if (is_dir($directory.DIRECTORY_SEPARATOR.$entity)) {
 											// clear and delete the sub-directory
 											$isSuccess = self::remove(
-												$directory.DIRECTORY_SEPARATOR.$entity, 
+												$directory.DIRECTORY_SEPARATOR.$entity,
 												$container
 											);
 										} else {
@@ -323,7 +297,7 @@ class Dir
 						throw new \InvalidArgumentException(
 							__METHOD__."() expects parameter one, directory, to be a valid directory"
 						);
-					}					
+					}
 				} else {
 					throw new \InvalidArgumentException(
 						__METHOD__."() expects the second parameter, container, to be a string"
@@ -342,11 +316,9 @@ class Dir
 
 		return $isSuccess;
 	}
-	
-	/** 
+
+	/**
 	 * Alias for Dir::remove() method
-	 *
-	 * @since  0.1.0
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Dir::remove()
 	 */

@@ -1,44 +1,35 @@
 <?php
-/**
- * The file for the Num class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- */
 
 namespace Jstewmc\PhpHelpers;
 
-/** 
+/**
  * The number (aka, "num") class
  *
- * Keep in mind, a number in PHP (and hereafter in this class documentation) is 
- * considered to be a (float), (int), or numeric (string). 
- *
- * @since  0.1.0  
+ * Keep in mind, a number in PHP (and hereafter in this class documentation) is
+ * considered to be a (float), (int), or numeric (string).
  */
-class Num 
+class Num
 {
 	/* !Constants */
-	
+
 	/**
 	 * @var  the regex for a comma-separated number (e.g., "1,000")
 	 */
 	const REGEX_NUMBER_COMMA = '#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#';
-	
+
 	/**
 	 * @var  the regex for a mixed number (e.g., "1 1/2")
 	 */
 	const REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#';
-	
-	
+
+
 	/* !Public members */
-	
+
 	/**
 	 * @var  array  an array of cardinal numbers (e.g., "one", "two", etc)
 	 */
 	public static $cardinals = array(
-		'one'       => 1, 
+		'one'       => 1,
 		'two'       => 2,
 		'three'     => 3,
 		'four'      => 4,
@@ -66,7 +57,7 @@ class Num
 		'eighty'    => 80,
 		'ninety'    => 90
 	);
-	
+
 	/**
 	 * @var  array  an array of ordinal numbers (e.g., "first", "second", etc)
 	 */
@@ -99,7 +90,7 @@ class Num
 		'eightieth'   => 80,
 		'ninetieth'   => 90
 	);
-	
+
 	/**
 	 * @var  array  an array of powers
 	 */
@@ -109,32 +100,32 @@ class Num
 		'million'  => 1000000,
 		'billion'  => 1000000000
 	);
-	
+
 	/**
 	 * @var  array  an array of number suffixes
 	 */
 	public static $suffixes = array('th', 'st', 'nd', 'rd');
-	
-	
+
+
 	/* !Public methods */
-	
+
 	/**
 	 * Returns true if float $a is almost equal to float $b
 	 *
 	 * Floating point numbers should never be compared for equivalence because of the
 	 * way they are stored internally. They have limited precision, and many numbers
-	 * numbers that are representable as floating point numbers in base 10 (e.g., 0.1 
+	 * numbers that are representable as floating point numbers in base 10 (e.g., 0.1
 	 * or 0.7) do not have an exact representation as floating point numbers in base 2.
 	 *
-	 * To test floating point values for equality, an upper bound on the relative error 
-	 * due to rounding is used. This value is known as the machine epsilon, and is the 
+	 * To test floating point values for equality, an upper bound on the relative error
+	 * due to rounding is used. This value is known as the machine epsilon, and is the
 	 * largest acceptable difference in calculations (exclusive).
-	 * 
+	 *
 	 * @since  0.1.0
 	 *
 	 * @param  int|float  $a        the first value
 	 * @param  int|float  $b        the second value
-	 * @param  int|float  $epsilon  the maximum allowed difference (exclusive) (optional; 
+	 * @param  int|float  $epsilon  the maximum allowed difference (exclusive) (optional;
 	 *    if omitted defaults to 0.00001)
 	 *
 	 * @return  bool  true if the values are equal
@@ -147,11 +138,10 @@ class Num
 	 *
 	 * @see  http://www.php.net/manual/en/language.types.float.php  man page on float type
 	 */
-	public static function almostEqual($a, $b, $epsilon = 0.00001) 
+	public static function almostEqual($a, $b, $epsilon = 0.00001)
 	{
 		$isEqual = false;
-		
-		// if $a, $b, and $epsilon are not empty
+
 		if ($a !== null && $b !== null && $epsilon !== null) {
 			// if $a is a number
 			if (is_numeric($a)) {
@@ -188,14 +178,14 @@ class Num
 				__METHOD__." expects two or three numeric arguments"
 			);
 		}
-		
+
 		return $isEqual;
 	}
 
 	/**
 	 * Bounds a value between an upper and/or lower bound (inclusive)
 	 *
-	 * I'll bound $number between a lower an upper bound; greater than or equal to a lower 
+	 * I'll bound $number between a lower an upper bound; greater than or equal to a lower
 	 * bound; or, less than or equal to an upper bound.
 	 *
 	 * For example:
@@ -206,8 +196,6 @@ class Num
 	 *     Num::bound(3, null, 2);   // returns 2
 	 *     Num::bound(2, 1, 3);      // returns 2
 	 *     Num::bound(4, 1, 3);      // returns 3
-	 * 
-	 * @since  0.1.0
 	 *
 	 * @param  int|float  $number  the number to bound
 	 * @param  int|float  $lower   the number's lower bound (inclusive)
@@ -220,11 +208,10 @@ class Num
 	 * @throws  \InvalidArgumentException  if $upper is passed and not a number
 	 * @throws  \InvalidArgumentException  if $upper is not greater than or equal to $lower
 	 */
-	public static function bound($number, $lower = null, $upper = null) 
+	public static function bound($number, $lower = null, $upper = null)
 	{
 		$bounded = false;
-		
-		// if $number and $lower and/or $upper is given
+
 		if ($number !== null && ($lower !== null || $upper !== null)) {
 			// if $number is a number
 			if (is_numeric($number)) {
@@ -235,7 +222,7 @@ class Num
 				if ( ! $hasLower || is_numeric($lower)) {
 					// if $upper is omitted or it is a valid number
 					if ( ! $hasUpper || is_numeric($upper)) {
-						// if $lower argument is omitted or $upper argument is omitted or $upper is 
+						// if $lower argument is omitted or $upper argument is omitted or $upper is
 						//     greater than $lower
 						//
 						if ( ! $hasLower || ! $hasUpper || $upper >= $lower) {
@@ -245,7 +232,7 @@ class Num
 							} elseif ($hasLower) {
 								$bounded = max($number, $lower);
 							} elseif ($hasUpper) {
-								$bounded = min($number, $upper);	
+								$bounded = min($number, $upper);
 							}
 						} else {
 							throw new \InvalidArgumentException(
@@ -286,8 +273,6 @@ class Num
 	 *     Num::ceilTo(15, 10);  // returns 20
 	 *     Num::ceilTo(25, 40);  // returns 40
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  int|float  $number    the number to ceil
 	 * @param  int|float  $multiple  the multiple to ceil to (optional; if omitted,
 	 *    defaults to 1 (aka, PHP's native ceil() function))
@@ -303,13 +288,13 @@ class Num
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
 	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
-	public static function ceilTo($number, $multiple = 1) 
+	public static function ceilTo($number, $multiple = 1)
 	{
 		$ceiled = false;
-		
+
 		// if $number and $multiple are passed
 		// keep in mind, PHP's empty() will return true on zero
-		// 
+		//
 		if ($number !== null && $multiple !== null) {
 			// if $number is actually a number
 			if (is_numeric($number)) {
@@ -339,7 +324,7 @@ class Num
 				__METHOD__." expects one or two numeric parameters"
 			);
 		}
-		
+
 		return $ceiled;
 	}
 
@@ -352,15 +337,13 @@ class Num
 	 *     Num::floorTo(0.99, 0.5);  // returns 0.5
 	 *     Num::floorTo(101, 100);   // returns 100
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  int|float  $number    the number to floor
 	 * @param  int|float  $multiple  the multiple to floor to (optional; if omitted,
 	 *    defaults to 1 (aka, PHP's native floor() function))
 	 *
 	 * @return  int|float
 	 *
-	 * @throws  \BadMethodCallException    if $number or $multiple is null 
+	 * @throws  \BadMethodCallException    if $number or $multiple is null
 	 * @throws  \InvalidArgumentException  if $number is not a number
 	 * @throws  \InvalidArgumentException  if $multiple is not a number
 	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
@@ -368,11 +351,10 @@ class Num
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
 	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
-	public static function floorTo($number, $multiple = 1) 
+	public static function floorTo($number, $multiple = 1)
 	{
 		$floored = false;
-		
-		// if $number and $multiple are not null
+
 		if ($number !== null && $multiple !== null) {
 			// if $number is actually a number
 			if (is_numeric($number)) {
@@ -402,14 +384,12 @@ class Num
 				__METHOD__." expects one or two numeric parameters"
 			);
 		}
-		
+
 		return $floored;
 	}
-	
+
 	/**
 	 * Alias for the isInt() method
-	 *
-	 * @since  0.1.0
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Num::isInt()
 	 */
@@ -417,15 +397,13 @@ class Num
 	{
 		return self::isInt($number);
 	}
-	
+
 	/**
 	 * Alias for the isNumeric() method
 	 *
-	 * @since  0.1.0
-	 *
 	 * @see  \Jstewmc\PhpHelpers\Num::isNumeric()
 	 */
-	public static function is_numeric($number) 
+	public static function is_numeric($number)
 	{
 		return self::isNumeric($number);
 	}
@@ -443,11 +421,9 @@ class Num
 	 *     Num::isId(123);              // returns true
 	 *     Num::isId(999999, 'small');  // returns false
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  int|float  $number    the number to test
 	 * @param  string     $datatype  the column datatype name (possible values are
-	 *    'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]') 
+	 *    'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', and 'big[int]')
 	 *    (case-insensitive) (optional; if omitted, defaults to 'int')
 	 *
 	 * @return  bool  true if the number is a valid database id
@@ -456,13 +432,11 @@ class Num
 	 * @throws  \InvalidArgumentException  if $datatype is not a string
 	 * @throws  \InvalidArgumentException  if $datatype is not an allowed value
 	 */
-	public static function isId($number, $datatype = 'int') 
+	public static function isId($number, $datatype = 'int')
 	{
-		$isId = false; 
-		
-		// if $datatype is not null
+		$isId = false;
+
 		if ($datatype !== null) {
-			// if $datatype is a string
 			if (is_string($datatype)) {
 				// if $number is actually a number
 				if (is_numeric($number)) {
@@ -474,22 +448,22 @@ class Num
 							case 'tinyint':
 								$isId = ($number <= 255);
 								break;
-							
+
 							case 'small':
 							case 'smallint':
 								$isId = ($number <= 65535);
 								break;
-							
+
 							case 'medium':
 							case 'mediumint':
 								$isId = ($number <= 8388607);
 								break;
-							
+
 							case 'int':
 							case 'integer':
 								$isId = ($number <= 4294967295);
 								break;
-							
+
 							case 'big':
 							case 'bigint':
 								// cast the datatype's maximum value to a float
@@ -497,7 +471,7 @@ class Num
 								//
 								$isId = ($number <= (float) 18446744073709551615);
 								break;
-						
+
 							default:
 								throw new \InvalidArgumentException(
 									__METHOD__." expects parameter two to be a valid datatype name such as: ".
@@ -517,10 +491,10 @@ class Num
 				__METHOD__."() expects two parameters, a number and a datatype name"
 			);
 		}
-		
+
 		return $isId;
 	}
-	
+
 	/**
 	 * Returns true if $number is an integer or integer string
 	 *
@@ -535,14 +509,12 @@ class Num
 	 *     is_int('1');      // returns false
 	 *     Num::isInt('1');  // returns true
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  int|float  $number  the number to test
 	 *
 	 * @return  bool  true if $number is an integer or integer string
 	 */
-	public static function isInt($number) 
-	{	
+	public static function isInt($number)
+	{
 		return is_numeric($number) && is_int(+$number);
 	}
 
@@ -563,14 +535,12 @@ class Num
 	 *
 	 *     is_numeric("1.5");         // returns true
 	 *     self::isNumeric("1.5");    // returns true
-	 * 
+	 *
 	 *     is_numeric("1/2");         // returns false
 	 *     self::isNumeric("1/2");    // returns true
 	 *
 	 *     is_numeric("1 1/2");       // returns false
 	 *     self::isNumeric("1 1/2");  // returns true
-	 *
-	 * @since  0.1.0
 	 *
 	 * @param  mixed  $number  the number to test
 	 *
@@ -578,7 +548,7 @@ class Num
 	 *
 	 */
 	public static function isNumeric($number)
-	{	
+	{
 		return is_numeric($number)
 			|| (is_string($number) && preg_match(self::REGEX_NUMBER_MIXED, $number))
 			|| (is_string($number) && preg_match(self::REGEX_NUMBER_COMMA, $number));
@@ -587,7 +557,7 @@ class Num
 	/**
 	 * Returns true if the value is zero
 	 *
-	 * It can be a little tricky to evaluate a variable in PHP as zero. If you use 
+	 * It can be a little tricky to evaluate a variable in PHP as zero. If you use
 	 * PHP's native empty function, it will consider 0, '0', 0.0, and '0.0' as empty.
 	 * However, it will also consider false, array(), '' as empty too. If you compare
 	 * a value to the possible values for zero in PHP over-and-over, it's a pain. I
@@ -604,42 +574,38 @@ class Num
 	 *
 	 *     $a = ! empty(0);                    // evaluates to false
 	 *     $b = ! empty(0) || Num::isZero(0);  // evaluates to true
-	 * 
-	 * @since  0.1.0
 	 *
 	 * @param  mixed  $number  the number to test
 	 *
 	 * @return  bool  true if $number is zero
 	 */
-	public static function isZero($number) 
+	public static function isZero($number)
 	{
-		return $number === 0 
-			|| $number === 0.0 
-			|| $number === '0' 
+		return $number === 0
+			|| $number === 0.0
+			|| $number === '0'
 			|| $number === '0.0';
 	}
 
 	/**
 	 * Returns a normalized value between 0 and 1 (inclusive)
 	 *
-	 * In statistics, it's often helpful to normalize (sometimes referred to as index) 
+	 * In statistics, it's often helpful to normalize (sometimes referred to as index)
 	 * values for comparison. For example, for a retailer to compare an item's revenue
 	 * against its quantity-in-stock, the values must be normalized (otherwise, revenue
 	 * will likely be in the thousands of dollars and quantity in stock will likely be
 	 * in the dozens).
 	 *
-	 * If you divide every item's revenue by the maximum revenue of any item, you'll have 
+	 * If you divide every item's revenue by the maximum revenue of any item, you'll have
 	 * a normalized value between 1 and 0. If you do the same for quantity-in-stock, you
 	 * can compare the two values easily.
-	 * 
+	 *
 	 * For example:
 	 *
 	 *     Num::normalize(1, 100);    // returns 0.01
 	 *     Num::normalize(50, 100);   // returns 0.5
 	 *     Num::normalize(0, 100);    // returns 0
 	 *     Num::normalize(150, 100);  // returns 1
-	 *
-	 * @since   0.1.0
 	 *
 	 * @param   int|float  $number  the number to normalize
 	 * @param   int|float  $max     the maximum to divide into $value
@@ -654,7 +620,7 @@ class Num
 	public static function normalize($number, $max)
 	{
 		$norm = false;
-		
+
 		// if $number and $max are given
 		if ($number !== null && $max !== null) {
 			// if $number is actually a number
@@ -664,7 +630,7 @@ class Num
 					// if $max is greater than zero
 					if ($max > 0) {
 						// bound the quotient between 0 and 1
-						$norm = self::bound($number / $max, 0, 1);		
+						$norm = self::bound($number / $max, 0, 1);
 					} else {
 						throw new \InvalidArgumentException(
 							__METHOD__." expects parameter two, the max, to be greater than zero"
@@ -685,7 +651,7 @@ class Num
 				__METHOD__." expects two numeric parameters"
 			);
 		}
-		
+
 		return $norm;
 	}
 
@@ -712,7 +678,7 @@ class Num
 	public static function roundTo($number, $multiple = 1)
 	{
 		$round = false;
-		
+
 		// if $number and $multiple exist
 		if ($number !== null && $multiple !== null) {
 			// if $number is actually a number
@@ -743,15 +709,15 @@ class Num
 				__METHOD__." expects one or two numeric parameters"
 			);
 		}
-		
+
 		return $round;
 	}
 
 	/**
 	 * Returns the numeric value of $var
 	 *
-	 * PHP does not natively support fractions, mixed numbers, comma-separated 
-	 * values, ordinals, or cardinals values, but I will. Woot! 
+	 * PHP does not natively support fractions, mixed numbers, comma-separated
+	 * values, ordinals, or cardinals values, but I will. Woot!
 	 *
 	 * I use the following rules:
 	 *
@@ -766,9 +732,9 @@ class Num
 	 *
 	 *     Strings
 	 *         Numeric strings are returned as their strictly typed equivalent (i.e.,
-	 *         an integer or float). Numeric strings with commas are returned as their 
+	 *         an integer or float). Numeric strings with commas are returned as their
 	 *         strictly typed equivalents. Fractions and mixed numbers are returned as
-	 *         floats. Ordinal and cardinal numbers (e.g., "one hundred", "second" or 
+	 *         floats. Ordinal and cardinal numbers (e.g., "one hundred", "second" or
 	 *         "2nd") are returned as integers. All other strings return 0.
 	 *
 	 *     Arrays
@@ -776,7 +742,7 @@ class Num
 	 *
 	 *     Objects
 	 *         This method should not be used on objects. However, unlike the native
-	 *         PHP intval() or floatval() methods, I will not raise an error. I will 
+	 *         PHP intval() or floatval() methods, I will not raise an error. I will
 	 *         always evaluate objects as 1.
 	 *
 	 * For example:
@@ -802,14 +768,12 @@ class Num
 	 *     Num::val(array('foo'));    // returns 1
 	 *     Num::val(new stdClass());  // returns 1
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  mixed  $var  the value to evaluate
 	 *
 	 * @return  int|float  the value's numeric equivalent
 	 *
 	 * @see  http://stackoverflow.com/a/5264255  Pascal MARTIN's answer to "Convert
-	 *    mixed fraction string to float in PHP" on StackOverflow (edited to allow 
+	 *    mixed fraction string to float in PHP" on StackOverflow (edited to allow
 	 *    back- or forward-slashes in fractions)
 	 * @see  http://stackoverflow.com/a/5917250  Justin Morgain's answer to "Regular
 	 *    expression to match numbers with or without commas and decimals in text" on
@@ -819,13 +783,13 @@ class Num
 	 *    words to numbers in PHP" on StackOverflow (edited to use static arrays of
 	 *    cardinals, ordinals, and powers and to use intval() instead of floatval())
 	 */
-	public static function val($var) 
+	public static function val($var)
 	{
 		$value = false;
-		
+
 		// if $var is a string, trim it
 		if (is_string($var)) {
-			$var = trim($var);	
+			$var = trim($var);
 		}
 
 		// if the string is not already a (float), (integer), or numeric (string)
@@ -848,7 +812,7 @@ class Num
 					// if the string is composed *only* of valid number names
 					//
 					// first, lowercase $var, strip commas, and replace "-" and " and " with spaces
-					// then, explode on space, trim, and filter out empty values 
+					// then, explode on space, trim, and filter out empty values
 					// finally, merge all the possible numeric string values together
 					//
 					$words = strtolower($var);
@@ -865,7 +829,7 @@ class Num
 						$var = strtr(
 							strtolower($var),
 							array_merge(
-								self::$cardinals, 
+								self::$cardinals,
 								self::$ordinals,
 								self::$powers,
 								array('and' => '')
@@ -878,11 +842,11 @@ class Num
 					        },
 					        preg_split('/[\s-]+/', $var)
 					    );
-					
+
 					    $stack = new \SplStack();  // the current work stack
 					    $sum   = 0;               // the running total
 					    $last  = null;            // the last part
-					
+
 						// loop through the parts
 					    foreach ($parts as $part) {
 					    	// if the stack isn't empty
@@ -908,14 +872,14 @@ class Num
 					            // This is the first element of a new phrase
 					            $stack->push($part);
 					        }
-					
+
 					        // Store the last processed part
 					        $last = $part;
 					    }
-					
+
 					    $value = $sum + $stack->pop();
 					} else {
-						$value = 0;	
+						$value = 0;
 					}
 				}
 			} elseif (is_array($var)) {

@@ -1,20 +1,8 @@
 <?php
-/**
- * The file for the Bool class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- */
 
 namespace Jstewmc\PhpHelpers;
 
-/**
- * The boolean (aka, "bool") class
- *
- * @since  0.1.0
- */
-class Boolean 
+class Boolean
 {
 	/**
 	 * Returns $bool value in the string $format
@@ -26,8 +14,6 @@ class Boolean
 	 *     Bool::booltostr(true);             // returns (string) 'true'
 	 *     Bool::booltostr(true, 'yes-no');   // returns (string) 'true'
 	 *     Bool::booltostr(false, 'on-off');  // returns (string) 'off'
-	 *
-	 * @since  0.1.0
 	 *
 	 * @param  bool    $bool    the boolean value to convert
 	 * @param  string  $format  the string format to convert to (possible values are
@@ -45,11 +31,8 @@ class Boolean
 	{
 		$string = false;
 
-		// if $bool and format are not null
 		if ($bool !== null && $format !== null) {
-			// if $bool is actually a bool
 			if (is_bool($bool)) {
-				// if $format is a string
 				if (is_string($format)) {
 					// switch on the lower-case $format
 					switch (strtolower($format)) {
@@ -146,8 +129,6 @@ class Boolean
 	 *     Bool::val([]);              // returns (bool) false
 	 *     Bool::val([1, 2]);          // returns (bool) true
 	 *     Bool::val(new StdClass());  // returns (bool) true
-	 *
-	 * @since  0.1.0
 	 *
 	 * @param  mixed  $var  the variable to test
 	 *

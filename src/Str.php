@@ -1,18 +1,9 @@
 <?php
-/**
- * The file for the Str class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- */
- 
+
 namespace Jstewmc\PhpHelpers;
- 
+
 /**
  * The string (aka, "str") class
- *
- * @since  0.1.0
  */
 class Str
 {
@@ -26,10 +17,8 @@ class Str
 	 *     Str::endsWith('foobar', 'BAR');  // returns false
 	 *     Str::endsWith('foobar', '');     // returns false
 	 *     Str::endsWith('', 'foobar');     // returns false
-	 * 
-	 * @since  0.1.0
 	 *
-	 * @param  string  $haystack  the string to search 
+	 * @param  string  $haystack  the string to search
 	 * @param  string  $needle    the substring to search for
 	 *
 	 * @return  bool  true if $haystack ends with $needle
@@ -39,13 +28,13 @@ class Str
 	 * @throws  \InvalidArgumentException  if $needle is not a string
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Str::iEndsWith()  case-insensitive version
-	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith() 
+	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith()
 	 *    and endsWith() functions in PHP" on StackOverflow
 	 */
-	public static function endsWith($haystack, $needle) 
+	public static function endsWith($haystack, $needle)
 	{
 		$endsWith = false;
-		
+
 		// if $haystack and $needle are passed
 		if ($haystack !== null && $needle !== null) {
 			// if $haystack is a string
@@ -88,10 +77,8 @@ class Str
 	 *     Str::endsWith('foobar', 'bar');  // returns true
 	 *     Str::endsWith('foobar', 'baz');  // returns false
 	 *     Str::endsWith('foobar', 'BAR');  // returns true
-	 * 
-	 * @since  0.1.0
 	 *
-	 * @param  string  $haystack  str  the string to search 
+	 * @param  string  $haystack  str  the string to search
 	 * @param  string  $needle    str  the substring to search for
 	 *
 	 * @return  bool
@@ -102,17 +89,17 @@ class Str
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Str::iEndsWith()  case-sensitive version
 	 */
-	public static function iEndsWith($haystack, $needle) 
+	public static function iEndsWith($haystack, $needle)
 	{
 		$endsWith = null;
-		
+
 		// if $haystack and $needle are given
 		if ($haystack !== null && $needle !== null) {
 			// if $haystack is a string
 			if (is_string($haystack)) {
 				// if $needle is a string
 				if (is_string($needle)) {
-					$endsWith = self::endsWith(strtolower($haystack), strtolower($needle));		
+					$endsWith = self::endsWith(strtolower($haystack), strtolower($needle));
 				} else {
 					throw new \InvalidArgumentException(
 						__METHOD__."() expects parameter two, needle, to be a string"
@@ -128,14 +115,12 @@ class Str
 				__METHOD__."() expects two string parameters, haystack and needle"
 			);
 		}
-		
+
 		return $endsWith;
 	}
-	
+
 	/**
 	 * Alias for the isBool() method
-	 *
-	 * @since  0.1.0
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Str::isBool()
 	 */
@@ -146,8 +131,8 @@ class Str
 
 	/**
 	 * Returns true if $string is a bool string
-	 * 
-	 * I'll return true if $string is a bool string like 'true', 'false', 'yes', 'no', 
+	 *
+	 * I'll return true if $string is a bool string like 'true', 'false', 'yes', 'no',
 	 * 'on' or 'off'. Keep in mind, I only handle strings. I will return false if you
 	 * test an actual bool value (because it's not a string).
 	 *
@@ -160,15 +145,13 @@ class Str
 	 *     is_bool('yes');       // returns false
 	 *     Str::isBool('yes');   // returns true
 	 *
-	 * @since  0.1.0 
-	 *
 	 * @param  string  $string  the string to test
 	 *
 	 * @return  bool
 	 */
 	public static function isBool($string)
 	{
-		return is_string($string) 
+		return is_string($string)
 			&& in_array(strtolower($string), array('true', 'false', 'yes', 'no', 'on', 'off'));
 	}
 
@@ -183,8 +166,6 @@ class Str
 	 *     Str::iStartsWith('', 'foobar');     // returns false
 	 *     Str::iStartsWith('foobar', '');     // returns false
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  string  $haystack  the case-insensitive string to search
 	 * @param  string  $needle    the case-insensitive substring to search for
 	 *
@@ -195,18 +176,18 @@ class Str
 	 * @throws  \InvalidArgumentException  if $needle is not a string
 	 *
 	 * @see     \Jstewmc\PhpHelpers\Str::startsWith()  case-sensitive version
-	 */ 
-	public static function iStartsWith($haystack, $needle) 
+	 */
+	public static function iStartsWith($haystack, $needle)
 	{
 		$startsWith = null;
-		
+
 		// if $haystack and $needle are given
 		if ($haystack !== null && $needle !== null) {
 			// if $haystack is a string
 			if (is_string($haystack)) {
 				// if $needle is a string
 				if (is_string($needle)) {
-					$startsWith = self::startsWith(strtolower($haystack), strtolower($needle));	
+					$startsWith = self::startsWith(strtolower($haystack), strtolower($needle));
 				} else {
 					throw new \InvalidArgumentException(
 						__METHOD__."() expects parameter two, needle, to be a string"
@@ -222,14 +203,14 @@ class Str
 				__METHOD__."() expects two string parameters, haystack and needle"
 			);
 		}
-		
+
 		return $startsWith;
 	}
-	
+
 	/**
 	 * Returns a random string of $length that follows the charset $rules
 	 *
-	 * Oftetimes, standards (like PCI) require passwords with one upper-case letter, one 
+	 * Oftetimes, standards (like PCI) require passwords with one upper-case letter, one
 	 * lower-case letter, one number, and one symbol. I can do that.
 	 *
 	 * For example:
@@ -247,13 +228,11 @@ class Str
 	 *     echo $b;  // example 'jNhGFkLekOfV'
 	 *     echo $c;  // example 'la9Uh7BH4Bc3'
 	 *
-	 * @since  0.1.0
-	 *
-	 * @param  int    $length  the length of the password (optional; if omitted, 
+	 * @param  int    $length  the length of the password (optional; if omitted,
 	 *    defaults to 8)
 	 * @param  int[]  $rules   an array of character counts indexed by charset name
-	 *    (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol') 
-	 *    (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1, 
+	 *    (possible charset names are 'lower', 'upper', 'number', 'alpha', and 'symbol')
+	 *    (optional; if omitted, defaults to ['lower' => 1, 'upper' => 1, 'number' => 1,
 	 *    'symbol' => 1])
 	 *
 	 * @return  string  the password
@@ -261,15 +240,15 @@ class Str
 	 * @throws  \BadMethodCallException    if $rules or $length is omitted
 	 * @throws  \InvalidArgumentException  if $rules is not an array
 	 * @throws  \InvalidArgumentException  if $length is not an integer
-	 * @throws  \InvalidArgumentException  if a key in $rules is not a valid charset name 
+	 * @throws  \InvalidArgumentException  if a key in $rules is not a valid charset name
 	 * @throws  \InvalidArgumentException  if a value in $rules is not an integer
 	 * @throws  \InvalidArgumentException  if the number of required characters (as defined
 	 *    in the $rules array) exceeds the $length
-	 */ 
-	public static function password($length = 8, $rules = array('lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1)) 
+	 */
+	public static function password($length = 8, $rules = array('lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1))
 	{
 		$password = '';
-		
+
 		// if $rules and $length are given
 		if ($rules !== null && $length !== null) {
 			// if $rules is an array
@@ -309,7 +288,7 @@ class Str
 				__METHOD__." expects two parameters, an array of charset rules and a length"
 			);
 		}
-		
+
 		return $password;
 	}
 
@@ -322,12 +301,10 @@ class Str
 	 *     echo Str::rand(8, ['lower', 'number']);  // example 'k987hb54'
 	 *     echo Str::rand(8, ['upper', 'symbol']);  // example 'HG!V*X]@'
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  int    $length    the length of the string to return
 	 * @param  mixed  $charsets  a string charset name or an array of charset names
 	 *    (possible values are are 'lower', 'upper', 'alpha' (a combination of 'upper'
-	 *    and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to 
+	 *    and 'lower'), 'number', and 'symbol') (optional; if omitted, defaults to
 	 *    ['alpha', 'number', 'symbol'])
 	 *
 	 * @return  string  a random string
@@ -340,7 +317,7 @@ class Str
 	public static function rand($length, $charsets = array('alpha', 'number', 'symbol'))
 	{
 		$rand = '';
-		
+
 		// if $length and $charsets are given
 		if ($length !== null && $charsets !== null) {
 			// if $length is an integer
@@ -353,13 +330,13 @@ class Str
 					}
 
 					// define the possible charsets
-					$lower  = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 
+					$lower  = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
 						'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 					$upper  = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 						'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 					$number = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 					$symbol = array('!', '@', '#', '*', '(', ')', '-', '_', '+', '=', '[', ']');
-			
+
 					// create an array of possible chars
 					$chars = array();
 					foreach ($charsets as $charset) {
@@ -374,10 +351,10 @@ class Str
 							);
 						}
 					}
-			
+
 					// shuffle the chars
 					shuffle($chars);
-			
+
 					// pick $length random chars
 					for ($i = 0; $i < $length; ++$i) {
 						$rand .= $chars[array_rand($chars)];
@@ -415,8 +392,6 @@ class Str
 	 *     Str::splitOnFirstAlpha("abc");        // returns ["", "abc"]
 	 *     Str::splitOnFirstAlpha("123 abc");    // returns ["123", "abc"]
 	 *     Str::splitOnFirstAlpha("1 2 3 abc");  // returns ["1 2 3 4", "abc"]
-	 * 
-	 * @since  0.1.0
 	 *
 	 * @param  string  $string  the string to split
 	 *
@@ -426,13 +401,13 @@ class Str
 	 * @throws  \InvalidArgumentException  if $string is not a string
 	 *
 	 * @see     http://stackoverflow.com/a/18990341  FrankieTheKneeMan's answer to "Split
-	 *    string on first occurrence of a letter" on StackOverflow (version using Regex 
+	 *    string on first occurrence of a letter" on StackOverflow (version using Regex
 	 *    lookahead)
 	 */
 	public static function splitOnFirstAlpha($string)
 	{
 		$pieces = array();
-		
+
 		// if $string is not null
 		if ($string !== null) {
 			// if $string is actually a string
@@ -440,7 +415,7 @@ class Str
 				// if the trimmed string isn't empty
 				$string = trim($string);
 				if ($string !== '') {
-					$pieces = array_map('trim', preg_split('/(?=[a-zA-Z])/i', $string, 2));		
+					$pieces = array_map('trim', preg_split('/(?=[a-zA-Z])/i', $string, 2));
 				} else {
 					$pieces = array();
 				}
@@ -454,8 +429,8 @@ class Str
 				__METHOD__."() expects one parameter, a string"
 			);
 		}
-		
-		return $pieces; 
+
+		return $pieces;
 	}
 
 	/**
@@ -469,8 +444,6 @@ class Str
 	 *     Str::startsWith('foobar', '');     // returns false
 	 *     Str::startsWith('', 'foobar');     // returns false
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  string  $haystack  the string to search
 	 * @param  string  $needle    the substring to search for
 	 *
@@ -481,13 +454,13 @@ class Str
 	 * @throws  \InvalidArgumentException  if $needle is not a string
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Str::startsWith()  case-insensitive version
-	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith() and 
+	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith() and
 	 *    endsWith() functions in PHP" on StackOverflow
-	 */ 
-	public static function startsWith($haystack, $needle) 
+	 */
+	public static function startsWith($haystack, $needle)
 	{
 		$startsWith = false;
-		
+
 		// if $haystack and $needle are given
 		if ($haystack !== null && $needle !== null) {
 			// if $haystack is a string
@@ -520,7 +493,7 @@ class Str
 				__METHOD__." expects two string parameters, haystack and needle"
 			);
 		}
-		
+
 		return $startsWith;
 	}
 
@@ -538,8 +511,6 @@ class Str
 	 *     Str::strtobytes('1M');  // returns 1048576
 	 *     Str::strtobytes('1G');  // returns 1073741824
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  string  $string  the string to convert
 	 *
 	 * @return  int|float  the number of bytes
@@ -553,7 +524,7 @@ class Str
 	public static function strtobytes($string)
 	{
 		$val = false;
-		
+
 		// if $string is given
 		if ($string !== null) {
 			// if $string is actually a string
@@ -561,24 +532,24 @@ class Str
 				// get the string's last character
 				$val  = trim($string);
 				$last = strtolower($val[strlen($val) - 1]);
-		
+
 				switch ($last) {
-		
+
 					case 'g':
 						$val *= 1024;
 						// no break
-		
+
 					case 'm':
 						$val *= 1024;
 						// no break
-		
+
 					case 'k':
 						$val *= 1024;
 						break;
-					
+
 					default:
 						throw new \InvalidArgumentException(
-							__METHOD__." expects the first parameter to end in 'k', 'm', or 'g'"		
+							__METHOD__." expects the first parameter to end in 'k', 'm', or 'g'"
 						);
 				}
 			} else {
@@ -603,9 +574,7 @@ class Str
 	 *     Str::strtocamelcase('Hello world');   // returns "helloWorld"
 	 *     Str::strtocamelcase('H3LLO WORLD!');  // returns "helloWorld"
 	 *     Str::strtocamelcase('hello_world');   // returns "helloWorld"
-	 * 
-	 * @since  0.1.0
-	 *
+     *
 	 * @param  string  $string  the string to camel-case
 	 *
 	 * @return  string  the camel-cased string
@@ -614,7 +583,7 @@ class Str
 	 * @throws  \InvalidArgumentException  if $string is not a string
 	 */
 	public static function strtocamelcase($string)
-	{		
+	{
 		// if $string is given
 		if ($string !== null) {
 			// if $string is actually a string
@@ -623,22 +592,22 @@ class Str
 				if (strlen($string)) {
 					// trim the string
 					$string = trim($string);
-			
+
 					// replace underscores ("_") and hyphens ("-") with spaces (" ")
 					$string = str_replace(array('-', '_'), ' ', $string);
-					
+
 					// lower-case everything
 					$string = strtolower($string);
-			
+
 					// capitalize each word
 					$string = ucwords($string);
-			
+
 					// remove spaces
 					$string = str_replace(' ', '', $string);
-			
+
 					// lower-case the first word
 					$string = lcfirst($string);
-			
+
 					// remove any non-alphanumeric characters
 					$string = preg_replace("#[^a-zA-Z0-9]+#", '', $string);
 				}
@@ -663,14 +632,12 @@ class Str
 	 *     Str::truncate('Lorem ipsum inum', 8, '');         // returns 'Lorem ip...'
 	 *     Str::truncate('Lorem ipsum inum', 8, ' ', ' >');  // returns 'Lorem ipsum >'
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  string  $str    the string to truncate
 	 * @param  int     $limit  the string's max length
-	 * @param  string  $break  the break character (to truncate at exact length set to 
-	 *    empty string or null) (if the break character does not exist in the string, 
-	 *    the string will be truncated at limit) (optional; if omitted, defaults to ' ') 
-	 * @param  string  $pad    the padding to add to end of string (optional; if 
+	 * @param  string  $break  the break character (to truncate at exact length set to
+	 *    empty string or null) (if the break character does not exist in the string,
+	 *    the string will be truncated at limit) (optional; if omitted, defaults to ' ')
+	 * @param  string  $pad    the padding to add to end of string (optional; if
 	 *    omitted, defaults to '...')
 	 *
 	 * @return  string  the truncated string
@@ -682,14 +649,14 @@ class Str
 	 * @throws  \InvalidArgumentException  if $pad is not a string or null
 	 *
 	 * @see     http://blog.justin.kelly.org.au/php-truncate/  The original function
-	 *    from "Best PHP Truncate Function" posted 6/27/12 on "Justin Kelly - various 
+	 *    from "Best PHP Truncate Function" posted 6/27/12 on "Justin Kelly - various
 	 *    ramblings" (edited to find closest break *before* limit and truncate string
 	 *    exactly if break does not exist)
 	 */
 	public static function truncate($string, $limit, $break = ' ', $pad = '...')
 	{
 		$truncated = null;
-		
+
 		// if $string and $limit are given
 		if ($string !== null && $limit !== null) {
 			// if $string is actually a string
@@ -744,4 +711,3 @@ class Str
 		return $truncated;
 	}
 }
- 

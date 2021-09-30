@@ -1,51 +1,41 @@
 <?php
-/**
- * The file for the Arr class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- */
- 
+
 namespace Jstewmc\PhpHelpers;
 
 /**
  * The array (aka, "arr") class
- *
- * @since 0.1.0
  */
 class Arr
-{	
+{
 	/**
 	 * Returns the diff between $from and $to arrays
 	 *
 	 * @param  string[]  the actual array
 	 * @param  string[]  the expected array
-	 * @return  array[]  an array of arrays with keys 'value', the string value, and 
+	 * @return  array[]  an array of arrays with keys 'value', the string value, and
 	 *     'mask', and integer mask where -1 means deleted, 0 means unchanged, and 1
 	 *     means added
-	 * @see  http://stackoverflow.com/a/22021254/537724  Clamarius' StackOverflow 
-	 *     answer to "Highlight the difference between two strings in PHP" (edited 
-	 *     to be PSR-2-compliant and to return a single array of rows instead of an 
+	 * @see  http://stackoverflow.com/a/22021254/537724  Clamarius' StackOverflow
+	 *     answer to "Highlight the difference between two strings in PHP" (edited
+	 *     to be PSR-2-compliant and to return a single array of rows instead of an
 	 *     array of columns).
-	 * @since  0.1.2
 	 */
 	public static function diff(Array $from, Array $to)
-	{	
+	{
 	    $diffs = [];
-	
+
 	    $dm = array();
 	    $n1 = count($from);
 	    $n2 = count($to);
-	
+
 	    for ($j = -1; $j < $n2; $j++) {
 		    $dm[-1][$j] = 0;
 		}
-		
+
 	    for ($i = -1; $i < $n1; $i++) {
 		    $dm[$i][-1] = 0;
 		}
-	    
+
 	    for ($i = 0; $i < $n1; $i++) {
 	        for ($j = 0; $j < $n2; $j++) {
 	            if ($from[$i] == $to[$j]) {
@@ -58,23 +48,23 @@ class Arr
 	            }
 	        }
 	    }
-	
+
 	    $i = $n1 - 1;
 	    $j = $n2 - 1;
-	    
+
 	    while (($i > -1) || ($j > -1)) {
 	        if ($j > -1) {
 	            if ($dm[$i][$j - 1] == $dm[$i][$j]) {
 	                $diffs[] = ['value' => $to[$j], 'mask' => 1];
-	                $j--;  
-	                continue;              
+	                $j--;
+	                continue;
 	            }
 	        }
 	        if ($i > -1) {
 	            if ($dm[$i - 1][$j] == $dm[$i][$j]) {
 	                $diffs[] = ['value' => $from[$i], 'mask' => -1];
 	                $i--;
-	                continue;              
+	                continue;
 	            }
 	        }
 	        {
@@ -82,13 +72,13 @@ class Arr
 	            $i--;
 	            $j--;
 	        }
-	    }    
-	
+	    }
+
 	    $diffs = array_reverse($diffs);
-	
+
 	    return $diffs;
 	}
-	
+
 	/**
 	 * Filters an array by key
 	 *
@@ -102,8 +92,6 @@ class Arr
 	 *     Arr::filterByKey($a, function ($k) {
 	 *         return $k > 1;
 	 *     });  // returns ['baz']
-	 *
-	 * @since 0.1.0
 	 *
 	 * @param  array     $array     the array to filter
 	 * @param  callback  $callback  the function to call for each key in $array
@@ -120,14 +108,10 @@ class Arr
 	public static function filterBykey($array, $callback)
 	{
 		$filtered = array();
-		
-		// if $array and $callback are given
+
 		if ($array !== null && $callback !== null) {
-			// if the input arr is actually an arr
 			if (is_array($array)) {
-				// if $callback is callable
 				if (is_callable($callback)) {
-					// if $array is not empty
 					if ( ! empty($array)) {
 						// if there are keys that pass the filter
 						$keys = array_filter(array_keys($array), $callback);
@@ -157,14 +141,12 @@ class Arr
 	/**
 	 * Filters an array by a key prefix
 	 *
-	 * I'll iterate over each key in $array. If the key starts with $prefix, I'll 
-	 * add it to the result array. Array keys are preserved. 
+	 * I'll iterate over each key in $array. If the key starts with $prefix, I'll
+	 * add it to the result array. Array keys are preserved.
 	 *
 	 * For example:
 	 *     $a = ['foo' => 'bar', 'baz' => 'qux'];
 	 *     Arr::filterByKeyPrefix($a, 'b');  // returns ['baz']
-	 *
-	 * @since  0.1.0
 	 *
 	 * @param  array   $array   the array to filter
 	 * @param  string  $prefix  the key's prefix to filter
@@ -178,14 +160,10 @@ class Arr
 	public static function filterByKeyPrefix($array, $prefix)
 	{
 		$filtered = array();
-		
-		// if $array and $prefix are given
+
 		if ($array !== null && $prefix !== null) {
-			// if $array is actually an array
 			if (is_array($array)) {
-				// if $prefix is a string
 				if (is_string($prefix)) {
-					// if $array is not empty
 					if ( ! empty($array)) {
 						// filter the array by the key's prefix
 						$filtered = self::filterByKey($array, function ($k) use ($prefix) {
@@ -212,10 +190,10 @@ class Arr
 	}
 
 	/**
-	 * Wildcard search for a value in an array 
+	 * Wildcard search for a value in an array
 	 *
 	 * I'll search $haystack for $needle. Unlike PHP's native in_array() method,
-	 * I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and 
+	 * I'll accept begins-with (e.g., "foo*"), ends-with (e.g., "*foo"), and
 	 * contains (e.g., "*foo*") wildcard notation.
 	 *
 	 * For example:
@@ -225,12 +203,10 @@ class Arr
 	 *     Arr::inArray('fo*', ['foo', 'bar']);  // returns true
 	 *     Arr::inArray('*oo', ['foo', 'bar']);  // returns true
 	 *     Arr::inArray('*o*', ['foo', 'bar']);  // returns true
-	 * 
-	 * @since  0.1.0
 	 *
 	 * @param  string    $needle    the needle to find
 	 * @param  string[]  $haystack  the haystack to search
-	 * @param  string    $wildcard  the wildcard character (optional; if omitted, 
+	 * @param  string    $wildcard  the wildcard character (optional; if omitted,
 	 *    defaults to '*')
 	 *
 	 * @return  bool  true if the needle exists in haystack
@@ -240,17 +216,14 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $haystack is not an array
 	 * @throws  \InvalidArgumentException  if $wildcard is not a string
 	 */
-	public static function inArray($needle, $haystack, $wildcard = '*') 
+	public static function inArray($needle, $haystack, $wildcard = '*')
 	{
 		$inArray = false;
 
 		// if $needle, $haystack, and $wildcard are given
 		if ($needle !== null && $haystack !== null && $wildcard !== null) {
-			// if $needle is a string
 			if (is_string($needle)) {
-				// if $haystack is an array
 				if (is_array($haystack)) {
-					// if $wildcard is a string
 					if (is_string($wildcard)) {
 						// if $needle contains the wildcard character
 						if (strpos($needle, $wildcard) !== false) {
@@ -272,7 +245,7 @@ class Arr
 								if ($inArray) {
 									break;
 								}
-							}	
+							}
 						} else {
 							$inArray = in_array($needle, $haystack);
 						}
@@ -304,7 +277,7 @@ class Arr
 	 * Returns true if the array has at least one string key (excluding int strings)
 	 *
 	 * PHP natively treats all arrays as associative arrays. I'll consider an
-	 * associative array as an array with a string key. Interally, PHP casts 
+	 * associative array as an array with a string key. Interally, PHP casts
 	 * string keys containing valid integers to integer type (e.g., "8" will be
 	 * stored as 8).
 	 *
@@ -316,30 +289,28 @@ class Arr
 	 *     Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
 	 *     Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  array  $array  the array to test
 	 *
 	 * @return  bool  true if the array has a string key (excluding int strings)
 	 */
-	public static function isAssoc($array) 
+	public static function isAssoc($array)
 	{
 		$isAssoc = false;
-		
+
 		if ( ! empty($array) && is_array($array)) {
 			$isAssoc = (bool) count(array_filter(array_keys($array), 'is_string'));
 		}
 
 		return $isAssoc;
 	}
-	
+
 	/**
 	 * Returns true if $key does not exist in $array or $array[$key] is empty
 	 *
-	 * PHP's isset() method is will return false if the key does not exist or if the 
+	 * PHP's isset() method is will return false if the key does not exist or if the
 	 * key exists and its value is null. However, it will return true if the key
 	 * exists and its value is not null (including other "empty" values like '', false
-	 * and array()). 
+	 * and array()).
 	 *
 	 * PHP's empty() method (or some frameworks) will throw a warning if you attempt
 	 * to test a non-existant key in an array.
@@ -350,7 +321,7 @@ class Arr
 	 * For example:
 	 *
 	 *     $a = ['foo' => null, 'bar' => array(), 'qux' => 'hello'];
-	 * 
+	 *
 	 *     // when key doesn't exist (!)
 	 *     isset($a['quux']);           // returns false
 	 *     ! empty($a['quux']);         // throws key-does-not-exist warning
@@ -370,7 +341,7 @@ class Arr
 	 *     isset($a['qux']);           // returns true
 	 *     ! empty($a['qux']);         // returns true
 	 *     ! Arr::isEmpty('qux', $a);  // returns true
-	 * 
+	 *
 	 * @since  0.1.0
 	 *
 	 * @param  string  $key          the key's name
@@ -389,18 +360,12 @@ class Arr
 	public static function isEmpty($key, $array, $isZeroEmpty = true)
 	{
 		$isEmpty = true;
-		
-		// if $key and array are given
+
 		if ($key !== null && $array !== null) {
-			// if $key is a string
 			if (is_string($key)) {
-				// if $array is an array
 				if (is_array($array)) {
-					// if $zero is a bool value
 					if (is_bool($isZeroEmpty)) {
-						// if $array is not empty
 						if ( ! empty($array)) {
-							// if the key exists
 							if (array_key_exists($key, $array)) {
 								$isEmpty = empty($array[$key]);
 								// if the value is "empty" but zero is not considered empty
@@ -430,21 +395,19 @@ class Arr
 				__METHOD__."() expects two parameters, a string key name and an array"
 			);
 		}
-		
+
 		return $isEmpty;
 	}
-	
+
 	/**
 	 * Replaces all occurences of $search with $replace in $array's keys
 	 *
-	 * I'll return an array with all occurences of $search in the array's keys 
+	 * I'll return an array with all occurences of $search in the array's keys
 	 * replaced with the given $replace value (case-insensitive).
 	 *
-	 * @since  0.1.0
-	 *
-	 * @param  mixed  $search   the value being searched for (aka the needle); an 
+	 * @param  mixed  $search   the value being searched for (aka the needle); an
 	 *    array may be used to designate multiple neeeles
-	 * @param  mixed  $replace  the replacement value that replaced found $search 
+	 * @param  mixed  $replace  the replacement value that replaced found $search
 	 *    values; an array may be used to designate multiple replacements
 	 * @param   array  $array    the array to replace
 	 *
@@ -457,19 +420,14 @@ class Arr
 	 *
 	 * @see     http://us1.php.net/str_replace  str_replace() man page
 	 */
-	public static function keyStringReplace($search, $replace, $array) 
+	public static function keyStringReplace($search, $replace, $array)
 	{
 		$replaced = array();
-		
-		// if $search, $replace, and $array are given
+
 		if ($search !== null && $replace !== null && $array !== null) {
-			// if $search is a string or an array
 			if (is_string($search) || is_array($search)) {
-				// if $replace is a string or an array
 				if (is_string($replace) || is_array($replace)) {
-					// if $array is actually an array
 					if (is_array($array)) {
-						// if $array isn't empty
 						if ( ! empty($array)) {
 							// flip the array, search/replace, and flip again
 							$replaced = array_flip($array);
@@ -501,7 +459,7 @@ class Arr
 
 		return $replaced;
 	}
-	
+
 	/**
 	 * Returns an array of this array's permutations
 	 *
@@ -511,40 +469,38 @@ class Arr
 	 *     O'Reilly's PHPCookbook
 	 * @since  0.1.2
 	 */
-	public static function permute(Array $set) 
+	public static function permute(Array $set)
 	{
 		$perms = [];
-		
+
 		$j    = 0;
 		$size = count($set) - 1;
 		$perm = range(0, $size);
-			
-		do { 
-			foreach ($perm as $i) { 
-				$perms[$j][] = $set[$i]; 
+
+		do {
+			foreach ($perm as $i) {
+				$perms[$j][] = $set[$i];
 			}
 		} while ($perm = self::getNextPermutation($perm, $size) and ++$j);
-		
+
 		return $perms;
 	}
 
 	/**
 	 * Sorts an array of associative arrays by a field's value
 	 *
-	 * Oftentimes, you have a 0-indexed array of associative arrays. For example, 
-	 * a SELECT sql query result or a display-friendly data array. I'll sort a 
+	 * Oftentimes, you have a 0-indexed array of associative arrays. For example,
+	 * a SELECT sql query result or a display-friendly data array. I'll sort a
 	 * 0-based array of associative arrays by a field's value.
-	 * 
+	 *
 	 * For example:
 	 *
 	 *     $a = [['a' => 3], ['a' => 1], ['a' => 2]];
 	 *     Arr::usort_field($a, 'a'); // returns [['a' => 1], ['a' => 2], ['a' => 3]]
-	 * 
-	 * @since  0.1.0
 	 *
 	 * @param  array[]  $array  the array of associative arrays to sort
 	 * @param  string   $field  the associative array's field name (aka, key)
-	 * @param  string   $sort   the sort order (possible values 'asc[ending]' or 
+	 * @param  string   $sort   the sort order (possible values 'asc[ending]' or
 	 *    'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
 	 *
 	 * @return  array[]  the sorted array
@@ -553,20 +509,16 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $field is not a string
 	 * @throws  \InvalidArgumentException  if $sort is not a string
-	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or 
+	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or
 	 *    'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of arrays with
 	 *    the key $field
 	 */
 	public static function sortByField($array, $field, $sort = 'asc')
-	{	
-		// if $array, $field, and $sort are given
+	{
 		if ($array !== null && $field !== null && $sort !== null) {
-			// if $array is actually an array
 			if (is_array($array)) {
-				// if $field is a string
 				if (is_string($field)) {
-					// if $sort is a string
 					if (is_string($sort)) {
 						// if $sort is a valid sort
 						if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
@@ -622,19 +574,17 @@ class Arr
 				__METHOD__."() expects two or three parameters"
 			);
 		}
-		
+
 		return $array;
 	}
 
 	/**
 	 * Sorts an array of objects using a public property's value
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  object[]  $array     the array of objects to sort
 	 * @param  string    $property  the object's public property name (may be a magic
 	 *    public property via the object's __get() method)
-	 * @param  string    $sort      the sort order (possible values 'asc[ending]' or 
+	 * @param  string    $sort      the sort order (possible values 'asc[ending]' or
 	 *    'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
 	 *
 	 * @return  object[]  the sorted array
@@ -643,20 +593,16 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $property is not a string
 	 * @throws  \InvalidArgumentException  if $sort is not a string
-	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or 
+	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or
 	 *    'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *    the public property $property
 	 */
-	public static function sortByProperty($array, $property, $sort = 'asc') 
+	public static function sortByProperty($array, $property, $sort = 'asc')
 	{
-		// if $array, $property, and $sort are given
 		if ($array !== null && $property !== null && $sort !== null) {
-			// if $array is actually an array
 			if (is_array($array)) {
-				// if $property is a string
 				if (is_string($property)) {
-					// if $sort is a string
 					if (is_string($sort)) {
 						// if $sort is a valid sort
 						if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
@@ -665,7 +611,7 @@ class Arr
 							// use isset() to allow "magic" properties via the __get() magic method
 							//
 							$passed = array_filter($array, function ($v) use ($property) {
-								return is_object($v) 
+								return is_object($v)
 									&& (property_exists($v, $property) || isset($v->$property));
 							});
 							if (count($array) === count($passed)) {
@@ -723,13 +669,11 @@ class Arr
 	/**
 	 * Sorts an array of objects using a method's return value
 	 *
-	 * @since   0.1.0
-	 *
 	 * @param   object[]  $array   the array of objects to sort
-	 * @param   string    $method  the name of the public method to use (may be a 
+	 * @param   string    $method  the name of the public method to use (may be a
 	 *    "magic" method via the object's __call() magic method)
-	 * @param   string    $sort    the sort order (possible values 'asc[ending]' or 
-	 *    'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)  
+	 * @param   string    $sort    the sort order (possible values 'asc[ending]' or
+	 *    'desc[ending]) (optional; if omitted, defaults to 'asc') (case-insensitive)
 	 *
 	 * @return  object[]  the sorted array
 	 *
@@ -737,20 +681,16 @@ class Arr
 	 * @throws  \InvalidArgumentException  if $array is not an array
 	 * @throws  \InvalidArgumentException  if $property is not a string
 	 * @throws  \InvalidArgumentException  if $sort is not a string
-	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or 
+	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or
 	 *     'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *     the public property $property
 	 */
-	public static function sortByMethod($array, $method, $sort = 'asc') 
+	public static function sortByMethod($array, $method, $sort = 'asc')
 	{
-		// if $array, $method, and $sort are given
 		if ($array !== null && $method !== null && $sort !== null) {
-			// if $array is actually an array
 			if (is_array($array)) {
-				// if $method is a string
 				if (is_string($method)) {
-					// if $sort is a string
 					if (is_string($sort)) {
 						// if $sort is a valid sort
 						if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
@@ -811,35 +751,35 @@ class Arr
 
 		return $array;
 	}
-	
-	
+
+
 	/* !Protected methods */
-	
+
 	/**
 	 * Returns the next permutation
 	 *
 	 * @see  self:permute()
 	 */
-	protected static function getNextPermutation($p, $size) 
-	{	    
+	protected static function getNextPermutation($p, $size)
+	{
 	    // slide down the array looking for where we're smaller than the next guy
 	    for ($i = $size - 1; $i >= 0 && $p[$i] >= $p[$i+1]; --$i) { }
-	
+
 	    // if this doesn't occur, we've finished our permutations
 	    // the array is reversed: (1, 2, 3, 4) => (4, 3, 2, 1)
 	    if ($i == -1) { return false; }
 
 	    // slide down the array looking for a bigger number than what we found before
 	    for ($j = $size; $j >= 0 && $p[$j] <= $p[$i]; --$j) { }
-	
+
 	    // swap them
 	    $tmp = $p[$i]; $p[$i] = $p[$j]; $p[$j] = $tmp;
-	
+
 	    // now reverse the elements in between by swapping the ends
 	    for (++$i, $j = $size; $i < $j; ++$i, --$j) {
 	         $tmp = $p[$i]; $p[$i] = $p[$j]; $p[$j] = $tmp;
 	    }
-	
+
 	    return $p;
 	}
 }
