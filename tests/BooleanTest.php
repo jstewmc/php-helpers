@@ -1,6 +1,6 @@
 <?php
 /**
- * The file for the Bool class
+ * The file for the Boolean class
  *
  * @author     Jack Clayton <clayjs0@gmail.com>
  * @copyright  2014 Jack Clayton
@@ -8,17 +8,17 @@
  * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
  */
 
-use Jstewmc\PhpHelpers\Bool;
+use Jstewmc\PhpHelpers\Boolean;
 
 /**
- * A class to test the Bool class
+ * A class to test the Boolean class
  */
 class BoolTest extends \PHPUnit\Framework\TestCase
 {
 	/* !Data providers */
 
 	/**
-	 * Provides an array of values considered false by Bool::val()
+	 * Provides an array of values considered false by Boolean::val()
 	 */
 	public function falseValueDataProvider()
 	{
@@ -65,7 +65,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	}
 
 	/**
-	 * Provides an array of values considered true by Bool::val()
+	 * Provides an array of values considered true by Boolean::val()
 	 */
 	public function trueValueDataProvider()
 	{
@@ -94,7 +94,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	public function testBooltostr_throwsBadMethodCallException_onNullParameter()
 	{
 		$this->setExpectedException('BadMethodCallException');
-		Bool::booltostr(null);
+		Boolean::booltostr(null);
 
 		return;
 	}
@@ -108,7 +108,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	public function testBooltostr_throwsInvalidArgumentException_onNonBoolFirstParameter($param)
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		Bool::booltostr($param);
+		Boolean::booltostr($param);
 
 		return;
 	}
@@ -123,7 +123,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	public function testBooltostr_throwsInvalidArgumentException_onNonStringSecondParameter($param)
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		Bool::booltostr(true, $param);
+		Boolean::booltostr(true, $param);
 
 		return;
 	}
@@ -135,7 +135,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	public function testBooltostr_throwsInvalidArgumentException_onInvalidSecondParameter()
 	{
 		$this->setExpectedException('InvalidArgumentException');
-		Bool::booltostr(true, 'foo');
+		Boolean::booltostr(true, 'foo');
 
 		return;
 	}
@@ -145,7 +145,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBooltostr_returnsStringTrue_onBoolTrue()
 	{
-		return $this->assertEquals(Bool::booltostr(true), 'true');
+		return $this->assertEquals(Boolean::booltostr(true), 'true');
 	}
 
 	/**
@@ -153,7 +153,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBooltostr_returnsStringFalse_onBoolFalse()
 	{
-		return $this->assertEquals(Bool::booltostr(false), 'false');
+		return $this->assertEquals(Boolean::booltostr(false), 'false');
 	}
 
 
@@ -168,7 +168,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testVal_returnTrue_onTrueValue($value)
 	{
-		$this->assertTrue(Bool::val($value));
+		$this->assertTrue(Boolean::val($value));
 	}
 
 	/**
@@ -179,6 +179,6 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testVal_returnFalse_onFalseValue($value)
 	{
-		$this->assertFalse(Bool::val($value));
+		$this->assertFalse(Boolean::val($value));
 	}
 }

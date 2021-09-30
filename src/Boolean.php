@@ -14,7 +14,7 @@ namespace Jstewmc\PhpHelpers;
  *
  * @since  0.1.0
  */
-class Bool 
+class Boolean 
 {
 	/**
 	 * Returns $bool value in the string $format
@@ -41,10 +41,10 @@ class Bool
 	 * @throws  \InvalidArgumentException  if $format is not a string
 	 * @throws  \InvalidArgumentException  if $format is not a valid format
 	 */
-	public static function booltostr($bool, $format = 'true-false') 
+	public static function booltostr($bool, $format = 'true-false')
 	{
 		$string = false;
-		
+
 		// if $bool and format are not null
 		if ($bool !== null && $format !== null) {
 			// if $bool is actually a bool
@@ -53,7 +53,7 @@ class Bool
 				if (is_string($format)) {
 					// switch on the lower-case $format
 					switch (strtolower($format)) {
-						
+
 						case 'oo':
 						case 'o/o':
 						case 'o-o':
@@ -62,7 +62,7 @@ class Bool
 						case 'on-off':
 							$string = $bool ? 'on' : 'off';
 							break;
-		
+
 						case 'tf':
 						case 't/f':
 						case 't-f':
@@ -71,7 +71,7 @@ class Bool
 						case 'true-false':
 							$string = $bool ? 'true' : 'false';
 							break;
-		
+
 						case 'yn':
 						case 'y/n':
 						case 'y-n':
@@ -80,7 +80,7 @@ class Bool
 						case 'yes-no':
 							$string = $bool ? 'yes' : 'no';
 							break;
-		
+
 						default:
 							throw new \InvalidArgumentException(
 								__METHOD__."() expects parameter two, format, to be one of the following: ".
@@ -114,14 +114,14 @@ class Bool
 	 * support the strings 'yes', 'no', 'on', or 'off'.
 	 *
 	 * I follow the following rules:
-	 * 
+	 *
 	 *     Strings
 	 *         The strings "yes", "true", "on", or "1" are considered true, and
-	 *         the strings "no", "false", "off", or "0" are considered false 
-	 *         (case-insensitive). Any other non-empty string is true. 
+	 *         the strings "no", "false", "off", or "0" are considered false
+	 *         (case-insensitive). Any other non-empty string is true.
 	 *
 	 *     Numbers
-	 *         The numbers 0 or 0.0 are considered false. Any other number is 
+	 *         The numbers 0 or 0.0 are considered false. Any other number is
 	 *         considered true.
 	 *
 	 *     Array
@@ -146,7 +146,7 @@ class Bool
 	 *     Bool::val([]);              // returns (bool) false
 	 *     Bool::val([1, 2]);          // returns (bool) true
 	 *     Bool::val(new StdClass());  // returns (bool) true
-	 * 
+	 *
 	 * @since  0.1.0
 	 *
 	 * @param  mixed  $var  the variable to test
@@ -162,7 +162,7 @@ class Bool
 		// if $var is not empty
 		// any value considered empty by empty() is considered false
 		// for example, "0", array(), "", etc
-		// 
+		//
 		if ( ! empty($var)) {
 			// if $var is not already a bool type
 			if ( ! is_bool($var)) {
