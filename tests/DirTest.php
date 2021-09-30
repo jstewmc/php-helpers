@@ -31,7 +31,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * Sets the value of the current working directory (aka, "cwd").
 	 */
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->cwd = dirname(__FILE__);
 
