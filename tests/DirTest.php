@@ -77,7 +77,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAbs2Rel_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Dir::abs2rel(null, null);
 
 		return;
@@ -90,7 +90,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAbs2Rel_throwsInvalidArgumentException_ifAbsoluteIsNotAString($absolute)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::abs2rel($absolute, 'foo');
 
 		return;
@@ -103,7 +103,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAbs2Rel_throwsInvalidArgumentException_ifBaseIsNotAString($base)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::abs2rel('foo', $base);
 
 		return;
@@ -149,7 +149,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testCopy_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Dir::copy(null, null);
 
 		return;
@@ -164,7 +164,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	{
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::copy($source, $destination);
 
 		return;
@@ -179,7 +179,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	{
 		$source = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::copy($source, $destination);
 
 		return;
@@ -196,7 +196,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::copy($source, $destination, $mode);
 
 		return;
@@ -210,7 +210,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 		$source      = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 		$destination = $this->cwd.DIRECTORY_SEPARATOR.'bar';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::copy($source, $destination);
 
 		return;
@@ -232,7 +232,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 		// the method should throw an InvalidArgumentException
 		// catch it, clean up, and re-throw it
 		//
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		try {
 			Dir::copy($source, $destination);
 		} catch (Exception $e) {
@@ -260,7 +260,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 		// the method will throw an InvalidArgumentException
 		// catch it, remove the source directory, and re-throw it
 		//
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		try {
 			Dir::copy($source, $destination, false);
 		} catch (Exception $e) {
@@ -292,7 +292,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 		// the method should throw an InvalidArgumentException
 		// catch the exception, clean up, and re-throw it
 		//
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		try {
 			Dir::copy($source, $destination);
 		} catch (Exception $e) {
@@ -397,7 +397,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRemove_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Dir::remove(null, null);
 	}
 
@@ -410,7 +410,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	{
 		$container = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::remove($directory, $container);
 
 		return;
@@ -425,7 +425,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	{
 		$directory = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::remove($directory, $container);
 
 		return;
@@ -439,7 +439,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 	{
 		$directory = $this->cwd.DIRECTORY_SEPARATOR.'foo';
 
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Dir::remove($directory, $this->cwd);
 
 		return;
@@ -462,7 +462,7 @@ class DirTest extends \PHPUnit\Framework\TestCase
 		// the method should throw an InvalidArgumentException
 		// catch it, clean up, and re-throw it
 		//
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		try {
 			Dir::remove($directory, $container);
 		} catch (Exception $e) {

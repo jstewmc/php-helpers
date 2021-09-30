@@ -164,7 +164,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFilterByKey_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::filterBykey(null, null);
 
 		return;
@@ -177,7 +177,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFilterByKey_throwsInvalidArgumentException_ifArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::filterBykey($array, function () { return true; });
 
 		return;
@@ -190,7 +190,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFilterByKey_throwsInvalidArgumentException_ifCallbackIsNotCallable($callback)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::filterBykey(array(1), $callback);
 
 		return;
@@ -238,7 +238,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFilterByKeyPrefix_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::filterByKeyPrefix(null, null);
 
 		return;
@@ -251,7 +251,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFilterByKeyPrefix_throwsInvalidArgumentException_ifArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::filterByKeyPrefix($array, 'foo');
 
 		return;
@@ -264,7 +264,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFilterByKeyPrefix_throwsInvalidArgumentException_ifPrefixIsNotAString($string)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::filterByKeyPrefix(array(), $string);
 
 		return;
@@ -310,7 +310,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testInArray_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::inArray(null, null);
 
 		return;
@@ -323,7 +323,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testInArray_throwsInvalidArgumentException_ifArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::inArray($array, 'foo');
 
 		return;
@@ -336,7 +336,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testInArray_throwsInvalidArgumentException_ifSearchIsNotAString($search)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::inArray(array(), $search);
 
 		return;
@@ -437,7 +437,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIsEmpty_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::isEmpty(null, null);
 
 		return;
@@ -450,7 +450,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIsEmpty_throwsInvalidArgumentException_ifKeyIsNotAString($key)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::isEmpty($key, array());
 
 		return;
@@ -463,7 +463,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIsEmpty_throwsInvalidArgumentException_ifArrayIsNotArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::isEmpty('foo', $array);
 
 		return;
@@ -476,7 +476,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIsEmpty_throwsBadMethodCallException_ifZeroIsNotNull($zero)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::isEmpty('foo', array(), $zero);
 
 		return;
@@ -530,7 +530,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testKeyStringReplace_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::keyStringReplace(null, null, null);
 
 		return;
@@ -543,7 +543,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testKeyStringReplace_throwsInvalidArgumentException_ifSearchIsNotAString($search)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::keyStringReplace($search, 'foo', array());
 
 		return;
@@ -556,7 +556,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testKeyStringReplace_throwsInvalidArgumentException_ifReplaceIsNotAString($replace)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::keyStringReplace('foo', $replace, array());
 
 		return;
@@ -569,7 +569,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testKeyStringReplace_throwsInvalidArgumentException_ifArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::keyStringReplace('foo', 'bar', $array);
 
 		return;
@@ -682,7 +682,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::sortByField(null, null);
 
 		return;
@@ -695,7 +695,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsInvalidArgumentException_ifInputArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByField($array, 'foo');
 
 		return;
@@ -708,7 +708,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsInvalidArgumentException_ifFieldIsNotAString($field)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByField(array(), $field);
 
 		return;
@@ -721,7 +721,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsInvalidArgumentException_ifSortIsNotAString($sort)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByField(array(), 'foo', $sort);
 
 		return;
@@ -733,7 +733,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsInvalidArgumentException_ifSortIsNotValid()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByField(array(), 'foo', 'bar');
 
 		return;
@@ -745,7 +745,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsInvalidArgumentException_ifArrayIsNotArrays()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByField(array('foo', 'bar', 'baz'), 'qux');
 
 		return;
@@ -757,7 +757,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByField_throwsInvalidArgumentException_ifFieldDoesNotExist()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByField(array(
 			array('foo' => 'bar'),
 			array('foo' => 'baz'),
@@ -795,7 +795,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::sortByMethod(null, null);
 
 		return;
@@ -808,7 +808,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsInvalidArgumentException_ifArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByMethod($array, 'foo');
 
 		return;
@@ -821,7 +821,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsInvalidArgumentException_ifMethodIsNotAString($method)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByMethod(array(), $method);
 
 		return;
@@ -834,7 +834,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsInvalidArgumentException_ifSortIsNotAString($sort)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByMethod(array(), 'foo', $sort);
 
 		return;
@@ -846,7 +846,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsInvalidArgumentException_ifSortIsNotValid()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByMethod(array(), 'foo', 'bar');
 
 		return;
@@ -858,7 +858,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsInvalidArgumentException_ifArrayIsNotObjects()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByMethod(array('foo', 'bar', 'baz'), 'qux');
 
 		return;
@@ -870,7 +870,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByMethod_throwsInvalidArgumentException_ifMethodIsNotCallable()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByMethod(array(new StdClass(), new StdClass(), new StdClass()), 'foo');
 
 		return;
@@ -899,7 +899,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsBadMethodCallException_ifArgumentsAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Arr::sortByProperty(null, null);
 
 		return;
@@ -912,7 +912,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsInvalidArgumentException_ifArrayIsNotAnArray($array)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByProperty($array, 'foo');
 
 		return;
@@ -925,7 +925,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsInvalidArgumentException_ifMethodIsNotAString($property)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByProperty(array(), $property);
 
 		return;
@@ -938,7 +938,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsInvalidArgumentException_ifSortIsNotAString($sort)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByProperty(array(), 'foo', $sort);
 
 		return;
@@ -950,7 +950,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsInvalidArgumentException_ifSortIsNotValid()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByProperty(array(), 'foo', 'bar');
 
 		return;
@@ -962,7 +962,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsInvalidArgumentException_ifArrayIsNotObjects()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByProperty(array('foo', 'bar', 'baz'), 'qux');
 
 		return;
@@ -974,7 +974,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSortByProperty_throwsInvalidArgumentException_ifPropertyIsNotCallable()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Arr::sortByProperty(array(new StdClass(), new StdClass(), new StdClass()), 'foo');
 
 		return;

@@ -80,7 +80,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testEndsWith_throwsBadMethodCallException_ifNeedleAndHaystackAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::endsWith(null, null);
 
 		return;
@@ -93,7 +93,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testEndsWith_throwsInvalidArgumentException_ifHaystackIsNotAString($haystack)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::endsWith($haystack, 'foo');
 
 		return;
@@ -106,7 +106,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testEndsWith_throwsInvalidArgumentException_ifNeedleIsNotAString($needle)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::endsWith('foo', $needle);
 
 		return;
@@ -161,7 +161,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIEndsWith_throwsBadMethodCallException_ifNeedleAndHaystackAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::iEndsWith(null, null);
 
 		return;
@@ -174,7 +174,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIEndsWith_throwsInvalidArgumentException_ifHaystackIsNotAString($haystack)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::iEndsWith($haystack, 'foo');
 
 		return;
@@ -187,7 +187,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIEndsWith_throwsInvalidArgumentException_ifNeedleIsNotAString($needle)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::iEndsWith('foo', $needle);
 
 		return;
@@ -272,7 +272,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIStartsWith_throwsBadMethodCallException_ifHaystackAndNeedleAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::iStartsWith(null, null);
 
 		return;
@@ -285,7 +285,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIStartsWith_throwsInvalidArgumentException_ifHaystackIsNotAString($haystack)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::iStartsWith($haystack, 'foo');
 
 		return;
@@ -298,7 +298,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIStartsWith_throwsInvalidArgumentException_ifNeedleIsNotAString($needle)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::iStartsWith('foo', $needle);
 
 		return;
@@ -338,7 +338,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testPassword_throwsBadMethodCallException_ifNullArguments()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::password(null, null);
 
 		return;
@@ -351,7 +351,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testPassword_throwsInvalidArgumentException_ifLengthIsNotInteger($length)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::password($length, array('lower' => 1));
 
 		return;
@@ -364,7 +364,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testPassword_throwsInvalidArgumentException_ifRulesIsNotArray($rules)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::password(8, $rules);
 
 		return;
@@ -375,7 +375,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testPassword_throwsInvalidArgumentException_ifCharsetIsInvalid()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::password(8, array('foo' => 1));
 
 		return;
@@ -396,7 +396,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	{
 		$results = Str::password(12, array('lower' => 4, 'upper' => 4, 'number' => 4));
 
-		$this->assertRegExp('/^[a-zA-Z0-9]{12}$/', $results);
+		$this->assertMatchesRegularExpression('/^[a-zA-Z0-9]{12}$/', $results);
 
 		return;
 	}
@@ -409,7 +409,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRand_throwsBadMethodCallException_ifNullArguments()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::rand(null, null);
 
 		return;
@@ -422,7 +422,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRand_throwsInvalidArgumentException_ifLengthIsNaN($length)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::rand($length);
 
 		return;
@@ -436,7 +436,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRand_throwsInvalidArgumentException_ifCharsetsIsNotStringOrArray($charsets)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::rand(8, $charsets);
 
 		return;
@@ -447,7 +447,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRand_throwsInvalidArgumentException_ifChartsetIsInvalid()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::rand(8, 'foo');
 
 		return;
@@ -466,7 +466,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRand_returnsStringOfCharsets_ifCharsetsAreValid()
 	{
-		return $this->assertRegExp(
+		return $this->assertMatchesRegularExpression(
 			'/^[0-9A-Z]{8}$/',
 			Str::rand(8, array('upper', 'number'))
 		);
@@ -480,7 +480,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSplitOnFirstAlpha_throwsBadMethodCallException_ifStringIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::splitOnFirstAlpha(null);
 
 		return;
@@ -493,7 +493,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testSplitOnFirstAlpha_throwsInvalidArgumentException_ifStringIsNotAString($string)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::splitOnFirstAlpha($string);
 
 		return;
@@ -567,7 +567,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStartsWith_throwsBadMethodCallException_ifHaystackAndNeedleAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::startsWith(null, null);
 
 		return;
@@ -580,7 +580,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStartsWith_throwsInvalidArgumentException_ifHaystackIsNotAString($haystack)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::startsWith($haystack, 'foo');
 
 		return;
@@ -593,7 +593,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStartsWith_throwsInvalidArgumentException_ifNeedleIsNotAString($needle)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::startsWith('foo', $needle);
 
 		return;
@@ -633,7 +633,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStrtobytes_throwsBadMethodCallException_ifStringIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::strtobytes(null);
 
 		return;
@@ -647,7 +647,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStrtobytes_throwsInvalidArgumentException_ifStringIsNotAString($string)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::strtobytes($string);
 
 		return;
@@ -659,7 +659,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStrtobytes_throwsInvalidArgumentException_ifStringIsNotValue()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::strtobytes('foo');
 
 		return;
@@ -681,7 +681,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStrtocamelcase_throwsBadMethodCallException_ifStringIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::strtocamelcase(null);
 
 		return;
@@ -694,7 +694,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testStrtocamelcase_throwsInvalidArgumentException_ifStringIsNotString($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::strtocamelcase($value);
 
 		return;
@@ -746,7 +746,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testTruncate_throwsBadMethodCallException_ifNullArguments()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Str::truncate(null, null);
 
 		return;
@@ -759,7 +759,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testTruncate_throwsInvalidArgumentException_ifStringIsNotAString($string)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::truncate($string, 8);
 
 		return;
@@ -772,7 +772,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testTruncate_throwsInvalidArgumentException_ifLimitIsNaN($limit)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::truncate('foo', $limit);
 
 		return;
@@ -785,7 +785,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testTruncate_throwsInvalidArgumentException_ifBreakIsNotAString($break)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::truncate('foo', 8, $break);
 
 		return;
@@ -798,7 +798,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testTruncate_throwsInvalidArgumentException_ifPadIsNotAString($pad)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Str::truncate('foo', 8, ' ', $pad);
 
 		return;

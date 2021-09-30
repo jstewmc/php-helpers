@@ -78,7 +78,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAlmostEqual_throwsBadMethodCallException_ifAAndBAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::almostEqual(null, null);
 
 		return;
@@ -92,7 +92,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAlmostEqual_throwsInvalidArgumentException_ifAIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::almostEqual($value, 1.0);
 
 		return;
@@ -106,7 +106,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAlmostEqual_throwsInvalidArgumentException_ifBIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::almostEqual(1.0, $value);
 
 		return;
@@ -120,7 +120,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAlmostEqual_throwsInvalidArgumentException_ifEpsilonIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::almostEqual(1.0, 1.0, $value);
 
 		return;
@@ -132,7 +132,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testAlmostEqual_throwsInvalidArgumentException_ifEpsilonIsZero()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::almostEqual(1.0, 1.0, 0);
 
 		return;
@@ -178,7 +178,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBound_throwsBadMethodCallException_ifValueIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::bound(null);
 
 		return;
@@ -191,7 +191,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBound_throwsInvalidArgumentException_ifNumberIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::bound($value, 1);
 
 		return;
@@ -204,7 +204,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBound_throwsInvalidArgumentException_ifLowerIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::bound(1, $value);
 
 		return;
@@ -217,7 +217,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBound_throwsInvalidArgumentException_ifUpperIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::bound(1, 0, $value);
 
 		return;
@@ -229,7 +229,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBound_throwsInvalidArgumentException_ifLowerIsGreaterThanUpper()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::bound(1, 2, 0);
 
 		return;
@@ -267,7 +267,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testCeilTo_throwsBadMethodCallException_ifNumberIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::ceilTo(null);
 
 		return;
@@ -280,7 +280,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testCeilTo_throwsInvalidArgumentException_ifNumberIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::ceilTo($value);
 
 		return;
@@ -293,7 +293,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testCeilTo_throwsInvalidArgumentException_ifMultipleIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::ceilTo(1, $value);
 
 		return;
@@ -304,7 +304,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testCeilTo_throwsInvalidArgumentException_ifMultipleIsZero()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::ceilTo(1, 0);
 
 		return;
@@ -359,7 +359,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFloorTo_throwsBadMethodCallException_ifNumberIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::floorTo(null);
 
 		return;
@@ -372,7 +372,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFloorTo_throwsInvalidArgumentException_ifNumberIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::floorTo($value);
 
 		return;
@@ -385,7 +385,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFloorTo_throwsInvalidArgumentException_ifMultipleIsNaN($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::floorTo(1, $value);
 
 		return;
@@ -396,7 +396,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testFloorTo_throwsInvalidArgumentException_ifMultipleIsZero()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::floorTo(1, 0);
 
 		return;
@@ -451,7 +451,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIsId_throwsBadMethodCallException_ifDatatypeIsNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::isId(1, null);
 
 		return;
@@ -464,7 +464,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIsId_throwsInvalidArgumentException_ifDatatypeIsNotAString($value)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::isId(1, $value);
 
 		return;
@@ -475,7 +475,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testIdIs_throwsInvalidArgumentException_ifDatatypeIsNotValue()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::isId(1, 'foo');
 
 		return;
@@ -683,7 +683,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testNormalize_throwsBadMethodCallException_ifNumberAndMaxAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::normalize(null, null);
 
 		return;
@@ -696,7 +696,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testNormalize_throwsInvalidArgumentException_ifNumberIsNaN($number)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::normalize($number, 1);
 
 		return;
@@ -709,7 +709,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testNormalize_throwsInvalidArgumentException_ifMaxIsNaN($number)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::normalize(1, $number);
 
 		return;
@@ -720,7 +720,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testNormalize_throwsInvalidArgumentException_ifMaxIsZero()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::normalize(1, 0);
 
 		return;
@@ -759,7 +759,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRoundTo_throwsBadMethodCallException_ifNumberAndMultipleAreNull()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Num::roundTo(null, null);
 
 		return;
@@ -772,7 +772,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRoundTo_throwsInvalidArgumentException_ifNumberIsNaN($number)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::roundTo($number, 1);
 
 		return;
@@ -785,7 +785,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRoundTo_throwsInvalidArgumentException_ifMultipleIsNaN($multiple)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::roundTo(1, $multiple);
 
 		return;
@@ -796,7 +796,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testRoundTo_throwsInvalidArgumentException_ifMultipleIsZero()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Num::roundTo(1, 0);
 
 		return;

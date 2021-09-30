@@ -93,7 +93,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBooltostr_throwsBadMethodCallException_onNullParameter()
 	{
-		$this->setExpectedException('BadMethodCallException');
+		$this->expectException('BadMethodCallException');
 		Boolean::booltostr(null);
 
 		return;
@@ -107,7 +107,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBooltostr_throwsInvalidArgumentException_onNonBoolFirstParameter($param)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Boolean::booltostr($param);
 
 		return;
@@ -122,7 +122,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBooltostr_throwsInvalidArgumentException_onNonStringSecondParameter($param)
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Boolean::booltostr(true, $param);
 
 		return;
@@ -134,7 +134,7 @@ class BoolTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function testBooltostr_throwsInvalidArgumentException_onInvalidSecondParameter()
 	{
-		$this->setExpectedException('InvalidArgumentException');
+		$this->expectException('InvalidArgumentException');
 		Boolean::booltostr(true, 'foo');
 
 		return;
