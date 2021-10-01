@@ -10,21 +10,34 @@ class Arr
 	/**
 	 * Returns the diff between $from and $to arrays
 	 *
+	 * For example:
+	 *
+	 *   Arr::diff(['foo', 'bar', 'baz'], ['bar', 'qux']);
+	 *   // Returns the following array...
+	 *   // [
+	 *   //   ['value' => 'foo', 'mask' => -1],
+     *   //   ['value' => 'bar', 'mask' => 0],
+     *   //   ['value' => 'baz', 'mask' => -1],
+     *   //   ['value' => 'qux', 'mask' => 1]
+     *   // ]
+	 *
 	 * @param  string[]  the actual array
 	 * @param  string[]  the expected array
+	 *
 	 * @return  array[]  an array of arrays with keys 'value', the string value, and
 	 *     'mask', and integer mask where -1 means deleted, 0 means unchanged, and 1
 	 *     means added
+	 *
 	 * @see  http://stackoverflow.com/a/22021254/537724  Clamarius' StackOverflow
 	 *     answer to "Highlight the difference between two strings in PHP" (edited
 	 *     to be PSR-2-compliant and to return a single array of rows instead of an
 	 *     array of columns).
 	 */
-	public static function diff(Array $from, Array $to)
+	public static function diff(array $from, array $to)
 	{
 	    $diffs = [];
 
-	    $dm = array();
+	    $dm = [];
 	    $n1 = count($from);
 	    $n2 = count($to);
 
@@ -98,44 +111,25 @@ class Arr
 	 *
 	 * @return array the filtered array
 	 *
-	 * @throws  \BadMethodCallException    if $array or $callback is null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $callback is not a callable function
-	 *
 	 * @see  http://php.net/manual/en/function.array-filter.php#99073  Acid24's filter
 	 *    by key function on on array_filter() man page
 	 */
-	public static function filterBykey($array, $callback)
+	public static function filterBykey(array $array, callable $callback)
 	{
-		$filtered = array();
-
-		if ($array !== null && $callback !== null) {
-			if (is_array($array)) {
-				if (is_callable($callback)) {
-					if ( ! empty($array)) {
-						// if there are keys that pass the filter
-						$keys = array_filter(array_keys($array), $callback);
-						if ( ! empty($keys)) {
-							$filtered = array_intersect_key($array, array_flip($keys));
-						}
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two to be a callable function"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects paramater one to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two parameters, an array and a callable function"
-			);
+		// if $array is empty, short-circuit
+		if (empty($array)) {
+			return [];
 		}
 
-		return $filtered;
+		// otherwise, filter the keys
+		$keys = array_filter(array_keys($array), $callback);
+
+		// if no keys match the filter, short-circuit
+		if (empty($keys)) {
+			return [];
+		}
+
+		return array_intersect_key($array, array_flip($keys));;
 	}
 
 	/**
@@ -152,41 +146,12 @@ class Arr
 	 * @param  string  $prefix  the key's prefix to filter
 	 *
 	 * @return  array  the filtered array
-	 *
-	 * @throws  \BadMethodCallException    if $array or $prefix is null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $prefix is not a string
 	 */
-	public static function filterByKeyPrefix($array, $prefix)
+	public static function filterByKeyPrefix(array $array, string $prefix)
 	{
-		$filtered = array();
-
-		if ($array !== null && $prefix !== null) {
-			if (is_array($array)) {
-				if (is_string($prefix)) {
-					if ( ! empty($array)) {
-						// filter the array by the key's prefix
-						$filtered = self::filterByKey($array, function ($k) use ($prefix) {
-							return strpos($k, $prefix) === 0;
-						});
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two to be a string prefix"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two parameters, an array and a string prefix"
-			);
-		}
-
-		return $filtered;
+		return self::filterByKey($array, function ($k) use ($prefix) {
+			return strpos($k, $prefix) === 0;
+		});
 	}
 
 	/**
@@ -210,67 +175,36 @@ class Arr
 	 *    defaults to '*')
 	 *
 	 * @return  bool  true if the needle exists in haystack
-	 *
-	 * @throws  \BadMethodCallException    if $needle, $haystack, or $wildcard is null
-	 * @throws  \InvalidArgumentException  if $needle is not a string
-	 * @throws  \InvalidArgumentException  if $haystack is not an array
-	 * @throws  \InvalidArgumentException  if $wildcard is not a string
 	 */
-	public static function inArray($needle, $haystack, $wildcard = '*')
+	public static function inArray(string $needle, array $haystack, string $wildcard = '*'): bool
 	{
-		$inArray = false;
-
-		// if $needle, $haystack, and $wildcard are given
-		if ($needle !== null && $haystack !== null && $wildcard !== null) {
-			if (is_string($needle)) {
-				if (is_array($haystack)) {
-					if (is_string($wildcard)) {
-						// if $needle contains the wildcard character
-						if (strpos($needle, $wildcard) !== false) {
-							// determine if the neeedle starts or ends with the wildcard
-							$startsWith = \Jstewmc\PhpHelpers\Str::startsWith($needle, $wildcard);
-							$endsWith   = \Jstewmc\PhpHelpers\Str::endsWith($needle, $wildcard);
-							// set the *actual* needle
-							$needle = str_ireplace($wildcard, '', $needle);
-							// loop through the haystack
-							foreach ($haystack as $value) {
-								if ($startsWith && $endsWith) {
-									$inArray = strpos($value, $needle) !== false;
-								} elseif ($startsWith) {
-									$inArray = \Jstewmc\PhpHelpers\Str::endsWith($value, $needle);
-								} else {
-									$inArray = \Jstewmc\PhpHelpers\Str::startsWith($value, $needle);
-								}
-								// if the needle is in the array, stop looking
-								if ($inArray) {
-									break;
-								}
-							}
-						} else {
-							$inArray = in_array($needle, $haystack);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter three, the wildcard character, to be a string"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, the haystack, to be an array"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, the needle, to be a string"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two or three parameters: needle, haystack, and wildcard"
-			);
+		// if $needle doesn't contain the wildcard character, short-circuit
+		if (strpos($needle, $wildcard) === false) {
+			return in_array($needle, $haystack);
 		}
 
-		return $inArray;
+		// determine if the neeedle starts- or ends-with the wildcard
+		$startsWith = Str::startsWith($needle, $wildcard);
+		$endsWith   = Str::endsWith($needle, $wildcard);
+
+		// set the *actual* needle
+		$needle = str_ireplace($wildcard, '', $needle);
+
+		foreach ($haystack as $value) {
+			if ($startsWith && $endsWith) {
+				$inArray = strpos($value, $needle) !== false;
+			} elseif ($startsWith) {
+				$inArray = Str::endsWith($value, $needle);
+			} else {
+				$inArray = Str::startsWith($value, $needle);
+			}
+			// if the needle is in the array, stop looking
+			if ($inArray) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -289,19 +223,17 @@ class Arr
 	 *     Arr::isAssoc(['1' => 'foo', 8 => 'bar']);      // returns false (sparse doens't matter)
 	 *     Arr::isAssoc(['1' => 'foo', 'bar' => 'baz']);  // returns true
 	 *
-	 * @param  array  $array  the array to test
+	 * @param  mixed  $array  the array to test
 	 *
 	 * @return  bool  true if the array has a string key (excluding int strings)
 	 */
-	public static function isAssoc($array)
+	public static function isAssoc($array): bool
 	{
-		$isAssoc = false;
-
-		if ( ! empty($array) && is_array($array)) {
-			$isAssoc = (bool) count(array_filter(array_keys($array), 'is_string'));
+		if (!is_array($array)) {
+			return false;
 		}
 
-		return $isAssoc;
+		return (bool)count(array_filter(array_keys($array), 'is_string'));
 	}
 
 	/**
@@ -310,7 +242,7 @@ class Arr
 	 * PHP's isset() method is will return false if the key does not exist or if the
 	 * key exists and its value is null. However, it will return true if the key
 	 * exists and its value is not null (including other "empty" values like '', false
-	 * and array()).
+	 * and []).
 	 *
 	 * PHP's empty() method (or some frameworks) will throw a warning if you attempt
 	 * to test a non-existant key in an array.
@@ -320,7 +252,7 @@ class Arr
 	 *
 	 * For example:
 	 *
-	 *     $a = ['foo' => null, 'bar' => array(), 'qux' => 'hello'];
+	 *     $a = ['foo' => null, 'bar' => [], 'qux' => 'hello'];
 	 *
 	 *     // when key doesn't exist (!)
 	 *     isset($a['quux']);           // returns false
@@ -342,8 +274,6 @@ class Arr
 	 *     ! empty($a['qux']);         // returns true
 	 *     ! Arr::isEmpty('qux', $a);  // returns true
 	 *
-	 * @since  0.1.0
-	 *
 	 * @param  string  $key          the key's name
 	 * @param  array   $array        the array to test
 	 * @param  bool    $isZeroEmpty  a flag indicating whether or not zero is
@@ -351,49 +281,18 @@ class Arr
 	 *    default behavior of PHP's empty() function )
 	 *
 	 * @return  bool  true if the key exists and its value is not empty
-	 *
-	 * @throws  \BadMethodCallException    if $key or $array are null
-	 * @throws  \InvalidArgumentException  if $key is not a string
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $isZeroEmpty is not a bool value
 	 */
-	public static function isEmpty($key, $array, $isZeroEmpty = true)
+	public static function isEmpty(string $key, array $array, bool $isZeroEmpty = true): bool
 	{
 		$isEmpty = true;
 
-		if ($key !== null && $array !== null) {
-			if (is_string($key)) {
-				if (is_array($array)) {
-					if (is_bool($isZeroEmpty)) {
-						if ( ! empty($array)) {
-							if (array_key_exists($key, $array)) {
-								$isEmpty = empty($array[$key]);
-								// if the value is "empty" but zero is not considered empty
-								if ($isEmpty && ! $isZeroEmpty) {
-									// if the value is zero it is not empty
-									$isEmpty = ! \Jstewmc\PhpHelpers\Num::isZero($array[$key]);
-								}
-							}
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter three, allow zeros, to be a bool"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, array, to be an array"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, key, to be a string key name"
-				);
+		if (array_key_exists($key, $array)) {
+			$isEmpty = empty($array[$key]);
+			// if the value is "empty" but zero is not considered empty
+			if ($isEmpty && ! $isZeroEmpty) {
+				// if the value is zero it is not empty
+				$isEmpty = !Num::isZero($array[$key]);
 			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two parameters, a string key name and an array"
-			);
 		}
 
 		return $isEmpty;
@@ -405,71 +304,64 @@ class Arr
 	 * I'll return an array with all occurences of $search in the array's keys
 	 * replaced with the given $replace value (case-insensitive).
 	 *
-	 * @param  mixed  $search   the value being searched for (aka the needle); an
+	 * @param  string|array  $search   the value being searched for (aka the needle); an
 	 *    array may be used to designate multiple neeeles
-	 * @param  mixed  $replace  the replacement value that replaced found $search
+	 * @param  string|array  $replace  the replacement value that replaced found $search
 	 *    values; an array may be used to designate multiple replacements
 	 * @param   array  $array    the array to replace
 	 *
 	 * @return  array  the array with replacements
 	 *
-	 * @throws  \BadMethodCallException    if $search, $replace, or $array are null
-	 * @throws  \InvalidArgumentException  if $search is not a string or array
-	 * @throws  \InvalidArgumentException  if $replace is not a string or array
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 *
 	 * @see     http://us1.php.net/str_replace  str_replace() man page
 	 */
-	public static function keyStringReplace($search, $replace, $array)
+	public static function keyStringReplace($search, $replace, array $array): array
 	{
-		$replaced = array();
-
-		if ($search !== null && $replace !== null && $array !== null) {
-			if (is_string($search) || is_array($search)) {
-				if (is_string($replace) || is_array($replace)) {
-					if (is_array($array)) {
-						if ( ! empty($array)) {
-							// flip the array, search/replace, and flip again
-							$replaced = array_flip($array);
-							$replaced = array_map(function ($v) use ($search, $replace) {
-								return str_ireplace($search, $replace, $v);
-							}, $replaced);
-							$replaced = array_flip($replaced);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects the third parameter, array, to be an array"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects the second parameter, replace, to be a string or array"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects the first parameter, search, to be a string or array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects three parameters: search, replace, and array"
-			);
+		if (!(is_string($search) || is_array($search))) {
+			throw new \InvalidArgumentException("search should be string or array");
 		}
 
-		return $replaced;
+		if (!(is_string($replace) || is_array($replace))) {
+			throw new \InvalidArgumentException("replace should be a string or array");
+		}
+
+		if (empty($array)) {
+			return [];
+		}
+
+		// flip the array, replace the strings, and flip it back
+		$replaced = array_flip($array);
+
+		$replaced = array_map(function ($v) use ($search, $replace) {
+			return str_ireplace($search, $replace, $v);
+		}, $replaced);
+
+		return array_flip($replaced);
 	}
 
 	/**
-	 * Returns an array of this array's permutations
+	 * Returns an array of this array's permutations (i.e., all the different
+	 * ways the elements can be ordered). BE CAREFUL! Permutations grow with the
+	 * factorial (i.e., 2 is 2, 3 is 6, 4 is 24, etc).
+	 *
+	 * For example:
+	 *
+	 *     $array = ['foo', 'bar', 'baz'];
+	 *
+	 *     $expected = [
+	 *         ['foo', 'bar', 'baz'],
+	 *         ['baz', 'foo', 'bar'],
+	 *         ['bar', 'foo', 'baz'],
+	 *         ['foo', 'baz', 'bar'],
+	 *         ['bar', 'baz', 'foo'],
+	 *         ['baz', 'bar', 'foo']
+	 *     ];
 	 *
 	 * @param  string[]  $array  an array of strings
 	 * @return  string[]  an array of $array's permutations
 	 * @see  http://docstore.mik.ua/orelly/webprog/pcook/ch04_26.htm  an example from
 	 *     O'Reilly's PHPCookbook
-	 * @since  0.1.2
 	 */
-	public static function permute(Array $set)
+	public static function permute(array $set): array
 	{
 		$perms = [];
 
@@ -505,74 +397,45 @@ class Arr
 	 *
 	 * @return  array[]  the sorted array
 	 *
-	 * @throws  \BadMethodCallException    if $array, $field, or $sort is null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $field is not a string
-	 * @throws  \InvalidArgumentException  if $sort is not a string
 	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or
 	 *    'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of arrays with
 	 *    the key $field
 	 */
-	public static function sortByField($array, $field, $sort = 'asc')
+	public static function sortByField(array $array, string $field, string $sort = 'asc'): array
 	{
-		if ($array !== null && $field !== null && $sort !== null) {
-			if (is_array($array)) {
-				if (is_string($field)) {
-					if (is_string($sort)) {
-						// if $sort is a valid sort
-						if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
-							// if $array is an array of arrays with $field key
-							$passed = array_filter($array, function ($v) use ($field) {
-								return is_array($v) && array_key_exists($field, $v);
-							});
-							if (count($array) === count($passed)) {
-								// sort the array using the field's value
-								// by default, usort() will return results in ascending order
-								//
-								usort($array, function ($a, $b) use ($field) {
-									if ($a[$field] < $b[$field]) {
-										return -1;
-									} elseif ($a[$field] > $b[$field]) {
-										return 1;
-									} else {
-										return 0;
-									}
-								});
-								// if the sort order is descending
-								$sort = strtolower($sort);
-								if ($sort === 'desc' || $sort === 'descending') {
-									$array = array_reverse($array);
-								}
-							} else {
-								throw new \InvalidArgumentException(
-									__METHOD__."() expects parameter one to be an array of arrays with the key '$field'"
-								);
-							}
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__."() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter three, sort, to be a string sort order"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, field, to be a string field name"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, array, to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two or three parameters"
+		// if $sort is invalid, short-circuit
+		if (!in_array(strtolower($sort), ['asc', 'ascending', 'desc', 'descending'])) {
+			throw new \InvalidArgumentException(
+				"sort should be 'asc[ending]' or 'desc[ending]'"
 			);
+		}
+
+		// if $array is not an array of arrays with $field key, short-circuit
+		$passed = array_filter($array, function ($v) use ($field) {
+			return is_array($v) && array_key_exists($field, $v);
+		});
+		if (count($array) !== count($passed)) {
+			throw new \InvalidArgumentException(
+				"array should be an array of arrays all with the key '$field'"
+			);
+		}
+
+		// sort the array using the field's value (ascending, by default)
+		usort($array, function ($a, $b) use ($field) {
+			if ($a[$field] < $b[$field]) {
+				return -1;
+			} elseif ($a[$field] > $b[$field]) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+
+		// if the sort order is descending, reverse the array
+		$sort = strtolower($sort);
+		if ($sort === 'desc' || $sort === 'descending') {
+			$array = array_reverse($array);
 		}
 
 		return $array;
@@ -589,78 +452,49 @@ class Arr
 	 *
 	 * @return  object[]  the sorted array
 	 *
-	 * @throws  \BadMethodCallException    if $array, $property, or $sort is null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $property is not a string
-	 * @throws  \InvalidArgumentException  if $sort is not a string
 	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or
 	 *    'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
 	 *    the public property $property
 	 */
-	public static function sortByProperty($array, $property, $sort = 'asc')
+	public static function sortByProperty(array $array, string $property, string $sort = 'asc'): array
 	{
-		if ($array !== null && $property !== null && $sort !== null) {
-			if (is_array($array)) {
-				if (is_string($property)) {
-					if (is_string($sort)) {
-						// if $sort is a valid sort
-						if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
-							// if $array is an array of objects with $property
-							// use property_exists() to allow null values of explicit public properties
-							// use isset() to allow "magic" properties via the __get() magic method
-							//
-							$passed = array_filter($array, function ($v) use ($property) {
-								return is_object($v)
-									&& (property_exists($v, $property) || isset($v->$property));
-							});
-							if (count($array) === count($passed)) {
-								// sort the array using the property's value
-								// by default, usort() will return results in ascending order
-								//
-								usort($array, function ($a, $b) use ($property) {
-									if ($a->$property < $b->$property) {
-										return -1;
-									} elseif ($a->$property > $b->$property) {
-										return 1;
-									} else {
-										return 0;
-									}
-								});
-								// if the sort order is descending
-								$sort = strtolower($sort);
-								if ($sort === 'desc' || $sort === 'descending') {
-									$array = array_reverse($array);
-								}
-							} else {
-								throw new \InvalidArgumentException(
-									__METHOD__."() expects parameter one to be an array of objects with public property '$property'"
-								);
-							}
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__."() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter three, sort, to be a string sort order"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, property, to be a string public property name"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, array, to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two or three parameters"
+		// if $sort is invalid, short-circuit
+		if (!in_array(strtolower($sort), ['asc', 'ascending', 'desc', 'descending'])) {
+			throw new \InvalidArgumentException(
+				"sort should be 'asc[ending]' or 'desc[ending]'"
 			);
+		}
+
+		// if $array is an array of objects with $property
+		// use property_exists() to allow null values of explicit public properties
+		// use isset() to allow "magic" properties via the __get() magic method
+		//
+		$passed = array_filter($array, function ($v) use ($property) {
+			return is_object($v)
+				&& (property_exists($v, $property) || isset($v->$property));
+		});
+		if (count($array) !== count($passed)) {
+			throw new \InvalidArgumentException(
+				"array should be an array of objects with public property '$property'"
+			);
+		}
+
+		// sort the array using the property's value (ascending, by default)
+		usort($array, function ($a, $b) use ($property) {
+			if ($a->$property < $b->$property) {
+				return -1;
+			} elseif ($a->$property > $b->$property) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+
+		// if the sort order is descending
+		$sort = strtolower($sort);
+		if ($sort === 'desc' || $sort === 'descending') {
+			$array = array_reverse($array);
 		}
 
 		return $array;
@@ -677,76 +511,47 @@ class Arr
 	 *
 	 * @return  object[]  the sorted array
 	 *
-	 * @throws  \BadMethodCallException    if $array, $property, or $sort is null
-	 * @throws  \InvalidArgumentException  if $array is not an array
-	 * @throws  \InvalidArgumentException  if $property is not a string
-	 * @throws  \InvalidArgumentException  if $sort is not a string
 	 * @throws  \InvalidArgumentException  if $sort is not the string 'asc[ending]' or
 	 *     'desc[ending]'
 	 * @throws  \InvalidArgumentException  if $array is not an array of objects with
-	 *     the public property $property
+	 *     the public method $method
 	 */
-	public static function sortByMethod($array, $method, $sort = 'asc')
+	public static function sortByMethod(array $array, string $method, string $sort = 'asc')
 	{
-		if ($array !== null && $method !== null && $sort !== null) {
-			if (is_array($array)) {
-				if (is_string($method)) {
-					if (is_string($sort)) {
-						// if $sort is a valid sort
-						if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
-							// if $array is an array of objects with public method $method
-							// use is_callable() to allow "magic" methods
-							//
-							$passed = array_filter($array, function ($v) use ($method) {
-								return is_object($v) && is_callable(array($v, $method));
-							});
-							if (count($array) === count($passed)) {
-								// sort the array using the property's value
-								// by default, usort() will return results in ascending order
-								//
-								usort($array, function ($a, $b) use ($method) {
-									if ($a->$method() < $b->$method()) {
-										return -1;
-									} elseif ($a->$method() > $b->$method()) {
-										return 1;
-									} else {
-										return 0;
-									}
-								});
-								// if the sort order is descending
-								$sort = strtolower($sort);
-								if ($sort === 'desc' || $sort === 'descending') {
-									$array = array_reverse($array);
-								}
-							} else {
-								throw new \InvalidArgumentException(
-									__METHOD__."() expects parameter one to be an array of objects with public method '$method'"
-								);
-							}
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__."() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter three, sort, to be a string sort order"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, method, to be the string name of a public method"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, array, to be an array"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two or three parameters"
+		// if $sort is invalid, short-circuit
+		if (!in_array(strtolower($sort), ['asc', 'ascending', 'desc', 'descending'])) {
+			throw new \InvalidArgumentException(
+				"sort should be 'asc[ending]' or 'desc[ending]'"
 			);
+		}
+
+		// if $array is an array of objects with public method $method
+		// use is_callable() to allow "magic" methods
+		//
+		$passed = array_filter($array, function ($v) use ($method) {
+			return is_object($v) && is_callable(array($v, $method));
+		});
+		if (count($array) !== count($passed)) {
+			throw new \InvalidArgumentException(
+				"array should be an array of objects with public method '$method'"
+			);
+		}
+
+		// sort the array using the method's value (ascending, by default)
+		usort($array, function ($a, $b) use ($method) {
+			if ($a->$method() < $b->$method()) {
+				return -1;
+			} elseif ($a->$method() > $b->$method()) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+
+		// if the sort order is descending
+		$sort = strtolower($sort);
+		if ($sort === 'desc' || $sort === 'descending') {
+			$array = array_reverse($array);
 		}
 
 		return $array;
@@ -758,9 +563,10 @@ class Arr
 	/**
 	 * Returns the next permutation
 	 *
+	 * @return  array|false
 	 * @see  self:permute()
 	 */
-	protected static function getNextPermutation($p, $size)
+	private static function getNextPermutation(array $p, int $size)
 	{
 	    // slide down the array looking for where we're smaller than the next guy
 	    for ($i = $size - 1; $i >= 0 && $p[$i] >= $p[$i+1]; --$i) { }
