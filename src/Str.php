@@ -23,7 +23,7 @@ class Str
 	 *
 	 * @return  bool  true if $haystack ends with $needle
 	 *
-	 * @see  \Jstewmc\PhpHelpers\Str::iEndsWith()  case-insensitive version
+	 * @see  iEndsWith()  case-insensitive version
 	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith()
 	 *    and endsWith() functions in PHP" on StackOverflow
 	 */
@@ -48,7 +48,7 @@ class Str
 
 	 * @return  bool
 	 *
-	 * @see  \Jstewmc\PhpHelpers\Str::iEndsWith()  case-sensitive version
+	 * @see  self::iEndsWith()  case-sensitive version
 	 */
 	public static function iEndsWith(string $haystack, string $needle): bool
 	{
@@ -58,7 +58,7 @@ class Str
 	/**
 	 * Alias for the isBool() method
 	 *
-	 * @see  \Jstewmc\PhpHelpers\Str::isBool()
+	 * @see  self::isBool()
 	 */
 	 public static function is_bool($string): bool
 	 {
@@ -107,7 +107,7 @@ class Str
 	 *
 	 * @return  bool  true if $haystack ends with $needle
 	 *
-	 * @see     \Jstewmc\PhpHelpers\Str::startsWith()  case-sensitive version
+	 * @see     self::startsWith()  case-sensitive version
 	 */
 	public static function iStartsWith(string $haystack, string $needle): bool
 	{
@@ -295,7 +295,7 @@ class Str
 	 *
 	 * @return  bool  true if $haystack starts with $needle
 	 *
-	 * @see  \Jstewmc\PhpHelpers\Str::iStartsWith()  case-insensitive version
+	 * @see  self::iStartsWith()  case-insensitive version
 	 * @see  http://stackoverflow.com/a/834355  MrHus' answer to "startsWith() and
 	 *    endsWith() functions in PHP" on StackOverflow
 	 */
