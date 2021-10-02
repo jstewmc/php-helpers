@@ -2,9 +2,6 @@
 
 use Jstewmc\PhpHelpers\Boolean;
 
-/**
- * @group  jack
- */
 class BooleanTest extends \PHPUnit\Framework\TestCase
 {
 	/* !Data providers */
