@@ -1,997 +1,569 @@
 <?php
-/**
- * The file for the NumTest class
- *
- * @author     Jack Clayton <clayjs0@gmail.com>
- * @copyright  2014 Jack Clayton
- * @license    MIT License <http://opensource.org/licenses/MIT>
- * @package    Jstewmc/PhpHelpers <https://github.com/jstewmc/php-helpers>
- */
 
-use Jstewmc\PhpHelpers\Num;
+namespace Jstewmc\PhpHelpers;
 
 class NumTest extends \PHPUnit\Framework\TestCase
 {
-	/* !Data providers */
-
-	/**
-	 * Provides float (or float equivalents)
-	 */
 	public function provideFloatValues()
 	{
-		return array(
-			array(-1.0),
-			array(0.0),
-			array(1.0),
-			array('-1.0'),
-			array('0.0'),
-			array('1.0')
-		);
+		return [
+			[-1.0],
+			[0.0],
+			[1.0],
+			['-1.0'],
+			['0.0'],
+			['1.0']
+		];
 	}
 
-	/**
-	 * Provides integer (or integer equivalents)
-	 */
 	public function provideIntegerValues()
 	{
-		return array(
-			array(-1),
-			array(0),
-			array(1),
-			array('-1'),
-			array('0'),
-			array('1')
-		);
+		return [
+			[-1],
+			[0],
+			[1],
+			['-1'],
+			['0'],
+			['1']
+		];
 	}
 
-	/**
-	 * Provides a list of non-numeric values in PHP
-	 */
 	public function provideNonNumericValues()
 	{
-		return array(
-			array(true),
-			array('foo'),
-			array(array()),
-			array(new StdClass())
-		);
+		return [
+			[true],
+			['foo'],
+			[[]],
+			[new \StdClass()]
+		];
 	}
 
-	/**
-	 * Provides a list of non-string values in PHP
-	 */
-	public function provideNonStringValues()
+	public function provideZeroValues(): array
 	{
-		return array(
-			array(true),
-			array(1),
-			array(array()),
-			array(new StdClass())
-		);
+		return [
+			[0],
+			[0.0],
+			['0'],
+			['0.0']
+		];
 	}
 
-
-	/* !almostEqual() */
-
-	/**
-	 * almostEqual() should throw a BadMethodCallException on null arguments
-	 */
-	public function testAlmostEqual_throwsBadMethodCallException_ifAAndBAreNull()
+	public function testAlmostEqualThrowsInvalidArgumentExceptionWhenEpsilonIsNegative(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::almostEqual(null, null);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
-	}
-
-	/**
-	 * almostEqual() should throw an InvalidArgumentException on non-numeric first
-	 *     argument
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testAlmostEqual_throwsInvalidArgumentException_ifAIsNaN($value)
-	{
-		$this->expectException('InvalidArgumentException');
-		Num::almostEqual($value, 1.0);
-
-		return;
-	}
-
-	/**
-	 * almostEqual() should throw an InvalidArgumentException on a non-numeric second
-	 *     argument
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testAlmostEqual_throwsInvalidArgumentException_ifBIsNaN($value)
-	{
-		$this->expectException('InvalidArgumentException');
-		Num::almostEqual(1.0, $value);
-
-		return;
-	}
-
-	/**
-	 * almostEqual() should throw an InvalidArgumentException on a non-numeric third
-	 *     argument
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testAlmostEqual_throwsInvalidArgumentException_ifEpsilonIsNaN($value)
-	{
-		$this->expectException('InvalidArgumentException');
-		Num::almostEqual(1.0, 1.0, $value);
-
-		return;
-	}
-
-	/**
-	 * almostEqual() should throw an InvalidArgumentException if third argument, epsilon,
-	 *     is zero
-	 */
-	public function testAlmostEqual_throwsInvalidArgumentException_ifEpsilonIsZero()
-	{
-		$this->expectException('InvalidArgumentException');
 		Num::almostEqual(1.0, 1.0, 0);
-
-		return;
 	}
 
-	/**
-	 * almostEqual() should return true on equal floats
-	 */
-	public function testAlmostEqual_returnsTrue_ifFloatsAreEqual()
+	public function testAlmostEqualThrowsInvalidArgumentExceptionWhenEpsilonIsZero(): void
 	{
-		return $this->assertTrue(Num::almostEqual(1/10, 0.1));
+		$this->expectException(\InvalidArgumentException::class);
+
+		Num::almostEqual(1.0, 1.0, 0);
 	}
 
-	/**
-	 * almostEqual() should return false on unequal floats
-	 */
-	public function testAlmostEqual_returnsFalse_ifFloatsAreUnequal()
+	public function testAlmostEqualReturnsTrueWhenFloatsAreEqual(): void
 	{
-		return $this->assertFalse(Num::almostEqual(0.2, 0.7));
+		$this->assertTrue(Num::almostEqual(1/10, 0.1));
 	}
 
-	/**
-	 * almostEqual() should return true on equal integers
-	 */
-	public function testAlmostEqual_returnsTrue_ifIntegersAreEqual()
+	public function testAlmostEqualReturnsFalseWhenFloatsAreUnequal(): void
 	{
-		return $this->assertTrue(Num::almostEqual(1, 1));
+		$this->assertFalse(Num::almostEqual(0.2, 0.7));
 	}
 
-	/**
-	 * almostEqual() should return false on unequal integers
-	 */
-	public function testAlmostEqual_returnsFalse_ifIntegersAreUnequal()
+	public function testAlmostEqualReturnsTrueWhenIntegersAreEqual(): void
 	{
-		return $this->assertFalse(Num::almostEqual(1, 2));
+		$this->assertTrue(Num::almostEqual(1, 1));
 	}
 
-
-	/* !bound() */
-
-	/**
-	 * bound() should throw a BadMethodCallException if number is null
-	 */
-	public function testBound_throwsBadMethodCallException_ifValueIsNull()
+	public function testAlmostEqualReturnsFalseWhenIntegersAreUnequal(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::bound(null);
-
-		return;
+		$this->assertFalse(Num::almostEqual(1, 2));
 	}
 
-	/**
-	 * bound() should throw an InvalidArgumentException if number is not a number
-	 *
-	 * @dataProvider  provideNonNumericValues
-	 */
-	public function testBound_throwsInvalidArgumentException_ifNumberIsNaN($value)
+	public function testBoundThrowsInvalidArgumentExceptionWheNumberIsNaN(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::bound($value, 1);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::bound('foo', 1, 0);
 	}
 
-	/**
-	 * bound() should throw an InvalidArgumentException if lower bound is not a number
-	 *
-	 * @dataProvider  provideNonNumericValues
-	 */
-	public function testBound_throwsInvalidArgumentException_ifLowerIsNaN($value)
+	public function testBoundThrowsInvalidArgumentExceptionWheLowerBoundIsNaN(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::bound(1, $value);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::bound(1, 'foo', 0);
 	}
 
-	/**
-	 * bound() should throw an InvalidArgumentException if upper bound is not a number
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testBound_throwsInvalidArgumentException_ifUpperIsNaN($value)
+	public function testBoundThrowsInvalidArgumentExceptionWheUpperBoundIsNaN(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::bound(1, 0, $value);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::bound(1, 1, 'foo');
 	}
 
-	/**
-	 * bound() should throw an InvalidArgumentException if the lower bound is greater than
-	 *     the upper bound
-	 */
-	public function testBound_throwsInvalidArgumentException_ifLowerIsGreaterThanUpper()
+	public function testBoundThrowsInvalidArgumentExceptionWhenLowerBoundIsGreaterThanUpperBound(): void
 	{
-		$this->expectException('InvalidArgumentException');
+		$this->expectException(\InvalidArgumentException::class);
+
 		Num::bound(1, 2, 0);
-
-		return;
 	}
 
-	/**
-	 * bound() should return the upper bound if the number is greater
-	 */
-	public function testBound_returnsUpper_ifNumberIsGreaterThanUpper()
+	public function testBoundReturnsUpperWhenNumberIsGreaterThanUpperBound(): void
 	{
-		$this->assertEquals(Num::bound(2, null, 1), 1);
+		$this->assertEquals(1, Num::bound(2, null, 1));
 	}
 
-	/**
-	 * bound() should return the lower bound if the value is lesser
-	 */
-	public function testBound_returnsLower_ifNumberIsLessThanLower()
+	public function testBoundReturnsLowerWhenNumberIsLessThanLowerBound(): void
 	{
-		$this->assertEquals(Num::bound(1, 2), 2);
+		$this->assertEquals(2, Num::bound(1, 2));
 	}
 
-	/**
-	 * bound() should return the number if it's between the upper and lower bound
-	 */
-	public function testBound_returnsNumber_ifNumberIsBetweenLowerAndUpper()
+	public function testBoundReturnsNumberWhenNumberIsBetweenLowerBoundAndUpperBound(): void
 	{
-		$this->assertEquals(Num::bound(1, 0, 2), 1);
+		$this->assertEquals(1, Num::bound(1, 0, 2));
 	}
 
-
-	/* !ceilTo() */
-
-	/**
-	 * ceilTo() should throw a BadMethodCallException if the number is null
-	 */
-	public function testCeilTo_throwsBadMethodCallException_ifNumberIsNull()
+	public function testCeilToThrowsInvalidArgumentExceptionWhenNumberIsNaN(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::ceilTo(null);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::ceilTo('foo');
 	}
 
-	/**
-	 * ceilTo() should throw an InvalidArgumentException if the number is not a number
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testCeilTo_throwsInvalidArgumentException_ifNumberIsNaN($value)
+	public function testCeilToThrowsInvalidArgumentExceptionWhenMultipleIsNaN(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::ceilTo($value);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::ceilTo(1, 'foo');
 	}
 
-	/**
-	 * ceilTo() should throw an InvalidArgumentException if the multiple is not a number
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testCeilTo_throwsInvalidArgumentException_ifMultipleIsNaN($value)
+	public function testCeilToThrowsInvalidArgumentExceptionWhenMultipleIsNegative(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::ceilTo(1, $value);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::ceilTo(1, -1);
 	}
 
-	/**
-	 * ceilTo() should throw an InvalidArgumentException if the multiple is zero
-	 */
-	public function testCeilTo_throwsInvalidArgumentException_ifMultipleIsZero()
+	public function testCeilToThrowsInvalidArgumentExceptionWhenMultipleIsZero(): void
 	{
-		$this->expectException('InvalidArgumentException');
+		$this->expectException(\InvalidArgumentException::class);
+
 		Num::ceilTo(1, 0);
-
-		return;
 	}
 
-	/**
-	 * ceilTo() should return the same value as PHP's ceil() method if the multiple is
-	 *     omitted
-	 */
-	public function testCeilTo_returnsPhpNativeCeil_ifMultipleIsOmitted()
+	public function testCeilToReturnsPhpNativeCeilWhenMultipleIsOmitted(): void
 	{
-		return $this->assertEquals(Num::ceilTo(2.5), ceil(2.5));
+		$this->assertEquals(ceil(2.5), Num::ceilTo(2.5));
 	}
 
-	/**
-	 * ceilTo() should return the integer ceiling-ed to the nearest multiple
-	 */
-	public function testCeilTo_returnsCeiling_ifNumberAndMultipleAreIntegers()
+	public function testCeilToReturnsCeilingWhenNumberAndMultipleAreIntegers(): void
 	{
-		return $this->assertEquals(Num::ceilTo(7, 10), 10);
+		$this->assertEquals(10, Num::ceilTo(7, 10));
 	}
 
-	/**
-	 * ceilTo() should return the float ceiling-ed to the nearest multiple
-	 */
-	public function testCeilTo_returnsCeiling_ifNumberAndMultipleAreFloats()
+	public function testCeilToReturnsCeilingWhenNumberAndMultipleAreFloats(): void
 	{
-		return $this->assertEquals(Num::ceilTo(3.5, 1.5), 4.5);
+		$this->assertEquals(4.5, Num::ceilTo(3.5, 1.5));
 	}
 
-	/**
-	 * ceilTo() should return the integer ceiling-ed to the nearest multiple
-	 */
-	public function testCeilTo_returnsCeiling_ifNumberIsIntegerAndMultipleIsFloat()
+	public function testCeilToReturnsCeilingWhenNumberIsIntegerAndMultipleIsFloat(): void
 	{
-		$this->assertEquals(Num::ceilTo(2, 1.5), 3);
+		$this->assertEquals(3, Num::ceilTo(2, 1.5));
 	}
 
-	/**
-	 * ceilTo() should return the integer ceiling-ed to the nearest multiple
-	 */
-	public function testCeilTo_returnsCeiling_ifNumberIsFloatAndMultipleIsInteger()
+	public function testCeilToReturnsCeilingWhenNumberIsFloatAndMultipleIsInteger(): void
 	{
-		$this->assertEquals(Num::ceilTo(2.5, 2), 4);
+		$this->assertEquals(4, Num::ceilTo(2.5, 2));
 	}
 
-
-	/* !floorTo() */
-
-	/**
-	 * floorTo() should throw a BadMethodCallException if the number is null
-	 */
-	public function testFloorTo_throwsBadMethodCallException_ifNumberIsNull()
+	public function testFloorToThrowsInvalidArgumentExceptionWhenNumberIsNaN(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::floorTo(null);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::floorTo('foo');
 	}
 
-	/**
-	 * floorTo() should throw an InvalidArgumentException if the number is not a number
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testFloorTo_throwsInvalidArgumentException_ifNumberIsNaN($value)
+	public function testFloorToThrowsInvalidArgumentExceptionWhenMultipleIsNaN(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::floorTo($value);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::floorTo(1, 'foo');
 	}
 
-	/**
-	 * floorTo() should throw an InvalidArgumentException if the multiple is not a number
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testFloorTo_throwsInvalidArgumentException_ifMultipleIsNaN($value)
+	public function testFloorToThrowsInvalidArgumentExceptionWhenMultipleIsNegative(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::floorTo(1, $value);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::floorTo(1, -1);
 	}
 
-	/**
-	 * floorTo() should throw an InvalidArgumentException if the multiple is zero
-	 */
-	public function testFloorTo_throwsInvalidArgumentException_ifMultipleIsZero()
+	public function testFloorToThrowsInvalidArgumentExceptionWhenMultipleIsZero(): void
 	{
-		$this->expectException('InvalidArgumentException');
+		$this->expectException(\InvalidArgumentException::class);
+
 		Num::floorTo(1, 0);
-
-		return;
 	}
 
-	/**
-	 * floorTo() should return the same value as PHP's floor() method if the multiple is
-	 *     omitted
-	 */
-	public function testFloorTo_returnsPhpNativeCeil_ifMultipleIsOmitted()
+	public function testFloorToReturnsPhpNativeFloorWhenMultipleIsOmitted(): void
 	{
-		return $this->assertEquals(Num::floorTo(2.5), floor(2.5));
+		$this->assertEquals(floor(2.5), Num::floorTo(2.5));
 	}
 
-	/**
-	 * floorTo() should return the integer floored to the nearest multiple
-	 */
-	public function testFloorTo_returnsFloor_ifNumberAndMultipleAreIntegers()
+	public function testFloorToReturnsFloorWhenNumberAndMultipleAreIntegers(): void
 	{
-		return $this->assertEquals(Num::floorTo(5, 2), 4);
+		$this->assertEquals(4, Num::floorTo(5, 2));
 	}
 
-	/**
-	 * floorTo() should return the float floored to the nearest multiple
-	 */
-	public function testCeilTo_returnsFloor_ifNumberAndMultipleAreFloats()
+	public function testFloorToReturnsFloorWhenNumberAndMultipleAreFloats(): void
 	{
-		return $this->assertEquals(Num::floorTo(3.5, 1.5), 3);
+		$this->assertEquals(3, Num::floorTo(3.5, 1.5));
 	}
 
-	/**
-	 * floorTo() should return the integer ceiling-ed to the nearest multiple
-	 */
-	public function testFloorTo_returnsFloor_ifNumberIsIntegerAndMultipleIsFloat()
+	public function testFloorToReturnsFloorWhenNumberIsIntegerAndMultipleIsFloat(): void
 	{
-		$this->assertEquals(Num::floorTo(2, 1.5), 1.5);
+		$this->assertEquals(1.5, Num::floorTo(2, 1.5));
 	}
 
-	/**
-	 * floorTo() should return the integer ceiling-ed to the nearest multiple
-	 */
-	public function testFloorTo_returnsFloor_ifNumberIsFloatAndMultipleIsInteger()
+	public function testFloorToReturnsFloorWhenNumberIsFloatAndMultipleIsInteger(): void
 	{
-		$this->assertEquals(Num::floorTo(2.5, 2), 2);
+		$this->assertEquals(2, Num::floorTo(2.5, 2));
 	}
 
-
-	/* !isId() */
-
-	/**
-	 * isId() should throw a BadMethodCallException if datatype is null
-	 */
-	public function testIsId_throwsBadMethodCallException_ifDatatypeIsNull()
+	public function testIdIsThrowsInvalidArgumentExceptionWhenDatatypeIsNotValue(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::isId(1, null);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
-	}
-
-	/**
-	 * isId() should throw an InvalidArgumentException if datatype is not a string
-	 *
-	 * @dataProvider provideNonStringValues
-	 */
-	public function testIsId_throwsInvalidArgumentException_ifDatatypeIsNotAString($value)
-	{
-		$this->expectException('InvalidArgumentException');
-		Num::isId(1, $value);
-
-		return;
-	}
-
-	/**
-	 * isId() should throw an InvalidArgumentException if datatype is not a valid value
-	 */
-	public function testIdIs_throwsInvalidArgumentException_ifDatatypeIsNotValue()
-	{
-		$this->expectException('InvalidArgumentException');
 		Num::isId(1, 'foo');
-
-		return;
 	}
 
-	/**
-	 * isId() should return false if number is null
-	 */
-	public function testIsId_returnsFalse_ifNumberIsNull()
+	public function testIsIdReturnsFalseWhenNumberIsNull(): void
 	{
-		return $this->assertFalse(Num::isId(null));
+		$this->assertFalse(Num::isId(null));
 	}
 
 	/**
-	 * isId() should return false if number is non-numeric
-	 *
 	 * @dataProvider provideNonNumericValues
 	 */
-	public function testIsId_returnsFalse_ifNumberIsNonNumeric($value)
+	public function testIsIdReturnsFalseWhenNumberIsNaN($value): void
 	{
-		return $this->assertFalse(Num::isId($value));
+		$this->assertFalse(Num::isId($value));
+	}
+
+	public function testIsIdReturnsFalseWhenNumberIsZero(): void
+	{
+		$this->assertFalse(Num::isId(0));
+	}
+
+	public function testIsIdReturnsFalseWhenNumberIsFloat(): void
+	{
+		$this->assertFalse(Num::isId(1.2));
+	}
+
+	public function testIsIdReturnsFalseWhenNumberIsGreaterThanDatatypeMax(): void
+	{
+		$this->assertFalse(Num::isId(999, 'tiny'));
+	}
+
+	public function testIsIdReturnsTrueWhenNumberIsId(): void
+	{
+		$this->assertTrue(Num::isId(1, 'tiny'));
+	}
+
+	public function testIsIntReturnsFalseWhenNumberIsNull(): void
+	{
+		$this->assertFalse(Num::isInt(null));
 	}
 
 	/**
-	 * isId() should return false if number is zero
-	 */
-	public function testIsId_returnsFalse_ifNumberIsZero()
-	{
-		return $this->assertFalse(Num::isId(0));
-	}
-
-	/**
-	 * isId() should return false if number is a float
-	 */
-	public function testIsId_returnsFalse_ifNumberIsFloat()
-	{
-		return $this->assertFalse(Num::isId(1.2));
-	}
-
-	/**
-	 * isId() should return false if number is greater than datatype's max unsigned value
-	 */
-	public function testIdId_returnsFalse_ifNumberIsGreaterThanDatatypeMax()
-	{
-		return $this->assertFalse(Num::isId(999, 'tiny'));
-	}
-
-	/**
-	 * isId() should return true if number is a positive, integer that's below the
-	 *     datatype's max unsigned value
-	 */
-	public function testIsId_returnsTrue_ifNumberIsPositiveIntegerBelowDatatypeMaxUnsignedValue()
-	{
-		return $this->assertTrue(Num::isId(1, 'tiny'));
-	}
-
-
-	/* !isInt() */
-
-	/**
-	 * isInt() should return false on null
-	 */
-	public function testIsInt_returnsFalse_ifNumberIsNull()
-	{
-		return $this->assertFalse(Num::isInt(null));
-	}
-
-	/**
-	 * isInt() should return false if number is not a number
-	 *
 	 * @dataProvider provideNonNumericValues
 	 */
-	public function testIsInt_returnsFalse_ifNumberIsNaN($number)
+	public function testIsIntReturnsFalseWhenNumberIsNaN($number): void
 	{
-		return $this->assertFalse(Num::isInt($number));
+		$this->assertFalse(Num::isInt($number));
 	}
 
 	/**
-	 * isInt() should return true if number is an integer
-	 *
 	 * @dataProvider provideIntegerValues
 	 */
-	public function testIsInt_returnsTrue_ifNumberIsInteger($number)
+	public function testIsIntReturnsTrueWhenNumberIsInteger($number): void
 	{
-		return $this->assertTrue(Num::isInt($number));
+		$this->assertTrue(Num::isInt($number));
 	}
 
 	/**
-	 * isInt() should return false if number is a float
-	 *
 	 * @dataProvider provideFloatValues
 	 */
-	public function testIsInt_returnsFalse_ifNumberIsFloat($number)
+	public function testIsIntReturnsFalseWhenNumberIsFloat($number): void
 	{
-		return $this->assertFalse(Num::isInt($number));
+		$this->assertFalse(Num::isInt($number));
 	}
 
-
-	/* !isNumeric() */
-
-	/**
-	 * isNumeric() should return false if number is null
-	 */
-	public function testIsNumeric_returnsFalse_ifNumberIsNull()
+	public function testIsNumericReturnsFalseWhenNumberIsNull(): void
 	{
-		return $this->assertFalse(Num::isNumeric(null));
+		$this->assertFalse(Num::isNumeric(null));
 	}
 
 	/**
-	 * isNumeric() should return false if number is not a number
-	 *
 	 * @dataProvider  provideNonNumericValues
 	 */
-	public function testIsNumeric_returnsFalse_ifNumberIsNaN($number)
+	public function testIsNumericReturnsFalseWhenNumberIsNaN($number): void
 	{
-		return $this->assertFalse(Num::isNumeric($number));
+		$this->assertFalse(Num::isNumeric($number));
 	}
 
 	/**
-	 * isNumeric() should return true if number is a float
-	 *
 	 * @dataProvider provideIntegerValues
 	 */
-	public function testIsNumeric_returnsTrue_ifNumberIsFloat($number)
+	public function testIsNumericReturnsTrueWhenNumberIsFloat($number): void
 	{
-		return $this->assertTrue(Num::isNumeric($number));
+		$this->assertTrue(Num::isNumeric($number));
 	}
 
 	/**
-	 * isNumeric() should return true if number is an integer
-	 *
 	 * @dataProvider  provideIntegerValues
 	 */
-	public function testIsNumeric_returnsTrue_ifNumberIsInt($number)
+	public function testIsNumericReturnsTrueWhenNumberIsInt($number): void
 	{
-		return $this->assertTrue(Num::isNumeric($number));
+		$this->assertTrue(Num::isNumeric($number));
+	}
+
+	public function testIsNumericReturnsTrueWhenNumberIsFraction(): void
+	{
+		$this->assertTrue(Num::isNumeric('1/2'));
+	}
+
+	public function testIsNumericReturnsTrueWhenNumberIsMixed(): void
+	{
+		$this->assertTrue(Num::isNumeric('1 1/2'));
+	}
+
+	public function testIsNumericReturnsTrueWhenNumberIsCommaSeparated(): void
+	{
+		$this->assertTrue(Num::isNumeric('1,000'));
+	}
+
+	public function testIsZeroReturnsFalseWhenNumberIsNull(): void
+	{
+		$this->assertFalse(Num::isZero(null));
 	}
 
 	/**
-	 * isNumeric() should return true if number is a fraction
-	 */
-	public function testIsNumeric_returnsTrue_ifNumberIsFraction()
-	{
-		return $this->assertTrue(Num::isNumeric('1/2'));
-	}
-
-	/**
-	 * isNumeric() should return true if number is a mixed number
-	 */
-	public function testIsNumeric_returnsTrue_ifNumberIsMixed()
-	{
-		return $this->assertTrue(Num::isNumeric('1 1/2'));
-	}
-
-	/**
-	 * isNumeric() should return true if number if a comma-separated number
-	 */
-	public function testIsNumeric_returnsTrue_ifNumberIsCommaSeparated()
-	{
-		return $this->assertTrue(Num::isNumeric('1,000'));
-	}
-
-
-	/* !isZero() */
-
-	/**
-	 * isZero() should return false if number is null
-	 */
-	public function testIsZero_returnsFalse_ifNumberIsNull()
-	{
-		return $this->assertFalse(Num::isZero(null));
-	}
-
-	/**
-	 * isZero() should return false if number is not a number
-	 *
 	 * @dataProvider  provideNonNumericValues
 	 */
-	public function testIsZero_returnsFalse_ifNumberIsNaN($number)
+	public function testIsZeroReturnsFalseWhenNumberIsNaN($number): void
 	{
-		return $this->assertFalse(Num::isZero($number));
+		$this->assertFalse(Num::isZero($number));
+	}
+
+	public function testIsZeroReturnsFalseWhenNumberIsNotZero(): void
+	{
+		$this->assertFalse(Num::isZero(1));
 	}
 
 	/**
-	 * isZero() should return false if number is not zero
+	 * @dataProvider  provideZeroValues
 	 */
-	public function testIsZero_returnsFalse_ifNumberIsNotZero()
+	public function testIsZeroReturnsTrueWhenNumberIsIntZero($number): void
 	{
-		return $this->assertFalse(Num::isZero(1));
+		$this->assertTrue(Num::isZero(0));
 	}
 
-	/**
-	 * isZero() should return true if number is zero
-	 */
-	public function testIsZero_returnsTrue_ifNumberIsZero()
+	public function testNormalizeThrowsInvalidArgumentExceptionWhenNumberIsNaN(): void
 	{
-		return $this->assertTrue(Num::isZero(0));
+		$this->expectException(\InvalidArgumentException::class);
+
+		Num::normalize('foo');
 	}
 
-
-	/* !normalize() */
-
-	/**
-	 * normalize() should throw a BadMethodCallException if number and max are null
-	 */
-	public function testNormalize_throwsBadMethodCallException_ifNumberAndMaxAreNull()
+	public function testNormalizeThrowsInvalidArgumentExceptionWhenMaxIsNaN(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::normalize(null, null);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::normalize(1, 'foo');
 	}
 
-	/**
-	 * normalize() should throw an InvalidArgumentException if number is not a number
-	 *
-	 * @dataProvider  provideNonNumericValues
-	 */
-	public function testNormalize_throwsInvalidArgumentException_ifNumberIsNaN($number)
+	public function testNormalizeThrowsInvalidArgumentExceptionWhenMaxIsNegative(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::normalize($number, 1);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::normalize(1, -1);
 	}
 
-	/**
-	 * normalize() should throw an InvalidArgumentException if max is not a number
-	 *
-	 * @dataProvider  provideNonNumericValues
-	 */
-	public function testNormalize_throwsInvalidArgumentException_ifMaxIsNaN($number)
+	public function testNormalizeThrowsInvalidArgumentExceptionWhenMaxIsZero(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::normalize(1, $number);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
-	}
-
-	/**
-	 * normalize() should throw an InvalidArgumentException if max is zero
-	 */
-	public function testNormalize_throwsInvalidArgumentException_ifMaxIsZero()
-	{
-		$this->expectException('InvalidArgumentException');
 		Num::normalize(1, 0);
-
-		return;
 	}
 
-	/**
-	 * normalize() should return zero if the quotient is less than zero
-	 */
-	public function testNormalize_returnsZero_ifQuotientIsLessThanZero()
+	public function testNormalizeReturnsZeroWhenNumberIsLessThanZero(): void
 	{
-		return $this->assertEquals(Num::normalize(-1, 1), 0);
+		$this->assertEquals(0, Num::normalize(-1, 1));
 	}
 
-	/**
-	 * normalize() should return one if the quotient is greater than one
-	 */
-	public function testNormalize_returnsOne_ifQuotientIsGreaterThanOne()
+	public function testNormalizeReturnsNormalizationWhenNumberIsLessThanMax(): void
 	{
-		return $this->assertEquals(Num::normalize(2, 1), 1);
+		$this->assertEquals(0.5, Num::normalize(5, 10));
 	}
 
-	/**
-	 * normalize() should return the quotient if it's greater than or equal to zero
-	 *     and less than or equal to one
-	 */
-	public function testNormalize_returnsQuotient_ifQuotientBetweenZeroAndOne()
+	public function testNormalizeThrowsInvalidArgumentExceptionWhenNumberIsGreaterThanMax(): void
 	{
-		return $this->assertEquals(Num::normalize(0.5, 1), 0.5);
+		$this->expectException(\InvalidArgumentException::class);
+
+		Num::normalize(10, 1);
 	}
 
-
-	/* !roundTo() */
-
-	/**
-	 * roundTo() should throw a BadMethodCallException if number and multiple are null
-	 */
-	public function testRoundTo_throwsBadMethodCallException_ifNumberAndMultipleAreNull()
+	public function testRoundToThrowsInvalidArgumentExceptionWhenNumberIsNaN(): void
 	{
-		$this->expectException('BadMethodCallException');
-		Num::roundTo(null, null);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::roundTo('foo');
 	}
 
-	/**
-	 * roundTo() should throw an InvalidArgumentException if number is not a number
-	 *
-	 * @dataProvider  provideNonNumericValues
-	 */
-	public function testRoundTo_throwsInvalidArgumentException_ifNumberIsNaN($number)
+	public function testRoundToThrowsInvalidArgumentExceptionWhenMultipleIsNaN(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::roundTo($number, 1);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::roundTo(1, 'foo');
 	}
 
-	/**
-	 * roundTo() should throw an InvalidArgumentException if multiple is not a number
-	 *
-	 * @dataProvider provideNonNumericValues
-	 */
-	public function testRoundTo_throwsInvalidArgumentException_ifMultipleIsNaN($multiple)
+	public function testRoundToThrowsInvalidArgumentExceptionWhenMultipleIsNegative(): void
 	{
-		$this->expectException('InvalidArgumentException');
-		Num::roundTo(1, $multiple);
+		$this->expectException(\InvalidArgumentException::class);
 
-		return;
+		Num::roundTo(1, -1);
 	}
 
-	/**
-	 * roundTo() should throw an exception if multiple is zero
-	 */
-	public function testRoundTo_throwsInvalidArgumentException_ifMultipleIsZero()
+	public function testRoundToThrowsInvalidArgumentExceptionWhenMultipleIsZero(): void
 	{
-		$this->expectException('InvalidArgumentException');
+		$this->expectException(\InvalidArgumentException::class);
+
 		Num::roundTo(1, 0);
-
-		return;
 	}
 
-	/**
-	 * roundTo() should return PHP's native round if multiple is omitted
-	 */
-	public function testRoundTo_returnsPhpRound_ifMultipleIsOmitted()
+	public function testRoundToReturnsPhpNativeRoundWhenMultipleIsOmitted(): void
 	{
-		$this->assertEquals(Num::roundTo(1.5), round(1.5));
+		$this->assertEquals(round(1.5), Num::roundTo(1.5));
 	}
 
-	/**
-	 * roundTo() should return the rounded number if both number and multiple are integers
-	 */
-	public function testRoundTo_returnsRound_ifNumberAndMultipleAreIntegers()
+	public function testRoundToReturnsRoundWhenNumberAndMultipleAreInts(): void
 	{
-		$this->assertEquals(Num::roundTo(1, 2), 2);
+		$this->assertEquals(2, Num::roundTo(1.5, 2));
 	}
 
-	/**
-	 * roundTo() should return the rounded number if both number and multiple are floats
-	 */
-	public function testRoundTo_returnsRound_ifNumberAndMultipleAreFloats()
+	public function testRoundToReturnsRoundWhenNumberAndMultipleAreFloats(): void
 	{
-		$this->assertEquals(Num::roundTo(1.7, 1.5), 1.5);
+		$this->assertEquals(1.5, Num::roundTo(1.7, 1.5));
 	}
 
-	/**
-	 * roundTo() should return the rounded number if number is integer and multiple is float
-	 */
-	public function testRoundTo_returnsRound_ifNumberIsIntegerAndMultipleIsFloat()
+	public function testRoundToReturnsRoundWhenNumberIsIntAndMultipleIsFloat(): void
 	{
-		$this->assertEquals(Num::roundTo(2, 1.5), 1.5);
+		$this->assertEquals(1.5, Num::roundTo(2, 1.5));
 	}
 
-	/**
-	 * roundTo() should return the rounded number if number is a float and multiple is an integer
-	 */
-	public function testRoundTo_returnsRound_ifNumberIsFloatAndMultipleIsInteger()
+	public function testRoundToReturnsRoundWhenNumberIsFloatAndMultipleIsInt(): void
 	{
-		$this->assertEquals(Num::roundTo(1.1, 2), 2);
+		$this->assertEquals(2, Num::roundTo(1.1, 2));
 	}
 
-
-	/* !val() */
-
-	/**
-	 * val() should return integer if var is a bool
-	 */
-	public function testVal_returnsInteger_ifVarIsBool()
+	public function testValReturnsIntegerWhenVarIsBool(): void
 	{
-		return $this->assertEquals(Num::val(true), 1);
+		$this->assertEquals(1, Num::val(true));
+	}
+
+	public function testValReturnsFloatWhenVarIsAFloat(): void
+	{
+		$this->assertEquals(1.2, Num::val(1.2));
+	}
+
+	public function testValReturnsIntWhenVarIsAnInt(): void
+	{
+		$this->assertEquals(1, Num::val(1));
+	}
+
+	public function testValReturnsFloatWhenVarIsAStringFloat(): void
+	{
+		$this->assertEquals(1.0, Num::val('1.0'));
+	}
+
+	public function testValReturnsIntegerWhenVarIsStringInteger(): void
+	{
+		$this->assertEquals(1, Num::val('1'));
 	}
 
 	/**
-	 * val() should return float if var is a float
+	 * @group  foo
 	 */
-	 public function testVal_returnsFloat_ifVarIsAFloat()
-	 {
-		 return $this->assertEquals(Num::val(1.2), 1.2);
-	 }
+	public function testValReturnsFloatWhenVarIsAStringFraction(): void
+	{
+		$this->assertEquals(0.5, Num::val('1/2'));
+	}
 
-	 /**
-	  * val() should return integer if var is an integer
-	  */
-	 public function testVal_returnsInteger_ifVarIsAnInteger()
-	 {
-		 return $this->assertEquals(Num::val(1), 1);
-	 }
+	public function testValReturnsFloatWhenVarIsAStringMixedNumber(): void
+	{
+		$this->assertEquals(1.5, Num::val('1 1/2'));
+	}
 
-	 /**
-	  * val() should return float if var is a string float
-	  */
-	 public function testVal_returnsFloat_ifVarIsAStringFloat()
-	 {
-		 return $this->assertEquals(Num::val('1.0'), 1.0);
-	 }
+	public function testValReturnsIntegerWhenVarIsAStringCommaSeparatedInteger(): void
+	{
+		$this->assertEquals(1000, Num::val('1,000'));
+	}
 
-	 /**
-	  * val() should return integer if var is a string integer
-	  */
-	 public function testVal_returnsInteger_ifVarIsStringInteger()
-	 {
-		 return $this->assertEquals(Num::val('1'), 1);
-	 }
+	public function testValReturnsFloatWhenVarIsAStringCommaSeparatedFloat(): void
+	{
+		$this->assertEquals(1000.5, Num::val('1,000.5'));
+	}
 
-	 /**
-	  * val() should return a float if var is a fraction
-	  */
-	 public function testVal_returnsFloat_ifVarIsAStringFraction()
-	 {
-		 return $this->assertEquals(Num::val('1/2'), 0.5);
-	 }
+	public function testValReturnsZeroWhenVarIsANonNumericString(): void
+	{
+		$this->assertEquals(0, Num::val('foo'));
+	}
 
-	 /**
-	  * val() should return a flaot if var is a mixed number
-	  */
-	 public function testVal_returnsFloat_ifVarIsAStringMixedNumber()
-	 {
-		 return $this->assertEquals(Num::val('1 1/2'), 1.5);
-	 }
+	public function testValReturnsZeroWhenVarIsAnEmptyArray(): void
+	{
+		$this->assertEquals(0, Num::val([]));
+	}
 
-	 /**
-	  * val() should return an integer if var is a comma-separated integer
-	  */
-	 public function testVal_returnsInteger_ifVarIsAStringCommaSeparatedInteger()
-	 {
-		 return $this->assertEquals(Num::val('1,000'), 1000);
-	 }
+	public function testValReturnsOneWhenVarIsANonEmptyArray(): void
+	{
+		$this->assertEquals(1, Num::val([1, 2, 3]));
+	}
 
-	 /**
-	  * val() should return an integer if var is a comma-separated float
-	  */
-	 public function testVal_returnsFloat_ifVarIsAStringCommaSeparatedFloat()
-	 {
-		 return $this->assertEquals(Num::val('1,000.5'), 1000.5);
-	 }
+	public function testValReturnsOneWhenVarIsAnObject(): void
+	{
+		$this->assertEquals(1, Num::val(new \StdClass()));
+	}
 
-	 /**
-	  * val() should return a zero if var is a non-numeric string
-	  */
-	 public function testVal_returnsZero_ifVarIsANonNumericString()
-	 {
-		 return $this->assertEquals(Num::val('foo'), 0);
-	 }
+	public function testValReturnsIntWhenVarIsACardinalString(): void
+	{
+		$this->assertEquals(1, Num::val('one'));
+	}
 
-	 /**
-	  * val() should return a zero if var is an empty array
-	  */
-	 public function testVal_returnsZero_ifVarIsAnEmptyArray()
-	 {
-		 return $this->assertEquals(Num::val(array()), 0);
-	 }
+	public function testValReturnsIntWhenVarIsAnOrdinalString(): void
+	{
+		$this->assertEquals(1, Num::val('first'));
+	}
 
-	 /**
-	  * val() should return one if var is a non-empty array
-	  */
-	 public function testVal_returnsOne_ifVarIsANonEmptyArray()
-	 {
-		 return $this->assertEquals(Num::val(array(1)), 1);
-	 }
+	public function testValReturnsIntWhenVarIsShortName(): void
+	{
+		$this->assertEquals(222, Num::val('two hundred and twenty-two'));
+	}
 
-	 /**
-	  * val() should return one if var is an object
-	  */
-	 public function testVal_returnsOne_ifVarIsAnObject()
-	 {
-		 return $this->assertEquals(Num::val(new StdClass()), 1);
-	 }
-
-	 /**
-	  * val() should return int if var is a cardinal string (e.g., "one")
-	  */
-	 public function testVal_returnsInt_ifVarIsACardinalString()
-	 {
-		 return $this->assertEquals(Num::val('one'), 1);
-	 }
-
-	 /**
-	  * val() should return int if var is an ordinal string (e.g., "first")
-	  */
-	 public function testVal_returnsInt_ifVarIsAnOrdinalString()
-	 {
-		 return $this->assertEquals(Num::val('first'), 1);
-	 }
-
-	 /**
-	  * val() should return int if var is an short-length integer name (e.g., "one hundred")
-	  */
-	 public function testVal_returnsInt_ifVarIsShortName()
-	 {
-		 return $this->assertEquals(Num::val('two hundred and twenty-two'), 222);
-	 }
-
-	 /**
-	  * val() should return int if var is a medium-length integer name
-	  */
-	 public function testVal_returnsInt_ifVarIsMediumName()
-	 {
-		return $this->assertEquals(
-			Num::val('one hundred eleven thousand, one hundred and eleven'),
-			111111
+	public function testValReturnsIntWhenVarIsMediumName(): void
+	{
+		$this->assertEquals(
+			111111,
+			Num::val('one hundred eleven thousand, one hundred and eleven')
 		);
-	 }
+	}
 
-	 /**
-	  * val() should return int if var is a long-length integer name
-	  */
-	 public function testVal_returnsInt_ifVarIsLongName()
-	 {
-		 return $this->assertEquals(
-		 	Num::val('one million four hundred thirty-seven thousand five hundred twenty-two'),
-		 	1437522
-		 );
-	 }
+	public function testValReturnsIntWhenVarIsLongName(): void
+	{
+		$this->assertEquals(
+			1437522,
+			Num::val('one million four hundred thirty-seven thousand five hundred twenty-two')
+		);
+	}
 }

@@ -10,24 +10,16 @@ namespace Jstewmc\PhpHelpers;
  */
 class Num
 {
-	/* !Constants */
-
 	/**
-	 * @var  the regex for a comma-separated number (e.g., "1,000")
+	 * The regex for a comma-separated number (e.g., "1,000").
 	 */
 	const REGEX_NUMBER_COMMA = '#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#';
 
 	/**
-	 * @var  the regex for a mixed number (e.g., "1 1/2")
+	 * The regex for a mixed number (e.g., "1 1/2").
 	 */
 	const REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#';
 
-
-	/* !Public members */
-
-	/**
-	 * @var  array  an array of cardinal numbers (e.g., "one", "two", etc)
-	 */
 	public static $cardinals = array(
 		'one'       => 1,
 		'two'       => 2,
@@ -58,9 +50,6 @@ class Num
 		'ninety'    => 90
 	);
 
-	/**
-	 * @var  array  an array of ordinal numbers (e.g., "first", "second", etc)
-	 */
 	public static $ordinals = array(
 		'first'       => 1,
 		'second'      => 2,
@@ -91,9 +80,6 @@ class Num
 		'ninetieth'   => 90
 	);
 
-	/**
-	 * @var  array  an array of powers
-	 */
 	public static $powers = array(
 		'hundred'  => 100,
 		'thousand' => 1000,
@@ -101,13 +87,7 @@ class Num
 		'billion'  => 1000000000
 	);
 
-	/**
-	 * @var  array  an array of number suffixes
-	 */
 	public static $suffixes = array('th', 'st', 'nd', 'rd');
-
-
-	/* !Public methods */
 
 	/**
 	 * Returns true if float $a is almost equal to float $b
@@ -121,65 +101,24 @@ class Num
 	 * due to rounding is used. This value is known as the machine epsilon, and is the
 	 * largest acceptable difference in calculations (exclusive).
 	 *
-	 * @since  0.1.0
-	 *
-	 * @param  int|float  $a        the first value
-	 * @param  int|float  $b        the second value
-	 * @param  int|float  $epsilon  the maximum allowed difference (exclusive) (optional;
+	 * @param  float  $a        the first value
+	 * @param  float  $b        the second value
+	 * @param  float  $epsilon  the maximum allowed difference (exclusive) (optional;
 	 *    if omitted defaults to 0.00001)
 	 *
 	 * @return  bool  true if the values are equal
 	 *
-	 * @throws  \BadMethodCallException    if $a, $b, or $epsilon is null
-	 * @throws  \InvalidArgumentException  if $a is not a number
-	 * @throws  \InvalidArgumentException  if $b is not a number
-	 * @throws  \InvalidArgumentException  if $epsilon is not a number
 	 * @throws  \InvalidArgumentException  if $epsilon is not greater than zero
 	 *
 	 * @see  http://www.php.net/manual/en/language.types.float.php  man page on float type
 	 */
-	public static function almostEqual($a, $b, $epsilon = 0.00001)
+	public static function almostEqual(float $a, float $b, float $epsilon = 0.00001): bool
 	{
-		$isEqual = false;
-
-		if ($a !== null && $b !== null && $epsilon !== null) {
-			// if $a is a number
-			if (is_numeric($a)) {
-				// if $b is a number
-				if (is_numeric($b)) {
-					// if $epsilon is a number
-					if (is_numeric($epsilon)) {
-						// if $epsilon is greater than zero
-						if ($epsilon > 0) {
-							// roll it
-							$isEqual = (abs($a - $b) < $epsilon);
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__." expects the third parameter, epsilon, to be greater than zero"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects the third parameter, epsilon, to be a number"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects the second parameter, b, to be a number"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects the first parameter, a, to be a number"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects two or three numeric arguments"
-			);
+		if ($epsilon <= 0) {
+			throw new \InvalidArgumentException("epsilon should be greater than zero");
 		}
 
-		return $isEqual;
+		return (abs($a - $b) < $epsilon);
 	}
 
 	/**
@@ -201,67 +140,46 @@ class Num
 	 * @param  int|float  $lower   the number's lower bound (inclusive)
 	 * @param  int|float  $upper   the number's upper bound (inclusive)
 	 *
-	 * @return  int|float           the bounded value or false
+	 * @return  int|float  the bounded value or false
 	 *
-	 * @throws  \BadMethodCallException    if $number and $lower and/or $upper are not passed
 	 * @throws  \InvalidArgumentException  if $lower is passed and not a number
 	 * @throws  \InvalidArgumentException  if $upper is passed and not a number
-	 * @throws  \InvalidArgumentException  if $upper is not greater than or equal to $lower
+	 * @throws  \InvalidArgumentException  if $upper is less than $lower
 	 */
 	public static function bound($number, $lower = null, $upper = null)
 	{
-		$bounded = false;
+		if (!is_numeric($number)) {
+			throw new \InvalidArgumentException("number should be a number");
+		}
 
-		if ($number !== null && ($lower !== null || $upper !== null)) {
-			// if $number is a number
-			if (is_numeric($number)) {
-				// figure out which arguments were given
-				$hasLower = $lower !== null;
-				$hasUpper = $upper !== null;
-				// if $lower is omitted or it is a valid number
-				if ( ! $hasLower || is_numeric($lower)) {
-					// if $upper is omitted or it is a valid number
-					if ( ! $hasUpper || is_numeric($upper)) {
-						// if $lower argument is omitted or $upper argument is omitted or $upper is
-						//     greater than $lower
-						//
-						if ( ! $hasLower || ! $hasUpper || $upper >= $lower) {
-							// bound the value
-							if ($hasLower && $hasUpper) {
-								$bounded = min(max($number, $lower), $upper);
-							} elseif ($hasLower) {
-								$bounded = max($number, $lower);
-							} elseif ($hasUpper) {
-								$bounded = min($number, $upper);
-							}
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__." expects the third parameter, the upper bound ({$upper}), to be ".
-									"greater than or equal to the second parameter, the lower bound ({$lower})"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects the third parameter, the upper bound, to be a number"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects the second parameter, the lower bound, to be a number"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects the first parameter, number, to be a number"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects two or three numeric parameters"
+		$hasLower = $lower !== null;
+		$hasUpper = $upper !== null;
+
+		if ($hasLower && !is_numeric($lower)) {
+			throw new \InvalidArgumentException("lower bound should be a number");
+		}
+
+		if ($hasUpper && !is_numeric($upper)) {
+			throw new \InvalidArgumentException("upper bound should be a number");
+		}
+
+		if ($hasUpper && $upper <= $lower) {
+			throw new \InvalidArgumentException(
+				"upper bound should be greater than or equal to lower bound"
 			);
 		}
 
-		return $bounded;
+		if ($hasLower && $hasUpper) {
+			$value = min(max($number, $lower), $upper);
+		} elseif ($hasLower) {
+			$value = max($number, $lower);
+		} elseif ($hasUpper) {
+			$value = min($number, $upper);
+		} else {
+			$value = $number;
+		}
+
+		return $value;
 	}
 
 	/**
@@ -279,53 +197,23 @@ class Num
 	 *
 	 * @return  int|float  the ceiling-ed number
 	 *
-	 * @throws  \BadMethodCallException
-	 * @throws  \InvalidArgumentException  if $number or $multiple is null
 	 * @throws  \InvalidArgumentException  if $number is not a number
-	 * @throws  \InvalidArgumentException  if $multiple is not a number
-	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
+	 * @throws  \InvalidArgumentException  if $multiple is not a positive, non-zero number
 	 *
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
 	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function ceilTo($number, $multiple = 1)
 	{
-		$ceiled = false;
-
-		// if $number and $multiple are passed
-		// keep in mind, PHP's empty() will return true on zero
-		//
-		if ($number !== null && $multiple !== null) {
-			// if $number is actually a number
-			if (is_numeric($number)) {
-				// if $multiple is actually a number
-				if (is_numeric($multiple)) {
-					// if $multiple is greater than zero
-					if ($multiple > 0) {
-						// roll it
-						$ceiled = ceil($number / $multiple) * $multiple;
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter two, the multiple, to be greater than zero"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, the multiple, to be a number"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, the number, to be a number"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects one or two numeric parameters"
-			);
+		if (!is_numeric($number)) {
+			throw new \InvalidArgumentException("number should be a number");
 		}
 
-		return $ceiled;
+		if (!is_numeric($multiple) || $multiple <= 0) {
+			throw new \InvalidArgumentException("multiple should be a positive, non-zero number");
+		}
+
+		return ceil($number / $multiple) * $multiple;
 	}
 
 	/**
@@ -343,55 +231,29 @@ class Num
 	 *
 	 * @return  int|float
 	 *
-	 * @throws  \BadMethodCallException    if $number or $multiple is null
 	 * @throws  \InvalidArgumentException  if $number is not a number
-	 * @throws  \InvalidArgumentException  if $multiple is not a number
-	 * @throws  \InvalidArgumentException  if $multiple is not greater than zero
+	 * @throws  \InvalidArgumentException  if $multiple is not a positive, non-zero number
 	 *
 	 * @see  http://stackoverflow.com/a/1619284  Daren Schwneke's answer to "How to
 	 *    round up a number to the nearest 10?" on StackOverflow
 	 */
 	public static function floorTo($number, $multiple = 1)
 	{
-		$floored = false;
-
-		if ($number !== null && $multiple !== null) {
-			// if $number is actually a number
-			if (is_numeric($number)) {
-				// if $multiple is actually a number
-				if (is_numeric($multiple)) {
-					// if $multiple is greater than zero
-					if ($multiple > 0) {
-						// roll it
-						$floored = floor($number / $multiple) * $multiple;
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects the second parameter, the multiple, to be greater than zero"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects the second parameter, the multiple, to be numeric"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects the first parameter, the number, to be numeric"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects one or two numeric parameters"
-			);
+		if (!is_numeric($number)) {
+			throw new \InvalidArgumentException("number should be a number");
 		}
 
-		return $floored;
+		if (!is_numeric($multiple) || $multiple <= 0) {
+			throw new \InvalidArgumentException("multiple should be a positive, non-zero number");
+		}
+
+		return floor($number / $multiple) * $multiple;
 	}
 
 	/**
 	 * Alias for the isInt() method
 	 *
-	 * @see  \Jstewmc\PhpHelpers\Num::isInt()
+	 * @see  self::isInt()
 	 */
 	public static function is_int($number)
 	{
@@ -401,7 +263,7 @@ class Num
 	/**
 	 * Alias for the isNumeric() method
 	 *
-	 * @see  \Jstewmc\PhpHelpers\Num::isNumeric()
+	 * @see  self::isNumeric()
 	 */
 	public static function is_numeric($number)
 	{
@@ -428,68 +290,50 @@ class Num
 	 *
 	 * @return  bool  true if the number is a valid database id
 	 *
-	 * @throws  \BadMethodCallException    if $datatype is null
-	 * @throws  \InvalidArgumentException  if $datatype is not a string
-	 * @throws  \InvalidArgumentException  if $datatype is not an allowed value
+	 * @throws  \InvalidArgumentException  if $datatype is invalid
 	 */
-	public static function isId($number, $datatype = 'int')
+	public static function isId($number, string $datatype = 'int'): bool
 	{
-		$isId = false;
+		// if $number is not a positive integer
+		if (!is_numeric($number) || !self::isInt($number) || $number <= 0) {
+			return false;
+		}
 
-		if ($datatype !== null) {
-			if (is_string($datatype)) {
-				// if $number is actually a number
-				if (is_numeric($number)) {
-					// if the number is a positive integer
-					if (self::isInt($number) && $number > 0) {
-						// if the number is LTE the datatype's max value
-						switch (strtolower($datatype)) {
-							case 'tiny':
-							case 'tinyint':
-								$isId = ($number <= 255);
-								break;
+		switch (strtolower($datatype)) {
+			case 'tiny':
+			case 'tinyint':
+				$isId = ($number <= 255);
+				break;
 
-							case 'small':
-							case 'smallint':
-								$isId = ($number <= 65535);
-								break;
+			case 'small':
+			case 'smallint':
+				$isId = ($number <= 65535);
+				break;
 
-							case 'medium':
-							case 'mediumint':
-								$isId = ($number <= 8388607);
-								break;
+			case 'medium':
+			case 'mediumint':
+				$isId = ($number <= 8388607);
+				break;
 
-							case 'int':
-							case 'integer':
-								$isId = ($number <= 4294967295);
-								break;
+			case 'int':
+			case 'integer':
+				$isId = ($number <= 4294967295);
+				break;
 
-							case 'big':
-							case 'bigint':
-								// cast the datatype's maximum value to a float
-								// the integer's size is beyond PHP's maximum integer value
-								//
-								$isId = ($number <= (float) 18446744073709551615);
-								break;
+			case 'big':
+			case 'bigint':
+				// cast the datatype's maximum value to a float
+				// the integer's size is beyond PHP's maximum integer value
+				//
+				$isId = ($number <= (float)'18446744073709551615');
+				break;
 
-							default:
-								throw new \InvalidArgumentException(
-									__METHOD__." expects parameter two to be a valid datatype name such as: ".
-										"'tiny[int]', 'small[int]', 'medium[int]', 'int[eger]', or 'big[int]',".
-										"{$datatype} given"
-								);
-						}
-					}
-				}
-			} else {
+			default:
 				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter two to be a string, the datatype name"
+					"datatype should be one of the following: 'tiny[int]', " .
+						"'small[int]', 'medium[int]', 'int[eger]', or 'big[int]'; ".
+						"{$datatype} given"
 				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two parameters, a number and a datatype name"
-			);
 		}
 
 		return $isId;
@@ -513,7 +357,7 @@ class Num
 	 *
 	 * @return  bool  true if $number is an integer or integer string
 	 */
-	public static function isInt($number)
+	public static function isInt($number): bool
 	{
 		return is_numeric($number) && is_int(+$number);
 	}
@@ -547,7 +391,7 @@ class Num
 	 * @return  bool  true if $number is a number
 	 *
 	 */
-	public static function isNumeric($number)
+	public static function isNumeric($number): bool
 	{
 		return is_numeric($number)
 			|| (is_string($number) && preg_match(self::REGEX_NUMBER_MIXED, $number))
@@ -579,7 +423,7 @@ class Num
 	 *
 	 * @return  bool  true if $number is zero
 	 */
-	public static function isZero($number)
+	public static function isZero($number): bool
 	{
 		return $number === 0
 			|| $number === 0.0
@@ -608,51 +452,30 @@ class Num
 	 *     Num::normalize(150, 100);  // returns 1
 	 *
 	 * @param   int|float  $number  the number to normalize
-	 * @param   int|float  $max     the maximum to divide into $value
+	 * @param   int|float  $max     the maximum to divide into $value (optional;
+	 *   if omitted, defaults to 1)
 	 *
 	 * @return  int|float  a number between 1 and 0 (inclusive)
 	 *
-	 * @throws  \BadMethodCallException    if $number or $max are not passed
 	 * @throws  \InvalidArgumentException  if $number is not a number
-	 * @throws  \InvalidArgumentException  if $max is not a number
-	 * @throws  \InvalidArgumentException  if $max is not greater than zero
+	 * @throws  \InvalidArgumentException  if $max is not a positive number
+	 * @throws  \InvalidArgumentException  if $number is greater than $max
 	 */
-	public static function normalize($number, $max)
+	public static function normalize($number, $max = 1)
 	{
-		$norm = false;
-
-		// if $number and $max are given
-		if ($number !== null && $max !== null) {
-			// if $number is actually a number
-			if (is_numeric($number)) {
-				// if $max is a number
-				if (is_numeric($max)) {
-					// if $max is greater than zero
-					if ($max > 0) {
-						// bound the quotient between 0 and 1
-						$norm = self::bound($number / $max, 0, 1);
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter two, the max, to be greater than zero"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, the max, to be a number"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, the number, to be a number"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects two numeric parameters"
-			);
+		if (!is_numeric($number)) {
+			throw new \InvalidArgumentException("number should be a number");
 		}
 
-		return $norm;
+		if (!is_numeric($max) || $max <= 0) {
+			throw new \InvalidArgumentException("max should be a positive number");
+		}
+
+		if ($number > $max) {
+			throw new \InvalidArgumentException("max, {$max}, should be greater than number, {$number}");
+		}
+
+		return self::bound($number / $max, 0, 1);
 	}
 
 	/**
@@ -677,40 +500,15 @@ class Num
 	 */
 	public static function roundTo($number, $multiple = 1)
 	{
-		$round = false;
-
-		// if $number and $multiple exist
-		if ($number !== null && $multiple !== null) {
-			// if $number is actually a number
-			if (is_numeric($number)) {
-				// if $multiple is actually a number
-				if (is_numeric($multiple)) {
-					// if $multiple is greater than zero
-					if ($multiple > 0) {
-						// roll it
-						$round = round($number / $multiple) * $multiple;
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__." expects parameter two, the multiple, to be greater than zero"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__." expects parameter two, the multiple, to be a number"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__." expects parameter one, the number, to be a number"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__." expects one or two numeric parameters"
-			);
+		if (!is_numeric($number)) {
+			throw new \InvalidArgumentException("number should be a number");
 		}
 
-		return $round;
+		if (!is_numeric($multiple) || $multiple <= 0) {
+			throw new \InvalidArgumentException("multiple should be a positive number");
+		}
+
+		return round($number / $multiple) * $multiple;
 	}
 
 	/**
@@ -785,112 +583,109 @@ class Num
 	 */
 	public static function val($var)
 	{
-		$value = false;
-
-		// if $var is a string, trim it
-		if (is_string($var)) {
-			$var = trim($var);
+		// if the value is an easy type, short-circuit
+		if (is_numeric($var)) {
+			return +$var;
+		} elseif (is_array($var)) {
+			return min(count($var), 1);
+		} elseif (is_object($var)) {
+			return 1;
+		} elseif (is_bool($var)) {
+			return (int) $var;
 		}
 
-		// if the string is not already a (float), (integer), or numeric (string)
-		if ( ! is_numeric($var)) {
-			// if the number is a string
-			if (is_string($var)) {
-				// if the number is a number with commas (e.g., "1,000")
-				// else, if the number is a fraction or mixed number (e.g., "1/2")
-				// else, if the number has a suffix (e.g., "1st")
-				// else, if the number is the name for a number  (e.g., "one hundred")
-				// otherwise, it's zero
-				//
-				if (preg_match(self::REGEX_NUMBER_COMMA, $var)) {
-					$value = +str_replace(',', '', $var);
-				} elseif (preg_match(self::REGEX_NUMBER_MIXED, $var, $m)) {
-					$value = $m[2] + $m[3] / $m[4];
-				} elseif (is_numeric(substr($var, 0, 1)) && in_array(substr($var, -2), self::$suffixes)) {
-					$value = substr($var, 0, -2);
-				} else {
-					// if the string is composed *only* of valid number names
-					//
-					// first, lowercase $var, strip commas, and replace "-" and " and " with spaces
-					// then, explode on space, trim, and filter out empty values
-					// finally, merge all the possible numeric string values together
-					//
-					$words = strtolower($var);
-					$words = str_ireplace(',', '', $words);
-					$words = str_ireplace(array('-', ' and '), ' ', $words);
-					$words = array_filter(array_map('trim', explode(' ', $words)));
-					$names = array_merge(
-						array_keys(self::$cardinals),
-						array_keys(self::$ordinals),
-						array_keys(self::$powers)
-					);
-					if (count(array_diff($words, $names)) === 0) {
-						// replace the words with their numeric values
-						$var = strtr(
-							strtolower($var),
-							array_merge(
-								self::$cardinals,
-								self::$ordinals,
-								self::$powers,
-								array('and' => '')
-							)
-						);
-						// convert the numeric values to integers
-					    $parts = array_map(
-					        function ($val) {
-					            return intval($val);
-					        },
-					        preg_split('/[\s-]+/', $var)
-					    );
+		// otherwise, if it's not a string by now, short-circuit
+		if (!is_string($var)) {
+			return false;
+		}
 
-					    $stack = new \SplStack();  // the current work stack
-					    $sum   = 0;               // the running total
-					    $last  = null;            // the last part
+		$var = trim($var);
 
-						// loop through the parts
-					    foreach ($parts as $part) {
-					    	// if the stack isn't empty
-					        if ( ! $stack->isEmpty()) {
-					            // we're part way through a phrase
-					            if ($stack->top() > $part) {
-					                // decreasing step, e.g. from hundreds to ones
-					                if ($last >= 1000) {
-					                    // If we drop from more than 1000 then we've finished the phrase
-					                    $sum += $stack->pop();
-					                    // This is the first element of a new phrase
-					                    $stack->push($part);
-					                } else {
-					                    // Drop down from less than 1000, just addition
-					                    // e.g. "seventy one" -> "70 1" -> "70 + 1"
-					                    $stack->push($stack->pop() + $part);
-					                }
-					            } else {
-					                // Increasing step, e.g ones to hundreds
-					                $stack->push($stack->pop() * $part);
-					            }
-					        } else {
-					            // This is the first element of a new phrase
-					            $stack->push($part);
-					        }
-
-					        // Store the last processed part
-					        $last = $part;
-					    }
-
-					    $value = $sum + $stack->pop();
-					} else {
-						$value = 0;
-					}
-				}
-			} elseif (is_array($var)) {
-				$value = min(count($var), 1);
-			} elseif (is_object($var)) {
-				$value = 1;
-			} elseif (is_bool($var)) {
-				$value = (int) $var;
-			}
+		// if the number is a number with commas (e.g., "1,000")
+		// else, if the number is a fraction or mixed number (e.g., "1/2")
+		// else, if the number has a suffix (e.g., "1st")
+		// else, if the number is the name for a number  (e.g., "one hundred")
+		// otherwise, it's zero
+		//
+		if (preg_match(self::REGEX_NUMBER_COMMA, $var)) {
+			$value = +str_replace(',', '', $var);
+		} elseif (preg_match(self::REGEX_NUMBER_MIXED, $var, $m)) {
+			$value = ($m[2] === '' ? 0 : $m[2]) + $m[3] / $m[4];
+		} elseif (is_numeric(substr($var, 0, 1)) && in_array(substr($var, -2), self::$suffixes)) {
+			$value = substr($var, 0, -2);
 		} else {
-			$value = +$var;
+			// if the string is composed *only* of valid number names
+			//
+			// first, lowercase $var, strip commas, and replace "-" and " and " with spaces
+			// then, explode on space, trim, and filter out empty values
+			// finally, merge all the possible numeric string values together
+			//
+			$words = strtolower($var);
+			$words = str_ireplace(',', '', $words);
+			$words = str_ireplace(array('-', ' and '), ' ', $words);
+			$words = array_filter(array_map('trim', explode(' ', $words)));
+			$names = array_merge(
+				array_keys(self::$cardinals),
+				array_keys(self::$ordinals),
+				array_keys(self::$powers)
+			);
+			if (count(array_diff($words, $names)) === 0) {
+				// replace the words with their numeric values
+				$var = strtr(
+					strtolower($var),
+					array_merge(
+						self::$cardinals,
+						self::$ordinals,
+						self::$powers,
+						array('and' => '')
+					)
+				);
+				// convert the numeric values to integers
+			    $parts = array_map(
+			        function ($val) {
+			            return intval($val);
+			        },
+			        preg_split('/[\s-]+/', $var)
+			    );
+
+			    $stack = new \SplStack();  // the current work stack
+			    $sum   = 0;                // the running total
+			    $last  = null;             // the last part
+
+				// loop through the parts
+			    foreach ($parts as $part) {
+			    	// if the stack isn't empty
+			        if ( ! $stack->isEmpty()) {
+			            // we're part way through a phrase
+			            if ($stack->top() > $part) {
+			                // decreasing step, e.g. from hundreds to ones
+			                if ($last >= 1000) {
+			                    // If we drop from more than 1000 then we've finished the phrase
+			                    $sum += $stack->pop();
+			                    // This is the first element of a new phrase
+			                    $stack->push($part);
+			                } else {
+			                    // Drop down from less than 1000, just addition
+			                    // e.g. "seventy one" -> "70 1" -> "70 + 1"
+			                    $stack->push($stack->pop() + $part);
+			                }
+			            } else {
+			                // Increasing step, e.g ones to hundreds
+			                $stack->push($stack->pop() * $part);
+			            }
+			        } else {
+			            // This is the first element of a new phrase
+			            $stack->push($part);
+			        }
+
+			        // Store the last processed part
+			        $last = $part;
+			    }
+
+			    $value = $sum + $stack->pop();
+			} else {
+				$value = 0;
+			}
 		}
 
 		return $value;
