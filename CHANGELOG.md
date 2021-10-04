@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated `PHPUnit` from version 4 to 9.
 - Moved tests for `Dir` from concrete files and folders to virtual file system using [bovigo/vfsStream](https://github.com/bovigo/vfsStream).
 - Ignored `composer.phar`, `PHPUnit` files, and some system files like `.DS_Store`.
+- Updated `Num::isNumeric()` to support english phrases like `two hundred and fifty-six`.
 
 ### Removed
 

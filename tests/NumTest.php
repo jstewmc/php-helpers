@@ -344,6 +344,11 @@ class NumTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Num::isNumeric('1,000'));
     }
 
+    public function testIsNumericReturnsTrueWhenNumberIsEnglish(): void
+    {
+        $this->assertTrue(Num::isNumeric('two hundred and fifty-six'));
+    }
+
     public function testIsZeroReturnsFalseWhenNumberIsNull(): void
     {
         $this->assertFalse(Num::isZero(null));

@@ -379,8 +379,7 @@ class Num
     public static function isNumeric($number): bool
     {
         return is_numeric($number)
-            || (is_string($number) && preg_match(self::REGEX_NUMBER_MIXED, $number))
-            || (is_string($number) && preg_match(self::REGEX_NUMBER_COMMA, $number));
+            || (is_string($number) && self::val($number) !== 0);
     }
 
     /**
