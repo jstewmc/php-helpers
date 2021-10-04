@@ -1,6 +1,6 @@
 <?php
 
-use Jstewmc\PhpHelpers\Boolean;
+namespace Jstewmc\PhpHelpers;
 
 class BooleanTest extends \PHPUnit\Framework\TestCase
 {
@@ -11,18 +11,18 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function falsyProvider()
 	{
-		return array(
-			array(null),
-			array(''),
-			array('no'),
-			array('off'),
-			array('false'),
-			array('0'),
-			array('0.0'),
-			array(0),
-			array(0.0),
-			array(array())
-		);
+		return [
+			[null],
+			[''],
+			['no'],
+			['off'],
+			['false'],
+			['0'],
+			['0.0'],
+			[0],
+			[0.0],
+			[[]]
+		];
 	}
 
 	/**
@@ -30,25 +30,25 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
 	 */
 	public function truthyProvider()
 	{
-		return array(
-			array('on'),
-			array('yes'),
-			array('true'),
-			array('foo'),
-			array('1'),
-			array(-1),
-			array(-1.0),
-			array(1),
-			array(1.0),
-			array(array('foo', 'bar', 'baz')),
-			array(array('foo' => null)),
-			array(new StdClass())
-		);
+		return [
+			['on'],
+			['yes'],
+			['true'],
+			['foo'],
+			['1'],
+			[-1],
+			[-1.0],
+			[1],
+			[1.0],
+			[['foo', 'bar', 'baz']],
+			[['foo' => null]],
+			[new \StdClass()]
+		];
 	}
 
 	public function testBooltostrThrowsInvalidArgumentExceptionWhenFormatIsInvalid(): void
 	{
-		$this->expectException(InvalidArgumentException::class);
+		$this->expectException(\InvalidArgumentException::class);
 
 		Boolean::booltostr(true, 'foo');
 	}

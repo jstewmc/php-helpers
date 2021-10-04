@@ -1,6 +1,6 @@
 <?php
 
-use Jstewmc\PhpHelpers\Str;
+namespace Jstewmc\PhpHelpers;
 
 class StrTest extends \PHPUnit\Framework\TestCase
 {
@@ -86,7 +86,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
 	public function testPasswordThrowsInvalidArgumentExceptionWhenCharsetIsInvalid(): void
 	{
-		$this->expectException(InvalidArgumentException::class);
+		$this->expectException(\InvalidArgumentException::class);
 
 		Str::password(8, ['foo' => 1]);
 	}
@@ -105,14 +105,14 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
 	public function testRandThrowsInvalidArgumentExceptionWhenCharsetsIsNeitherStringNorArray(): void
 	{
-		$this->expectException(InvalidArgumentException::class);
+		$this->expectException(\InvalidArgumentException::class);
 
 		Str::rand(8, 1);
 	}
 
 	public function testRandThrowsInvalidArgumentExceptionWhenChartsetIsInvalid(): void
 	{
-		$this->expectException('InvalidArgumentException');
+		$this->expectException(\InvalidArgumentException::class);
 
 		Str::rand(8, 'foo');
 	}
@@ -183,7 +183,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
 	public function testStrtobytesThrowsInvalidArgumentExceptionWhenStringIsNotValid(): void
 	{
-		$this->expectException('InvalidArgumentException');
+		$this->expectException(\InvalidArgumentException::class);
 
 		Str::strtobytes('foo');
 	}
