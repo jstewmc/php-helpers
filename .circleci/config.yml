@@ -8,7 +8,7 @@ orbs:
   codecov: codecov/codecov@3.1.0
 
 jobs:
-  test-73:
+  build-php73:
     docker:
       - image: circleci/php:7.3-node-browsers
     steps:
@@ -34,7 +34,7 @@ jobs:
       - run: ./vendor/bin/phpcs .
       - run: ./vendor/bin/phpunit
 
-  test-74:
+  build-php74:
     docker:
       - image: circleci/php:7.4-node-browsers
     steps:
@@ -60,7 +60,7 @@ jobs:
       - run: ./vendor/bin/phpcs .
       - run: ./vendor/bin/phpunit
 
-  test-80:
+  build-php80:
     docker:
       - image: circleci/php:8.0-node-browsers
     steps:
@@ -93,6 +93,6 @@ workflows:
   version: 2
   test-php-versions:
     jobs:
-      - build-php7.3
-      - build-php7.4
-      - build-php8.0
+      - build-php73
+      - build-php74
+      - build-php80
