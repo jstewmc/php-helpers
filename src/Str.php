@@ -60,7 +60,8 @@ class Str
      *
      * @see  self::isBool()
      */
-    public static function is_bool($string): bool  // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps  -- to match PHP's native method
+    public static function is_bool($string): bool
     {
         return self::isBool($string);
     }
@@ -153,7 +154,7 @@ class Str
         int $length = 8,
         array $rules = ['lower' => 1, 'upper' => 1, 'number' => 1, 'symbol' => 1]
     ): string {
-        // if the number of required characters is LTE the desired length
+        // if the number of required characters is GTE the desired length
         if (array_sum($rules) > $length) {
             throw new \InvalidArgumentException(
                 "the number of required characters should be less than or equal to the length"

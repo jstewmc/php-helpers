@@ -110,6 +110,11 @@ class NumTest extends \PHPUnit\Framework\TestCase
         Num::bound(1, 2, 0);
     }
 
+    public function testBoundReturnsNumberWhenBoundsDoNotExist(): void
+    {
+        $this->assertEquals(1, Num::bound(1));
+    }
+
     public function testBoundReturnsUpperWhenNumberIsGreaterThanUpperBound(): void
     {
         $this->assertEquals(1, Num::bound(2, null, 1));
@@ -498,9 +503,6 @@ class NumTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1, Num::val('1'));
     }
 
-    /**
-     * @group  foo
-     */
     public function testValReturnsFloatWhenVarIsAStringFraction(): void
     {
         $this->assertEquals(0.5, Num::val('1/2'));

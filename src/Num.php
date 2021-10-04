@@ -255,7 +255,8 @@ class Num
      *
      * @see  self::isInt()
      */
-    public static function is_int($number)   // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps -- to match PHP's native method
+    public static function is_int($number)
     {
         return self::isInt($number);
     }
@@ -265,7 +266,8 @@ class Num
      *
      * @see  self::isNumeric()
      */
-    public static function is_numeric($number)  // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps -- to match PHP's native method
+    public static function is_numeric($number)
     {
         return self::isNumeric($number);
     }

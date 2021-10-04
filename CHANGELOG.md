@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 
 - Lots and lots of unnecessary comments :)
+- Removed `Dir::cp()` and `Dir::rm()` aliases (they would not have worked anyway).
 
 ## [0.1.1] - 2014-10-18
 

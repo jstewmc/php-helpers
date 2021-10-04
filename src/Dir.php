@@ -145,16 +145,6 @@ class Dir
     }
 
     /**
-     * Alias for Dir::copy() method
-     *
-     * @see  \Jstewmc\PhpHelpers\Dir::copy()
-     */
-    public function cp(string $source, string $destination, $mode = 0777): bool
-    {
-        return self::cp($source, $destination, $mode);
-    }
-
-    /**
      * Deletes a non-empty directory and its sub-directories
      *
      * PHP's native rmdir() function requires the directory to be empty. I'll
@@ -233,15 +223,5 @@ class Dir
         $isSuccess = rmdir($directory.DIRECTORY_SEPARATOR.$entity);
 
         return $isSuccess;
-    }
-
-    /**
-     * Alias for Dir::remove() method
-     *
-     * @see  \Jstewmc\PhpHelpers\Dir::remove()
-     */
-    public function rm(string $directory, string $container): bool
-    {
-        return self::rm($directory, $container);
     }
 }

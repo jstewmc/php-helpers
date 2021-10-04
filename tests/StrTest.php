@@ -91,6 +91,13 @@ class StrTest extends \PHPUnit\Framework\TestCase
         Str::password(8, ['foo' => 1]);
     }
 
+    public function testPasswordThrowsInvalidArgumentExceptionWhenRequirementsExceedLimit(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Str::password(8, ['alpha' => 16]);
+    }
+
     public function testPasswordReturnsStringOfLengthWhenLengthIsInteger(): void
     {
         $this->assertEquals(strlen(Str::password(16)), 16);
@@ -164,6 +171,16 @@ class StrTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($result));
         $this->assertEquals($result[0], '123');
         $this->assertEquals($result[1], 'foo');
+    }
+
+    public function testStartsWithReturnsFalseWhenNeedleIsEmpty(): void
+    {
+        $this->assertFalse(Str::startsWith('foobar', ''));
+    }
+
+    public function testStartsWithReturnsFalseWhenHaystackIsEmpty(): void
+    {
+        $this->assertFalse(Str::startsWith('', 'foo'));
     }
 
     public function testStartsWithReturnsFalseWhenHaystackDoesNotStartWithNeedle(): void

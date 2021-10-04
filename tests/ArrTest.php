@@ -181,6 +181,20 @@ class ArrTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(Arr::isEmpty('foo', ['foo' => 0], false));
     }
 
+    public function testKeyStringReplaceThrowsInvalidArgumentExceptionWhenSearchIsInvalid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Arr::keyStringReplace(1, 'bar', []);
+    }
+
+    public function testKeyStringReplaceThrowsInvalidArgumentExceptionWhenReplaceIsInvalid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        Arr::keyStringReplace('foo', 1, []);
+    }
+
     public function testKeyStringReplaceReturnsEmptyArrayWhenInputArrayIsEmpty(): void
     {
         $this->assertEquals([], Arr::keyStringReplace('foo', 'bar', []));
@@ -260,6 +274,7 @@ class ArrTest extends \PHPUnit\Framework\TestCase
     {
         $array = [
             ['foo' => 2],
+            ['foo' => 2],
             ['foo' => 3],
             ['foo' => 1]
         ];
@@ -267,10 +282,30 @@ class ArrTest extends \PHPUnit\Framework\TestCase
         $expected = [
             ['foo' => 1],
             ['foo' => 2],
+            ['foo' => 2],
             ['foo' => 3]
         ];
 
         $actual = Arr::sortByField($array, 'foo');
+
+        $this->assertEquals($actual, $expected);
+    }
+
+    public function testSortByFieldReturnsSortedArrayWhenSortIsDescending(): void
+    {
+        $array = [
+            ['foo' => 2],
+            ['foo' => 3],
+            ['foo' => 1]
+        ];
+
+        $expected = [
+            ['foo' => 3],
+            ['foo' => 2],
+            ['foo' => 1]
+        ];
+
+        $actual = Arr::sortByField($array, 'foo', 'desc');
 
         $this->assertEquals($actual, $expected);
     }
@@ -298,9 +333,9 @@ class ArrTest extends \PHPUnit\Framework\TestCase
 
     public function testSortByMethodReturnsSortedArrayWhenMethodIsCallable(): void
     {
-        $input = [new Foo(2), new Foo(3), new Foo(1)];
+        $input = [new Foo(2), new Foo(2), new Foo(3), new Foo(1)];
 
-        $expected = [new Foo(1), new Foo(2), new Foo(3)];
+        $expected = [new Foo(1), new Foo(2), new Foo(2), new Foo(3)];
         $actual = Arr::sortByMethod($input, 'bar');
 
         $this->assertEquals($expected, $actual);
@@ -332,7 +367,17 @@ class ArrTest extends \PHPUnit\Framework\TestCase
         $array = [new Foo(2), new Foo(3), new Foo(1)];
 
         $expected = [new Foo(1), new Foo(2), new Foo(3)];
-        $actual = Arr::sortByMethod($array, 'bar');
+        $actual = Arr::sortByProperty($array, 'bar');
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testSortByPropertyReturnsSortedArrayWhenSortIsDescending(): void
+    {
+        $array = [new Foo(2), new Foo(3), new Foo(1)];
+
+        $expected = [new Foo(3), new Foo(2), new Foo(1)];
+        $actual = Arr::sortByProperty($array, 'bar', 'desc');
 
         $this->assertEquals($expected, $actual);
     }

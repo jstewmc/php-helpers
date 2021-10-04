@@ -12,6 +12,7 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
     public function falsyProvider()
     {
         return [
+            [false],
             [null],
             [''],
             ['no'],
@@ -31,6 +32,7 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
     public function truthyProvider()
     {
         return [
+            [true],
             ['on'],
             ['yes'],
             ['true'],
@@ -54,7 +56,7 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
         Boolean::booltostr(true, 'bar');
     }
 
-    public function testBooltostrReturnsStringTrueWhenBoolIsTrue(): void
+    public function testBooltostrReturnsStringTrueWhenFormatIsTrue(): void
     {
         $this->assertEquals(Boolean::booltostr(true), 'true');
     }
@@ -62,6 +64,16 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
     public function testBooltostrReturnsStringFalseWhenBoolIsFalse(): void
     {
         $this->assertEquals(Boolean::booltostr(false), 'false');
+    }
+
+    public function testBooltostrReturnsStringWhenFormatIsYesNo(): void
+    {
+        $this->assertEquals(Boolean::booltostr(true, 'yes-no'), 'yes');
+    }
+
+    public function testBooltostrReturnsStringWhenFormatIsOnOff(): void
+    {
+        $this->assertEquals(Boolean::booltostr(true, 'on-off'), 'on');
     }
 
     /**
