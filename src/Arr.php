@@ -33,6 +33,7 @@ class Arr
      *     to be PSR-2-compliant and to return a single array of rows instead of an
      *     array of columns).
      */
+    // phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
     public static function diff(array $from, array $to)
     {
         $diffs = [];
@@ -91,6 +92,7 @@ class Arr
 
         return $diffs;
     }
+    // phpcs:enable
 
     /**
      * Filters an array by key
@@ -568,6 +570,7 @@ class Arr
     private static function getNextPermutation(array $p, int $size)
     {
         // slide down the array looking for where we're smaller than the next guy
+        // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedFor
         for ($i = $size - 1; $i >= 0 && $p[$i] >= $p[$i+1]; --$i) {
         }
 
@@ -578,6 +581,7 @@ class Arr
         }
 
         // slide down the array looking for a bigger number than what we found before
+        // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedFor
         for ($j = $size; $j >= 0 && $p[$j] <= $p[$i]; --$j) {
         }
 

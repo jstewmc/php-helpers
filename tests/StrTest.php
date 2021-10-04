@@ -208,7 +208,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Str::strtocamelcase(';foo *()_bar!'), 'fooBar');
     }
 
-    public function testStrtocamelcase_returnCamelCaseString_ifStringContainsNumbers(): void
+    public function testStrtocamelcaseReturnsCamelCaseStringWhenStringContainsNumbers(): void
     {
         $this->assertEquals(Str::strtocamelcase('f00 b3r'), 'f00B3r');
     }

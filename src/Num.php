@@ -13,12 +13,12 @@ class Num
     /**
      * The regex for a comma-separated number (e.g., "1,000").
      */
-    const REGEX_NUMBER_COMMA = '#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#';
+    public const REGEX_NUMBER_COMMA = '#^([1-9](?:\d*|(?:\d{0,2})(?:,\d{3})*)(?:\.\d*[0-9])?|0?\.\d*[0-9]|0)$#';
 
     /**
      * The regex for a mixed number (e.g., "1 1/2").
      */
-    const REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#';
+    public const REGEX_NUMBER_MIXED = '#^((\d+)\s+)?(\d+)[/\\\](\d+)$#';
 
     public static $cardinals = [
         'one'       => 1,
@@ -255,7 +255,7 @@ class Num
      *
      * @see  self::isInt()
      */
-    public static function is_int($number)
+    public static function is_int($number)   // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return self::isInt($number);
     }
@@ -265,7 +265,7 @@ class Num
      *
      * @see  self::isNumeric()
      */
-    public static function is_numeric($number)
+    public static function is_numeric($number)  // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return self::isNumeric($number);
     }
@@ -299,40 +299,26 @@ class Num
             return false;
         }
 
-        switch (strtolower($datatype)) {
-            case 'tiny':
-            case 'tinyint':
-                $isId = ($number <= 255);
-                break;
+        $datatype = strtolower($datatype);
 
-            case 'small':
-            case 'smallint':
-                $isId = ($number <= 65535);
-                break;
-
-            case 'medium':
-            case 'mediumint':
-                $isId = ($number <= 8388607);
-                break;
-
-            case 'int':
-            case 'integer':
-                $isId = ($number <= 4294967295);
-                break;
-
-            case 'big':
-            case 'bigint':
-                // cast the datatype's maximum value to a float
-                // the integer's size is beyond PHP's maximum integer value
-                $isId = ($number <= (float)'18446744073709551615');
-                break;
-
-            default:
-                throw new \InvalidArgumentException(
-                    "datatype should be one of the following: 'tiny[int]', " .
-                        "'small[int]', 'medium[int]', 'int[eger]', or 'big[int]'; ".
-                        "{$datatype} given"
-                );
+        if ($datatype === 'tiny' || $datatype === 'tinyint') {
+            $isId = ($number <= 255);
+        } elseif ($datatype === 'small' || $datatype === 'smallint') {
+            $isId = ($number <= 65535);
+        } elseif ($datatype === 'medium' || $datatype === 'mediumint') {
+            $isId = ($number <= 8388607);
+        } elseif ($datatype === 'int' || $datatype === 'integer') {
+            $isId = ($number <= 4294967295);
+        } elseif ($datatype === 'big' || $datatype === 'bigint') {
+            // cast the datatype's maximum value to a float, because the
+            // integer's size may be beyond PHP's maximum integer value
+            $isId = ($number <= (float)'18446744073709551615');
+        } else {
+            throw new \InvalidArgumentException(
+                "datatype should be one of the following: 'tiny[int]', " .
+                    "'small[int]', 'medium[int]', 'int[eger]', or 'big[int]'; ".
+                    "{$datatype} given"
+            );
         }
 
         return $isId;
@@ -580,6 +566,7 @@ class Num
      *    words to numbers in PHP" on StackOverflow (edited to use static arrays of
      *    cardinals, ordinals, and powers and to use intval() instead of floatval())
      */
+    // phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh, Generic.Metrics.NestingLevel.TooHigh
     public static function val($var)
     {
         // if the value is an easy type, short-circuit
@@ -687,4 +674,5 @@ class Num
 
         return $value;
     }
+    // phpcs:enable
 }

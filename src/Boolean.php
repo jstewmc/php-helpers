@@ -26,41 +26,24 @@ class Boolean
      */
     public static function booltostr(bool $bool, string $format = 'true-false'): string
     {
-        // switch on the lower-case $format
-        switch (strtolower($format)) {
-            case 'oo':
-            case 'o/o':
-            case 'o-o':
-            case 'onoff':
-            case 'on/off':
-            case 'on-off':
-                $string = $bool ? 'on' : 'off';
-                break;
+        $format = strtolower($format);
 
-            case 'tf':
-            case 't/f':
-            case 't-f':
-            case 'truefalse':
-            case 'true/false':
-            case 'true-false':
-                $string = $bool ? 'true' : 'false';
-                break;
-
-            case 'yn':
-            case 'y/n':
-            case 'y-n':
-            case 'yesno':
-            case 'yes/no':
-            case 'yes-no':
-                $string = $bool ? 'yes' : 'no';
-                break;
-
-            default:
-                throw new \InvalidArgumentException(
-                    " format should be one of the following: ".
-                        "'t[/-]f', 'true[/-]false', 'y[/-]s', 'yes[/-]no', 'o[/-]o', or ".
-                        "'on[/-]off', '$format' given"
-                );
+        // Count letters to indicate the chosen format:
+        //   1. 'oo', 'o/o', 'o-o', 'onoff', 'on/off', or 'on-off'
+        //   2. 'tf', 't/f', 't-f', 'truefalse', 'true/false', or 'true-false'
+        //   3. 'yn', 'y/n', 'y-n', 'yesno', 'yes/no', or 'yes-no'
+        if (substr_count($format, 'o') > 1) {
+            $string = $bool ? 'on' : 'off';
+        } elseif (substr_count($format, 't') === 1 && substr_count($format, 'f') === 1) {
+            $string = $bool ? 'true' : 'false';
+        } elseif (substr_count($format, 'y') === 1 && substr_count($format, 'n') === 1) {
+            $string = $bool ? 'yes' : 'no';
+        } else {
+            throw new \InvalidArgumentException(
+                " format should be one of the following: ".
+                    "'t[/-]f', 'true[/-]false', 'y[/-]s', 'yes[/-]no', 'o[/-]o', or ".
+                    "'on[/-]off', '$format' given"
+            );
         }
 
         return $string;
@@ -127,27 +110,14 @@ class Boolean
 
         // if $var is a string
         if (is_string($var)) {
-            // switch on the string
-            // the strings '1', 'on', 'yes', and 'true' are considered true
-            // the strings '0', 'no', 'off', and 'false' are considered false
-            // any other non-empty string is true
-            switch (strtolower($var)) {
-                case '1':
-                case 'on':
-                case 'yes':
-                case 'true':
-                    $value = true;
-                    break;
-
-                case '0':
-                case 'no':
-                case 'off':
-                case 'false':
-                    $value = false;
-                    break;
-
-                default:
-                    $value = ! empty($var);
+            // switch on the string (any non-empty string is true)
+            $var = strtolower($var);
+            if (in_array($var, ['1', 'on', 'yes', 'true'])) {
+                $value = true;
+            } elseif (in_array($var, ['0', 'no', 'off', 'false'])) {
+                $value = false;
+            } else {
+                $value = ! empty($var);
             }
         } elseif (is_numeric($var)) {
             // any non-zero integer or float is considered true

@@ -4,9 +4,6 @@ namespace Jstewmc\PhpHelpers;
 
 use org\bovigo\vfs\{vfsStream, vfsStreamDirectory};
 
-/**
- * @group  jack
- */
 class DirTest extends \PHPUnit\Framework\TestCase
 {
 

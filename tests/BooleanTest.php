@@ -50,7 +50,8 @@ class BooleanTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Boolean::booltostr(true, 'foo');
+        // Hmm, "foo" will fail, because it contains two "o" characters
+        Boolean::booltostr(true, 'bar');
     }
 
     public function testBooltostrReturnsStringTrueWhenBoolIsTrue(): void

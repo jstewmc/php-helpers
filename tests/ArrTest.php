@@ -2,9 +2,6 @@
 
 namespace Jstewmc\PhpHelpers;
 
-/**
- * A class to test the object methods
- */
 class Foo
 {
     public $bar;
@@ -20,6 +17,7 @@ class Foo
     }
 }
 
+// phpcs:ignore PSR1.Classes.ClassDeclaration.MultipleClasses
 class ArrTest extends \PHPUnit\Framework\TestCase
 {
     public function testDiffReturnsArrayWhenDiffIsInsert(): void

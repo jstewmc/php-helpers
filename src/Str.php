@@ -60,7 +60,7 @@ class Str
      *
      * @see  self::isBool()
      */
-    public static function is_bool($string): bool
+    public static function is_bool($string): bool  // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
         return self::isBool($string);
     }

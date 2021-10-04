@@ -367,7 +367,7 @@ class NumTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsZeroReturnsTrueWhenNumberIsIntZero($number): void
     {
-        $this->assertTrue(Num::isZero(0));
+        $this->assertTrue(Num::isZero($number));
     }
 
     public function testNormalizeThrowsInvalidArgumentExceptionWhenNumberIsNaN(): void
