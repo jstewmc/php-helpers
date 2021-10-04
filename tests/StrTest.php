@@ -100,7 +100,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
     {
         $results = Str::password(12, ['lower' => 4, 'upper' => 4, 'number' => 4]);
 
-        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9]{12}$/', $results);
+        $this->assertRegExp('/^[a-zA-Z0-9]{12}$/', $results);
     }
 
     public function testRandThrowsInvalidArgumentExceptionWhenCharsetsIsNeitherStringNorArray(): void
@@ -124,7 +124,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
     public function testRandReturnsStringOfCharsetsWhenCharsetsAreValid(): void
     {
-        $this->assertMatchesRegularExpression(
+        $this->assertRegExp(
             '/^[0-9A-Z]{8}$/',
             Str::rand(8, ['upper', 'number'])
         );
