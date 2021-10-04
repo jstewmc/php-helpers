@@ -10,52 +10,29 @@ class Dir
 	/**
 	 * Returns a relative path (aka, "rel") from an absolute path (aka, "abs")
 	 *
+	 * For example:
+	 *
+	 *   Dir::abs2rel('/foo/bar/baz', '/foo/bar');  // returns "baz"
+	 *
 	 * @param   string  $absolute  the abosolute path (e.g., 'C:\path\to\folder')
 	 * @param   string  $base      the relative base (e.g., 'C:\path\to')
 	 *
 	 * @return  string  the relative path (e.g., 'folder') or false on failure
-	 *
-	 * @throws  \BadMethodCallException    if $absolute or $base is null
-	 * @throws  \InvalidArgumentException  if $absolute is not a string
-	 * @throws  \InvalidArgumentException  if $base is not a string
 	 */
-	public static function abs2rel($absolute, $base)
+	public static function abs2rel(string $absolute, string $base): string
 	{
-		$rel = false;
+		// remove trailing slashes and explode absolute path
+		$absolute = rtrim($absolute, DIRECTORY_SEPARATOR);
+		$absolute = explode(DIRECTORY_SEPARATOR, $absolute);
 
-		if ($absolute !== null && $base !== null) {
-			if (is_string($absolute)) {
-				if (is_string($base)) {
-					// remove trailing slashes and explode absolute path
-					$absolute = rtrim($absolute, DIRECTORY_SEPARATOR);
-					$absolute = explode(DIRECTORY_SEPARATOR, $absolute);
+		// remove trailing slashes and explode base path
+		$base = rtrim($base, DIRECTORY_SEPARATOR);
+		$base = explode(DIRECTORY_SEPARATOR, $base);
 
-					// remove trailing slashes and explode base path
-					$base = rtrim($base, DIRECTORY_SEPARATOR);
-					$base = explode(DIRECTORY_SEPARATOR, $base);
+		// get the difference between the two
+		$diff = array_diff($absolute, $base);
 
-					// get the difference between the two
-					$diff = array_diff($absolute, $base);
-
-					// implode it yar
-					$rel = implode(DIRECTORY_SEPARATOR, $diff);
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, base path, to be a string"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, absolute path, to be a string"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two string parameters: absolute path and base path"
-			);
-		}
-
-		return $rel;
+		return implode(DIRECTORY_SEPARATOR, $diff);
 	}
 
 	/**
@@ -83,119 +60,87 @@ class Dir
 	 *
 	 * @return  bool  true if successful
 	 *
-	 * @throws  \BadMethodCallException    if $source, $destination, or $mode is null
-	 * @throws  \InvalidArgumentException  if $source is not a string
-	 * @throws  \InvalidArgumentException  if $destination is not a string
 	 * @throws  \InvalidArgumentException  if $mode is not an integer or false
-	 * @throws  \InvalidArgumentException  if $source does not exist or is not a directory
-	 * @throws  \InvalidArgumentException  if $source is not readable
-	 * @throws  \InvalidArgumentException  if $destination does not exist or it could not
-	 *    be created successfully
-	 * @throws  \InvalidArgumentException  if $destination is not writeable
+	 * @throws  \InvalidArgumentException  if $source does not exist or is not readable
+	 * @throws  \InvalidArgumentException  if $destination does not exist or is not writeable
 	 *
 	 * @see  http://stackoverflow.com/a/2050909  Felix King's answer to "Copy entire
 	 *    contents of a directory to another using php" on StackOverflow
 	 */
-	public static function copy($source, $destination, $mode = 0777)
+	public static function copy(string $source, string $destination, $mode = 0777): bool
 	{
 		$isSuccess = false;
 
-		if ($source !== null && $destination !== null && $mode !== null) {
-			if (is_string($source)) {
-				if (is_string($destination)) {
-					// if $mode is an integer or false
-					if (is_integer($mode) || $mode === false) {
-						// if the source directory exists and is a directory
-						if (is_dir($source)) {
-							// if the source directory is readable
-							if (is_readable($source)) {
-								// if the destination directory does not exist and we're ok to create it
-								if ( ! file_exists($destination) && is_integer($mode)) {
-									mkdir($destination, $mode, true);
-								}
-								// if the destination directory exists and is a directory
-								if (is_dir($destination)) {
-									// if the destination directory is writable
-									if (is_writable($destination)) {
-										// open the source directory
-										$sourceDir = opendir($source);
-										// loop through the entities in the source directory
-										$entity = readdir($sourceDir);
-										while ($entity !== false) {
-											// if not the special entities "." and ".."
-											if ($entity != '.' && $entity != '..') {
-												// if the file is a dir
-												if (is_dir($source.DIRECTORY_SEPARATOR.$entity)) {
-													// recursively copy the dir
-													$isSuccess = self::copy(
-														$source.DIRECTORY_SEPARATOR.$entity,
-														$destination.DIRECTORY_SEPARATOR.$entity,
-														$mode
-													);
-												} else {
-													// otherwise, just copy the file
-													$isSuccess = copy(
-														$source.DIRECTORY_SEPARATOR.$entity,
-														$destination.DIRECTORY_SEPARATOR.$entity
-													);
-												}
-												// if an error occurs, stop
-												if ( ! $isSuccess) {
-													break;
-												}
-											} else {
-												// there was nothing to remove
-												// set $isSuccess to true in case the directory is empty
-												// if it's not empty, $isSuccess will be overwritten on the next iteration
-												//
-												$isSuccess = true;
-											}
-											// advance to the next file
-											$entity = readdir($sourceDir);
-										}
-										// close the source directory
-										closedir($sourceDir);
-									} else {
-										throw new \InvalidArgumentException(
-											__METHOD__."() expects parameter two, destination, to be a writable directory"
-										);
-									}
-								} else {
-									throw new \InvalidArgumentException(
-										__METHOD__."() expects parameter two, destination, to be an existing directory ".
-											"(or it expects parameter three, mode, to be an integer)"
-									);
-								}
-							} else {
-								throw new \InvalidArgumentException(
-									__METHOD__."() expects parameter one, source, to be a readable directory"
-								);
-							}
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__."() expects parameter one, source, to be an existing directory"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter three, mode, to be an integer or false"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects parameter two, destination, to be a string"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects parameter one, source, to be a string"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two or three parameters: source, destination, and mode"
+		// if $mode is neither an integer nor false, short-circuit
+		if (!is_integer($mode) && $mode !== false) {
+			throw new \InvalidArgumentException(
+				"mode should be an octal integer or false"
 			);
 		}
+
+		// if $source does not exist or is not readable, short-circuit
+		if (!is_dir($source) || !is_readable($source)) {
+			throw new \InvalidArgumentException(
+				"source should be an existing, readable directory"
+			);
+		}
+
+		// if $destination does not exist and we're allowed to create it
+		if ( ! file_exists($destination) && is_integer($mode)) {
+			mkdir($destination, $mode, true);
+		}
+
+		// if $destination directory does not exist or is not writable, short-circuit
+		if (!is_dir($destination) || !is_writable($destination)) {
+			throw new \InvalidArgumentException(
+				"destination should be an existing, writable directory " .
+					"(or mode should be an integer)"
+			);
+		}
+
+		// let's get started
+		$isSuccess = false;
+
+		// open the source directory
+		$sourceDir = opendir($source);
+
+		// loop through the entities in the source directory
+		$entity = readdir($sourceDir);
+		while ($entity !== false) {
+			// if not the special entities "." and ".."
+			if ($entity != '.' && $entity != '..') {
+				// if the file is a dir
+				if (is_dir($source.DIRECTORY_SEPARATOR.$entity)) {
+					// recursively copy the dir
+					$isSuccess = self::copy(
+						$source.DIRECTORY_SEPARATOR.$entity,
+						$destination.DIRECTORY_SEPARATOR.$entity,
+						$mode
+					);
+				} else {
+					// otherwise, just copy the file
+					$isSuccess = copy(
+						$source.DIRECTORY_SEPARATOR.$entity,
+						$destination.DIRECTORY_SEPARATOR.$entity
+					);
+				}
+				// if an error occurs, stop
+				if ( ! $isSuccess) {
+					break;
+				}
+			} else {
+				// there was nothing to remove
+				// set $isSuccess to true in case the directory is empty
+				// if it's not empty, $isSuccess will be overwritten on the next iteration
+				//
+				$isSuccess = true;
+			}
+			// advance to the next file
+			$entity = readdir($sourceDir);
+		}
+
+		// close the source directory
+		closedir($sourceDir);
 
 		return $isSuccess;
 	}
@@ -205,7 +150,7 @@ class Dir
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Dir::copy()
 	 */
-	public function cp($source, $destination, $mode = 0777)
+	public function cp(string $source, string $destination, $mode = 0777): bool
 	{
 		return self::cp($source, $destination, $mode);
 	}
@@ -222,11 +167,7 @@ class Dir
 	 *
 	 * @return  bool  true if success
 	 *
-	 * @throws  \BadMethodCallException    if $directory or $container is null
-	 * @throws  \InvalidArgumentException  if $directory is not a string
-	 * @throws  \InvalidArgumentException  if $container is not a string
-	 * @throws  \InvalidArgumentException  if $directory is not a valid directory path
-	 * @throws  \InvalidArgumentException  if $directory is not writeable
+	 * @throws  \InvalidArgumentException  if $directory does not exist or is not writeable
 	 * @throws  \InvalidArgumentException  if $directory is not contained in $container
 	 *
 	 * @see  http://stackoverflow.com/a/11614201  donald123's answer to "Remove all
@@ -234,85 +175,64 @@ class Dir
 	 * @see  http://us1.php.net/rmdir  rmdir() man page
 	 *
 	 */
-	public static function remove($directory, $container)
+	public static function remove(string $directory, string $container): bool
 	{
-		$isSuccess = false;
-
-		if ($directory !== null && $container !== null) {
-			if (is_string($directory)) {
-				if (is_string($container)) {
-					// if the $directory argument is a dir
-					if (is_dir($directory)) {
-						// if $directory is writable
-						if (is_writable($directory)) {
-							// if the $directory is in the $container
-							if (\Jstewmc\PhpHelpers\Str::startsWith($directory, $container)) {
-								// open the directory
-								$dir = opendir($directory);
-								// read the first entity
-								$entity = readdir($dir);
-								// loop through the dir's entities
-								while ($entity !== false) {
-									// if the entity is not the special chars "." and ".."
-									if ($entity != '.' && $entity != '..') {
-										// if the entity is a sub-directory
-										if (is_dir($directory.DIRECTORY_SEPARATOR.$entity)) {
-											// clear and delete the sub-directory
-											$isSuccess = self::remove(
-												$directory.DIRECTORY_SEPARATOR.$entity,
-												$container
-											);
-										} else {
-											// otheriwse, the entity is a file; delete it
-											$isSuccess = unlink($directory.DIRECTORY_SEPARATOR.$entity);
-										}
-										// if an error occurs, stop
-										if ( ! $isSuccess) {
-											break;
-										}
-									} else {
-										// there was nothing to remove
-										// set $isSuccess true in case the directory is empty
-										// if it's not empty, $isSuccess will be overwritten anyway
-										//
-										$isSuccess = true;
-									}
-									// advance to the next entity
-									$entity = readdir($dir);
-								}
-								// close and remove the directory
-								closedir($dir);
-								$isSuccess = rmdir($directory.DIRECTORY_SEPARATOR.$entity);
-							} else {
-								throw new \InvalidArgumentException(
-									__METHOD__."() expects parameter two, container, to contain the directory"
-								);
-							}
-						} else {
-							throw new \InvalidArgumentException(
-								__METHOD__."() expects parameter one, directory, to be a writable directory"
-							);
-						}
-					} else {
-						throw new \InvalidArgumentException(
-							__METHOD__."() expects parameter one, directory, to be a valid directory"
-						);
-					}
-				} else {
-					throw new \InvalidArgumentException(
-						__METHOD__."() expects the second parameter, container, to be a string"
-					);
-				}
-			} else {
-				throw new \InvalidArgumentException(
-					__METHOD__."() expects the first parameter, directory, to be a string"
-				);
-			}
-		} else {
-			throw new \BadMethodCallException(
-				__METHOD__."() expects two string parameters, directory and container"
+		// if $directory does not exist or is not writable, short-circuit
+		if (!is_dir($directory) || !is_writable($directory)) {
+			throw new \InvalidArgumentException(
+				"directory should exist and be writable"
 			);
 		}
+
+		// if $directory is not in $container, short-circuit
+		if (!Str::startsWith($directory, $container)) {
+			throw new \InvalidArgumentException(
+				"directory should be within container"
+			);
+		}
+
+		// otherwise, let's get started
+		$isSuccess = false;
+
+		// open the directory
+		$dir = opendir($directory);
+
+		// read the first entity
+		$entity = readdir($dir);
+
+		// loop through the directory's entities
+		while ($entity !== false) {
+			// if the entity is not the special chars "." and ".."
+			if ($entity != '.' && $entity != '..') {
+				// if the entity is a sub-directory
+				if (is_dir($directory.DIRECTORY_SEPARATOR.$entity)) {
+					// clear and delete the sub-directory
+					$isSuccess = self::remove(
+						$directory.DIRECTORY_SEPARATOR.$entity,
+						$container
+					);
+				} else {
+					// otheriwse, the entity is a file; delete it
+					$isSuccess = unlink($directory.DIRECTORY_SEPARATOR.$entity);
+				}
+				// if an error occurs, stop
+				if ( ! $isSuccess) {
+					break;
+				}
+			} else {
+				// there was nothing to remove
+				// set $isSuccess true in case the directory is empty
+				// if it's not empty, $isSuccess will be overwritten anyway
+				//
+				$isSuccess = true;
+			}
+			// advance to the next entity
+			$entity = readdir($dir);
+		}
+
+		// close and the resource and remove the final entity
+		closedir($dir);
+		$isSuccess = rmdir($directory.DIRECTORY_SEPARATOR.$entity);
 
 		return $isSuccess;
 	}
@@ -322,7 +242,7 @@ class Dir
 	 *
 	 * @see  \Jstewmc\PhpHelpers\Dir::remove()
 	 */
-	public function rm($directory, $container)
+	public function rm(string $directory, string $container): bool
 	{
 		return self::rm($directory, $container);
 	}
