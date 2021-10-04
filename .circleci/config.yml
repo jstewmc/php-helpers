@@ -8,32 +8,6 @@ orbs:
   codecov: codecov/codecov@3.1.0
 
 jobs:
-  build-php73:
-    docker:
-      - image: circleci/php:7.3-node-browsers
-    steps:
-      - checkout
-
-      - run: sudo apt update
-      - run: sudo docker-php-ext-install zip sockets
-
-      # Download and cache dependencies.
-      - restore_cache:
-          keys:
-            - v73-dependencies-{{ checksum "composer.json" }}
-            # Fallback to using the latest cache if no exact match is found.
-            - v73-dependencies-
-
-      - run: composer update --prefer-lowest --prefer-stable --no-interaction
-
-      - save_cache:
-          key: v73-dependencies-{{ checksum "composer.json" }}
-          paths:
-            - ./vendor
-
-      - run: ./vendor/bin/phpcs .
-      - run: ./vendor/bin/phpunit
-
   build-php74:
     docker:
       - image: circleci/php:7.4-node-browsers
@@ -50,7 +24,7 @@ jobs:
             # Fallback to using the latest cache if no exact match is found.
             - v74-dependencies-
 
-      - run: composer update --no-interaction
+      - run: composer update --prefer-lowest --prefer-stable --no-interaction
 
       - save_cache:
           key: v74-dependencies-{{ checksum "composer.json" }}
@@ -93,6 +67,5 @@ workflows:
   version: 2
   test-php-versions:
     jobs:
-      - build-php73
       - build-php74
       - build-php80
