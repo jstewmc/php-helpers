@@ -1,0 +1,71 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@3.1.0
+
+jobs:
+  build-php74:
+    docker:
+      - image: circleci/php:7.4-node-browsers
+    steps:
+      - checkout
+
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install zip sockets
+
+      # Download and cache dependencies.
+      - restore_cache:
+          keys:
+            - v74-dependencies-{{ checksum "composer.json" }}
+            # Fallback to using the latest cache if no exact match is found.
+            - v74-dependencies-
+
+      - run: composer update --prefer-lowest --prefer-stable --no-interaction
+
+      - save_cache:
+          key: v74-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+
+      - run: ./vendor/bin/phpcs .
+      - run: ./vendor/bin/phpunit
+
+  build-php80:
+    docker:
+      - image: circleci/php:8.0-node-browsers
+    steps:
+      - checkout
+
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install zip sockets
+
+      # Download and cache dependencies.
+      - restore_cache:
+          keys:
+            - v80-dependencies-{{ checksum "composer.json" }}
+            # Fallback to using the latest cache if no exact match is found.
+            - v80-dependencies-
+
+      - run: composer update --no-interaction
+
+      - save_cache:
+          key: v80-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+
+      - run: ./vendor/bin/phpcs .
+      - run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - codecov/upload:
+          file: ./coverage.xml
+
+workflows:
+  version: 2
+  test-php-versions:
+    jobs:
+      - build-php74
+      - build-php80

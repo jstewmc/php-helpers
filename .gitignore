@@ -1,5 +1,8 @@
-# ignore composer's vendor directory
+.phpunit.result.cache
 /vendor
-
-# ignore composer's lock file
 composer.lock
+composer.phar
+.idea
+.project
+.phpunit.*
+.DS_Store
